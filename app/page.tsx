@@ -21,10 +21,15 @@ import Setup from "@/components/sections/Setup";
 import Cta from "@/components/sections/Cta";
 import Footer from "@/components/sections/Footer";
 import StickyCtaBar from "@/components/ui/StickyCtaBar";
+import DeepLinkOpener from "@/components/modals/DeepLinkOpener";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
     <>
+      <Suspense fallback={null}>
+        <DeepLinkOpener />
+      </Suspense>
       <Nav />
       <Hero />
       <StatementInterlude />

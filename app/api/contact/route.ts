@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { contactInbox, getTransporter, mailFrom } from "@/lib/mailer";
 import { clientIp, rateLimit } from "@/lib/rateLimit";
+import { notify } from "@/lib/notify";
 
 export const runtime = "nodejs";
 
@@ -120,6 +121,17 @@ export async function POST(req: Request) {
         subject: "Recibimos tu mensaje · RestHUB",
         html: userHtml,
         text: `Hola ${name},\n\nRecibimos tu mensaje y te responderemos en menos de 24 h hábiles.\n\nTu mensaje:\n${message}\n\n— Equipo RestHUB`,
+      }),
+      notify({
+        title: `📨 Nuevo contacto · ${topic}`,
+        body: message.length > 280 ? message.slice(0, 280) + "…" : message,
+        color: "info",
+        fields: [
+          { name: "Nombre", value: name },
+          { name: "Email", value: email },
+          ...(phone ? [{ name: "Teléfono", value: phone }] : []),
+          ...(restaurant ? [{ name: "Restaurante", value: restaurant }] : []),
+        ],
       }),
     ]);
 

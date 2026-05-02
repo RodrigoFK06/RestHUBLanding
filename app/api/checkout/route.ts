@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { contactInbox, getTransporter, mailFrom } from "@/lib/mailer";
 import { clientIp, rateLimit } from "@/lib/rateLimit";
+import { notify } from "@/lib/notify";
 
 export const runtime = "nodejs";
 
@@ -149,6 +150,17 @@ export async function POST(req: Request) {
         subject: `[RestHUB] Nueva sub · ${planName} · ${customer.name}`,
         html: adminHtml,
         text: `Nueva suscripción ${id}\n${planName} ${billingLabel} ${formattedAmount}\n${customer.name} <${customer.email}>\nRestaurante: ${customer.restaurant}\nTarjeta: ${card.brand} ····${card.last4}`,
+      }),
+      notify({
+        title: `💳 Nueva suscripción · ${id}`,
+        body: `${planName} · ${billingLabel} · ${formattedAmount}`,
+        color: "success",
+        fields: [
+          { name: "Cliente", value: customer.name },
+          { name: "Email", value: customer.email },
+          ...(customer.restaurant ? [{ name: "Restaurante", value: customer.restaurant }] : []),
+          { name: "Tarjeta", value: `${card.brand} ····${card.last4 || "0000"}` },
+        ],
       }),
     ]);
 
