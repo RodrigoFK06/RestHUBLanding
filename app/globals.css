@@ -136,6 +136,19 @@
   }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  /* Offset para anclas: la nav fija ocupa ~70px */
+  section[id] {
+    scroll-margin-top: 84px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  /* Selección con color de marca */
+  ::selection {
+    background: rgba(245, 158, 11, 0.35);
+    color: #fff;
   }
 }
 

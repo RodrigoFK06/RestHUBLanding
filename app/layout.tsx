@@ -4,6 +4,7 @@ import "./globals.css";
 import ModalProvider from "@/components/modals/ModalProvider";
 import ToastProvider from "@/components/ui/Toast";
 import WhatsAppFab from "@/components/ui/WhatsAppFab";
+import CookieBanner from "@/components/ui/CookieBanner";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -118,6 +119,7 @@ export default function RootLayout({
           <ModalProvider>
             {children}
             <WhatsAppFab />
+            <CookieBanner />
           </ModalProvider>
         </ToastProvider>
         <script
