@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -51,6 +51,54 @@ const testimonials = [
 
 export default function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  // Auto-advance solo en móvil (carousel visible). En desktop el grid muestra los 3.
+  useEffect(() => {
+    if (paused) return;
+    const id = window.setInterval(() => {
+      const el = carouselRef.current;
+      if (!el) return;
+      // Si el contenedor no es scroll-horizontal (desktop md+), no hacer nada
+      if (el.scrollWidth <= el.clientWidth + 8) return;
+      const next = (activeIdx + 1) % testimonials.length;
+      const card = el.children[next] as HTMLElement | undefined;
+      card?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    }, 5500);
+    return () => window.clearInterval(id);
+  }, [activeIdx, paused]);
+
+  // Detecta scroll para actualizar el dot activo
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let best = 0;
+      let bestDist = Infinity;
+      for (let i = 0; i < el.children.length; i++) {
+        const c = el.children[i] as HTMLElement;
+        const cCenter = c.offsetLeft + c.clientWidth / 2;
+        const d = Math.abs(cCenter - center);
+        if (d < bestDist) {
+          bestDist = d;
+          best = i;
+        }
+      }
+      setActiveIdx(best);
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const goTo = (i: number) => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const card = el.children[i] as HTMLElement | undefined;
+    card?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  };
 
   useGSAP(
     () => {
@@ -116,12 +164,19 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* ── Testimonial cards ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {/* ── Testimonial cards (mobile: carousel, desktop: grid) ── */}
+        <div
+          ref={carouselRef}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onTouchStart={() => setPaused(true)}
+          className="flex md:grid md:grid-cols-3 gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-smooth -mx-8 md:mx-0 px-8 md:px-0 pb-2 md:pb-0"
+          style={{ scrollbarWidth: "none" }}
+        >
           {testimonials.map((t, i) => (
             <div
               key={i}
-              className="testi-card group relative flex flex-col rounded-2xl overflow-hidden"
+              className="testi-card group relative flex flex-col rounded-2xl overflow-hidden snap-center shrink-0 w-[85%] sm:w-[60%] md:w-auto md:shrink"
               style={{
                 background: "rgba(15,23,42,0.7)",
                 border: "1px solid rgba(255,255,255,0.07)",
@@ -194,6 +249,29 @@ export default function Testimonials() {
             </div>
           ))}
         </div>
+
+        {/* Dots — solo mobile */}
+        <div className="flex md:hidden items-center justify-center gap-2 mt-5">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              aria-label={`Ir al testimonio ${i + 1}`}
+              className="transition-all rounded-full cursor-pointer"
+              style={{
+                width: i === activeIdx ? 22 : 6,
+                height: 6,
+                background: i === activeIdx ? "#F59E0B" : "rgba(255,255,255,0.18)",
+              }}
+            />
+          ))}
+        </div>
+
+        <style>{`
+          .testi-card { scroll-snap-align: center; }
+          /* Hide scrollbar across browsers */
+          [class*="overflow-x-auto"]::-webkit-scrollbar { display: none; }
+        `}</style>
 
         {/* Trust strip */}
         <div className="mt-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">

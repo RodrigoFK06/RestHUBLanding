@@ -58,7 +58,12 @@ export default function Comparison() {
               <TableHeader>
                 <TableRow className="bg-[#F8FAFC] hover:bg-[#F8FAFC]">
                   <TableHead className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-[#94A3B8]">Característica</TableHead>
-                  <TableHead className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-[#F59E0B]">RestHUB</TableHead>
+                  <TableHead className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-[#F59E0B] bg-[#F59E0B]/[0.04]">
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]" />
+                      RestHUB
+                    </span>
+                  </TableHead>
                   <TableHead className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-[#94A3B8]">Toast / Square</TableHead>
                   <TableHead className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-[#94A3B8]">Oracle Simphony</TableHead>
                   <TableHead className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-[#94A3B8]">Especialistas</TableHead>
@@ -66,9 +71,14 @@ export default function Comparison() {
               </TableHeader>
               <TableBody>
                 {rows.map((r, i) => (
-                  <TableRow key={i} className="border-[#E2E8F0] hover:bg-[#F8FAFC]">
-                    <TableCell className="text-[0.82rem] text-[#64748B] font-medium">{r.feature}</TableCell>
-                    <TableCell className="text-[0.82rem] text-[#0F172A] font-medium">
+                  <TableRow
+                    key={i}
+                    className="border-[#E2E8F0] transition-colors group hover:bg-[#F59E0B]/[0.04]"
+                  >
+                    <TableCell className="text-[0.82rem] text-[#64748B] font-medium group-hover:text-[#0F172A] transition-colors">
+                      {r.feature}
+                    </TableCell>
+                    <TableCell className="text-[0.82rem] text-[#0F172A] font-semibold bg-[#F59E0B]/[0.03] group-hover:bg-[#F59E0B]/[0.08] transition-colors">
                       <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-[#14B8A6] shrink-0" strokeWidth={2} />{r.rh}</span>
                     </TableCell>
                     <TableCell className="text-[0.82rem] text-[#64748B]">

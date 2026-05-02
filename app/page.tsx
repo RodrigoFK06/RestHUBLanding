@@ -8,20 +8,10 @@ import EditorialGrid from "@/components/sections/EditorialGrid";
 import StickyModules from "@/components/sections/StickyModules";
 import Integrations from "@/components/sections/Integrations";
 import Flow from "@/components/sections/Flow";
-import ExpandingRoles from "@/components/sections/ExpandingRoles";
-import Comparison from "@/components/sections/Comparison";
-import Messages from "@/components/sections/Messages";
-import CaseStudy from "@/components/sections/CaseStudy";
-import MidStatement from "@/components/sections/MidStatement";
-import Testimonials from "@/components/sections/Testimonials";
-import PricingPivot from "@/components/sections/PricingPivot";
-import Pricing from "@/components/sections/Pricing";
-import Faq from "@/components/sections/Faq";
-import Setup from "@/components/sections/Setup";
-import Cta from "@/components/sections/Cta";
 import Footer from "@/components/sections/Footer";
 import StickyCtaBar from "@/components/ui/StickyCtaBar";
 import DeepLinkOpener from "@/components/modals/DeepLinkOpener";
+import BelowFoldSections from "@/components/BelowFoldSections";
 import { Suspense } from "react";
 
 export default function Home() {
@@ -40,17 +30,7 @@ export default function Home() {
       <StickyModules />
       <Integrations />
       <Flow />
-      <ExpandingRoles />
-      <Messages />
-      <CaseStudy />
-      <MidStatement />
-      <Testimonials />
-      <Comparison />
-      <PricingPivot />
-      <Pricing />
-      <Faq />
-      <Setup />
-      <Cta />
+      <BelowFoldSections />
       <Footer />
       <StickyCtaBar />
     </>

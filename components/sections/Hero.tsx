@@ -6,6 +6,7 @@ import { Zap, DollarSign } from "lucide-react";
 import BlurFade from "@/components/reactbits/BlurFade";
 import SplitWords from "@/components/reactbits/SplitWords";
 import { useModals } from "@/components/modals/ModalProvider";
+import LogosMarquee from "@/components/sections/LogosMarquee";
 
 // Video sources — free stock from Pexels CDN (no auth needed)
 const VIDEO_SRC = "https://videos.pexels.com/video-files/3252960/3252960-uhd_2560_1440_25fps.mp4";
@@ -160,17 +161,9 @@ export default function Hero() {
                 <strong className="text-white/80">+40 restaurantes</strong> ya operan con RestHUB
               </span>
             </div>
-            {/* Restaurant name strip — like Square's client logos */}
-            <div className="flex items-center gap-4 flex-wrap justify-center">
-              {["La Mar", "Central", "Isolina", "Astrid & Gastón", "Tanta", "La Lucha"].map((name, i) => (
-                <span
-                  key={i}
-                  className="text-[0.68rem] font-semibold tracking-[0.08em] uppercase"
-                  style={{ color: "rgba(255,255,255,0.2)" }}
-                >
-                  {name}
-                </span>
-              ))}
+            {/* Restaurant marquee */}
+            <div className="w-screen max-w-[920px] -mx-6">
+              <LogosMarquee variant="hero" />
             </div>
           </div>
         </BlurFade>
