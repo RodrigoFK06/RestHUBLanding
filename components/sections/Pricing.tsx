@@ -1,11 +1,19 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Check } from "lucide-react";
 import { useModals } from "@/components/modals/ModalProvider";
+import {
+  CURRENCY_SYMBOL,
+  Currency,
+  convertFromUSD,
+  formatCurrency,
+  persistCurrency,
+  readStoredCurrency,
+} from "@/lib/currency";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,7 +90,18 @@ const plans = [
 export default function Pricing() {
   const sectionRef = useRef<HTMLElement>(null);
   const [yearly, setYearly] = useState(false);
+  const [currency, setCurrency] = useState<Currency>("USD");
   const { openContact, openCheckout } = useModals();
+
+  useEffect(() => {
+    const stored = readStoredCurrency();
+    if (stored) setCurrency(stored);
+  }, []);
+
+  const switchCurrency = (c: Currency) => {
+    setCurrency(c);
+    persistCurrency(c);
+  };
 
   const handlePlanClick = (planId: string) => {
     if (planId === "esencial") {
@@ -100,12 +119,15 @@ export default function Pricing() {
       return;
     }
     const plan = plans.find((p) => p.id === planId)!;
-    const amount = (yearly ? plan.price.yearly : plan.price.monthly) ?? 0;
+    const monthlyUSD = plan.price.monthly ?? 0;
+    const yearlyMonthlyUSD = plan.price.yearly ?? 0;
+    const amountUSD = yearly ? yearlyMonthlyUSD * 12 : monthlyUSD;
+    const amountConverted = convertFromUSD(amountUSD, currency);
     openCheckout({
       id: plan.id,
       name: `RestHUB ${plan.name}`,
-      amount: yearly ? amount * 12 : amount,
-      currency: "USD",
+      amount: amountConverted,
+      currency,
       billing: yearly ? "yearly" : "monthly",
       description: plan.desc,
     });
@@ -152,42 +174,78 @@ export default function Pricing() {
             Cancela o cambia de plan cuando quieras. Implementación guiada incluida en todos.
           </p>
 
-          {/* Billing toggle */}
-          <div className="inline-flex items-center gap-3 bg-white border border-[#E2E8F0] rounded-full p-1.5 shadow-sm">
-            <button
-              onClick={() => setYearly(false)}
-              className="px-5 py-2 rounded-full text-sm font-semibold transition-all"
-              style={{
-                background: !yearly ? "rgba(245,158,11,0.12)" : "transparent",
-                color: !yearly ? "#F59E0B" : "#94A3B8",
-              }}
-            >
-              Mensual
-            </button>
-            <button
-              onClick={() => setYearly(true)}
-              className="px-5 py-2 rounded-full text-sm font-semibold transition-all"
-              style={{
-                background: yearly ? "rgba(245,158,11,0.12)" : "transparent",
-                color: yearly ? "#F59E0B" : "#94A3B8",
-              }}
-            >
-              Anual
-              <span
-                className="ml-2 text-[0.6rem] font-bold px-1.5 py-0.5 rounded-full"
-                style={{ background: "rgba(20,184,166,0.15)", color: "#14B8A6" }}
+          {/* Toggles */}
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {/* Billing toggle */}
+            <div className="inline-flex items-center gap-3 bg-white border border-[#E2E8F0] rounded-full p-1.5 shadow-sm">
+              <button
+                onClick={() => setYearly(false)}
+                className="px-5 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer"
+                style={{
+                  background: !yearly ? "rgba(245,158,11,0.12)" : "transparent",
+                  color: !yearly ? "#F59E0B" : "#94A3B8",
+                }}
               >
-                −20%
-              </span>
-            </button>
+                Mensual
+              </button>
+              <button
+                onClick={() => setYearly(true)}
+                className="px-5 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer"
+                style={{
+                  background: yearly ? "rgba(245,158,11,0.12)" : "transparent",
+                  color: yearly ? "#F59E0B" : "#94A3B8",
+                }}
+              >
+                Anual
+                <span
+                  className="ml-2 text-[0.6rem] font-bold px-1.5 py-0.5 rounded-full"
+                  style={{ background: "rgba(20,184,166,0.15)", color: "#14B8A6" }}
+                >
+                  −20%
+                </span>
+              </button>
+            </div>
+
+            {/* Currency toggle */}
+            <div
+              className="inline-flex items-center bg-white border border-[#E2E8F0] rounded-full p-1.5 shadow-sm"
+              role="radiogroup"
+              aria-label="Moneda"
+            >
+              {(["USD", "PEN"] as const).map((c) => {
+                const active = currency === c;
+                return (
+                  <button
+                    key={c}
+                    role="radio"
+                    aria-checked={active}
+                    onClick={() => switchCurrency(c)}
+                    className="px-4 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer"
+                    style={{
+                      background: active ? "rgba(20,184,166,0.12)" : "transparent",
+                      color: active ? "#14B8A6" : "#94A3B8",
+                    }}
+                  >
+                    {c}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
           {plans.map((plan) => {
-            const price = yearly ? plan.price.yearly : plan.price.monthly;
+            const priceUSD = yearly ? plan.price.yearly : plan.price.monthly;
+            const price =
+              priceUSD === null ? null : convertFromUSD(priceUSD, currency);
+            const monthlyConverted =
+              plan.price.monthly === null ? null : convertFromUSD(plan.price.monthly, currency);
+            const yearlyConverted =
+              plan.price.yearly === null ? null : convertFromUSD(plan.price.yearly, currency);
             const isPro = plan.id === "pro";
+            const sym = CURRENCY_SYMBOL[currency];
 
             return (
               <div
@@ -232,19 +290,19 @@ export default function Pricing() {
                     </div>
                   ) : price === 0 ? (
                     <div>
-                      <div className="text-[2.5rem] font-black leading-none mb-1" style={{ color: isPro ? '#fff' : '#0F172A' }}>$0</div>
+                      <div className="text-[2.5rem] font-black leading-none mb-1" style={{ color: isPro ? '#fff' : '#0F172A' }}>{sym}0</div>
                       <div className="text-sm text-[#64748B]">para siempre</div>
                     </div>
                   ) : (
                     <div>
                       <div className="flex items-end gap-1 mb-1">
-                        <span className="text-[0.9rem] font-bold text-[#64748B] mb-2">$</span>
+                        <span className="text-[0.9rem] font-bold text-[#64748B] mb-2">{sym}</span>
                         <span className="text-[2.5rem] font-black leading-none" style={{ color: isPro ? '#fff' : '#0F172A' }}>{price}</span>
                         <span className="text-sm text-[#64748B] mb-1.5">/mes · por local</span>
                       </div>
-                      {yearly && (
+                      {yearly && monthlyConverted !== null && yearlyConverted !== null && (
                         <div className="text-[0.7rem] text-[#14B8A6]">
-                          Ahorras ${(plan.price.monthly! - plan.price.yearly!) * 12}/año
+                          Ahorras {formatCurrency((monthlyConverted - yearlyConverted) * 12, currency)}/año
                         </div>
                       )}
                     </div>

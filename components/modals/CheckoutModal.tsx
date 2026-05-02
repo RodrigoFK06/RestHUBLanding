@@ -74,6 +74,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
   const [cvc, setCvc] = useState("");
   const [holder, setHolder] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
+  const [locations, setLocations] = useState(1);
   const toast = useToast();
 
   useEffect(() => {
@@ -82,6 +83,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
     setStepIdx(0);
     setError(null);
     setOrderId(null);
+    setLocations(1);
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
@@ -99,9 +101,11 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
 
   const brand = useMemo(() => detectBrand(card), [card]);
   const last4 = useMemo(() => card.replace(/\D/g, "").slice(-4), [card]);
-  const formattedAmount = plan
-    ? `${plan.currency === "USD" ? "$" : plan.currency + " "}${plan.amount.toFixed(2)}`
-    : "$0.00";
+
+  const sym = plan?.currency === "PEN" ? "S/ " : "$";
+  const totalAmount = plan ? plan.amount * locations : 0;
+  const formattedAmount = `${sym}${totalAmount.toFixed(2)}`;
+  const formattedUnit = plan ? `${sym}${plan.amount.toFixed(2)}` : "";
   const billingLabel = plan?.billing === "yearly" ? "/año · por local" : "/mes · por local";
 
   if (!open || !plan) return null;
@@ -146,8 +150,8 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         planId: plan.id,
-        planName: plan.name,
-        amount: plan.amount,
+        planName: locations > 1 ? `${plan.name} × ${locations} locales` : plan.name,
+        amount: totalAmount,
         currency: plan.currency,
         billing: plan.billing,
         customer: { name, email, restaurant },
@@ -240,8 +244,45 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
                 value={restaurant}
                 onChange={setRestaurant}
                 placeholder="Opcional"
-                wrapperClassName="mb-5"
+                wrapperClassName="mb-4"
               />
+
+              {/* Locales stepper */}
+              <div className="mb-5">
+                <label className="block text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-white/45 mb-1.5">
+                  Cantidad de locales
+                </label>
+                <div className="flex items-center gap-2">
+                  <div
+                    className="inline-flex items-center bg-white/[0.04] border border-white/10 rounded-xl overflow-hidden"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setLocations((n) => Math.max(1, n - 1))}
+                      disabled={locations <= 1}
+                      aria-label="Quitar local"
+                      className="w-10 h-10 flex items-center justify-center text-white/65 hover:text-white hover:bg-white/5 transition-all disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer"
+                    >
+                      −
+                    </button>
+                    <div className="w-12 text-center text-sm font-bold text-white tabular-nums">
+                      {locations}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setLocations((n) => Math.min(10, n + 1))}
+                      disabled={locations >= 10}
+                      aria-label="Sumar local"
+                      className="w-10 h-10 flex items-center justify-center text-white/65 hover:text-white hover:bg-white/5 transition-all disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <span className="text-[0.78rem] text-white/45">
+                    {locations === 1 ? "1 local" : `${locations} locales`} · {formattedUnit} c/u
+                  </span>
+                </div>
+              </div>
 
               <div className="text-[0.65rem] font-semibold tracking-[0.15em] uppercase text-white/40 mb-2 flex items-center gap-2">
                 <CreditCard className="w-3 h-3" /> Datos de pago
@@ -478,15 +519,18 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
               <p className="text-[0.85rem] text-white/55 leading-[1.6] mb-6">{plan.description}</p>
             )}
 
-            <div className="flex items-end gap-1.5 mb-6">
-              <span className="text-[0.85rem] font-bold text-white/55 mb-2">
-                {plan.currency === "USD" ? "$" : plan.currency}
-              </span>
+            <div className="flex items-end gap-1.5 mb-3">
+              <span className="text-[0.85rem] font-bold text-white/55 mb-2">{sym}</span>
               <span className="text-[3rem] font-black leading-none text-white tracking-[-0.03em]">
                 {plan.amount.toFixed(0)}
               </span>
               <span className="text-[0.85rem] text-white/45 mb-2">{billingLabel}</span>
             </div>
+            {locations > 1 && (
+              <div className="text-[0.78rem] text-white/55 mb-6">
+                × {locations} locales = <strong className="text-white">{formattedAmount}</strong>
+              </div>
+            )}
 
             <div className="h-px bg-white/8 my-5" />
 

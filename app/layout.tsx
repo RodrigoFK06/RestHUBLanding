@@ -5,6 +5,7 @@ import ModalProvider from "@/components/modals/ModalProvider";
 import ToastProvider from "@/components/ui/Toast";
 import WhatsAppFab from "@/components/ui/WhatsAppFab";
 import CookieBanner from "@/components/ui/CookieBanner";
+import LenisProvider from "@/components/providers/LenisProvider";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -115,6 +116,7 @@ export default function RootLayout({
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#0F172A] text-white">
+        <LenisProvider />
         <ToastProvider>
           <ModalProvider>
             {children}

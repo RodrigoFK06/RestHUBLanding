@@ -136,9 +136,8 @@
   }
   html {
     @apply font-sans;
-    scroll-behavior: smooth;
   }
-  /* Offset para anclas: la nav fija ocupa ~70px */
+  /* Offset para anclas (también respetado por Lenis vía offset:-80). */
   section[id] {
     scroll-margin-top: 84px;
   }

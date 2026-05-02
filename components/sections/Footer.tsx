@@ -261,9 +261,23 @@ export default function Footer() {
           <p className="text-[0.75rem] text-[#64748B]">
             © 2026 RestHUB. Todos los derechos reservados.
           </p>
-          <span className="text-[0.65rem] font-bold tracking-[0.1em] uppercase text-[rgba(148,163,184,0.35)] px-3 py-1 rounded-full bg-white/3 border border-white/5">
-            v1.0 · Abril 2026
-          </span>
+          <div className="flex items-center gap-5">
+            <Link
+              href="/legal/privacidad"
+              className="text-[0.75rem] text-[#64748B] hover:text-white transition-colors"
+            >
+              Privacidad
+            </Link>
+            <Link
+              href="/legal/terminos"
+              className="text-[0.75rem] text-[#64748B] hover:text-white transition-colors"
+            >
+              Términos
+            </Link>
+            <span className="text-[0.65rem] font-bold tracking-[0.1em] uppercase text-[rgba(148,163,184,0.35)] px-3 py-1 rounded-full bg-white/3 border border-white/5">
+              v1.0 · Abril 2026
+            </span>
+          </div>
         </div>
       </div>
     </footer>
