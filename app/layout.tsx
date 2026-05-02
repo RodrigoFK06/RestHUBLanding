@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import ModalProvider from "@/components/modals/ModalProvider";
+import ToastProvider from "@/components/ui/Toast";
+import WhatsAppFab from "@/components/ui/WhatsAppFab";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -37,7 +40,14 @@ export default function RootLayout({
       lang="es"
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#0F172A] text-white">{children}</body>
+      <body className="min-h-full flex flex-col bg-[#0F172A] text-white">
+        <ToastProvider>
+          <ModalProvider>
+            {children}
+            <WhatsAppFab />
+          </ModalProvider>
+        </ToastProvider>
+      </body>
     </html>
   );
 }

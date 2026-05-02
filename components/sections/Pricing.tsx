@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Check } from "lucide-react";
+import { useModals } from "@/components/modals/ModalProvider";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -81,6 +82,34 @@ const plans = [
 export default function Pricing() {
   const sectionRef = useRef<HTMLElement>(null);
   const [yearly, setYearly] = useState(false);
+  const { openContact, openCheckout } = useModals();
+
+  const handlePlanClick = (planId: string) => {
+    if (planId === "esencial") {
+      openContact({
+        topic: "Solicitar acceso",
+        prefillMessage: "Quiero comenzar con el plan Esencial (gratis).",
+      });
+      return;
+    }
+    if (planId === "empresa") {
+      openContact({
+        topic: "Contactar ventas",
+        prefillMessage: "Estoy interesado en el plan Empresa para múltiples locales.",
+      });
+      return;
+    }
+    const plan = plans.find((p) => p.id === planId)!;
+    const amount = (yearly ? plan.price.yearly : plan.price.monthly) ?? 0;
+    openCheckout({
+      id: plan.id,
+      name: `RestHUB ${plan.name}`,
+      amount: yearly ? amount * 12 : amount,
+      currency: "USD",
+      billing: yearly ? "yearly" : "monthly",
+      description: plan.desc,
+    });
+  };
 
   useGSAP(
     () => {
@@ -224,7 +253,8 @@ export default function Pricing() {
 
                 {/* CTA */}
                 <button
-                  className="w-full py-3.5 rounded-xl text-sm font-bold mb-7 transition-all"
+                  onClick={() => handlePlanClick(plan.id)}
+                  className="w-full py-3.5 rounded-xl text-sm font-bold mb-7 transition-all cursor-pointer"
                   style={
                     plan.ctaStyle === "filled"
                       ? {

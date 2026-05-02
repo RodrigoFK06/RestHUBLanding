@@ -1,7 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import BlurFade from "@/components/reactbits/BlurFade";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, MessageCircle } from "lucide-react";
+import { useModals } from "@/components/modals/ModalProvider";
+
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "51961869348";
 
 const checks = [
   "POS + KDS integrado",
@@ -13,6 +18,10 @@ const checks = [
 ];
 
 export default function Cta() {
+  const { openContact } = useModals();
+  const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    "Hola RestHUB, me gustaría agendar una demo."
+  )}`;
   return (
     <section id="cta" className="relative py-36 px-8 bg-[#0F172A] text-center overflow-hidden">
       {/* Background restaurant photo */}
@@ -53,14 +62,26 @@ export default function Cta() {
 
         <BlurFade delay={0.24}>
           <div className="flex flex-wrap gap-4 justify-center mb-6">
-            <a href="mailto:hola@resthub.app">
-              <Button className="bg-[#F59E0B] hover:bg-[#FCD34D] text-[#0F172A] font-bold text-base px-8 py-5 hover:shadow-[0_10px_32px_rgba(245,158,11,0.38)] hover:-translate-y-1 transition-all">
-                Solicitar acceso →
-              </Button>
-            </a>
-            <a href="mailto:hola@resthub.app">
-              <Button variant="ghost" className="text-white border border-white/20 hover:border-white/50 hover:bg-transparent text-base px-8 py-5 hover:-translate-y-1 transition-all">
-                Agendar demo
+            <Button
+              onClick={() => openContact({ topic: "Solicitar acceso" })}
+              className="bg-[#F59E0B] hover:bg-[#FCD34D] text-[#0F172A] font-bold text-base px-8 py-5 hover:shadow-[0_10px_32px_rgba(245,158,11,0.38)] hover:-translate-y-1 transition-all cursor-pointer"
+            >
+              Solicitar acceso →
+            </Button>
+            <Button
+              variant="ghost"
+              onClick={() => openContact({ topic: "Agendar demo" })}
+              className="text-white border border-white/20 hover:border-white/50 hover:bg-transparent text-base px-8 py-5 hover:-translate-y-1 transition-all cursor-pointer"
+            >
+              Agendar demo
+            </Button>
+            <a href={waHref} target="_blank" rel="noopener noreferrer">
+              <Button
+                variant="ghost"
+                className="text-white border border-[#25D366]/40 hover:border-[#25D366] hover:bg-[#25D366]/10 text-base px-8 py-5 hover:-translate-y-1 transition-all cursor-pointer"
+              >
+                <MessageCircle className="w-4 h-4 text-[#25D366] mr-1.5" />
+                WhatsApp
               </Button>
             </a>
           </div>

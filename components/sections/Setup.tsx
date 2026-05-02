@@ -7,6 +7,7 @@ import { useGSAP } from "@gsap/react";
 import { Monitor, Wrench, Zap, ArrowRight } from "lucide-react";
 import BlurFade from "@/components/reactbits/BlurFade";
 import { Button } from "@/components/ui/button";
+import { useModals } from "@/components/modals/ModalProvider";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -54,6 +55,7 @@ const steps = [
 
 export default function Setup() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { openContact } = useModals();
 
   useGSAP(
     () => {
@@ -167,12 +169,13 @@ export default function Setup() {
               </div>
             </div>
 
-            <a href="mailto:hola@resthub.app" className="shrink-0">
-              <Button className="bg-[#0F172A] hover:bg-[#1E293B] text-white font-bold px-6 py-4 hover:-translate-y-0.5 transition-all inline-flex items-center gap-2">
-                Solicitar demo
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </a>
+            <Button
+              onClick={() => openContact({ topic: "Agendar demo" })}
+              className="shrink-0 bg-[#0F172A] hover:bg-[#1E293B] text-white font-bold px-6 py-4 hover:-translate-y-0.5 transition-all inline-flex items-center gap-2 cursor-pointer"
+            >
+              Solicitar demo
+              <ArrowRight className="w-4 h-4" />
+            </Button>
           </div>
         </BlurFade>
 

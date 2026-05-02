@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useModals } from "@/components/modals/ModalProvider";
 
 const links = [
   { href: "#modulos", label: "Módulos" },
@@ -16,6 +17,7 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
+  const { openContact } = useModals();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 60);
@@ -60,16 +62,21 @@ export default function Nav() {
 
       {/* Desktop CTAs */}
       <div className="hidden md:flex items-center gap-2">
-        <a href="#cta" onClick={(e) => handleAnchor(e, "#cta")}>
-          <Button variant="ghost" size="sm" className="text-white border border-white/20 hover:border-white/50 hover:bg-transparent text-xs">
-            Agendar demo
-          </Button>
-        </a>
-        <a href="#cta" onClick={(e) => handleAnchor(e, "#cta")}>
-          <Button size="sm" className="bg-[#F59E0B] hover:bg-[#FCD34D] text-[#0F172A] font-bold text-xs">
-            Solicitar acceso
-          </Button>
-        </a>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => openContact({ topic: "Agendar demo" })}
+          className="text-white border border-white/20 hover:border-white/50 hover:bg-transparent text-xs cursor-pointer"
+        >
+          Agendar demo
+        </Button>
+        <Button
+          size="sm"
+          onClick={() => openContact({ topic: "Solicitar acceso" })}
+          className="bg-[#F59E0B] hover:bg-[#FCD34D] text-[#0F172A] font-bold text-xs cursor-pointer"
+        >
+          Solicitar acceso
+        </Button>
       </div>
 
       {/* Mobile burger */}
@@ -96,11 +103,15 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a href="#cta" onClick={(e) => handleAnchor(e, "#cta")}>
-            <Button className="w-full bg-[#F59E0B] hover:bg-[#FCD34D] text-[#0F172A] font-bold">
-              Solicitar acceso →
-            </Button>
-          </a>
+          <Button
+            onClick={() => {
+              setOpen(false);
+              openContact({ topic: "Solicitar acceso" });
+            }}
+            className="w-full bg-[#F59E0B] hover:bg-[#FCD34D] text-[#0F172A] font-bold cursor-pointer"
+          >
+            Solicitar acceso →
+          </Button>
         </div>
       )}
     </nav>

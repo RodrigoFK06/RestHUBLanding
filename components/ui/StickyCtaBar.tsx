@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useModals } from "@/components/modals/ModalProvider";
 
 export default function StickyCtaBar() {
   const [visible, setVisible] = useState(false);
+  const { openContact } = useModals();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,11 +14,6 @@ export default function StickyCtaBar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const handleAnchor = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <div
@@ -39,15 +36,15 @@ export default function StickyCtaBar() {
 
         <div className="flex items-center gap-2 ml-auto sm:ml-0 w-full sm:w-auto">
           <button
-            onClick={() => handleAnchor("#cta")}
-            className="flex-1 sm:flex-none text-[0.76rem] font-semibold text-white border rounded-full px-5 py-2.5 transition-all hover:bg-white/5"
+            onClick={() => openContact({ topic: "Agendar demo" })}
+            className="flex-1 sm:flex-none text-[0.76rem] font-semibold text-white border rounded-full px-5 py-2.5 transition-all hover:bg-white/5 cursor-pointer"
             style={{ borderColor: "rgba(255,255,255,0.15)" }}
           >
             Agendar demo
           </button>
           <button
-            onClick={() => handleAnchor("#cta")}
-            className="flex-1 sm:flex-none text-[0.76rem] font-bold text-black rounded-full px-5 py-2.5 transition-all hover:opacity-90"
+            onClick={() => openContact({ topic: "Solicitar acceso" })}
+            className="flex-1 sm:flex-none text-[0.76rem] font-bold text-black rounded-full px-5 py-2.5 transition-all hover:opacity-90 cursor-pointer"
             style={{
               background: "#F59E0B",
               boxShadow: "0 4px 24px rgba(245,158,11,0.35)",

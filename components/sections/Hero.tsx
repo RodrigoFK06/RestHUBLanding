@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Zap, DollarSign } from "lucide-react";
 import BlurFade from "@/components/reactbits/BlurFade";
 import SplitWords from "@/components/reactbits/SplitWords";
+import { useModals } from "@/components/modals/ModalProvider";
 
 // Video sources — free stock from Pexels CDN (no auth needed)
 const VIDEO_SRC = "https://videos.pexels.com/video-files/3252960/3252960-uhd_2560_1440_25fps.mp4";
@@ -35,6 +36,7 @@ const floatCards = [
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const { openContact } = useModals();
 
   useEffect(() => {
     const vid = videoRef.current;
@@ -120,8 +122,8 @@ export default function Hero() {
         <BlurFade delay={0.85}>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <button
-              onClick={() => handleAnchor("#cta")}
-              className="font-bold text-[#0F172A] px-8 py-3.5 rounded-full text-sm transition-all hover:scale-105"
+              onClick={() => openContact({ topic: "Solicitar acceso" })}
+              className="font-bold text-[#0F172A] px-8 py-3.5 rounded-full text-sm transition-all hover:scale-105 cursor-pointer"
               style={{ background: "#F59E0B", boxShadow: "0 0 0 0 rgba(245,158,11,0)" }}
               onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(245,158,11,0.5)"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 0 0 rgba(245,158,11,0)"; }}
