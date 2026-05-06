@@ -36,12 +36,6 @@ export default function Footer() {
     "idle"
   );
 
-  const handleAnchor = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (!href.startsWith("#")) return;
-    e.preventDefault();
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   const copy = async (text: string, kind: "email" | "wa") => {
     try {
       await navigator.clipboard.writeText(text);
@@ -155,20 +149,18 @@ export default function Footer() {
             <Image
               src="/logo.svg"
               alt="RestHUB"
-              width={0}
-              height={0}
-              sizes="200px"
-              className="invert mb-4"
-              style={{ height: "1.5rem", width: "auto" }}
+              width={120}
+              height={24}
+              className="invert mb-4 h-6 w-auto"
             />
-            <p className="text-[0.84rem] text-[#64748B] leading-[1.65] max-w-[260px]">
+            <p className="text-[0.84rem] text-[#94A3B8] leading-[1.65] max-w-[260px]">
               El hub operativo completo para restaurantes — desde la mesa hasta el balance.
             </p>
           </div>
 
           {/* Producto */}
           <div>
-            <h5 className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#64748B] mb-3.5">
+            <h5 className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#94A3B8] mb-3.5">
               Producto
             </h5>
             <ul className="flex flex-col gap-2.5">
@@ -176,8 +168,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    onClick={(e) => handleAnchor(e, l.href)}
-                    className="text-[0.84rem] text-[#64748B] hover:text-white transition-colors"
+                    className="text-[0.84rem] text-[#94A3B8] hover:text-white transition-colors"
                   >
                     {l.label}
                   </Link>
@@ -188,7 +179,7 @@ export default function Footer() {
 
           {/* Por qué */}
           <div>
-            <h5 className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#64748B] mb-3.5">
+            <h5 className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#94A3B8] mb-3.5">
               Por qué RestHUB
             </h5>
             <ul className="flex flex-col gap-2.5">
@@ -196,8 +187,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    onClick={(e) => handleAnchor(e, l.href)}
-                    className="text-[0.84rem] text-[#64748B] hover:text-white transition-colors"
+                    className="text-[0.84rem] text-[#94A3B8] hover:text-white transition-colors"
                   >
                     {l.label}
                   </Link>
@@ -208,14 +198,14 @@ export default function Footer() {
 
           {/* Contacto */}
           <div>
-            <h5 className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#64748B] mb-3.5">
+            <h5 className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#94A3B8] mb-3.5">
               Contacto
             </h5>
             <ul className="flex flex-col gap-3">
               <li className="flex items-center gap-1.5">
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
-                  className="text-[0.84rem] text-[#64748B] hover:text-white transition-colors truncate"
+                  className="text-[0.84rem] text-[#94A3B8] hover:text-white transition-colors truncate"
                 >
                   {CONTACT_EMAIL}
                 </a>
@@ -232,7 +222,7 @@ export default function Footer() {
                   href={waHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[0.84rem] text-[#64748B] hover:text-white transition-colors"
+                  className="inline-flex items-center gap-1.5 text-[0.84rem] text-[#94A3B8] hover:text-white transition-colors"
                 >
                   <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
                   +51 961 869 348
@@ -248,7 +238,7 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => openContact({ topic: "Agendar demo" })}
-                  className="text-[0.84rem] text-[#64748B] hover:text-white transition-colors cursor-pointer"
+                  className="text-[0.84rem] text-[#94A3B8] hover:text-white transition-colors cursor-pointer"
                 >
                   Solicitar demo
                 </button>
@@ -258,19 +248,19 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-4 pt-8 border-t border-white/6">
-          <p className="text-[0.75rem] text-[#64748B]">
+          <p className="text-[0.75rem] text-[#94A3B8]">
             © 2026 RestHUB. Todos los derechos reservados.
           </p>
           <div className="flex items-center gap-5">
             <Link
               href="/legal/privacidad"
-              className="text-[0.75rem] text-[#64748B] hover:text-white transition-colors"
+              className="text-[0.75rem] text-[#94A3B8] hover:text-white transition-colors"
             >
               Privacidad
             </Link>
             <Link
               href="/legal/terminos"
-              className="text-[0.75rem] text-[#64748B] hover:text-white transition-colors"
+              className="text-[0.75rem] text-[#94A3B8] hover:text-white transition-colors"
             >
               Términos
             </Link>

@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Monitor, ChefHat, Wallet, BarChart2, BookOpen, Users2, Check } from "lucide-react";
+import { prefersReducedMotion } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -291,6 +292,19 @@ export default function StickyModules() {
   // GSAP entrance animations for right-column sections
   useGSAP(
     () => {
+      if (prefersReducedMotion()) {
+        sectionRefs.current.forEach((el) => {
+          if (!el) return;
+          gsap.set(el.querySelectorAll(".mod-num, .mod-badge, .mod-title, .mod-desc, .mod-item"), {
+            opacity: 1,
+            x: 0,
+            y: 0,
+          });
+          // Keep the giant background number subtle as designed.
+          gsap.set(el.querySelector(".mod-num"), { opacity: 0.12 });
+        });
+        return;
+      }
       sectionRefs.current.forEach((el) => {
         if (!el) return;
         const tl = gsap.timeline({

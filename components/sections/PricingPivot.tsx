@@ -24,10 +24,16 @@ export default function PricingPivot() {
           </p>
 
           <div className="flex justify-center">
-            <div className="flex flex-col items-center gap-2 text-[#475569]">
+            <a
+              href="#precios"
+              className="group flex flex-col items-center gap-2 text-[#94A3B8] hover:text-white transition-colors cursor-pointer"
+            >
               <span className="text-[0.7rem] font-medium tracking-[0.1em] uppercase">Ver planes</span>
-              <ArrowDown className="w-4 h-4 animate-bounce" strokeWidth={1.5} />
-            </div>
+              <ArrowDown
+                className="w-4 h-4 motion-safe:animate-bounce group-hover:translate-y-0.5 transition-transform"
+                strokeWidth={1.5}
+              />
+            </a>
           </div>
         </BlurFade>
       </div>

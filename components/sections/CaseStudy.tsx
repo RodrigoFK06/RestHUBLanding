@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { TrendingUp, Users, Clock } from "lucide-react";
 import BlurFade from "@/components/reactbits/BlurFade";
+import { prefersReducedMotion } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,6 +38,10 @@ export default function CaseStudy() {
 
   useGSAP(
     () => {
+      if (prefersReducedMotion()) {
+        gsap.set(".case-metric", { opacity: 1, x: 0 });
+        return;
+      }
       if (imgRef.current) {
         gsap.fromTo(
           imgRef.current.querySelector("img"),

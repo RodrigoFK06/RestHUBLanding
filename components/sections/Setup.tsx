@@ -8,6 +8,7 @@ import { Monitor, Wrench, Zap, ArrowRight } from "lucide-react";
 import BlurFade from "@/components/reactbits/BlurFade";
 import { Button } from "@/components/ui/button";
 import { useModals } from "@/components/modals/ModalProvider";
+import { prefersReducedMotion } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,6 +60,10 @@ export default function Setup() {
 
   useGSAP(
     () => {
+      if (prefersReducedMotion()) {
+        gsap.set(".setup-step", { opacity: 1, y: 0 });
+        return;
+      }
       gsap.fromTo(
         ".setup-step",
         { opacity: 0, y: 50 },

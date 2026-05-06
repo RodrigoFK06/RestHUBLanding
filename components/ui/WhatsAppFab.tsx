@@ -34,7 +34,7 @@ export default function WhatsAppFab() {
 
   return (
     <div
-      className="fixed left-4 sm:left-6 z-[60] flex flex-col items-start gap-2"
+      className="fixed right-4 sm:right-6 z-[60] flex flex-col items-end gap-2"
       style={{
         bottom: "calc(env(safe-area-inset-bottom, 0px) + 90px)",
         animation: "fabIn 380ms cubic-bezier(0.16, 1, 0.3, 1)",
@@ -42,6 +42,7 @@ export default function WhatsAppFab() {
     >
       {showTooltip && !dismissed && (
         <div
+          role="status"
           className="flex items-center gap-2 pl-4 pr-2 py-2.5 rounded-2xl shadow-2xl max-w-[260px]"
           style={{
             background: "rgba(15,23,42,0.96)",

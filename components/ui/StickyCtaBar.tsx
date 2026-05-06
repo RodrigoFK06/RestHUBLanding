@@ -29,9 +29,9 @@ export default function StickyCtaBar() {
           borderColor: "rgba(255,255,255,0.08)",
         }}
       >
-        <p className="hidden md:block flex-1 text-[0.78rem] text-white/40 truncate mr-4">
+        <p className="hidden md:block flex-1 text-[0.78rem] text-white/65 truncate mr-4">
           Tu restaurante, bajo control.{" "}
-          <strong className="text-white/65 font-semibold">RestHUB.</strong>
+          <strong className="text-white font-semibold">RestHUB.</strong>
         </p>
 
         <div className="flex items-center gap-2 ml-auto sm:ml-0 w-full sm:w-auto">

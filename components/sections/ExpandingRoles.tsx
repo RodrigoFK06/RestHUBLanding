@@ -97,15 +97,21 @@ export default function ExpandingRoles() {
         {/* ── Desktop: expanding horizontal panels ── */}
         <BlurFade delay={0.1}>
           <div
+            role="tablist"
+            aria-label="Roles del sistema"
             className="hidden md:flex gap-2 rounded-2xl overflow-hidden"
             style={{ height: 520 }}
           >
             {roles.map((role, i) => {
               const isActive = active === i;
               return (
-                <div
+                <button
                   key={i}
-                  className="relative overflow-hidden cursor-pointer border transition-all duration-[460ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-label={`Rol ${role.name}: ${role.access}`}
+                  className="relative overflow-hidden cursor-pointer border transition-all duration-[460ms] ease-[cubic-bezier(0.4,0,0.2,1)] text-left"
                   style={{
                     flex: isActive ? "4.5" : "0.5",
                     borderColor: isActive ? role.colorBorder : "rgba(255,255,255,0.05)",
@@ -114,6 +120,8 @@ export default function ExpandingRoles() {
                     minWidth: 0,
                   }}
                   onMouseEnter={() => setActive(i)}
+                  onFocus={() => setActive(i)}
+                  onClick={() => setActive(i)}
                 >
                   {/* Active gradient background */}
                   <div
@@ -194,7 +202,7 @@ export default function ExpandingRoles() {
                       ))}
                     </div>
                   </div>
-                </div>
+                </button>
               );
             })}
           </div>
@@ -204,14 +212,20 @@ export default function ExpandingRoles() {
         <div className="md:hidden flex flex-col gap-2">
           {roles.map((role, i) => {
             const isActive = active === i;
+            const panelId = `role-panel-${i}`;
             return (
               <div
                 key={i}
-                className="border rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer"
-                style={{ borderColor: isActive ? role.colorBorder : "rgba(255,255,255,0.07)" }}
-                onClick={() => setActive(isActive ? -1 : i)}
+                className="border rounded-2xl overflow-hidden transition-all duration-300"
+                style={{ borderColor: isActive ? role.colorBorder : "rgba(255,255,255,0.1)" }}
               >
-                <div className="flex items-center gap-3 px-5 py-4">
+                <button
+                  type="button"
+                  aria-expanded={isActive}
+                  aria-controls={panelId}
+                  className="w-full flex items-center gap-3 px-5 py-4 text-left cursor-pointer min-h-[56px]"
+                  onClick={() => setActive(isActive ? -1 : i)}
+                >
                   <div
                     className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
                     style={{ background: role.colorBg }}
@@ -220,12 +234,12 @@ export default function ExpandingRoles() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="text-sm font-bold text-white">{role.name}</div>
-                    <div className="text-[0.65rem] text-[#64748B] uppercase tracking-wide">{role.access}</div>
+                    <div className="text-[0.65rem] text-[#94A3B8] uppercase tracking-wide">{role.access}</div>
                   </div>
-                  <span className="text-[#64748B] text-lg font-light shrink-0">{isActive ? "−" : "+"}</span>
-                </div>
+                  <span aria-hidden="true" className="text-white/70 text-lg font-light shrink-0">{isActive ? "−" : "+"}</span>
+                </button>
                 {isActive && (
-                  <div className="px-5 pb-5 border-t border-white/5 pt-4">
+                  <div id={panelId} className="px-5 pb-5 border-t border-white/5 pt-4">
                     <p className="text-[0.82rem] text-[#94A3B8] leading-[1.65] mb-4">{role.desc}</p>
                     <div className="flex flex-wrap gap-1.5">
                       {role.chips.map((chip) => (
@@ -247,9 +261,10 @@ export default function ExpandingRoles() {
 
         {/* Tagline */}
         <BlurFade delay={0.2}>
-          <p className="mt-10 text-center text-[0.82rem] text-[#64748B]">
-            Pasa el mouse por cada rol para ver su entorno →
-            <span className="ml-2 text-[#94A3B8]">6 roles · 6 realidades distintas</span>
+          <p className="mt-10 text-center text-[0.82rem] text-[#94A3B8]">
+            <span className="hidden md:inline">Hovereá o tocá cada rol para ver su entorno → </span>
+            <span className="md:hidden">Tocá cada rol para ver su entorno → </span>
+            <span className="ml-2 text-white/85">6 roles · 6 realidades distintas</span>
           </p>
         </BlurFade>
       </div>

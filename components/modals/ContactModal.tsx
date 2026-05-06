@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, Loader2, X, MessageCircle, Mail } from "lucide-react";
 import { useToast } from "@/components/ui/Toast";
 
@@ -31,6 +31,9 @@ export default function ContactModal({ open, onClose, topic, prefillMessage }: P
   const [error, setError] = useState<string | null>(null);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const toast = useToast();
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const firstFieldRef = useRef<HTMLInputElement>(null);
+  const openerRef = useRef<HTMLElement | null>(null);
 
   const errors = {
     name: !name.trim() ? "Tu nombre es obligatorio." : null,
@@ -53,16 +56,41 @@ export default function ContactModal({ open, onClose, topic, prefillMessage }: P
     if (prefillMessage !== undefined) setMessage(prefillMessage);
     setStatus("idle");
     setError(null);
+    openerRef.current = document.activeElement as HTMLElement | null;
     document.body.style.overflow = "hidden";
+    // Move focus into the dialog after mount.
+    const t = setTimeout(() => firstFieldRef.current?.focus(), 60);
     return () => {
+      clearTimeout(t);
       document.body.style.overflow = "";
+      openerRef.current?.focus?.();
     };
   }, [open, prefillMessage]);
 
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      // Simple focus trap: keep Tab cycling within the dialog.
+      if (e.key === "Tab" && dialogRef.current) {
+        const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        const list = Array.from(focusable).filter((el) => el.offsetParent !== null);
+        if (!list.length) return;
+        const first = list[0];
+        const last = list[list.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -113,16 +141,21 @@ export default function ContactModal({ open, onClose, topic, prefillMessage }: P
     <div
       role="dialog"
       aria-modal="true"
+      aria-labelledby="contact-modal-title"
       className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center"
       style={{ animation: "fadeIn 200ms ease-out" }}
     >
-      <div
-        className="absolute inset-0"
+      <button
+        type="button"
+        aria-label="Cerrar"
+        tabIndex={-1}
+        className="absolute inset-0 cursor-default"
         onClick={onClose}
         style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)" }}
       />
 
       <div
+        ref={dialogRef}
         className="relative w-full sm:max-w-[460px] mx-auto sm:rounded-3xl rounded-t-3xl overflow-hidden"
         style={{
           background: "linear-gradient(180deg, #0F172A 0%, #0B1220 100%)",
@@ -175,7 +208,7 @@ export default function ContactModal({ open, onClose, topic, prefillMessage }: P
               >
                 {topic ?? "Contacto"}
               </div>
-              <h3 className="text-2xl font-extrabold tracking-[-0.02em] text-white">
+              <h3 id="contact-modal-title" className="text-2xl font-extrabold tracking-[-0.02em] text-white">
                 Hablemos.
               </h3>
               <p className="text-sm text-white/55 mt-1.5">
@@ -205,6 +238,8 @@ export default function ContactModal({ open, onClose, topic, prefillMessage }: P
                 onBlur={() => setTouched((t) => ({ ...t, name: true }))}
                 placeholder="Tu nombre"
                 error={touched.name ? errors.name : null}
+                inputRef={firstFieldRef}
+                autoComplete="name"
               />
               <Field
                 label="Email"
@@ -215,12 +250,13 @@ export default function ContactModal({ open, onClose, topic, prefillMessage }: P
                 onBlur={() => setTouched((t) => ({ ...t, email: true }))}
                 placeholder="tu@email.com"
                 error={touched.email ? errors.email : null}
+                autoComplete="email"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-              <Field label="Teléfono" type="tel" value={phone} onChange={setPhone} placeholder="+51 9XX XXX XXX" />
-              <Field label="Restaurante" value={restaurant} onChange={setRestaurant} placeholder="Nombre del local" />
+              <Field label="Teléfono" type="tel" value={phone} onChange={setPhone} placeholder="+51 9XX XXX XXX" autoComplete="tel" />
+              <Field label="Restaurante" value={restaurant} onChange={setRestaurant} placeholder="Nombre del local" autoComplete="organization" />
             </div>
 
             <div className="mb-5">
@@ -309,6 +345,8 @@ function Field({
   required,
   placeholder,
   error,
+  inputRef,
+  autoComplete,
 }: {
   label: string;
   value: string;
@@ -318,26 +356,42 @@ function Field({
   required?: boolean;
   placeholder?: string;
   error?: string | null;
+  inputRef?: React.RefObject<HTMLInputElement | null>;
+  autoComplete?: string;
 }) {
   const hasError = Boolean(error);
+  const id = `field-${label.toLowerCase()}`;
   return (
     <div>
-      <label className="block text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-white/45 mb-1.5">
+      <label htmlFor={id} className="block text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-white/65 mb-1.5">
         {label}
-        {required && <span className="text-[#F59E0B] ml-0.5">*</span>}
+        {required && (
+          <span className="text-[#F59E0B] ml-0.5" aria-hidden="true">
+            *
+          </span>
+        )}
       </label>
       <input
+        id={id}
+        ref={inputRef}
         type={type}
         required={required}
+        autoComplete={autoComplete}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onBlur={onBlur}
         placeholder={placeholder}
-        className={`w-full bg-white/[0.04] border ${
-          hasError ? "border-red-500/50 focus:border-red-500/70" : "border-white/10 focus:border-[#F59E0B]/60"
-        } rounded-xl px-3.5 py-2.5 text-sm text-white placeholder:text-white/25 outline-none transition-all`}
+        aria-invalid={hasError || undefined}
+        aria-describedby={hasError ? `${id}-error` : undefined}
+        className={`w-full bg-white/[0.06] border ${
+          hasError ? "border-red-500/60 focus:border-red-500/80" : "border-white/15 focus:border-[#F59E0B]/70"
+        } rounded-xl px-3.5 py-3 text-sm text-white placeholder:text-white/35 outline-none transition-all`}
       />
-      {hasError && <p className="mt-1.5 text-[0.72rem] text-red-300/90">{error}</p>}
+      {hasError && (
+        <p id={`${id}-error`} className="mt-1.5 text-[0.72rem] text-red-300">
+          {error}
+        </p>
+      )}
     </div>
   );
 }

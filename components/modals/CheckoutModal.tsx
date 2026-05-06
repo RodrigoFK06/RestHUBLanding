@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   CheckCircle2,
   CreditCard,
@@ -76,6 +76,9 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
   const [website, setWebsite] = useState(""); // honeypot
   const [locations, setLocations] = useState(1);
   const toast = useToast();
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const firstFieldRef = useRef<HTMLInputElement>(null);
+  const openerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -84,16 +87,40 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
     setError(null);
     setOrderId(null);
     setLocations(1);
+    openerRef.current = document.activeElement as HTMLElement | null;
     document.body.style.overflow = "hidden";
+    const t = setTimeout(() => firstFieldRef.current?.focus(), 60);
     return () => {
+      clearTimeout(t);
       document.body.style.overflow = "";
+      openerRef.current?.focus?.();
     };
   }, [open]);
 
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && stage !== "processing") onClose();
+      if (e.key === "Escape" && stage !== "processing") {
+        onClose();
+        return;
+      }
+      if (e.key === "Tab" && dialogRef.current) {
+        const list = Array.from(
+          dialogRef.current.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+          )
+        ).filter((el) => el.offsetParent !== null);
+        if (!list.length) return;
+        const first = list[0];
+        const last = list[list.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -180,16 +207,21 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
     <div
       role="dialog"
       aria-modal="true"
+      aria-labelledby="checkout-modal-title"
       className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4"
       style={{ animation: "fadeIn 200ms ease-out" }}
     >
-      <div
-        className="absolute inset-0"
+      <button
+        type="button"
+        aria-label="Cerrar"
+        tabIndex={-1}
+        className="absolute inset-0 cursor-default"
         onClick={() => stage !== "processing" && onClose()}
         style={{ background: "rgba(0,0,0,0.72)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)" }}
       />
 
       <div
+        ref={dialogRef}
         className="relative w-full sm:max-w-[920px] mx-auto sm:rounded-3xl rounded-t-3xl overflow-hidden grid grid-cols-1 md:grid-cols-[1.1fr_1fr] max-h-[92vh]"
         style={{
           background: "linear-gradient(180deg, #0F172A 0%, #0B1220 100%)",
@@ -230,14 +262,14 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
               >
                 Suscripción
               </div>
-              <h3 className="text-2xl font-extrabold tracking-[-0.02em] text-white">Confirmar pago</h3>
+              <h3 id="checkout-modal-title" className="text-2xl font-extrabold tracking-[-0.02em] text-white">Confirmar pago</h3>
               <p className="text-sm text-white/55 mt-1.5 mb-6">
                 Activamos tu cuenta de inmediato. Cancela cuando quieras.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-                <Field label="Nombre completo" required value={name} onChange={setName} placeholder="Tu nombre" />
-                <Field label="Email" required type="email" value={email} onChange={setEmail} placeholder="tu@email.com" />
+                <Field label="Nombre completo" required value={name} onChange={setName} placeholder="Tu nombre" inputRef={firstFieldRef} autoComplete="name" />
+                <Field label="Email" required type="email" value={email} onChange={setEmail} placeholder="tu@email.com" autoComplete="email" />
               </div>
               <Field
                 label="Nombre del restaurante"
@@ -582,6 +614,7 @@ function Field({
   inputMode,
   autoComplete,
   wrapperClassName,
+  inputRef,
 }: {
   label: string;
   value: string;
@@ -592,14 +625,22 @@ function Field({
   inputMode?: "numeric" | "text" | "email" | "tel";
   autoComplete?: string;
   wrapperClassName?: string;
+  inputRef?: React.RefObject<HTMLInputElement | null>;
 }) {
+  const id = `checkout-${label.replace(/\s+/g, "-").toLowerCase()}`;
   return (
     <div className={wrapperClassName}>
-      <label className="block text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-white/45 mb-1.5">
+      <label htmlFor={id} className="block text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-white/65 mb-1.5">
         {label}
-        {required && <span className="text-[#F59E0B] ml-0.5">*</span>}
+        {required && (
+          <span className="text-[#F59E0B] ml-0.5" aria-hidden="true">
+            *
+          </span>
+        )}
       </label>
       <input
+        id={id}
+        ref={inputRef}
         type={type}
         required={required}
         value={value}
@@ -607,7 +648,7 @@ function Field({
         placeholder={placeholder}
         inputMode={inputMode}
         autoComplete={autoComplete}
-        className="w-full bg-white/[0.04] border border-white/10 focus:border-[#F59E0B]/60 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder:text-white/25 outline-none transition-all"
+        className="w-full bg-white/[0.06] border border-white/15 focus:border-[#F59E0B]/70 rounded-xl px-3.5 py-3 text-sm text-white placeholder:text-white/35 outline-none transition-all"
       />
     </div>
   );

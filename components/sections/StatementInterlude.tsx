@@ -4,6 +4,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { prefersReducedMotion } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,8 +23,16 @@ export default function StatementInterlude() {
 
   useGSAP(
     () => {
-      const words = containerRef.current?.querySelectorAll(".stmt-word");
+      const words = containerRef.current?.querySelectorAll<HTMLElement>(".stmt-word");
       if (!words?.length) return;
+
+      if (prefersReducedMotion()) {
+        words.forEach((el) => {
+          const highlight = el.dataset.highlight === "true";
+          gsap.set(el, { opacity: 1, color: highlight ? "#F59E0B" : "#ffffff" });
+        });
+        return;
+      }
 
       // Reveal each word sequentially as user scrolls through the section
       gsap.fromTo(

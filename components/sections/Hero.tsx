@@ -44,10 +44,6 @@ export default function Hero() {
     vid.play().catch(() => {});
   }, []);
 
-  const handleAnchor = (href: string) => {
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section id="hero" className="relative h-screen min-h-[640px] flex flex-col items-center justify-center overflow-hidden bg-black">
 
@@ -112,8 +108,8 @@ export default function Hero() {
 
         {/* Animated rotating sub-word */}
         <BlurFade delay={0.7}>
-          <p className="text-[clamp(1rem,2vw,1.25rem)] text-white/65 leading-[1.7] max-w-[600px] mb-10">
-            <strong className="text-white/90">POS · Cocina · Caja · Contabilidad</strong> en un solo sistema.
+          <p className="text-[clamp(1rem,2vw,1.25rem)] text-white/85 leading-[1.7] max-w-[600px] mb-10">
+            <strong className="text-white">POS · Cocina · Caja · Contabilidad</strong> en un solo sistema.
             <br className="hidden sm:block" /> Cada rol con su propia pantalla. Sin módulos extra, sin costuras.
           </p>
         </BlurFade>
@@ -122,21 +118,18 @@ export default function Hero() {
         <BlurFade delay={0.85}>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <button
+              type="button"
               onClick={() => openContact({ topic: "Solicitar acceso" })}
-              className="font-bold text-[#0F172A] px-8 py-3.5 rounded-full text-sm transition-all hover:scale-105 cursor-pointer"
-              style={{ background: "#F59E0B", boxShadow: "0 0 0 0 rgba(245,158,11,0)" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(245,158,11,0.5)"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 0 0 rgba(245,158,11,0)"; }}
+              className="btn-amber font-bold px-8 py-3.5 rounded-full text-sm cursor-pointer"
             >
               Solicitar acceso →
             </button>
-            <button
-              onClick={() => handleAnchor("#modulos")}
-              className="font-semibold text-white px-8 py-3.5 rounded-full text-sm border transition-all hover:bg-white/10"
-              style={{ borderColor: "rgba(255,255,255,0.3)" }}
+            <a
+              href="#modulos"
+              className="btn-ghost-light inline-flex items-center justify-center font-semibold px-8 py-3.5 rounded-full text-sm cursor-pointer"
             >
               Ver los módulos
-            </button>
+            </a>
           </div>
         </BlurFade>
 
@@ -172,6 +165,7 @@ export default function Hero() {
       {floatCards.map((c, i) => (
         <div
           key={i}
+          aria-hidden="true"
           className="absolute hidden md:block z-10 rounded-2xl p-4 min-w-[155px]"
           style={{
             ...c.style,
@@ -193,16 +187,22 @@ export default function Hero() {
       ))}
 
       {/* ── SCROLL INDICATOR ────────────────────────────── */}
-      <div className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
-        style={{ animation: "scroll-cue 2.5s ease-in-out infinite" }}>
-        <div className="w-[1px] h-10 bg-gradient-to-b from-white/40 to-transparent" />
-        <span className="text-[0.52rem] tracking-[0.25em] uppercase text-white/35">scroll</span>
+      <div
+        aria-hidden="true"
+        className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 hero-scroll-cue"
+      >
+        <div className="w-[1px] h-10 bg-gradient-to-b from-white/55 to-transparent" />
+        <span className="text-[0.55rem] tracking-[0.25em] uppercase text-white/55">scroll</span>
       </div>
 
       <style>{`
         @keyframes float-c1 { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-12px) rotate(1deg)} }
         @keyframes float-c2 { 0%,100%{transform:translateY(0) rotate(1deg)} 50%{transform:translateY(10px) rotate(-1deg)} }
         @keyframes scroll-cue { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+        .hero-scroll-cue { animation: scroll-cue 2.5s ease-in-out infinite; }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-scroll-cue { animation: none; }
+        }
       `}</style>
     </section>
   );

@@ -23,6 +23,11 @@ export default function SplitWords({
     () => {
       const words = ref.current?.querySelectorAll(".sw-w");
       if (!words?.length) return;
+      const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      if (reduce) {
+        gsap.set(words, { y: "0%", opacity: 1 });
+        return;
+      }
       gsap.fromTo(
         words,
         { y: "110%", opacity: 0 },
@@ -49,7 +54,7 @@ export default function SplitWords({
         >
           <span className="sw-w inline-block">
             {word}
-            {i < arr.length - 1 ? "\u00A0" : ""}
+            {i < arr.length - 1 ? " " : ""}
           </span>
         </span>
       ))}

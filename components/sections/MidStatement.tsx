@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import BlurFade from "@/components/reactbits/BlurFade";
+import { prefersReducedMotion } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,6 +27,10 @@ export default function MidStatement() {
 
   useGSAP(
     () => {
+      if (prefersReducedMotion()) {
+        gsap.set(".mid-word", { opacity: 1, y: 0 });
+        return;
+      }
       gsap.fromTo(
         ".mid-word",
         { opacity: 0.08, y: 18 },

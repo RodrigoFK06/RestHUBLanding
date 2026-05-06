@@ -5,6 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { prefersReducedMotion } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -80,6 +81,10 @@ export default function Messages() {
 
   useGSAP(
     () => {
+      if (prefersReducedMotion()) {
+        gsap.set(".msg-cell", { opacity: 1, y: 0, scale: 1 });
+        return;
+      }
       gsap.fromTo(
         ".msg-cell",
         { opacity: 0, y: 45, scale: 0.97 },

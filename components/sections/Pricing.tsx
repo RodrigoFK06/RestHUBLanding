@@ -14,6 +14,7 @@ import {
   persistCurrency,
   readStoredCurrency,
 } from "@/lib/currency";
+import { prefersReducedMotion } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -135,6 +136,10 @@ export default function Pricing() {
 
   useGSAP(
     () => {
+      if (prefersReducedMotion()) {
+        gsap.set(".pricing-card", { opacity: 1, y: 0 });
+        return;
+      }
       gsap.fromTo(
         ".pricing-card",
         { opacity: 0, y: 55 },
@@ -177,29 +182,37 @@ export default function Pricing() {
           {/* Toggles */}
           <div className="flex flex-wrap items-center justify-center gap-3">
             {/* Billing toggle */}
-            <div className="inline-flex items-center gap-3 bg-white border border-[#E2E8F0] rounded-full p-1.5 shadow-sm">
+            <div
+              className="inline-flex items-center gap-3 bg-white border border-[#E2E8F0] rounded-full p-1.5 shadow-sm"
+              role="group"
+              aria-label="Periodicidad de facturación"
+            >
               <button
+                type="button"
                 onClick={() => setYearly(false)}
+                aria-pressed={!yearly}
                 className="px-5 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer"
                 style={{
                   background: !yearly ? "rgba(245,158,11,0.12)" : "transparent",
-                  color: !yearly ? "#F59E0B" : "#94A3B8",
+                  color: !yearly ? "#F59E0B" : "#475569",
                 }}
               >
                 Mensual
               </button>
               <button
+                type="button"
                 onClick={() => setYearly(true)}
+                aria-pressed={yearly}
                 className="px-5 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer"
                 style={{
                   background: yearly ? "rgba(245,158,11,0.12)" : "transparent",
-                  color: yearly ? "#F59E0B" : "#94A3B8",
+                  color: yearly ? "#F59E0B" : "#475569",
                 }}
               >
                 Anual
                 <span
                   className="ml-2 text-[0.6rem] font-bold px-1.5 py-0.5 rounded-full"
-                  style={{ background: "rgba(20,184,166,0.15)", color: "#14B8A6" }}
+                  style={{ background: "rgba(20,184,166,0.15)", color: "#0F766E" }}
                 >
                   −20%
                 </span>
@@ -209,7 +222,7 @@ export default function Pricing() {
             {/* Currency toggle */}
             <div
               className="inline-flex items-center bg-white border border-[#E2E8F0] rounded-full p-1.5 shadow-sm"
-              role="radiogroup"
+              role="group"
               aria-label="Moneda"
             >
               {(["USD", "PEN"] as const).map((c) => {
@@ -217,13 +230,13 @@ export default function Pricing() {
                 return (
                   <button
                     key={c}
-                    role="radio"
-                    aria-checked={active}
+                    type="button"
+                    aria-pressed={active}
                     onClick={() => switchCurrency(c)}
                     className="px-4 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer"
                     style={{
                       background: active ? "rgba(20,184,166,0.12)" : "transparent",
-                      color: active ? "#14B8A6" : "#94A3B8",
+                      color: active ? "#0F766E" : "#475569",
                     }}
                   >
                     {c}
@@ -311,49 +324,16 @@ export default function Pricing() {
 
                 {/* CTA */}
                 <button
+                  type="button"
                   onClick={() => handlePlanClick(plan.id)}
-                  className="w-full py-3.5 rounded-xl text-sm font-bold mb-7 transition-all cursor-pointer"
-                  style={
+                  className={`pricing-cta w-full py-3.5 rounded-xl text-sm font-bold mb-7 transition-all cursor-pointer ${
                     plan.ctaStyle === "filled"
-                      ? {
-                          background: "#F59E0B",
-                          color: "#0F172A",
-                          boxShadow: "0 8px 32px rgba(245,158,11,0.35)",
-                        }
+                      ? "pricing-cta-filled"
                       : isPro
-                      ? {
-                          background: "transparent",
-                          color: "rgba(255,255,255,0.75)",
-                          border: "1px solid rgba(255,255,255,0.15)",
-                        }
-                      : {
-                          background: "transparent",
-                          color: "#0F172A",
-                          border: "1px solid #CBD5E1",
-                        }
-                  }
-                  onMouseEnter={(e) => {
-                    if (plan.ctaStyle === "filled") {
-                      (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(245,158,11,0.55)";
-                    } else if (isPro) {
-                      (e.currentTarget as HTMLButtonElement).style.borderColor = plan.accent;
-                      (e.currentTarget as HTMLButtonElement).style.color = plan.accent;
-                    } else {
-                      (e.currentTarget as HTMLButtonElement).style.borderColor = plan.accent;
-                      (e.currentTarget as HTMLButtonElement).style.color = plan.accent;
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (plan.ctaStyle === "filled") {
-                      (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 32px rgba(245,158,11,0.35)";
-                    } else if (isPro) {
-                      (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.15)";
-                      (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.75)";
-                    } else {
-                      (e.currentTarget as HTMLButtonElement).style.borderColor = "#CBD5E1";
-                      (e.currentTarget as HTMLButtonElement).style.color = "#0F172A";
-                    }
-                  }}
+                      ? "pricing-cta-ghost-pro"
+                      : "pricing-cta-ghost-light"
+                  }`}
+                  style={{ ["--accent" as string]: plan.accent }}
                 >
                   {plan.cta}
                 </button>

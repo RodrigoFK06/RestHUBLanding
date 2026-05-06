@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Target, Eye, ShieldCheck, Globe2 } from "lucide-react";
+import { prefersReducedMotion } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,6 +23,10 @@ export default function Why() {
 
   useGSAP(
     () => {
+      if (prefersReducedMotion()) {
+        gsap.set([".why-text-block", ".why-pillar"], { opacity: 1, x: 0, y: 0 });
+        return;
+      }
       // Subtle parallax on the photo
       if (imgRef.current) {
         gsap.fromTo(
@@ -149,13 +154,11 @@ export default function Why() {
             ))}
           </div>
 
-          <a href="#modulos" onClick={(e) => { e.preventDefault(); document.querySelector("#modulos")?.scrollIntoView({ behavior: "smooth" }); }}>
-            <button
-              className="inline-flex items-center gap-2 font-bold text-sm px-7 py-3.5 rounded-full transition-all hover:scale-105"
-              style={{ background: "#F59E0B", color: "#0F172A", boxShadow: "0 8px 30px rgba(245,158,11,0.35)" }}
-            >
-              Ver todos los módulos →
-            </button>
+          <a
+            href="#modulos"
+            className="btn-amber inline-flex items-center gap-2 font-bold text-sm px-7 py-3.5 rounded-full"
+          >
+            Ver todos los módulos →
           </a>
         </div>
       </div>

@@ -15,6 +15,7 @@ import {
   Wifi,
 } from "lucide-react";
 import BlurFade from "@/components/reactbits/BlurFade";
+import { prefersReducedMotion } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,6 +83,10 @@ export default function Integrations() {
 
   useGSAP(
     () => {
+      if (prefersReducedMotion()) {
+        gsap.set(".integ-card", { opacity: 1, y: 0, scale: 1 });
+        return;
+      }
       gsap.fromTo(
         ".integ-card",
         { opacity: 0, y: 32, scale: 0.97 },

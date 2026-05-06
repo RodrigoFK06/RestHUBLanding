@@ -1,6 +1,6 @@
 "use client";
 
-import { useSpring, useTransform, motion, MotionValue, useInView } from "motion/react";
+import { useSpring, useTransform, motion, MotionValue, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef } from "react";
 
 function Digit({
@@ -97,29 +97,35 @@ export default function Counter({
 }: CounterProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "0px 0px -50px 0px" });
-  const mv = useSpring(0, { mass: 0.8, stiffness: 60, damping: 15 });
+  const reduce = useReducedMotion();
+  const mv = useSpring(0, reduce ? { duration: 0 } : { mass: 0.8, stiffness: 60, damping: 15 });
 
   useEffect(() => {
+    if (reduce) {
+      mv.jump(value);
+      return;
+    }
     if (isInView) mv.set(value);
-  }, [mv, isInView, value]);
+  }, [mv, isInView, value, reduce]);
 
   const height = Math.round(fontSize * 1.2);
 
   return (
-    <div ref={ref} className="flex" style={{ gap }}>
+    <div ref={ref} className="flex" aria-label={String(value)} role="img" style={{ gap }}>
       {places.map((place, i) => (
-        <Digit
-          key={i}
-          mv={mv}
-          place={place}
-          fontSize={fontSize}
-          height={height}
-          textColor={textColor}
-          fontWeight={fontWeight}
-          gradientFrom={gradientFrom}
-          gradientTo={gradientTo}
-          borderRadius={borderRadius}
-        />
+        <span key={i} aria-hidden="true" style={{ display: "contents" }}>
+          <Digit
+            mv={mv}
+            place={place}
+            fontSize={fontSize}
+            height={height}
+            textColor={textColor}
+            fontWeight={fontWeight}
+            gradientFrom={gradientFrom}
+            gradientTo={gradientTo}
+            borderRadius={borderRadius}
+          />
+        </span>
       ))}
     </div>
   );

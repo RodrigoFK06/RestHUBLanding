@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useModals } from "@/components/modals/ModalProvider";
+import { prefersReducedMotion } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,6 +33,10 @@ export default function Testimonials() {
 
   useGSAP(
     () => {
+      if (prefersReducedMotion()) {
+        gsap.set([".founder-card", ".testi-headline"], { opacity: 1, y: 0 });
+        return;
+      }
       gsap.fromTo(
         ".founder-card",
         { opacity: 0, y: 60 },

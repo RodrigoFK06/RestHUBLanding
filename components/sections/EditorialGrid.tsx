@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import BlurFade from "@/components/reactbits/BlurFade";
+import { prefersReducedMotion } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -86,6 +87,11 @@ export default function EditorialGrid() {
 
   useGSAP(
     () => {
+      if (prefersReducedMotion()) {
+        const cards = gridRef.current?.querySelectorAll(".grid-card");
+        if (cards?.length) gsap.set(cards, { opacity: 1, y: 0 });
+        return;
+      }
       imgRefs.current.forEach((el, i) => {
         if (!el) return;
         const inner = el.querySelector(".parallax-inner");
@@ -156,7 +162,7 @@ export default function EditorialGrid() {
           <div
             key={i}
             ref={(el) => { imgRefs.current[i] = el; }}
-            className={`grid-card relative overflow-hidden rounded-2xl group cursor-pointer ${photo.col} ${photo.row} ${photo.aspect}`}
+            className={`grid-card relative overflow-hidden rounded-2xl group ${photo.col} ${photo.row} ${photo.aspect}`}
             style={{ border: `1px solid rgba(255,255,255,0.06)` }}
           >
             {/* Parallax image wrapper — slightly taller than container */}
@@ -199,7 +205,7 @@ export default function EditorialGrid() {
       {/* ── Feature strip — 3 full-bleed horizontal panels ── */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-0 mt-0">
         {featureStrip.map((item, i) => (
-          <div key={i} className="relative overflow-hidden group cursor-pointer" style={{ aspectRatio: "4/3" }}>
+          <div key={i} className="relative overflow-hidden group" style={{ aspectRatio: "4/3" }}>
             <Image
               src={item.src}
               alt={item.label}
