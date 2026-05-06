@@ -8,7 +8,8 @@ export type ContactTopic =
   | "Solicitar acceso"
   | "Agendar demo"
   | "Contactar ventas"
-  | "Contacto general";
+  | "Contacto general"
+  | "Programa Socios Fundadores";
 
 type Props = {
   open: boolean;

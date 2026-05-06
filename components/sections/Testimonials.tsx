@@ -1,109 +1,39 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Star } from "lucide-react";
-import Counter from "@/components/reactbits/Counter";
+import { useModals } from "@/components/modals/ModalProvider";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const testimonials = [
+const FOUNDING_PERKS = [
   {
-    quote:
-      "Antes usábamos tres sistemas distintos. Ahora con RestHUB todo habla solo. El KDS cambió cómo trabaja mi cocina — ya no hay confusiones ni pérdidas de órdenes.",
-    name: "Carlos Mendoza",
-    role: "Propietario",
-    restaurant: "La Mar Cebichería",
-    location: "Lima, Perú",
-    avatar: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=120&q=80&auto=format&fit=crop&crop=face",
-    photo: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format&fit=crop",
+    title: "Onboarding 1-a-1 con el equipo fundador",
+    body: "Te acompañamos en la configuración inicial: carta, estaciones de cocina, roles, impresoras y reportes.",
     accent: "#14B8A6",
-    stat: "−80% errores de comanda",
   },
   {
-    quote:
-      "El cierre de caja antes me tomaba 40 minutos. Ahora aprieto un botón. El contador tiene acceso directo y la facturación electrónica sale sola. Increíble.",
-    name: "Sofía Herrera",
-    role: "Administradora",
-    restaurant: "Bistró 365",
-    location: "Bogotá, Colombia",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&q=80&auto=format&fit=crop&crop=face",
-    photo: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80&auto=format&fit=crop",
+    title: "Precio fundador, asegurado de por vida",
+    body: "Mientras seas socio activo, mantienes la tarifa de lanzamiento aunque suba el plan público.",
     accent: "#F59E0B",
-    stat: "40 min → 2 min en cierre",
   },
   {
-    quote:
-      "Gestiono 3 locales desde un solo panel. El BI me muestra en tiempo real qué local está rindiendo y cuál necesita atención. Eso antes era imposible sin un equipo entero.",
-    name: "Ricardo Torres",
-    role: "Director de Operaciones",
-    restaurant: "Grupo Fuego",
-    location: "Santiago, Chile",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&q=80&auto=format&fit=crop&crop=face",
-    photo: "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=600&q=80&auto=format&fit=crop",
+    title: "Voz directa en el roadmap",
+    body: "Tus tickets entran a una cola priorizada. Lo que te falta para tu operación lo construimos primero.",
     accent: "#14B8A6",
-    stat: "3 locales, 1 panel",
   },
 ];
 
 export default function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  // Auto-advance solo en móvil (carousel visible). En desktop el grid muestra los 3.
-  useEffect(() => {
-    if (paused) return;
-    const id = window.setInterval(() => {
-      const el = carouselRef.current;
-      if (!el) return;
-      // Si el contenedor no es scroll-horizontal (desktop md+), no hacer nada
-      if (el.scrollWidth <= el.clientWidth + 8) return;
-      const next = (activeIdx + 1) % testimonials.length;
-      const card = el.children[next] as HTMLElement | undefined;
-      card?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-    }, 5500);
-    return () => window.clearInterval(id);
-  }, [activeIdx, paused]);
-
-  // Detecta scroll para actualizar el dot activo
-  useEffect(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-    const onScroll = () => {
-      const center = el.scrollLeft + el.clientWidth / 2;
-      let best = 0;
-      let bestDist = Infinity;
-      for (let i = 0; i < el.children.length; i++) {
-        const c = el.children[i] as HTMLElement;
-        const cCenter = c.offsetLeft + c.clientWidth / 2;
-        const d = Math.abs(cCenter - center);
-        if (d < bestDist) {
-          bestDist = d;
-          best = i;
-        }
-      }
-      setActiveIdx(best);
-    };
-    el.addEventListener("scroll", onScroll, { passive: true });
-    return () => el.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const goTo = (i: number) => {
-    const el = carouselRef.current;
-    if (!el) return;
-    const card = el.children[i] as HTMLElement | undefined;
-    card?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-  };
+  const { openContact } = useModals();
 
   useGSAP(
     () => {
       gsap.fromTo(
-        ".testi-card",
+        ".founder-card",
         { opacity: 0, y: 60 },
         {
           opacity: 1,
@@ -139,44 +69,45 @@ export default function Testimonials() {
   );
 
   return (
-    <section ref={sectionRef} id="testimonios" className="bg-black py-28 overflow-hidden">
+    <section ref={sectionRef} id="fundadores" className="bg-black py-28 overflow-hidden">
       <div className="max-w-[1160px] mx-auto px-8">
 
-        {/* ── Big social proof stat ── */}
+        {/* ── Founding partners headline ── */}
         <div className="testi-headline text-center mb-20">
-          <div className="inline-flex items-center gap-2 text-[0.62rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full mb-8"
-            style={{ background: "rgba(148,163,184,0.06)", border: "1px solid rgba(148,163,184,0.14)", color: "rgba(148,163,184,0.6)" }}>
-            Restaurantes que ya operan con RestHUB
+          <div
+            className="inline-flex items-center gap-2 text-[0.62rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full mb-8"
+            style={{
+              background: "rgba(245,158,11,0.08)",
+              border: "1px solid rgba(245,158,11,0.32)",
+              color: "#F59E0B",
+            }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#F59E0B" }} />
+            Programa Socios Fundadores
           </div>
 
-          <div className="flex items-end justify-center gap-4 mb-6">
-            <div className="text-[clamp(5rem,12vw,9rem)] font-black leading-none text-white flex items-end gap-0">
-              <Counter value={40} fontSize={96} places={[10, 1]} fontWeight={900} />
-              <span className="text-[clamp(5rem,12vw,9rem)] font-black leading-none">+</span>
+          <div className="flex items-end justify-center gap-5 mb-6">
+            <div className="text-[clamp(5rem,12vw,9rem)] font-black leading-none text-white">
+              7
             </div>
             <div className="pb-4 text-left">
-              <p className="text-[clamp(1.1rem,2vw,1.5rem)] font-bold text-white/80 leading-tight">restaurantes<br />en Latinoamérica</p>
+              <p className="text-[clamp(1.1rem,2vw,1.5rem)] font-bold text-white/80 leading-tight">
+                cupos restantes<br />en Latinoamérica
+              </p>
             </div>
           </div>
 
-          <p className="text-base text-white/40 max-w-[480px] mx-auto">
-            Desde cebicherías en Lima hasta grupos multi-local en Chile y Colombia.
+          <p className="text-base text-white/55 max-w-[560px] mx-auto leading-relaxed">
+            Estamos cerrando el primer grupo de restaurantes que adoptan RestHUB con acompañamiento directo. Cuando se asignen los 7 cupos, el programa se cierra.
           </p>
         </div>
 
-        {/* ── Testimonial cards (mobile: carousel, desktop: grid) ── */}
-        <div
-          ref={carouselRef}
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          onTouchStart={() => setPaused(true)}
-          className="flex md:grid md:grid-cols-3 gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-smooth -mx-8 md:mx-0 px-8 md:px-0 pb-2 md:pb-0"
-          style={{ scrollbarWidth: "none" }}
-        >
-          {testimonials.map((t, i) => (
+        {/* ── Founder perks ── */}
+        <div className="grid md:grid-cols-3 gap-5">
+          {FOUNDING_PERKS.map((p, i) => (
             <div
               key={i}
-              className="testi-card group relative flex flex-col rounded-2xl overflow-hidden snap-center shrink-0 w-[85%] sm:w-[60%] md:w-auto md:shrink"
+              className="founder-card relative flex flex-col rounded-2xl p-7"
               style={{
                 background: "rgba(15,23,42,0.7)",
                 border: "1px solid rgba(255,255,255,0.07)",
@@ -184,102 +115,43 @@ export default function Testimonials() {
                 opacity: 0,
               }}
             >
-              {/* Photo top */}
-              <div className="relative h-44 overflow-hidden">
-                <Image
-                  src={t.photo}
-                  alt={t.restaurant}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90" />
-                {/* Stat chip */}
-                <div
-                  className="absolute bottom-3 left-4 text-[0.6rem] font-bold px-2.5 py-1 rounded-full"
-                  style={{ background: `${t.accent}20`, border: `1px solid ${t.accent}50`, color: t.accent }}
-                >
-                  {t.stat}
-                </div>
-              </div>
-
-              {/* Body */}
-              <div className="flex flex-col flex-1 p-6">
-                {/* Stars */}
-                <div className="flex gap-0.5 mb-4">
-                  {[...Array(5)].map((_, si) => (
-                    <Star key={si} className="w-3.5 h-3.5 fill-[#F59E0B] text-[#F59E0B]" />
-                  ))}
-                </div>
-
-                {/* Quote */}
-                <blockquote className="text-[0.9rem] text-white/75 leading-[1.75] italic flex-1 mb-5">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-
-                {/* Author */}
-                <div className="flex items-center gap-3 pt-4 border-t border-white/6">
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0">
-                    <Image
-                      src={t.avatar}
-                      alt={t.name}
-                      fill
-                      className="object-cover"
-                      sizes="40px"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-[0.82rem] font-bold text-white leading-tight">{t.name}</p>
-                    <p className="text-[0.68rem] text-white/45">{t.role} · {t.restaurant}</p>
-                    <p className="text-[0.62rem] text-white/30">{t.location}</p>
-                  </div>
-                  {/* Accent dot */}
-                  <div
-                    className="ml-auto w-2 h-2 rounded-full shrink-0"
-                    style={{ background: t.accent, boxShadow: `0 0 8px ${t.accent}` }}
-                  />
-                </div>
-              </div>
-
-              {/* Hover bottom accent line */}
               <div
-                className="absolute bottom-0 left-0 right-0 h-[2px] translate-y-full group-hover:translate-y-0 transition-transform duration-400"
-                style={{ background: `linear-gradient(90deg, transparent, ${t.accent}, transparent)` }}
+                className="w-9 h-9 rounded-xl flex items-center justify-center mb-5 text-sm font-bold"
+                style={{ background: `${p.accent}20`, border: `1px solid ${p.accent}50`, color: p.accent }}
+              >
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <h3 className="text-base font-bold text-white leading-snug mb-3">{p.title}</h3>
+              <p className="text-[0.85rem] text-white/55 leading-[1.7]">{p.body}</p>
+              <div
+                className="absolute bottom-0 left-0 right-0 h-[2px]"
+                style={{ background: `linear-gradient(90deg, transparent, ${p.accent}55, transparent)` }}
               />
             </div>
           ))}
         </div>
 
-        {/* Dots — solo mobile */}
-        <div className="flex md:hidden items-center justify-center gap-2 mt-5">
-          {testimonials.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goTo(i)}
-              aria-label={`Ir al testimonio ${i + 1}`}
-              className="transition-all rounded-full cursor-pointer"
-              style={{
-                width: i === activeIdx ? 22 : 6,
-                height: 6,
-                background: i === activeIdx ? "#F59E0B" : "rgba(255,255,255,0.18)",
-              }}
-            />
-          ))}
+        {/* ── CTA ── */}
+        <div className="mt-14 flex flex-col items-center gap-4">
+          <button
+            onClick={() => openContact({ topic: "Programa Socios Fundadores" })}
+            className="font-bold text-[#0F172A] px-8 py-3.5 rounded-full text-sm transition-all hover:scale-105 cursor-pointer"
+            style={{ background: "#F59E0B", boxShadow: "0 12px 40px rgba(245,158,11,0.35)" }}
+          >
+            Postular a un cupo →
+          </button>
+          <p className="text-[0.72rem] text-white/40">
+            Revisamos cada postulación. Te respondemos en menos de 48 h.
+          </p>
         </div>
 
-        <style>{`
-          .testi-card { scroll-snap-align: center; }
-          /* Hide scrollbar across browsers */
-          [class*="overflow-x-auto"]::-webkit-scrollbar { display: none; }
-        `}</style>
-
-        {/* Trust strip */}
+        {/* ── Trust strip — promesas verificables ── */}
         <div className="mt-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
           {[
-            { val: "4.9/5", label: "Satisfacción promedio" },
-            { val: "< 1 sem", label: "Tiempo de implementación" },
-            { val: "98%", label: "Uptime garantizado" },
+            { val: "< 1 sem", label: "Implementación inicial" },
+            { val: "98%", label: "Uptime objetivo" },
             { val: "0", label: "Contratos de permanencia" },
+            { val: "1-a-1", label: "Soporte con el equipo fundador" },
           ].map((s) => (
             <div key={s.label} className="text-center">
               <div className="text-xl font-extrabold text-white">{s.val}</div>

@@ -6,7 +6,6 @@ import { Zap, DollarSign } from "lucide-react";
 import BlurFade from "@/components/reactbits/BlurFade";
 import SplitWords from "@/components/reactbits/SplitWords";
 import { useModals } from "@/components/modals/ModalProvider";
-import LogosMarquee from "@/components/sections/LogosMarquee";
 
 // Video sources — free stock from Pexels CDN (no auth needed)
 const VIDEO_SRC = "https://videos.pexels.com/video-files/3252960/3252960-uhd_2560_1440_25fps.mp4";
@@ -141,30 +140,30 @@ export default function Hero() {
           </div>
         </BlurFade>
 
-        {/* Social proof */}
+        {/* Founding partners — programa cerrado, cupos limitados */}
         <BlurFade delay={1.05}>
-          <div className="flex flex-col items-center gap-4 mt-8">
-            {/* Avatar strip */}
-            <div className="flex items-center gap-3">
-              <div className="flex">
-                {["JR", "MC", "AP", "SK", "LT"].map((init, i) => (
-                  <div
-                    key={i}
-                    className="w-8 h-8 rounded-full border-2 flex items-center justify-center text-[0.6rem] font-bold"
-                    style={{ marginLeft: i === 0 ? 0 : "-8px", borderColor: "#000", background: "#1E3050", color: "#94A3B8" }}
-                  >
-                    {init}
-                  </div>
-                ))}
-              </div>
-              <span className="text-xs text-white/50">
-                <strong className="text-white/80">+40 restaurantes</strong> ya operan con RestHUB
+          <div className="flex flex-col items-center gap-3 mt-10">
+            <div
+              className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full"
+              style={{
+                background: "rgba(245,158,11,0.08)",
+                border: "1px solid rgba(245,158,11,0.32)",
+              }}
+            >
+              <span
+                className="w-2 h-2 rounded-full animate-pulse"
+                style={{ background: "#F59E0B", boxShadow: "0 0 10px rgba(245,158,11,0.7)" }}
+              />
+              <span className="text-[0.72rem] font-bold tracking-[0.18em] uppercase" style={{ color: "#F59E0B" }}>
+                Programa Socios Fundadores
+              </span>
+              <span className="text-[0.72rem] font-semibold text-white/70">
+                Quedan <strong className="text-white">7 cupos</strong>
               </span>
             </div>
-            {/* Restaurant marquee */}
-            <div className="w-screen max-w-[920px] -mx-6">
-              <LogosMarquee variant="hero" />
-            </div>
+            <p className="text-[0.78rem] text-white/45 max-w-[480px] text-center leading-relaxed">
+              Acompañamos a un grupo reducido de restaurantes en la implementación inicial, con beneficios y precios fundadores.
+            </p>
           </div>
         </BlurFade>
       </div>
