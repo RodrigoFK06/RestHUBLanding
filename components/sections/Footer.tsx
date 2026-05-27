@@ -248,14 +248,9 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-4 pt-8 border-t border-white/6">
-          <div className="flex flex-col gap-1">
-            <p className="text-[0.75rem] text-[#94A3B8]">
-              © 2026 RestHUB. Todos los derechos reservados.
-            </p>
-            <p className="text-[0.72rem] text-[#94A3B8]/80">
-              Hecho por Rodrigo Torres y Ricardo Orbegozo en Árkos.
-            </p>
-          </div>
+          <p className="text-[0.75rem] text-[#94A3B8]">
+            © 2026 RestHUB. Todos los derechos reservados. · Hecho por Rodrigo Torres y Ricardo Orbegozo en Árkos.
+          </p>
           <div className="flex items-center gap-5">
             <Link
               href="/legal/privacidad"
