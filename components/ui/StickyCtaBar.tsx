@@ -4,16 +4,30 @@ import { useEffect, useState } from "react";
 import { useModals } from "@/components/modals/ModalProvider";
 
 export default function StickyCtaBar() {
-  const [visible, setVisible] = useState(false);
+  const [scrolledPast, setScrolledPast] = useState(false);
+  const [footerVisible, setFooterVisible] = useState(false);
   const { openContact } = useModals();
 
   useEffect(() => {
     const handleScroll = () => {
-      setVisible(window.scrollY > window.innerHeight * 0.75);
+      setScrolledPast(window.scrollY > window.innerHeight * 0.75);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+    if (!footer) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setFooterVisible(entry.isIntersecting),
+      { rootMargin: "0px 0px -10% 0px", threshold: 0 }
+    );
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
+  const visible = scrolledPast && !footerVisible;
 
   return (
     <div
