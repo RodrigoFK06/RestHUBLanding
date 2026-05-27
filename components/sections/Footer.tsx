@@ -21,7 +21,7 @@ const whyLinks = [
 ];
 
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "51961869348";
-const CONTACT_EMAIL = "rodrigoan.torresp@gmail.com";
+const CONTACT_EMAIL = "gerencia@árkos.com";
 
 export default function Footer() {
   const { openContact } = useModals();
@@ -248,9 +248,14 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-4 pt-8 border-t border-white/6">
-          <p className="text-[0.75rem] text-[#94A3B8]">
-            © 2026 RestHUB. Todos los derechos reservados.
-          </p>
+          <div className="flex flex-col gap-1">
+            <p className="text-[0.75rem] text-[#94A3B8]">
+              © 2026 RestHUB. Todos los derechos reservados.
+            </p>
+            <p className="text-[0.72rem] text-[#94A3B8]/80">
+              Hecho por Rodrigo Torres y Ricardo Orbegozo en Árkos.
+            </p>
+          </div>
           <div className="flex items-center gap-5">
             <Link
               href="/legal/privacidad"
