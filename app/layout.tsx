@@ -76,6 +76,17 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebSite",
+      name: "RestHUB",
+      url: SITE_URL,
+      inLanguage: "es",
+      creator: {
+        "@type": "Organization",
+        name: "Árkos",
+        url: "https://xn--rkos-4na.com",
+      },
+    },
+    {
       "@type": "Organization",
       name: "RestHUB",
       url: SITE_URL,

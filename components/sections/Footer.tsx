@@ -249,7 +249,15 @@ export default function Footer() {
 
         <div className="flex flex-wrap items-center justify-between gap-4 pt-8 border-t border-white/6">
           <p className="text-[0.75rem] text-[#94A3B8]">
-            © 2026 RestHUB. Todos los derechos reservados. · Hecho por Rodrigo Torres y Ricardo Orbegozo en Árkos.
+            © 2026 RestHUB. Todos los derechos reservados. ·{" "}
+            <a
+              href="https://xn--rkos-4na.com"
+              target="_blank"
+              rel="noopener"
+              className="text-[#94A3B8] hover:text-white transition-colors"
+            >
+              Desarrollado por Árkos
+            </a>
           </p>
           <div className="flex items-center gap-5">
             <Link
