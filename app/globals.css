@@ -15,10 +15,22 @@
   --color-mist-d: #64748B;
   --color-green-ok: #22C55E;
 
+  /* Motion — strong custom easing curves (Emil Kowalski). The built-in CSS
+     easings are too weak; these give UI the "punch" that feels intentional.
+     Registered in @theme so they're also available as ease-* utilities. */
+  --ease-snappy: cubic-bezier(0.23, 1, 0.32, 1);   /* ease-out for entering/exiting UI */
+  --ease-smooth: cubic-bezier(0.77, 0, 0.175, 1);  /* ease-in-out for on-screen movement */
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);   /* iOS-like drawer curve (Ionic) */
+
+  /* Motion duration scale — UI stays under 300ms (press 120-160, controls 180-240). */
+  --dur-press: 130ms;
+  --dur-fast: 180ms;
+  --dur-base: 240ms;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -76,7 +88,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.769 0.158 70.08); /* brand amber — matches the global focus outline */
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -111,7 +123,7 @@
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(0.769 0.158 70.08); /* brand amber */
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -184,11 +196,14 @@
 }
 
 @keyframes bar-grow {
-  from { width: 0%; }
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
 
+/* Animate transform, never width (transform runs on the GPU; width forces layout). */
 .comparison-bar {
-  animation: bar-grow 1.2s ease-out forwards;
+  transform-origin: left center;
+  animation: bar-grow 1.2s var(--ease-snappy) forwards;
 }
 
 /* Reusable hover-lift / glow for primary CTAs — works on hover AND focus. */
@@ -196,7 +211,7 @@
   background: #F59E0B;
   color: #0F172A;
   box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
-  transition: box-shadow 240ms ease, transform 240ms ease, background-color 240ms ease;
+  transition: box-shadow var(--dur-base) var(--ease-snappy), transform var(--dur-fast) var(--ease-snappy), background-color var(--dur-base) var(--ease-snappy);
 }
 .btn-amber:hover,
 .btn-amber:focus-visible {
@@ -204,20 +219,26 @@
   box-shadow: 0 12px 40px rgba(245, 158, 11, 0.5);
   transform: translateY(-1px);
 }
+/* Press feedback: the button "sinks" when pressed (Emil). Release is snappy. */
 .btn-amber:active {
-  transform: translateY(0);
+  transform: scale(0.97);
+  transition-duration: var(--dur-press);
 }
 
 .btn-ghost-light {
   background: transparent;
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+  transition: background-color var(--dur-fast) var(--ease-snappy), border-color var(--dur-fast) var(--ease-snappy), color var(--dur-fast) var(--ease-snappy), transform var(--dur-fast) var(--ease-snappy);
 }
 .btn-ghost-light:hover,
 .btn-ghost-light:focus-visible {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.55);
+}
+.btn-ghost-light:active {
+  transform: scale(0.97);
+  transition-duration: var(--dur-press);
 }
 
 /* Pricing card CTAs — uses --accent set per-plan inline. */
@@ -249,4 +270,25 @@
 .pricing-cta-ghost-light:focus-visible {
   color: var(--accent, #F59E0B);
   border-color: var(--accent, #F59E0B);
+}
+
+/* Mobile menu entrance — modern CSS @starting-style (no JS mount flag needed). */
+.nav-mobile-menu {
+  transition: opacity var(--dur-base) var(--ease-snappy), transform var(--dur-base) var(--ease-snappy);
+}
+@starting-style {
+  .nav-mobile-menu {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+/* Gentle scroll cue — smooth ease-in-out bob, never a bounce/elastic (Emil/Impeccable).
+   The global prefers-reduced-motion rule disables it automatically. */
+@keyframes cue-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(3px); }
+}
+.animate-cue-bob {
+  animation: cue-bob 2.4s var(--ease-smooth) infinite;
 }

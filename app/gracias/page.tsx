@@ -95,7 +95,7 @@ function GraciasContent() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
           <a
             href={POST_CHECKOUT_URL}
-            className="inline-flex items-center justify-center gap-2 font-bold text-[#0F172A] px-7 py-3.5 rounded-full text-sm transition-all hover:scale-[1.02]"
+            className="inline-flex items-center justify-center gap-2 font-bold text-[#0F172A] px-7 py-3.5 rounded-full text-sm transition hover:scale-[1.02] active:scale-[0.98]"
             style={{ background: "#F59E0B", boxShadow: "0 8px 32px rgba(245,158,11,0.35)" }}
           >
             Acceder a tu cuenta
@@ -107,7 +107,7 @@ function GraciasContent() {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 font-semibold text-white px-7 py-3.5 rounded-full text-sm border border-white/15 hover:border-[#25D366]/60 hover:bg-[#25D366]/10 transition-all"
+            className="inline-flex items-center justify-center gap-2 font-semibold text-white px-7 py-3.5 rounded-full text-sm border border-white/15 hover:border-[#25D366]/60 hover:bg-[#25D366]/10 transition active:scale-[0.98]"
           >
             <MessageCircle className="w-4 h-4 text-[#25D366]" />
             WhatsApp soporte

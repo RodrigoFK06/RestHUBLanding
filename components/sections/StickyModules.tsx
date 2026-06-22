@@ -129,7 +129,8 @@ function KdsMock() {
       </div>
       <div className="p-3 space-y-2">
         {orders.map((o, i) => (
-          <div key={i} className="flex items-center gap-3 bg-white/3 rounded-xl px-3 py-2.5 border-l-2" style={{ borderLeftColor: o.bColor }}>
+          <div key={i} className="flex items-center gap-3 bg-white/3 rounded-xl px-3 py-2.5">
+            <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: o.sColor }} aria-hidden="true" />
             <div className="flex-1 min-w-0">
               <div className="text-[0.75rem] font-bold text-white">{o.table}</div>
               <div className="text-[0.6rem] text-[#64748B] truncate">{o.items}</div>
@@ -328,9 +329,6 @@ export default function StickyModules() {
     <section id="modulos" ref={containerRef} className="bg-[#0F172A]">
       {/* Header */}
       <div className="max-w-[1160px] mx-auto px-8 pt-24 pb-16">
-        <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full bg-[rgba(13,148,136,0.1)] text-[#14B8A6] border border-[rgba(13,148,136,0.25)] mb-5">
-          Los módulos
-        </span>
         <h2 className="text-[clamp(2rem,4.5vw,3.4rem)] font-extrabold leading-[1.08] tracking-[-0.028em] max-w-[640px] mb-4">
           Un restaurante tiene seis dimensiones.{" "}
           <span className="text-[#14B8A6]">RestHUB las cubre todas.</span>
@@ -349,7 +347,7 @@ export default function StickyModules() {
             {modules.map((m, i) => (
               <div
                 key={i}
-                className="rounded-full transition-all duration-400"
+                className="rounded-full transition-[width,height,background-color] duration-400"
                 style={{
                   width: activeIdx === i ? "6px" : "4px",
                   height: activeIdx === i ? "22px" : "4px",
@@ -366,7 +364,7 @@ export default function StickyModules() {
               return (
                 <div
                   key={i}
-                  className="absolute inset-0 flex items-center justify-center transition-all duration-500"
+                  className="absolute inset-0 flex items-center justify-center transition duration-500"
                   style={{
                     opacity: activeIdx === i ? 1 : 0,
                     transform: activeIdx === i ? "scale(1) translateY(0px)" : "scale(0.95) translateY(14px)",

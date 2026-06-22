@@ -48,7 +48,7 @@ export default function CookieBanner() {
         <button
           onClick={() => accept("essential")}
           aria-label="Cerrar"
-          className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all"
+          className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-colors"
         >
           <X className="w-3.5 h-3.5" />
         </button>
@@ -71,13 +71,13 @@ export default function CookieBanner() {
         <div className="flex gap-2">
           <button
             onClick={() => accept("essential")}
-            className="flex-1 text-[0.78rem] font-semibold text-white/75 hover:text-white border border-white/10 hover:border-white/25 rounded-full py-2.5 transition-all cursor-pointer"
+            className="flex-1 text-[0.78rem] font-semibold text-white/75 hover:text-white border border-white/10 hover:border-white/25 rounded-full py-2.5 transition active:scale-[0.98] cursor-pointer"
           >
             Solo esenciales
           </button>
           <button
             onClick={() => accept("all")}
-            className="flex-1 text-[0.78rem] font-bold text-[#0F172A] rounded-full py-2.5 transition-all hover:scale-[1.02] cursor-pointer"
+            className="flex-1 text-[0.78rem] font-bold text-[#0F172A] rounded-full py-2.5 transition hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             style={{ background: "#F59E0B", boxShadow: "0 6px 24px rgba(245,158,11,0.3)" }}
           >
             Aceptar todas

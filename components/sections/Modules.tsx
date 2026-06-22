@@ -96,7 +96,7 @@ export default function Modules() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {modules.map((m, i) => (
             <BlurFade key={i} delay={0.06 * (i % 3 + 1)}>
-              <Card className="relative overflow-hidden bg-[rgba(255,255,255,0.025)] border border-white/8 hover:-translate-y-2 hover:border-white/15 hover:shadow-[0_28px_64px_rgba(0,0,0,0.5)] transition-all duration-300 h-full">
+              <Card className="relative overflow-hidden bg-[rgba(255,255,255,0.025)] border border-white/8 hover:-translate-y-2 hover:border-white/15 hover:shadow-[0_28px_64px_rgba(0,0,0,0.5)] transition duration-300 h-full">
                 {/* top accent bar */}
                 <div className={`absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r ${m.gradientClass}`} />
                 <CardContent className="pt-7 pb-6 px-6 flex flex-col h-full">

@@ -112,13 +112,6 @@ export default function Why() {
 
         {/* ── RIGHT: Content ── */}
         <div className="why-text-block flex flex-col justify-center px-10 lg:px-16 py-16 md:py-20" style={{ opacity: 0 }}>
-          <div
-            className="inline-flex items-center gap-1.5 text-[0.62rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full mb-8 w-fit"
-            style={{ background: "rgba(245,158,11,0.1)", border: "1px solid rgba(245,158,11,0.25)", color: "#F59E0B" }}
-          >
-            Por qué existimos
-          </div>
-
           <h2 className="text-[clamp(1.8rem,3.5vw,2.8rem)] font-extrabold leading-[1.15] tracking-[-0.025em] mb-5">
             La mayoría de los sistemas te obligan a{" "}
             <span style={{ color: "#F59E0B" }}>elegir entre funciones.</span>

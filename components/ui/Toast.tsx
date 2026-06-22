@@ -117,7 +117,7 @@ export default function ToastProvider({ children }: { children: React.ReactNode 
               <button
                 onClick={() => dismiss(t.id)}
                 aria-label="Cerrar"
-                className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all"
+                className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-colors"
               >
                 <X className="w-3.5 h-3.5" />
               </button>

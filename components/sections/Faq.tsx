@@ -39,9 +39,6 @@ export default function Faq() {
       <div className="max-w-[1160px] mx-auto px-8">
         <BlurFade>
           <div className="max-w-[540px] mb-12">
-            <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full bg-black/5 text-[#64748B] border border-black/8 mb-5">
-              Preguntas frecuentes
-            </span>
             <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-extrabold leading-[1.1] tracking-[-0.025em] mb-3 text-[#0F172A]">
               Sin rodeos.
             </h2>
@@ -61,7 +58,7 @@ export default function Faq() {
               <AccordionItem
                 key={i}
                 value={`item-${i}`}
-                className="bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden px-0 shadow-sm data-[state=open]:border-[rgba(245,158,11,0.4)] transition-all"
+                className="bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden px-0 shadow-sm data-[state=open]:border-[rgba(245,158,11,0.4)] transition-colors"
               >
                 <AccordionTrigger className="px-6 py-5 text-[0.92rem] font-semibold text-[#0F172A] hover:bg-[#F8FAFC] hover:no-underline text-left [&[data-state=open]]:text-[#F59E0B]">
                   {f.q}

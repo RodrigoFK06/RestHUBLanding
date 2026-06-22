@@ -234,7 +234,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
           <button
             onClick={onClose}
             aria-label="Cerrar"
-            className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all z-10"
+            className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors z-10"
           >
             <X className="w-4 h-4" />
           </button>
@@ -293,7 +293,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
                       onClick={() => setLocations((n) => Math.max(1, n - 1))}
                       disabled={locations <= 1}
                       aria-label="Quitar local"
-                      className="w-10 h-10 flex items-center justify-center text-white/65 hover:text-white hover:bg-white/5 transition-all disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer"
+                      className="w-10 h-10 flex items-center justify-center text-white/65 hover:text-white hover:bg-white/5 transition disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer"
                     >
                       −
                     </button>
@@ -305,7 +305,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
                       onClick={() => setLocations((n) => Math.min(10, n + 1))}
                       disabled={locations >= 10}
                       aria-label="Sumar local"
-                      className="w-10 h-10 flex items-center justify-center text-white/65 hover:text-white hover:bg-white/5 transition-all disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer"
+                      className="w-10 h-10 flex items-center justify-center text-white/65 hover:text-white hover:bg-white/5 transition disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer"
                     >
                       +
                     </button>
@@ -332,7 +332,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
                     value={card}
                     onChange={(e) => setCard(formatCard(e.target.value))}
                     placeholder="4242 4242 4242 4242"
-                    className="w-full bg-white/[0.04] border border-white/10 focus:border-[#F59E0B]/60 rounded-xl px-3.5 py-2.5 pr-16 text-sm text-white placeholder:text-white/25 outline-none transition-all font-mono tracking-wide"
+                    className="w-full bg-white/[0.04] border border-white/10 focus:border-[#F59E0B]/60 rounded-xl px-3.5 py-2.5 pr-16 text-sm text-white placeholder:text-white/25 outline-none transition font-mono tracking-wide"
                   />
                   <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[0.65rem] font-bold uppercase tracking-wider text-white/50">
                     {brand}
@@ -379,7 +379,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
 
               <button
                 type="submit"
-                className="w-full font-bold text-[#0F172A] py-3.5 rounded-full text-sm transition-all hover:scale-[1.01] flex items-center justify-center gap-2"
+                className="w-full font-bold text-[#0F172A] py-3.5 rounded-full text-sm transition hover:scale-[1.01] active:scale-[0.98] flex items-center justify-center gap-2"
                 style={{ background: "#F59E0B", boxShadow: "0 8px 32px rgba(245,158,11,0.35)" }}
               >
                 <Lock className="w-4 h-4" />
@@ -427,7 +427,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
                   return (
                     <li
                       key={s.label}
-                      className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all"
+                      className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition"
                       style={{
                         background: active ? "rgba(245,158,11,0.08)" : "transparent",
                         border: `1px solid ${active ? "rgba(245,158,11,0.3)" : "rgba(255,255,255,0.06)"}`,
@@ -491,7 +491,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
 
               <a
                 href={POST_CHECKOUT_URL}
-                className="w-full font-bold text-[#0F172A] py-3.5 rounded-full text-sm transition-all hover:scale-[1.01] flex items-center justify-center gap-2 mb-3"
+                className="w-full font-bold text-[#0F172A] py-3.5 rounded-full text-sm transition hover:scale-[1.01] active:scale-[0.98] flex items-center justify-center gap-2 mb-3"
                 style={{ background: "#F59E0B", boxShadow: "0 8px 32px rgba(245,158,11,0.35)" }}
               >
                 Acceder a tu cuenta
@@ -500,7 +500,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
               <button
                 type="button"
                 onClick={onClose}
-                className="w-full font-semibold text-white/70 hover:text-white py-2.5 text-sm transition-all"
+                className="w-full font-semibold text-white/70 hover:text-white py-2.5 text-sm transition-colors"
               >
                 Cerrar
               </button>
@@ -524,7 +524,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
                   setStage("form");
                   setError(null);
                 }}
-                className="font-semibold text-white px-6 py-3 rounded-full text-sm border border-white/20 hover:border-white/50 hover:bg-white/5 transition-all"
+                className="font-semibold text-white px-6 py-3 rounded-full text-sm border border-white/20 hover:border-white/50 hover:bg-white/5 transition active:scale-[0.98]"
               >
                 Volver e intentar de nuevo
               </button>
@@ -648,7 +648,7 @@ function Field({
         placeholder={placeholder}
         inputMode={inputMode}
         autoComplete={autoComplete}
-        className="w-full bg-white/[0.06] border border-white/15 focus:border-[#F59E0B]/70 rounded-xl px-3.5 py-3 text-sm text-white placeholder:text-white/35 outline-none transition-all"
+        className="w-full bg-white/[0.06] border border-white/15 focus:border-[#F59E0B]/70 rounded-xl px-3.5 py-3 text-sm text-white placeholder:text-white/35 outline-none transition"
       />
     </div>
   );

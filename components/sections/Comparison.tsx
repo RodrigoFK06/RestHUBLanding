@@ -27,8 +27,8 @@ function Bar({ pct, color }: { pct: number; color: string }) {
   return (
     <div ref={ref} className="h-1 rounded-full bg-[#E2E8F0] overflow-hidden">
       <div
-        className={`h-full rounded-full ${color} transition-all duration-[1200ms] ease-out`}
-        style={{ width: inView ? `${pct}%` : "0%" }}
+        className={`h-full w-full origin-left rounded-full ${color} transition-transform duration-[1200ms] ease-snappy`}
+        style={{ transform: inView ? `scaleX(${pct / 100})` : "scaleX(0)" }}
       />
     </div>
   );
@@ -40,9 +40,6 @@ export default function Comparison() {
       <div className="max-w-[1160px] mx-auto px-8">
         <BlurFade>
           <div className="text-center max-w-[620px] mx-auto mb-14">
-            <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full bg-black/5 text-[#64748B] border border-black/8 mb-5">
-              El mapa competitivo
-            </span>
             <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-extrabold leading-[1.1] tracking-[-0.025em] mb-3 text-[#0F172A]">
               Profundidad funcional.<br />Precio accesible.
             </h2>

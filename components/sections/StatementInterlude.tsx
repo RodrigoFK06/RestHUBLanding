@@ -70,14 +70,6 @@ export default function StatementInterlude() {
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(13,148,136,0.08) 0%, rgba(0,0,0,0) 65%), #000" }} />
 
         <div ref={containerRef} className="relative z-10 max-w-[820px] mx-auto px-8 text-center">
-          {/* Eyebrow */}
-          <div
-            className="inline-flex items-center gap-2 text-[0.62rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full mb-10"
-            style={{ background: "rgba(148,163,184,0.06)", border: "1px solid rgba(148,163,184,0.15)", color: "rgba(148,163,184,0.6)" }}
-          >
-            Por qué existimos
-          </div>
-
           <p
             className="text-[clamp(1.7rem,3.8vw,3rem)] font-extrabold leading-[1.35] tracking-[-0.025em]"
           >

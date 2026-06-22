@@ -61,7 +61,7 @@ export default function WhatsAppFab() {
               setDismissed(true);
             }}
             aria-label="Cerrar"
-            className="shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-white/45 hover:text-white hover:bg-white/10 transition-all"
+            className="shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-white/45 hover:text-white hover:bg-white/10 transition-colors"
           >
             <X className="w-3 h-3" />
           </button>

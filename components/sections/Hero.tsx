@@ -45,7 +45,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" className="relative h-screen min-h-[640px] flex flex-col items-center justify-center overflow-hidden bg-black">
+    <section id="hero" className="relative min-h-[max(640px,100dvh)] flex flex-col items-center justify-center overflow-hidden bg-black">
 
       {/* ── FULL-BLEED VIDEO ─────────────────────────────── */}
       <video
@@ -86,15 +86,6 @@ export default function Hero() {
 
       {/* ── CENTERED HERO TEXT ───────────────────────────── */}
       <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-[900px]">
-
-        {/* Eyebrow badge */}
-        <BlurFade delay={0}>
-          <div className="inline-flex items-center gap-2 text-[0.68rem] font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full mb-8"
-            style={{ background: "rgba(245,158,11,0.12)", border: "1px solid rgba(245,158,11,0.35)", color: "#F59E0B" }}>
-            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#F59E0B" }} />
-            v1.0 · Latinoamérica · 2026
-          </div>
-        </BlurFade>
 
         {/* Giant headline — word-split with GSAP */}
         <h1 className="text-[clamp(3.2rem,7.5vw,6.5rem)] font-black leading-[0.97] tracking-[-0.04em] text-white mb-6">

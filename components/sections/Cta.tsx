@@ -41,12 +41,6 @@ export default function Cta() {
       />
 
       <div className="relative z-10 max-w-[820px] mx-auto">
-        <BlurFade>
-          <span className="block text-[0.7rem] font-bold tracking-[0.2em] uppercase text-[#F59E0B] mb-6">
-            ¿Listo para operar con control total?
-          </span>
-        </BlurFade>
-
         <BlurFade delay={0.08}>
           <h2 className="text-[clamp(2.4rem,5.5vw,4.2rem)] font-black leading-[1.08] tracking-[-0.03em] max-w-[760px] mx-auto mb-5">
             Tu restaurante merece un sistema que trabaje como{" "}
@@ -64,21 +58,21 @@ export default function Cta() {
           <div className="flex flex-wrap gap-4 justify-center mb-6">
             <Button
               onClick={() => openContact({ topic: "Solicitar acceso" })}
-              className="bg-[#F59E0B] hover:bg-[#FCD34D] text-[#0F172A] font-bold text-base px-8 py-5 hover:shadow-[0_10px_32px_rgba(245,158,11,0.38)] hover:-translate-y-1 transition-all cursor-pointer"
+              className="bg-[#F59E0B] hover:bg-[#FCD34D] text-[#0F172A] font-bold text-base px-8 py-5 hover:shadow-[0_10px_32px_rgba(245,158,11,0.38)] hover:-translate-y-1 cursor-pointer"
             >
               Solicitar acceso →
             </Button>
             <Button
               variant="ghost"
               onClick={() => openContact({ topic: "Agendar demo" })}
-              className="text-white border border-white/20 hover:border-white/50 hover:bg-transparent text-base px-8 py-5 hover:-translate-y-1 transition-all cursor-pointer"
+              className="text-white border border-white/20 hover:border-white/50 hover:bg-transparent text-base px-8 py-5 hover:-translate-y-1 cursor-pointer"
             >
               Agendar demo
             </Button>
             <a href={waHref} target="_blank" rel="noopener noreferrer">
               <Button
                 variant="ghost"
-                className="text-white border border-[#25D366]/40 hover:border-[#25D366] hover:bg-[#25D366]/10 text-base px-8 py-5 hover:-translate-y-1 transition-all cursor-pointer"
+                className="text-white border border-[#25D366]/40 hover:border-[#25D366] hover:bg-[#25D366]/10 text-base px-8 py-5 hover:-translate-y-1 cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4 text-[#25D366] mr-1.5" />
                 WhatsApp

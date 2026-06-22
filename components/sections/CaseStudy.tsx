@@ -106,12 +106,6 @@ export default function CaseStudy() {
 
         {/* Right — metrics + quote */}
         <div className="flex flex-col justify-center px-10 py-16 md:px-14">
-          <BlurFade>
-            <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full bg-black/5 text-[#64748B] border border-black/8 mb-8">
-              En números reales
-            </span>
-          </BlurFade>
-
           {/* Metrics */}
           <div className="flex flex-col gap-6 mb-10">
             {metrics.map((m, i) => (

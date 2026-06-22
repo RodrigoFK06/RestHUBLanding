@@ -166,11 +166,6 @@ export default function Pricing() {
 
         {/* Header */}
         <div className="text-center mb-14">
-          <div
-            className="inline-flex items-center gap-2 text-[0.62rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full mb-6 bg-black/5 text-[#64748B] border border-black/8"
-          >
-            Planes
-          </div>
           <h2 className="text-[clamp(2rem,4vw,3rem)] font-extrabold leading-[1.1] tracking-[-0.025em] mb-4 text-[#0F172A]">
             Sin comisiones ocultas.<br />
             <span style={{ color: "#F59E0B" }}>Sin contratos de permanencia.</span>
@@ -191,7 +186,7 @@ export default function Pricing() {
                 type="button"
                 onClick={() => setYearly(false)}
                 aria-pressed={!yearly}
-                className="px-5 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer"
+                className="px-5 py-2 rounded-full text-sm font-semibold transition cursor-pointer"
                 style={{
                   background: !yearly ? "rgba(245,158,11,0.12)" : "transparent",
                   color: !yearly ? "#F59E0B" : "#475569",
@@ -203,7 +198,7 @@ export default function Pricing() {
                 type="button"
                 onClick={() => setYearly(true)}
                 aria-pressed={yearly}
-                className="px-5 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer"
+                className="px-5 py-2 rounded-full text-sm font-semibold transition cursor-pointer"
                 style={{
                   background: yearly ? "rgba(245,158,11,0.12)" : "transparent",
                   color: yearly ? "#F59E0B" : "#475569",
@@ -233,7 +228,7 @@ export default function Pricing() {
                     type="button"
                     aria-pressed={active}
                     onClick={() => switchCurrency(c)}
-                    className="px-4 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer"
+                    className="px-4 py-2 rounded-full text-sm font-semibold transition cursor-pointer"
                     style={{
                       background: active ? "rgba(20,184,166,0.12)" : "transparent",
                       color: active ? "#0F766E" : "#475569",
@@ -263,7 +258,7 @@ export default function Pricing() {
             return (
               <div
                 key={plan.id}
-                className="pricing-card relative flex flex-col rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1"
+                className="pricing-card relative flex flex-col rounded-2xl p-7 transition duration-300 hover:-translate-y-1"
                 style={{
                   background: isPro
                     ? "linear-gradient(135deg, rgba(30,41,59,0.95) 0%, rgba(15,23,42,1) 100%)"
@@ -326,7 +321,7 @@ export default function Pricing() {
                 <button
                   type="button"
                   onClick={() => handlePlanClick(plan.id)}
-                  className={`pricing-cta w-full py-3.5 rounded-xl text-sm font-bold mb-7 transition-all cursor-pointer ${
+                  className={`pricing-cta w-full py-3.5 rounded-xl text-sm font-bold mb-7 transition active:scale-[0.98] cursor-pointer ${
                     plan.ctaStyle === "filled"
                       ? "pricing-cta-filled"
                       : isPro

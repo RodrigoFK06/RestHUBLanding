@@ -167,7 +167,7 @@ export default function ContactModal({ open, onClose, topic, prefillMessage }: P
         <button
           onClick={onClose}
           aria-label="Cerrar"
-          className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all z-10"
+          className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors z-10"
         >
           <X className="w-4 h-4" />
         </button>
@@ -193,7 +193,7 @@ export default function ContactModal({ open, onClose, topic, prefillMessage }: P
             </p>
             <button
               onClick={onClose}
-              className="w-full font-bold text-[#0F172A] py-3.5 rounded-full text-sm transition-all hover:scale-[1.02]"
+              className="w-full font-bold text-[#0F172A] py-3.5 rounded-full text-sm transition hover:scale-[1.02] active:scale-[0.98]"
               style={{ background: "#F59E0B", boxShadow: "0 8px 32px rgba(245,158,11,0.35)" }}
             >
               Listo
@@ -274,7 +274,7 @@ export default function ContactModal({ open, onClose, topic, prefillMessage }: P
                   touched.message && errors.message
                     ? "border-red-500/50 focus:border-red-500/70"
                     : "border-white/10 focus:border-[#F59E0B]/60"
-                } rounded-xl px-3.5 py-2.5 text-sm text-white placeholder:text-white/25 outline-none transition-all resize-none`}
+                } rounded-xl px-3.5 py-2.5 text-sm text-white placeholder:text-white/25 outline-none transition resize-none`}
               />
               {touched.message && errors.message && (
                 <p className="mt-1.5 text-[0.72rem] text-red-300/90">{errors.message}</p>
@@ -290,7 +290,7 @@ export default function ContactModal({ open, onClose, topic, prefillMessage }: P
             <button
               type="submit"
               disabled={status === "sending"}
-              className="w-full font-bold text-[#0F172A] py-3.5 rounded-full text-sm transition-all hover:scale-[1.01] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full font-bold text-[#0F172A] py-3.5 rounded-full text-sm transition hover:scale-[1.01] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               style={{ background: "#F59E0B", boxShadow: "0 8px 32px rgba(245,158,11,0.35)" }}
             >
               {status === "sending" ? (
@@ -318,7 +318,7 @@ export default function ContactModal({ open, onClose, topic, prefillMessage }: P
               href={waHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 font-semibold text-white py-3.5 rounded-full text-sm border border-white/15 hover:border-[#25D366]/60 hover:bg-[#25D366]/10 transition-all"
+              className="w-full flex items-center justify-center gap-2 font-semibold text-white py-3.5 rounded-full text-sm border border-white/15 hover:border-[#25D366]/60 hover:bg-[#25D366]/10 transition active:scale-[0.98]"
             >
               <MessageCircle className="w-4 h-4 text-[#25D366]" />
               Escribir por WhatsApp
@@ -385,7 +385,7 @@ function Field({
         aria-describedby={hasError ? `${id}-error` : undefined}
         className={`w-full bg-white/[0.06] border ${
           hasError ? "border-red-500/60 focus:border-red-500/80" : "border-white/15 focus:border-[#F59E0B]/70"
-        } rounded-xl px-3.5 py-3 text-sm text-white placeholder:text-white/35 outline-none transition-all`}
+        } rounded-xl px-3.5 py-3 text-sm text-white placeholder:text-white/35 outline-none transition`}
       />
       {hasError && (
         <p id={`${id}-error`} className="mt-1.5 text-[0.72rem] text-red-300">

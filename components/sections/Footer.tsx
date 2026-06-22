@@ -114,13 +114,13 @@ export default function Footer() {
                 value={newsletterEmail}
                 onChange={(e) => setNewsletterEmail(e.target.value)}
                 disabled={newsletterStatus !== "idle"}
-                className="w-full bg-white/[0.04] border border-white/10 focus:border-[#F59E0B]/60 rounded-full pl-10 pr-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-all disabled:opacity-60"
+                className="w-full bg-white/[0.04] border border-white/10 focus:border-[#F59E0B]/60 rounded-full pl-10 pr-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition disabled:opacity-60"
               />
             </div>
             <button
               type="submit"
               disabled={newsletterStatus !== "idle"}
-              className="font-bold text-[#0F172A] px-6 py-3 rounded-full text-sm transition-all hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2 shrink-0"
+              className="font-bold text-[#0F172A] px-6 py-3 rounded-full text-sm transition hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2 shrink-0"
               style={{ background: "#F59E0B", boxShadow: "0 8px 24px rgba(245,158,11,0.3)" }}
             >
               {newsletterStatus === "sending" ? (

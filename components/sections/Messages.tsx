@@ -112,12 +112,6 @@ export default function Messages() {
 
         {/* Header */}
         <div className="mb-12">
-          <span
-            className="inline-flex items-center gap-1.5 text-[0.65rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full mb-5"
-            style={{ background: "rgba(245,158,11,0.1)", border: "1px solid rgba(245,158,11,0.25)", color: "#F59E0B" }}
-          >
-            Por qué RestHUB
-          </span>
           <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-extrabold leading-[1.1] tracking-[-0.025em]">
             No hacemos compromisos.<br />
             <span style={{ color: "#F59E0B" }}>Hacemos sistemas.</span>
@@ -143,7 +137,7 @@ export default function Messages() {
                     src={cell.photo}
                     alt={cell.photoAlt || ""}
                     fill
-                    className="object-cover opacity-30 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700"
+                    className="object-cover opacity-30 group-hover:opacity-40 group-hover:scale-105 transition duration-700"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />

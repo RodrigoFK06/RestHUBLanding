@@ -141,10 +141,6 @@ export default function EditorialGrid() {
       {/* ── Eyebrow ── */}
       <div className="max-w-[1160px] mx-auto px-8 pt-24 pb-14">
         <BlurFade>
-          <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full mb-5"
-            style={{ background: "rgba(13,148,136,0.1)", border: "1px solid rgba(13,148,136,0.25)", color: "#14B8A6" }}>
-            En operación
-          </span>
           <h2 className="text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.1] tracking-[-0.025em] max-w-[600px]">
             RestHUB donde más se necesita.{" "}
             <span style={{ color: "#14B8A6" }}>En la operación real.</span>
@@ -216,7 +212,7 @@ export default function EditorialGrid() {
             {/* Dark overlay */}
             <div className={`absolute inset-0 bg-gradient-to-t ${item.bg}/80 via-black/30 to-transparent`} />
             {/* Hover border */}
-            <div className="absolute inset-0 border border-transparent group-hover:border-white/10 transition-all duration-400 rounded-none" />
+            <div className="absolute inset-0 border border-transparent group-hover:border-white/10 transition-colors duration-400 rounded-none" />
 
             {/* Label */}
             <div className="absolute bottom-6 left-6 right-6">

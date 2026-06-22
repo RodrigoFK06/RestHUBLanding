@@ -116,9 +116,6 @@ export default function Integrations() {
         <BlurFade>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
             <div className="max-w-[520px]">
-              <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full bg-[rgba(13,148,136,0.1)] text-[#14B8A6] border border-[rgba(13,148,136,0.25)] mb-5">
-                Ecosistema LATAM
-              </span>
               <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-extrabold leading-[1.1] tracking-[-0.025em] mb-4">
                 Conectado con lo que<br />tu restaurante ya usa.
               </h2>
@@ -145,7 +142,7 @@ export default function Integrations() {
           {integrations.map((item, i) => (
             <div
               key={i}
-              className="integ-card group bg-[rgba(255,255,255,0.025)] border border-white/6 rounded-2xl p-5 flex flex-col gap-4 hover:bg-[rgba(255,255,255,0.05)] hover:border-white/12 transition-all duration-300 cursor-default"
+              className="integ-card group bg-[rgba(255,255,255,0.025)] border border-white/6 rounded-2xl p-5 flex flex-col gap-4 hover:bg-[rgba(255,255,255,0.05)] hover:border-white/12 transition duration-300 cursor-default"
             >
               {/* Icon */}
               <div className="flex items-center justify-between">

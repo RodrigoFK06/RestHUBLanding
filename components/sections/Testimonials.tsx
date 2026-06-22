@@ -79,18 +79,6 @@ export default function Testimonials() {
 
         {/* ── Founding partners headline ── */}
         <div className="testi-headline text-center mb-20">
-          <div
-            className="inline-flex items-center gap-2 text-[0.62rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full mb-8"
-            style={{
-              background: "rgba(245,158,11,0.08)",
-              border: "1px solid rgba(245,158,11,0.32)",
-              color: "#F59E0B",
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#F59E0B" }} />
-            Programa Socios Fundadores
-          </div>
-
           <div className="flex items-end justify-center gap-5 mb-6">
             <div className="text-[clamp(5rem,12vw,9rem)] font-black leading-none text-white">
               7
@@ -140,7 +128,7 @@ export default function Testimonials() {
         <div className="mt-14 flex flex-col items-center gap-4">
           <button
             onClick={() => openContact({ topic: "Programa Socios Fundadores" })}
-            className="font-bold text-[#0F172A] px-8 py-3.5 rounded-full text-sm transition-all hover:scale-105 cursor-pointer"
+            className="font-bold text-[#0F172A] px-8 py-3.5 rounded-full text-sm transition hover:scale-105 active:scale-[0.98] cursor-pointer"
             style={{ background: "#F59E0B", boxShadow: "0 12px 40px rgba(245,158,11,0.35)" }}
           >
             Postular a un cupo →

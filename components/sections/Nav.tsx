@@ -39,7 +39,7 @@ export default function Nav() {
     <nav
       ref={navRef}
       aria-label="Principal"
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-4 transition-all duration-300 border-b ${
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-4 transition-colors duration-300 border-b ${
         scrolled
           ? "bg-black/95 backdrop-blur-xl border-white/10"
           : "bg-transparent border-transparent"
@@ -98,16 +98,16 @@ export default function Nav() {
         aria-controls="mobile-menu"
         aria-label={open ? "Cerrar menú" : "Abrir menú"}
       >
-        <span className={`block w-5 h-0.5 bg-white rounded transition-all ${open ? "rotate-45 translate-y-2" : ""}`} />
-        <span className={`block w-5 h-0.5 bg-white rounded transition-all ${open ? "opacity-0" : ""}`} />
-        <span className={`block w-5 h-0.5 bg-white rounded transition-all ${open ? "-rotate-45 -translate-y-2" : ""}`} />
+        <span className={`block w-5 h-0.5 bg-white rounded transition-[transform,opacity] duration-300 ease-snappy ${open ? "rotate-45 translate-y-2" : ""}`} />
+        <span className={`block w-5 h-0.5 bg-white rounded transition-[transform,opacity] duration-300 ease-snappy ${open ? "opacity-0" : ""}`} />
+        <span className={`block w-5 h-0.5 bg-white rounded transition-[transform,opacity] duration-300 ease-snappy ${open ? "-rotate-45 -translate-y-2" : ""}`} />
       </button>
 
       {/* Mobile menu */}
       {open && (
         <div
           id="mobile-menu"
-          className="md:hidden fixed top-[64px] left-0 right-0 z-40 bg-black/97 backdrop-blur-xl border-b border-white/10 p-6 flex flex-col gap-5"
+          className="nav-mobile-menu md:hidden fixed top-[64px] left-0 right-0 z-40 bg-black/97 backdrop-blur-xl border-b border-white/10 p-6 flex flex-col gap-5"
         >
           {links.map((l) => (
             <a

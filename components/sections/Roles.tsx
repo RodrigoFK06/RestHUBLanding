@@ -96,7 +96,7 @@ export default function Roles() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
           {roles.map((r, i) => (
             <BlurFade key={i} delay={0.06 * (i % 3 + 1)}>
-              <div className={`bg-[rgba(255,255,255,0.025)] border border-white/8 hover:${r.accentColor} rounded-2xl p-7 hover:-translate-y-1.5 hover:border-white/14 transition-all h-full flex flex-col`}>
+              <div className={`bg-[rgba(255,255,255,0.025)] border border-white/8 hover:${r.accentColor} rounded-2xl p-7 hover:-translate-y-1.5 hover:border-white/14 transition h-full flex flex-col`}>
                 <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${r.iconBg}`}>
                   <r.Icon className={`w-5 h-5 ${r.iconColor}`} strokeWidth={1.75} />
                 </div>

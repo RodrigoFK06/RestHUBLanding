@@ -82,9 +82,6 @@ export default function ExpandingRoles() {
         {/* Header */}
         <BlurFade>
           <div className="max-w-[600px] mb-16">
-            <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full bg-[rgba(245,158,11,0.1)] text-[#F59E0B] border border-[rgba(245,158,11,0.25)] mb-5">
-              Los roles
-            </span>
             <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-extrabold leading-[1.1] tracking-[-0.025em] mb-3">
               RestHUB no es una sola pantalla para todos.
             </h2>
@@ -111,7 +108,7 @@ export default function ExpandingRoles() {
                   role="tab"
                   aria-selected={isActive}
                   aria-label={`Rol ${role.name}: ${role.access}`}
-                  className="relative overflow-hidden cursor-pointer border transition-all duration-[460ms] ease-[cubic-bezier(0.4,0,0.2,1)] text-left"
+                  className="relative overflow-hidden cursor-pointer border transition-[flex-grow,border-color,background-color,border-radius] duration-[460ms] ease-[cubic-bezier(0.4,0,0.2,1)] text-left"
                   style={{
                     flex: isActive ? "4.5" : "0.5",
                     borderColor: isActive ? role.colorBorder : "rgba(255,255,255,0.05)",
@@ -216,7 +213,7 @@ export default function ExpandingRoles() {
             return (
               <div
                 key={i}
-                className="border rounded-2xl overflow-hidden transition-all duration-300"
+                className="border rounded-2xl overflow-hidden transition-colors duration-300"
                 style={{ borderColor: isActive ? role.colorBorder : "rgba(255,255,255,0.1)" }}
               >
                 <button

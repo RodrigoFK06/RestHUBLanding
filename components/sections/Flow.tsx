@@ -54,9 +54,6 @@ export default function Flow() {
       <div className="max-w-[1160px] mx-auto px-8">
         <BlurFade>
           <div className="text-center max-w-[600px] mx-auto mb-14">
-            <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full bg-black/5 text-[#64748B] border border-black/8 mb-5">
-              El flujo completo
-            </span>
             <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-extrabold leading-[1.1] tracking-[-0.025em] text-[#0F172A]">
               De la mesa al balance,<br />sin interrupciones.
             </h2>
@@ -72,7 +69,7 @@ export default function Flow() {
             {steps.map((s, i) => (
               <div
                 key={i}
-                className="relative z-10 bg-white border border-[#E2E8F0] rounded-2xl px-6 py-7 hover:shadow-md hover:border-[#CBD5E1] transition-all shadow-sm"
+                className="relative z-10 bg-white border border-[#E2E8F0] rounded-2xl px-6 py-7 hover:shadow-md hover:border-[#CBD5E1] transition shadow-sm"
               >
                 {/* Icon */}
                 <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${s.iconBg}`}>

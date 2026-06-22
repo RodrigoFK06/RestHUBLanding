@@ -33,9 +33,10 @@ function MiniBarChart() {
       {chartBars.map((b, i) => (
         <div key={b.day} className="flex flex-col items-center gap-1.5 flex-1">
           <div
-            className="w-full rounded-sm transition-all ease-out"
+            className="w-full origin-bottom rounded-sm transition-transform ease-snappy"
             style={{
-              height: inView ? `${b.val}%` : "4px",
+              height: `${b.val}%`,
+              transform: inView ? "scaleY(1)" : "scaleY(0)",
               background: i === 5 ? "linear-gradient(to top, #F59E0B, #FCD34D)" : "rgba(20,184,166,0.4)",
               transitionDuration: "900ms",
               transitionDelay: `${i * 70}ms`,
@@ -56,9 +57,6 @@ export default function Stats() {
         {/* Header */}
         <BlurFade>
           <div className="text-center max-w-[540px] mx-auto mb-10">
-            <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full bg-black/5 text-[#64748B] border border-black/8 mb-5">
-              El sistema en números
-            </span>
             <h2 className="text-[clamp(1.7rem,3.5vw,2.6rem)] font-extrabold leading-[1.1] tracking-[-0.025em] text-[#0F172A]">
               Todo lo que un restaurante necesita.
               <span className="text-[#F59E0B]"> Integrado.</span>

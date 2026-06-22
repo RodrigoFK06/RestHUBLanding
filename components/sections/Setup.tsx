@@ -91,9 +91,6 @@ export default function Setup() {
         {/* Header */}
         <BlurFade>
           <div className="max-w-[600px] mx-auto text-center mb-16">
-            <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full bg-black/5 text-[#64748B] border border-black/8 mb-5">
-              Implementación
-            </span>
             <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-extrabold leading-[1.1] tracking-[-0.025em] mb-4 text-[#0F172A]">
               De cero a operativo<br />en 72 horas.
             </h2>
@@ -114,7 +111,7 @@ export default function Setup() {
           {steps.map((s, i) => (
             <div
               key={i}
-              className="setup-step relative z-10 bg-white rounded-2xl p-7 border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#CBD5E1] transition-all"
+              className="setup-step relative z-10 bg-white rounded-2xl p-7 border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#CBD5E1] transition"
             >
               {/* Number badge */}
               <div className="w-[2.6rem] h-[2.6rem] rounded-full bg-[#F59E0B] flex items-center justify-center text-[#0F172A] font-black text-[0.85rem] mb-5 shadow-[0_4px_12px_rgba(245,158,11,0.3)]">
@@ -176,7 +173,7 @@ export default function Setup() {
 
             <Button
               onClick={() => openContact({ topic: "Agendar demo" })}
-              className="shrink-0 bg-[#0F172A] hover:bg-[#1E293B] text-white font-bold px-6 py-4 hover:-translate-y-0.5 transition-all inline-flex items-center gap-2 cursor-pointer"
+              className="shrink-0 bg-[#0F172A] hover:bg-[#1E293B] text-white font-bold px-6 py-4 hover:-translate-y-0.5 inline-flex items-center gap-2 cursor-pointer"
             >
               Solicitar demo
               <ArrowRight className="w-4 h-4" />
