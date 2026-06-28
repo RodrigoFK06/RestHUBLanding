@@ -31,7 +31,7 @@ type Props = {
 type Stage = "form" | "processing" | "success" | "error";
 
 const POST_CHECKOUT_URL =
-  process.env.NEXT_PUBLIC_POST_CHECKOUT_URL ?? "https://megalodon-blue.vercel.app/auth/login";
+  process.env.NEXT_PUBLIC_POST_CHECKOUT_URL ?? "https://rest-hub.vercel.app/";
 
 const PROCESSING_STEPS = [
   { label: "Validando tarjeta", duration: 900 },
