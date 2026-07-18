@@ -91,7 +91,7 @@ const plans = [
 export default function Pricing() {
   const sectionRef = useRef<HTMLElement>(null);
   const [yearly, setYearly] = useState(false);
-  const [currency, setCurrency] = useState<Currency>("USD");
+  const [currency, setCurrency] = useState<Currency>("PEN");
   const { openContact, openCheckout } = useModals();
 
   useEffect(() => {
@@ -364,7 +364,7 @@ export default function Pricing() {
 
         {/* Bottom note */}
         <p className="text-center text-[0.72rem] text-[#64748B] mt-10">
-          Precios en USD. Implementación guiada incluida · Sin tarjeta de crédito para empezar · Soporte en español
+          {currency === "PEN" ? "Precios en soles (S/)." : "Precios en USD."} Implementación guiada incluida · Sin tarjeta de crédito para empezar · Soporte en español
         </p>
       </div>
     </section>

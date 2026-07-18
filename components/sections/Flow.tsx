@@ -31,7 +31,7 @@ const steps = [
     iconColor: "text-[#14B8A6]",
     numColor: "text-[#14B8A6]",
     name: "Caja",
-    desc: "El cajero cierra el turno con el Z-report exacto. Cada peso cuadra.",
+    desc: "El cajero cierra el turno con el Z-report exacto. Cada sol cuadra.",
     role: "Cajero",
     roleClass: "bg-[rgba(13,148,136,0.1)] text-[#14B8A6] border border-[rgba(13,148,136,0.2)]",
   },

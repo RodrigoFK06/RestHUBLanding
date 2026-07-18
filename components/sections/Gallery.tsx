@@ -30,7 +30,7 @@ const photos = [
     src: "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=800&q=80&auto=format&fit=crop",
     alt: "Caja y cierre de turno con RestHUB",
     label: "Caja · Cierre de turno",
-    caption: "Z-report exacto. Cada peso cuadra.",
+    caption: "Z-report exacto. Cada sol cuadra.",
     accent: "border-[#22C55E]",
     dotColor: "bg-[#22C55E]",
   },

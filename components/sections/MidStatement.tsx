@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const words = [
   { text: "Cada", highlight: false },
-  { text: "peso.", highlight: true },
+  { text: "sol.", highlight: true },
   { text: "Cada", highlight: false },
   { text: "orden.", highlight: true },
   { text: "Cada", highlight: false },
