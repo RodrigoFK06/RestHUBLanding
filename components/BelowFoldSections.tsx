@@ -24,6 +24,10 @@ const Testimonials = dynamic(() => import("@/components/sections/Testimonials"),
   loading: () => fallback,
   ssr: false,
 });
+const Founder = dynamic(() => import("@/components/sections/Founder"), {
+  loading: () => fallback,
+  ssr: false,
+});
 const Comparison = dynamic(() => import("@/components/sections/Comparison"), {
   loading: () => fallback,
   ssr: false,
@@ -57,6 +61,7 @@ export default function BelowFoldSections() {
       <CaseStudy />
       <MidStatement />
       <Testimonials />
+      <Founder />
       <Comparison />
       <PricingPivot />
       <Pricing />

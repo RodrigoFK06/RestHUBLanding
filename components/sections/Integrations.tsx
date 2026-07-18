@@ -48,13 +48,13 @@ const integrations = [
     Icon: Building2,
     name: "SUNAT",
     category: "Facturación fiscal",
-    desc: "Emisión de facturas y boletas electrónicas directamente desde Caja.",
+    desc: "Boletas y facturas electrónicas emitidas desde Caja. Tu contador no digita nada.",
   },
   {
     Icon: FileText,
     name: "SIRE",
     category: "Registro de ventas",
-    desc: "Registro de Ventas e Ingresos integrado al módulo Contabilidad.",
+    desc: "El Registro de Ventas se genera y acepta desde el sistema — no exportas archivos para que alguien los suba después.",
   },
   {
     Icon: ShieldCheck,

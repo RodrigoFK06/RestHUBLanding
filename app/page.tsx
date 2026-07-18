@@ -6,7 +6,9 @@ import Stats from "@/components/sections/Stats";
 import Why from "@/components/sections/Why";
 import EditorialGrid from "@/components/sections/EditorialGrid";
 import StickyModules from "@/components/sections/StickyModules";
+import FoodCost from "@/components/sections/FoodCost";
 import Integrations from "@/components/sections/Integrations";
+import Offline from "@/components/sections/Offline";
 import Flow from "@/components/sections/Flow";
 import Footer from "@/components/sections/Footer";
 import StickyCtaBar from "@/components/ui/StickyCtaBar";
@@ -28,7 +30,9 @@ export default function Home() {
       <Why />
       <EditorialGrid />
       <StickyModules />
+      <FoodCost />
       <Integrations />
+      <Offline />
       <Flow />
       <BelowFoldSections />
       <Footer />

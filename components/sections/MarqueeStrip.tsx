@@ -1,5 +1,6 @@
 const items = [
   "POS multi-mesa",
+  "Funciona sin internet",
   "KDS en tiempo real",
   "Facturación electrónica",
   "Cierre de caja automático",

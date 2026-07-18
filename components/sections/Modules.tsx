@@ -36,7 +36,7 @@ const modules = [
     badge: "Control financiero diario",
     badgeClass: "bg-[rgba(167,139,250,0.12)] text-[#a78bfa] border border-[rgba(167,139,250,0.2)]",
     gradientClass: "from-[#a78bfa] to-[#14B8A6]",
-    desc: "Apertura, Z-report, control de efectivo. Sabés exactamente qué tenés en caja antes de cerrar.",
+    desc: "Apertura, Z-report, control de efectivo. Sabes exactamente qué tienes en caja antes de cerrar.",
     items: ["Z-report automático", "Control de diferencias", "Historial de movimientos", "Cierre con cuadre completo"],
   },
   {

@@ -44,7 +44,7 @@ export default function Cta() {
         <BlurFade delay={0.08}>
           <h2 className="text-[clamp(2.4rem,5.5vw,4.2rem)] font-black leading-[1.08] tracking-[-0.03em] max-w-[760px] mx-auto mb-5">
             Tu restaurante merece un sistema que trabaje como{" "}
-            <em style={{ color: "#F59E0B", fontFamily: "var(--font-display)", fontStyle: "italic" }}>vos</em>.
+            <em style={{ color: "#F59E0B", fontFamily: "var(--font-display)", fontStyle: "italic" }}>tú</em>.
           </h2>
         </BlurFade>
 

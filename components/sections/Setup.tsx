@@ -18,7 +18,7 @@ const steps = [
     day: "Día 1",
     Icon: Monitor,
     title: "Demo en vivo",
-    desc: "Una llamada de 15 minutos. Ves el sistema funcionando en un restaurante real y hacés todas las preguntas.",
+    desc: "Una llamada de 15 minutos. Ves el sistema funcionando en un restaurante real y haces todas las preguntas.",
     items: [
       "Sin presentación ni pitch de ventas",
       "Demostración del flujo completo",
@@ -31,7 +31,7 @@ const steps = [
     day: "Días 1 – 2",
     Icon: Wrench,
     title: "Setup guiado",
-    desc: "Nuestro equipo configura RestHUB con tu menú, tus roles y tu estructura. Vos solo validás.",
+    desc: "Nuestro equipo configura RestHUB con tu menú, tus roles y tu estructura. Tú solo validas.",
     items: [
       "Carga de menú y modificadores",
       "Roles y credenciales por persona",

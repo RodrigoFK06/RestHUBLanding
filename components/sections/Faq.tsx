@@ -14,8 +14,12 @@ const faqs = [
     a: "Sí. RestHUB está diseñado para 1 a 15 locales: gestión centralizada, reportes consolidados, roles independientes por sede y configuración compartida o independiente según necesites.",
   },
   {
+    q: "¿Puedo saber cuánto me cuesta cada plato?",
+    a: "Sí. Cargas la receta de cada plato una vez, y RestHUB descuenta los ingredientes del inventario con cada venta. Ves el costo real por plato, cuánto te deja, y recibes alertas antes de quedarte sin un insumo. Las mermas también se registran para que el stock cuadre con la realidad.",
+  },
+  {
     q: "¿Qué pasa si se cae internet?",
-    a: "El POS y el KDS tienen operación offline básica: podés seguir tomando órdenes y gestionando caja. Al recuperar conexión, la sincronización es automática.",
+    a: "El POS y el KDS tienen operación offline básica: puedes seguir tomando órdenes y gestionando caja. Al recuperar conexión, la sincronización es automática.",
   },
   {
     q: "¿El contador puede acceder sin ver toda la operación?",

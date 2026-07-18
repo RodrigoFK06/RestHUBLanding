@@ -43,7 +43,7 @@ const modules = [
     colorGlow: "rgba(167,139,250,0.18)",
     name: "Caja y Turnos",
     badge: "Control financiero diario",
-    desc: "Apertura, Z-report y control de efectivo en tiempo real. Sabés exactamente qué tenés en caja antes de cerrar el turno.",
+    desc: "Apertura, Z-report y control de efectivo en tiempo real. Sabes exactamente qué tienes en caja antes de cerrar el turno.",
     items: ["Z-report automático", "Control de diferencias", "Historial de movimientos", "Cierre con cuadre completo"],
   },
   {
@@ -67,8 +67,8 @@ const modules = [
     colorGlow: "rgba(34,197,94,0.18)",
     name: "Contabilidad",
     badge: "Panel exclusivo contador",
-    desc: "Cuentas por cobrar, gastos y facturas en un panel que el contador maneja solo — sin tocar la operación ni molestar al admin.",
-    items: ["Cuentas por cobrar y pagar", "Registro de gastos", "Facturación electrónica", "Balance mensual automático"],
+    desc: "Cuentas por cobrar, gastos y facturas en un panel que el contador maneja solo. Cierra el mes sin digitar una sola venta.",
+    items: ["Cuentas por cobrar y pagar", "Registro de gastos", "SUNAT y SIRE sin digitación", "Balance mensual automático"],
   },
   {
     num: "06",

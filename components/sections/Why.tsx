@@ -5,13 +5,13 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Target, Eye, ShieldCheck, Globe2 } from "lucide-react";
+import { WifiOff, Eye, ShieldCheck, Globe2 } from "lucide-react";
 import { prefersReducedMotion } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const pillars = [
-  { Icon: Target, color: "#F59E0B", title: "Control sin fricción", desc: "La complejidad la absorbe el sistema, no el operador." },
+  { Icon: WifiOff, color: "#F59E0B", title: "Funciona sin internet", desc: "Se cae la conexión y sigues vendiendo. Al volver, todo se sincroniza solo." },
   { Icon: Eye, color: "#14B8A6", title: "Datos en tiempo real", desc: "BI, turnos, cuentas — a la vista cuando se necesita." },
   { Icon: ShieldCheck, color: "#F59E0B", title: "Roles que respetan la realidad", desc: "El cocinero no ve el balance. El contador no toca órdenes." },
   { Icon: Globe2, color: "#14B8A6", title: "Construido para LATAM", desc: "Culqi, Izipay, fiscalización — nativo, no adaptado." },
