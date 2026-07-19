@@ -64,7 +64,7 @@ export default function Faq() {
                 value={`item-${i}`}
                 className="bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden px-0 shadow-sm data-[state=open]:border-[rgba(245,158,11,0.4)] transition-colors"
               >
-                <AccordionTrigger className="px-6 py-5 text-[0.92rem] font-semibold text-[#0F172A] hover:bg-[#F8FAFC] hover:no-underline text-left [&[data-state=open]]:text-[#F59E0B]">
+                <AccordionTrigger className="px-6 py-5 text-[0.92rem] font-semibold text-[#0F172A] hover:bg-[#F8FAFC] hover:no-underline text-left [&[data-state=open]]:text-[#B45309]">
                   {f.q}
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-5 text-[0.87rem] text-[#475569] leading-[1.75] border-t border-[#E2E8F0]">

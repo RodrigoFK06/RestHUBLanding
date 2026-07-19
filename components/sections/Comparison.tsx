@@ -55,7 +55,7 @@ export default function Comparison() {
               <TableHeader>
                 <TableRow className="bg-[#F8FAFC] hover:bg-[#F8FAFC]">
                   <TableHead className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-[#94A3B8]">Característica</TableHead>
-                  <TableHead className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-[#F59E0B] bg-[#F59E0B]/[0.04]">
+                  <TableHead className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-[#B45309] bg-[#F59E0B]/[0.06]">
                     <span className="inline-flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]" />
                       RestHUB
@@ -76,23 +76,23 @@ export default function Comparison() {
                       {r.feature}
                     </TableCell>
                     <TableCell className="text-[0.82rem] text-[#0F172A] font-semibold bg-[#F59E0B]/[0.03] group-hover:bg-[#F59E0B]/[0.08] transition-colors">
-                      <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-[#14B8A6] shrink-0" strokeWidth={2} />{r.rh}</span>
+                      <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-[#0D9488] shrink-0" strokeWidth={2} />{r.rh}</span>
                     </TableCell>
                     <TableCell className="text-[0.82rem] text-[#64748B]">
                       <span className="inline-flex items-center gap-1.5">
-                        {r.toastOk === false ? <XCircle className="w-3.5 h-3.5 text-red-400/50 shrink-0" strokeWidth={2} /> : r.toastOk ? <CheckCircle2 className="w-3.5 h-3.5 text-[#14B8A6] shrink-0" strokeWidth={2} /> : <MinusCircle className="w-3.5 h-3.5 text-[#F59E0B] shrink-0" strokeWidth={2} />}
+                        {r.toastOk === false ? <XCircle className="w-3.5 h-3.5 text-red-400/50 shrink-0" strokeWidth={2} /> : r.toastOk ? <CheckCircle2 className="w-3.5 h-3.5 text-[#0D9488] shrink-0" strokeWidth={2} /> : <MinusCircle className="w-3.5 h-3.5 text-[#D97706] shrink-0" strokeWidth={2} />}
                         {r.toast}
                       </span>
                     </TableCell>
                     <TableCell className="text-[0.82rem] text-[#64748B]">
                       <span className="inline-flex items-center gap-1.5">
-                        {r.oracleOk === false ? <XCircle className="w-3.5 h-3.5 text-red-400/50 shrink-0" strokeWidth={2} /> : r.oracleOk ? <CheckCircle2 className="w-3.5 h-3.5 text-[#14B8A6] shrink-0" strokeWidth={2} /> : <MinusCircle className="w-3.5 h-3.5 text-[#F59E0B] shrink-0" strokeWidth={2} />}
+                        {r.oracleOk === false ? <XCircle className="w-3.5 h-3.5 text-red-400/50 shrink-0" strokeWidth={2} /> : r.oracleOk ? <CheckCircle2 className="w-3.5 h-3.5 text-[#0D9488] shrink-0" strokeWidth={2} /> : <MinusCircle className="w-3.5 h-3.5 text-[#D97706] shrink-0" strokeWidth={2} />}
                         {r.oracle}
                       </span>
                     </TableCell>
                     <TableCell className="text-[0.82rem] text-[#64748B]">
                       <span className="inline-flex items-center gap-1.5">
-                        {r.specOk === false ? <XCircle className="w-3.5 h-3.5 text-red-400/50 shrink-0" strokeWidth={2} /> : r.specOk ? <CheckCircle2 className="w-3.5 h-3.5 text-[#14B8A6] shrink-0" strokeWidth={2} /> : <MinusCircle className="w-3.5 h-3.5 text-[#F59E0B] shrink-0" strokeWidth={2} />}
+                        {r.specOk === false ? <XCircle className="w-3.5 h-3.5 text-red-400/50 shrink-0" strokeWidth={2} /> : r.specOk ? <CheckCircle2 className="w-3.5 h-3.5 text-[#0D9488] shrink-0" strokeWidth={2} /> : <MinusCircle className="w-3.5 h-3.5 text-[#D97706] shrink-0" strokeWidth={2} />}
                         {r.spec}
                       </span>
                     </TableCell>
@@ -114,7 +114,7 @@ export default function Comparison() {
                     : "border-[#E2E8F0] bg-white shadow-sm"
                 }`}
               >
-                <div className={`text-[0.62rem] font-bold tracking-[0.12em] uppercase mb-1 ${p.highlight ? "text-[#F59E0B]" : "text-[#94A3B8]"}`}>{p.label}</div>
+                <div className={`text-[0.62rem] font-bold tracking-[0.12em] uppercase mb-1 ${p.highlight ? "text-[#B45309]" : "text-[#64748B]"}`}>{p.label}</div>
                 <div className={`text-[0.95rem] font-bold mb-2 ${p.highlight ? "text-white" : "text-[#0F172A]"}`}>{p.name}</div>
                 <p className={`text-[0.8rem] leading-[1.55] mb-4 ${p.highlight ? "text-[#94A3B8]" : "text-[#475569]"}`}>{p.desc}</p>
                 {p.bars.map((b, j) => (

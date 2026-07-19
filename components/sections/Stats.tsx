@@ -7,10 +7,10 @@ import BlurFade from "@/components/reactbits/BlurFade";
 import { TrendingUp, CreditCard, ShoppingBag } from "lucide-react";
 
 const stats = [
-  { value: 6, places: [1], label: "Módulos integrados\nen un solo sistema", color: "text-[#F59E0B]", suffix: "" },
-  { value: 6, places: [1], label: "Roles de usuario\ncon acceso diferenciado", color: "text-[#14B8A6]", suffix: "" },
-  { value: null, display: "< 200ms", label: "Latencia POS → KDS\nen tiempo real", color: "text-[#14B8A6]", suffix: "" },
-  { value: 15, places: [10, 1], label: "Locales gestionables\ndesde un solo panel", color: "text-[#F59E0B]", suffix: "" },
+  { value: 6, places: [1], label: "Módulos integrados\nen un solo sistema", color: "text-[#D97706]", suffix: "" },
+  { value: 6, places: [1], label: "Roles de usuario\ncon acceso diferenciado", color: "text-[#0D9488]", suffix: "" },
+  { value: null, display: "< 200ms", label: "Latencia POS → KDS\nen tiempo real", color: "text-[#0D9488]", suffix: "" },
+  { value: 15, places: [10, 1], label: "Locales gestionables\ndesde un solo panel", color: "text-[#D97706]", suffix: "" },
 ];
 
 const chartBars = [
@@ -59,7 +59,7 @@ export default function Stats() {
           <div className="text-center max-w-[540px] mx-auto mb-10">
             <h2 className="text-[clamp(1.7rem,3.5vw,2.6rem)] font-extrabold leading-[1.1] tracking-[-0.025em] text-[#0F172A]">
               Todo lo que un restaurante necesita.
-              <span className="text-[#F59E0B]"> Integrado.</span>
+              <span className="text-[#D97706]"> Integrado.</span>
             </h2>
           </div>
         </BlurFade>
@@ -98,7 +98,7 @@ export default function Stats() {
           <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between gap-6 bg-white border border-[#E2E8F0] rounded-2xl px-8 py-6 shadow-sm">
             <div>
               <div className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#94A3B8] mb-1">Ventas semanales &middot; Sábado pico</div>
-              <div className="text-[1.5rem] font-black text-[#0F172A] tracking-tight">S/ 47,320 <span className="text-sm font-medium text-[#14B8A6]">+12% vs semana anterior</span></div>
+              <div className="text-[1.5rem] font-black text-[#0F172A] tracking-tight">S/ 47,320 <span className="text-sm font-semibold text-[#0F766E]">+12% vs semana anterior</span></div>
             </div>
             <div className="w-full sm:w-[260px] shrink-0">
               <MiniBarChart />

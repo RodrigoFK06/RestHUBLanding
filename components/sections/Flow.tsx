@@ -6,45 +6,45 @@ const steps = [
     num: "01",
     Icon: UtensilsCrossed,
     iconBg: "bg-[rgba(13,148,136,0.15)]",
-    iconColor: "text-[#14B8A6]",
-    numColor: "text-[#14B8A6]",
+    iconColor: "text-[#0F766E]",
+    numColor: "text-[#0D9488]",
     name: "Mesa",
     desc: "El mesero toma la orden. Mesas, modificadores, combos — en segundos.",
     role: "Worker / Cajero",
-    roleClass: "bg-[rgba(13,148,136,0.12)] text-[#14B8A6] border border-[rgba(13,148,136,0.2)]",
+    roleClass: "bg-[rgba(13,148,136,0.12)] text-[#0F766E] border border-[rgba(13,148,136,0.3)]",
   },
   {
     num: "02",
     Icon: ChefHat,
     iconBg: "bg-[rgba(245,158,11,0.15)]",
-    iconColor: "text-[#F59E0B]",
-    numColor: "text-[#F59E0B]",
+    iconColor: "text-[#B45309]",
+    numColor: "text-[#D97706]",
     name: "Cocina",
     desc: "La orden aparece al instante en el KDS. El cocinero solo ve lo que prepara.",
     role: "Cocinero",
-    roleClass: "bg-[rgba(245,158,11,0.12)] text-[#F59E0B] border border-[rgba(245,158,11,0.2)]",
+    roleClass: "bg-[rgba(245,158,11,0.12)] text-[#B45309] border border-[rgba(245,158,11,0.3)]",
   },
   {
     num: "03",
     Icon: DollarSign,
     iconBg: "bg-[rgba(13,148,136,0.12)]",
-    iconColor: "text-[#14B8A6]",
-    numColor: "text-[#14B8A6]",
+    iconColor: "text-[#0F766E]",
+    numColor: "text-[#0D9488]",
     name: "Caja",
     desc: "El cajero cierra el turno con el Z-report exacto. Cada sol cuadra.",
     role: "Cajero",
-    roleClass: "bg-[rgba(13,148,136,0.1)] text-[#14B8A6] border border-[rgba(13,148,136,0.2)]",
+    roleClass: "bg-[rgba(13,148,136,0.12)] text-[#0F766E] border border-[rgba(13,148,136,0.3)]",
   },
   {
     num: "04",
     Icon: BookOpen,
     iconBg: "bg-[rgba(245,158,11,0.12)]",
-    iconColor: "text-[#F59E0B]",
-    numColor: "text-[#F59E0B]",
+    iconColor: "text-[#B45309]",
+    numColor: "text-[#D97706]",
     name: "Balance",
     desc: "El contador ve cuentas y balance — sin tocar la operación ni pedir datos.",
     role: "Contador",
-    roleClass: "bg-[rgba(245,158,11,0.1)] text-[#F59E0B] border border-[rgba(245,158,11,0.2)]",
+    roleClass: "bg-[rgba(245,158,11,0.12)] text-[#B45309] border border-[rgba(245,158,11,0.3)]",
   },
 ];
 
@@ -76,7 +76,7 @@ export default function Flow() {
                   <s.Icon className={`w-5 h-5 ${s.iconColor}`} strokeWidth={1.75} />
                 </div>
                 {/* Step number */}
-                <div className={`text-[2.4rem] font-black tracking-[-0.06em] leading-none mb-2 ${s.numColor} opacity-20`}>{s.num}</div>
+                <div className={`text-[2.4rem] font-black tracking-[-0.06em] leading-none mb-2 ${s.numColor}`}>{s.num}</div>
                 <div className="text-[0.97rem] font-bold mb-2 text-[#0F172A]">{s.name}</div>
                 <p className="text-[0.82rem] text-[#475569] leading-[1.6] mb-4">{s.desc}</p>
                 <span className={`inline-block text-[0.6rem] font-bold tracking-[0.1em] uppercase px-2.5 py-0.5 rounded-full border ${s.roleClass}`}>
@@ -91,9 +91,9 @@ export default function Flow() {
         <BlurFade delay={0.2}>
           <div className="flex items-center justify-center gap-6 bg-white border border-[#E2E8F0] rounded-2xl px-8 py-6 shadow-sm">
             <div className="w-10 h-10 rounded-xl bg-[rgba(13,148,136,0.15)] flex items-center justify-center shrink-0">
-              <Zap className="w-5 h-5 text-[#14B8A6]" strokeWidth={1.75} />
+              <Zap className="w-5 h-5 text-[#0F766E]" strokeWidth={1.75} />
             </div>
-            <div className="text-[2.2rem] font-black text-[#14B8A6] tracking-[-0.04em]">&lt; 200ms</div>
+            <div className="text-[2.2rem] font-black text-[#0D9488] tracking-[-0.04em]">&lt; 200ms</div>
             <div className="text-[0.84rem] text-[#475569] leading-[1.5]">de la comanda del mesero<br />a la pantalla de cocina</div>
           </div>
         </BlurFade>

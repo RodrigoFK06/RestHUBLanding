@@ -97,7 +97,7 @@ export default function CaseStudy() {
           {/* Restaurant name badge */}
           <div className="absolute bottom-6 left-6">
             <div className="bg-black/70 backdrop-blur-sm rounded-xl px-4 py-3">
-              <div className="text-[0.6rem] font-bold tracking-[0.2em] uppercase text-[#F59E0B] mb-0.5">Caso de uso</div>
+              <div className="text-[0.6rem] font-bold tracking-[0.2em] uppercase text-[#B45309] mb-0.5">Caso de uso</div>
               <div className="text-white font-bold text-[0.95rem]">La Taberna San Isidro</div>
               <div className="text-white/60 text-[0.72rem]">Lima, Perú · 3 locales</div>
             </div>
@@ -111,7 +111,7 @@ export default function CaseStudy() {
             {metrics.map((m, i) => (
               <div key={i} className="case-metric flex items-start gap-4">
                 <div className="w-9 h-9 rounded-xl bg-[#F59E0B]/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <m.Icon className="w-4 h-4 text-[#F59E0B]" strokeWidth={2} />
+                  <m.Icon className="w-4 h-4 text-[#D97706]" strokeWidth={2} />
                 </div>
                 <div>
                   <div className="text-[2rem] font-black leading-none tracking-[-0.04em] text-[#0F172A] mb-0.5">

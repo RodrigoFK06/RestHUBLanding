@@ -125,7 +125,7 @@ export default function Setup() {
 
               {/* Icon + Title row */}
               <div className="flex items-center gap-2.5 mb-3">
-                <s.Icon className="w-4.5 h-4.5 text-[#F59E0B] shrink-0" strokeWidth={1.75} />
+                <s.Icon className="w-4.5 h-4.5 text-[#D97706] shrink-0" strokeWidth={1.75} />
                 <h3 className="text-[1.05rem] font-bold text-[#0F172A]">{s.title}</h3>
               </div>
 
