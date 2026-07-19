@@ -31,8 +31,8 @@ const modules = [
     colorGlow: "rgba(245,158,11,0.2)",
     name: "KDS · Kitchen Display",
     badge: "Cocina en tiempo real",
-    desc: "La orden llega a pantalla de cocina en menos de 200ms. Sin papel, sin radios, sin errores de transcripción entre sala y cocina.",
-    items: ["Sincronización < 200ms", "Estados: Nuevo · Cocinando · Listo", "Sin papel ni errores", "Múltiples estaciones"],
+    desc: "La orden llega a la pantalla de cocina al instante. Sin papel, sin gritos, sin errores entre el salón y la cocina.",
+    items: ["El pedido llega al instante", "Estados: Nuevo · Cocinando · Listo", "Sin papel ni errores", "Múltiples estaciones"],
   },
   {
     num: "03",

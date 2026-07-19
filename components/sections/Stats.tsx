@@ -7,9 +7,9 @@ import BlurFade from "@/components/reactbits/BlurFade";
 import { TrendingUp, CreditCard, ShoppingBag } from "lucide-react";
 
 const stats = [
-  { value: 6, places: [1], label: "Módulos integrados\nen un solo sistema", color: "text-[#D97706]", suffix: "" },
-  { value: 6, places: [1], label: "Roles de usuario\ncon acceso diferenciado", color: "text-[#0D9488]", suffix: "" },
-  { value: null, display: "< 200ms", label: "Latencia POS → KDS\nen tiempo real", color: "text-[#0D9488]", suffix: "" },
+  { value: 48, places: [10, 1], label: "Módulos trabajando\nen un solo sistema", color: "text-[#D97706]", suffix: "" },
+  { value: 6, places: [1], label: "Roles, cada uno\ncon su propia pantalla", color: "text-[#0D9488]", suffix: "" },
+  { value: 1700, places: [1000, 100, 10, 1], label: "Pruebas automáticas\nantes de cada versión", color: "text-[#0D9488]", suffix: "+" },
   { value: 15, places: [10, 1], label: "Locales gestionables\ndesde un solo panel", color: "text-[#D97706]", suffix: "" },
 ];
 
@@ -73,17 +73,14 @@ export default function Stats() {
                 className={`px-8 py-10 text-center ${i < 3 ? "border-b md:border-b-0 md:border-r border-[#E2E8F0]" : ""} hover:bg-[#F8FAFC] transition-colors`}
               >
                 <div className={`text-[clamp(2.4rem,4.5vw,3.4rem)] font-black leading-none tracking-[-0.05em] mb-2 flex justify-center items-center ${s.color}`}>
-                  {s.value !== null ? (
-                    <Counter
-                      value={s.value}
-                      places={s.places}
-                      fontSize={52}
-                      textColor={s.color.replace("text-[", "").replace("]", "")}
-                      fontWeight={900}
-                    />
-                  ) : (
-                    <span className="text-[clamp(1.6rem,3vw,2.4rem)]">{s.display}</span>
-                  )}
+                  <Counter
+                    value={s.value}
+                    places={s.places}
+                    fontSize={52}
+                    textColor={s.color.replace("text-[", "").replace("]", "")}
+                    fontWeight={900}
+                  />
+                  {s.suffix && <span>{s.suffix}</span>}
                 </div>
                 <div className="text-sm text-[#475569] leading-snug font-medium whitespace-pre-line">
                   {s.label}

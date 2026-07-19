@@ -3,6 +3,7 @@ import Hero from "@/components/sections/Hero";
 import StatementInterlude from "@/components/sections/StatementInterlude";
 import MarqueeStrip from "@/components/sections/MarqueeStrip";
 import Stats from "@/components/sections/Stats";
+import Gallery from "@/components/sections/Gallery";
 import Why from "@/components/sections/Why";
 import EditorialGrid from "@/components/sections/EditorialGrid";
 import StickyModules from "@/components/sections/StickyModules";
@@ -27,6 +28,7 @@ export default function Home() {
       <StatementInterlude />
       <MarqueeStrip />
       <Stats />
+      <Gallery />
       <Why />
       <EditorialGrid />
       <StickyModules />

@@ -9,23 +9,29 @@ const PLAN_CATALOG: Record<
   string,
   { name: string; monthly: number; yearly: number; description?: string }
 > = {
+  starter: {
+    name: "RestHUB Starter",
+    monthly: 159,
+    yearly: 159,
+    description: "Para dejar la libreta y los papelitos.",
+  },
   esencial: {
-    name: "RestHUB Esencial",
-    monthly: 0,
-    yearly: 0,
-    description: "Para empezar a operar desde el día uno.",
+    name: "RestHUB Starter",
+    monthly: 159,
+    yearly: 159,
+    description: "Para dejar la libreta y los papelitos.",
   },
   pro: {
-    name: "RestHUB Profesional",
-    monthly: 149,
-    yearly: 119,
-    description: "Todo lo que un restaurante necesita. Sin compromisos.",
+    name: "RestHUB Pro",
+    monthly: 399,
+    yearly: 399,
+    description: "Para saber cuánto ganas de verdad.",
   },
   empresa: {
-    name: "RestHUB Empresa",
-    monthly: 0,
-    yearly: 0,
-    description: "Para grupos y cadenas con múltiples locales.",
+    name: "RestHUB Enterprise",
+    monthly: 719,
+    yearly: 719,
+    description: "Para grupos con varios locales.",
   },
 };
 
@@ -47,16 +53,16 @@ export default function DeepLinkOpener() {
 
     if (plan && PLAN_CATALOG[plan]) {
       const catalog = PLAN_CATALOG[plan];
-      // Esencial / Empresa → contacto, no checkout
-      if (plan === "esencial") {
+      // Starter → contacto directo; Empresa → ventas; Pro → checkout en soles
+      if (plan === "esencial" || plan === "starter") {
         openContact({
           topic: "Solicitar acceso",
-          prefillMessage: "Quiero comenzar con el plan Esencial (gratis).",
+          prefillMessage: "Quiero empezar con el plan Starter de RestHUB.",
         });
       } else if (plan === "empresa") {
         openContact({
           topic: "Contactar ventas",
-          prefillMessage: "Estoy interesado en el plan Empresa.",
+          prefillMessage: "Tengo varios locales y me interesa RestHUB Enterprise.",
         });
       } else {
         const monthlyAmount = catalog.monthly;
@@ -65,7 +71,7 @@ export default function DeepLinkOpener() {
           id: plan,
           name: catalog.name,
           amount,
-          currency: "USD",
+          currency: "PEN",
           billing,
           description: catalog.description,
         });

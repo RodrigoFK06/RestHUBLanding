@@ -93,8 +93,8 @@ export default function Flow() {
             <div className="w-10 h-10 rounded-xl bg-[rgba(13,148,136,0.15)] flex items-center justify-center shrink-0">
               <Zap className="w-5 h-5 text-[#0F766E]" strokeWidth={1.75} />
             </div>
-            <div className="text-[2.2rem] font-black text-[#0D9488] tracking-[-0.04em]">&lt; 200ms</div>
-            <div className="text-[0.84rem] text-[#475569] leading-[1.5]">de la comanda del mesero<br />a la pantalla de cocina</div>
+            <div className="text-[2.2rem] font-black text-[#0D9488] tracking-[-0.04em]">Al instante</div>
+            <div className="text-[0.84rem] text-[#475569] leading-[1.5]">el pedido del mesero aparece en cocina<br />— sin papelitos, sin gritos</div>
           </div>
         </BlurFade>
       </div>

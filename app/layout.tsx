@@ -111,8 +111,9 @@ const jsonLd = {
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       offers: [
-        { "@type": "Offer", name: "Esencial", price: "0", priceCurrency: "USD" },
-        { "@type": "Offer", name: "Profesional", price: "149", priceCurrency: "USD" },
+        { "@type": "Offer", name: "Starter", price: "159", priceCurrency: "PEN" },
+        { "@type": "Offer", name: "Pro", price: "399", priceCurrency: "PEN" },
+        { "@type": "Offer", name: "Enterprise", price: "719", priceCurrency: "PEN" },
       ],
       description: DESCRIPTION,
     },

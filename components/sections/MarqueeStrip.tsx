@@ -8,7 +8,7 @@ const items = [
   "BI sin exports",
   "Control de inventario",
   "Integración SUNAT / SIRE",
-  "Comandas < 200ms",
+  "Pedidos al instante en cocina",
   "Culqi · Yape · Plin",
   "Multi-local",
   "Reportes en vivo",

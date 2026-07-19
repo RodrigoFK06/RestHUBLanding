@@ -18,8 +18,8 @@ const floatCards = [
     anim: "float-c1 5s ease-in-out infinite",
     icon: <Zap className="w-4 h-4 text-[#14B8A6]" strokeWidth={2} />,
     iconBg: "rgba(13,148,136,0.2)",
-    label: "Comanda → Cocina",
-    value: "< 200ms",
+    label: "Pedido en cocina",
+    value: "Al instante",
     valueColor: "#14B8A6",
   },
   {
@@ -27,8 +27,8 @@ const floatCards = [
     anim: "float-c2 6s ease-in-out 1s infinite",
     icon: <DollarSign className="w-4 h-4 text-[#F59E0B]" strokeWidth={2} />,
     iconBg: "rgba(245,158,11,0.2)",
-    label: "Caja cerrada · hoy",
-    value: "S/ 2,847 ✓",
+    label: "Caja del día",
+    value: "Cuadra sola ✓",
     valueColor: "#F59E0B",
   },
 ];
@@ -100,8 +100,9 @@ export default function Hero() {
         {/* Animated rotating sub-word */}
         <BlurFade delay={0.7}>
           <p className="text-[clamp(1rem,2vw,1.25rem)] text-white/85 leading-[1.7] max-w-[600px] mb-10">
-            <strong className="text-white">POS · Cocina · Caja · Contabilidad</strong> en un solo sistema.
-            <br className="hidden sm:block" /> Cada rol con su propia pantalla. Sin módulos extra, sin costuras.
+            <strong className="text-white">Sabe cuánto ganas, cierra la caja sin sorpresas</strong> y atiende
+            más rápido — aunque se caiga el internet.
+            <br className="hidden sm:block" /> Un solo sistema, hecho en Perú, en soles.
           </p>
         </BlurFade>
 
@@ -116,10 +117,10 @@ export default function Hero() {
               Solicitar acceso →
             </button>
             <a
-              href="#modulos"
+              href="#producto"
               className="btn-ghost-light inline-flex items-center justify-center font-semibold px-8 py-3.5 rounded-full text-sm cursor-pointer"
             >
-              Ver los módulos
+              Ver el sistema por dentro
             </a>
           </div>
         </BlurFade>

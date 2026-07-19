@@ -1,143 +1,94 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Check } from "lucide-react";
-import { useModals } from "@/components/modals/ModalProvider";
-import {
-  CURRENCY_SYMBOL,
-  Currency,
-  convertFromUSD,
-  formatCurrency,
-  persistCurrency,
-  readStoredCurrency,
-} from "@/lib/currency";
 import { prefersReducedMotion } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "51961869348";
+
+function waLink(message: string) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
 const plans = [
   {
-    id: "esencial",
-    name: "Esencial",
+    id: "starter",
+    name: "Starter",
     badge: null,
-    price: { monthly: 0, yearly: 0 },
-    desc: "Para empezar a operar desde el día uno.",
-    cta: "Comenzar gratis",
+    price: 159,
+    priceNote: "≈ S/ 5.30 al día",
+    desc: "Para dejar la libreta y los papelitos.",
+    cta: "Empezar por WhatsApp",
+    waMessage: "Hola, quiero empezar con el plan Starter de RestHUB para mi restaurante.",
     ctaStyle: "border",
     features: [
-      "POS básico + KDS",
-      "Hasta 2 roles de usuario",
+      "Pedidos por mesa (POS)",
+      "Pantalla de cocina (KDS)",
+      "Caja y cierre de turno",
+      "Boletas y facturas SUNAT",
+      "Cobros con Yape y Plin",
       "1 local",
-      "Soporte por email",
-      "Pagos con Culqi",
     ],
-    notIncluded: [
-      "Contabilidad integrada",
-      "BI y analytics",
-      "Roles avanzados",
-      "Multi-local",
-    ],
-    accent: "#94A3B8",
-    glow: "rgba(148,163,184,0.08)",
+    accent: "#0D9488",
+    glow: "rgba(13,148,136,0.1)",
   },
   {
     id: "pro",
-    name: "Profesional",
+    name: "Pro",
     badge: "MÁS POPULAR",
-    price: { monthly: 149, yearly: 119 },
-    desc: "Todo lo que un restaurante necesita. Sin compromisos.",
-    cta: "Solicitar acceso →",
+    price: 399,
+    priceNote: "≈ S/ 13 al día — menos que un mozo a medio tiempo",
+    desc: "Para saber cuánto ganas de verdad.",
+    cta: "Empezar por WhatsApp",
+    waMessage: "Hola, me interesa el plan Pro de RestHUB para mi restaurante.",
     ctaStyle: "filled",
     features: [
-      "POS + KDS integrado",
-      "6 roles de usuario completos",
-      "Hasta 3 locales",
-      "Contabilidad nativa + SUNAT",
-      "BI dashboard en tiempo real",
-      "Culqi + Izipay + Yape + Plin",
+      "Todo lo del plan Starter",
+      "Inventario y costo por plato",
+      "Reportes y BI en tiempo real",
+      "Contabilidad y PLE para tu contador",
+      "Clientes y delivery",
       "Soporte prioritario",
       "Implementación guiada",
     ],
-    notIncluded: [],
     accent: "#F59E0B",
     glow: "rgba(245,158,11,0.12)",
   },
   {
-    id: "empresa",
-    name: "Empresa",
+    id: "enterprise",
+    name: "Enterprise",
     badge: null,
-    price: { monthly: null, yearly: null },
-    desc: "Para grupos y cadenas con múltiples locales y equipos grandes.",
-    cta: "Contactar ventas",
+    price: 719,
+    pricePrefix: "desde",
+    priceNote: "para cadenas de 5 a 15 locales",
+    desc: "Para grupos con varios locales.",
+    cta: "Hablemos por WhatsApp",
+    waMessage: "Hola, tengo una cadena de restaurantes y me interesa RestHUB Enterprise.",
     ctaStyle: "border",
     features: [
-      "Todo lo de Profesional",
-      "Locales ilimitados",
+      "Todo lo del plan Pro",
+      "Multi-local con reportes consolidados",
+      "Conciliación bancaria",
       "Usuarios ilimitados",
-      "SLA de uptime 99.9%",
-      "API e integraciones custom",
-      "Gerente de cuenta dedicado",
-      "Soporte 24/7",
+      "Acompañamiento dedicado",
     ],
-    notIncluded: [],
-    accent: "#14B8A6",
-    glow: "rgba(13,148,136,0.1)",
+    accent: "#a78bfa",
+    glow: "rgba(167,139,250,0.1)",
   },
 ];
 
 export default function Pricing() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [yearly, setYearly] = useState(false);
-  const [currency, setCurrency] = useState<Currency>("PEN");
-  const { openContact, openCheckout } = useModals();
-
-  useEffect(() => {
-    const stored = readStoredCurrency();
-    if (stored) setCurrency(stored);
-  }, []);
-
-  const switchCurrency = (c: Currency) => {
-    setCurrency(c);
-    persistCurrency(c);
-  };
-
-  const handlePlanClick = (planId: string) => {
-    if (planId === "esencial") {
-      openContact({
-        topic: "Solicitar acceso",
-        prefillMessage: "Quiero comenzar con el plan Esencial (gratis).",
-      });
-      return;
-    }
-    if (planId === "empresa") {
-      openContact({
-        topic: "Contactar ventas",
-        prefillMessage: "Estoy interesado en el plan Empresa para múltiples locales.",
-      });
-      return;
-    }
-    const plan = plans.find((p) => p.id === planId)!;
-    const monthlyUSD = plan.price.monthly ?? 0;
-    const yearlyMonthlyUSD = plan.price.yearly ?? 0;
-    const amountUSD = yearly ? yearlyMonthlyUSD * 12 : monthlyUSD;
-    const amountConverted = convertFromUSD(amountUSD, currency);
-    openCheckout({
-      id: plan.id,
-      name: `RestHUB ${plan.name}`,
-      amount: amountConverted,
-      currency,
-      billing: yearly ? "yearly" : "monthly",
-      description: plan.desc,
-    });
-  };
 
   useGSAP(
     () => {
       if (prefersReducedMotion()) {
-        gsap.set(".pricing-card", { opacity: 1, y: 0 });
+        gsap.set([".pricing-card", ".pricing-founder"], { opacity: 1, y: 0 });
         return;
       }
       gsap.fromTo(
@@ -156,6 +107,21 @@ export default function Pricing() {
           },
         }
       );
+      gsap.fromTo(
+        ".pricing-founder",
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".pricing-founder",
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
     },
     { scope: sectionRef }
   );
@@ -167,94 +133,19 @@ export default function Pricing() {
         {/* Header */}
         <div className="text-center mb-14">
           <h2 className="text-[clamp(2rem,4vw,3rem)] font-extrabold leading-[1.1] tracking-[-0.025em] mb-4 text-[#0F172A]">
-            Sin comisiones ocultas.<br />
-            <span style={{ color: "#F59E0B" }}>Sin contratos de permanencia.</span>
+            Precios en soles.<br />
+            <span style={{ color: "#D97706" }}>Sin comisiones por venta. Sin permanencia.</span>
           </h2>
-          <p className="text-[#475569] text-base max-w-[420px] mx-auto mb-8">
-            Cancela o cambia de plan cuando quieras. Implementación guiada incluida en todos.
+          <p className="text-[#475569] text-base max-w-[460px] mx-auto">
+            Pagas un monto fijo al mes y ya. Implementación guiada incluida en todos
+            los planes. Cancelas cuando quieras.
           </p>
-
-          {/* Toggles */}
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {/* Billing toggle */}
-            <div
-              className="inline-flex items-center gap-3 bg-white border border-[#E2E8F0] rounded-full p-1.5 shadow-sm"
-              role="group"
-              aria-label="Periodicidad de facturación"
-            >
-              <button
-                type="button"
-                onClick={() => setYearly(false)}
-                aria-pressed={!yearly}
-                className="px-5 py-2 rounded-full text-sm font-semibold transition cursor-pointer"
-                style={{
-                  background: !yearly ? "rgba(245,158,11,0.12)" : "transparent",
-                  color: !yearly ? "#F59E0B" : "#475569",
-                }}
-              >
-                Mensual
-              </button>
-              <button
-                type="button"
-                onClick={() => setYearly(true)}
-                aria-pressed={yearly}
-                className="px-5 py-2 rounded-full text-sm font-semibold transition cursor-pointer"
-                style={{
-                  background: yearly ? "rgba(245,158,11,0.12)" : "transparent",
-                  color: yearly ? "#F59E0B" : "#475569",
-                }}
-              >
-                Anual
-                <span
-                  className="ml-2 text-[0.6rem] font-bold px-1.5 py-0.5 rounded-full"
-                  style={{ background: "rgba(20,184,166,0.15)", color: "#0F766E" }}
-                >
-                  −20%
-                </span>
-              </button>
-            </div>
-
-            {/* Currency toggle */}
-            <div
-              className="inline-flex items-center bg-white border border-[#E2E8F0] rounded-full p-1.5 shadow-sm"
-              role="group"
-              aria-label="Moneda"
-            >
-              {(["USD", "PEN"] as const).map((c) => {
-                const active = currency === c;
-                return (
-                  <button
-                    key={c}
-                    type="button"
-                    aria-pressed={active}
-                    onClick={() => switchCurrency(c)}
-                    className="px-4 py-2 rounded-full text-sm font-semibold transition cursor-pointer"
-                    style={{
-                      background: active ? "rgba(20,184,166,0.12)" : "transparent",
-                      color: active ? "#0F766E" : "#475569",
-                    }}
-                  >
-                    {c}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
         </div>
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
           {plans.map((plan) => {
-            const priceUSD = yearly ? plan.price.yearly : plan.price.monthly;
-            const price =
-              priceUSD === null ? null : convertFromUSD(priceUSD, currency);
-            const monthlyConverted =
-              plan.price.monthly === null ? null : convertFromUSD(plan.price.monthly, currency);
-            const yearlyConverted =
-              plan.price.yearly === null ? null : convertFromUSD(plan.price.yearly, currency);
             const isPro = plan.id === "pro";
-            const sym = CURRENCY_SYMBOL[currency];
-
             return (
               <div
                 key={plan.id}
@@ -264,7 +155,9 @@ export default function Pricing() {
                     ? "linear-gradient(135deg, rgba(30,41,59,0.95) 0%, rgba(15,23,42,1) 100%)"
                     : "#ffffff",
                   border: isPro ? `1px solid rgba(245,158,11,0.35)` : "1px solid #E2E8F0",
-                  boxShadow: isPro ? `0 0 80px ${plan.glow}, 0 32px 60px rgba(0,0,0,0.3)` : "0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)",
+                  boxShadow: isPro
+                    ? `0 0 80px ${plan.glow}, 0 32px 60px rgba(0,0,0,0.3)`
+                    : "0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)",
                   opacity: 0,
                 }}
               >
@@ -282,46 +175,44 @@ export default function Pricing() {
                 <div className="mb-5">
                   <div className="flex items-center gap-2 mb-1.5">
                     <div className="w-2 h-2 rounded-full" style={{ background: plan.accent }} />
-                    <span className="text-[0.65rem] font-bold tracking-[0.15em] uppercase" style={{ color: plan.accent }}>
+                    <span
+                      className="text-[0.65rem] font-bold tracking-[0.15em] uppercase"
+                      style={{ color: isPro ? plan.accent : "#475569" }}
+                    >
                       {plan.name}
                     </span>
                   </div>
-                  <p className="text-sm text-[#94A3B8] leading-snug">{plan.desc}</p>
+                  <p className="text-sm leading-snug" style={{ color: isPro ? "#94A3B8" : "#64748B" }}>
+                    {plan.desc}
+                  </p>
                 </div>
 
                 {/* Price */}
                 <div className="mb-7">
-                  {price === null ? (
-                    <div>
-                      <div className="text-[2.5rem] font-black leading-none mb-1" style={{ color: isPro ? '#fff' : '#0F172A' }}>Custom</div>
-                      <div className="text-sm text-[#64748B]">según tamaño de operación</div>
-                    </div>
-                  ) : price === 0 ? (
-                    <div>
-                      <div className="text-[2.5rem] font-black leading-none mb-1" style={{ color: isPro ? '#fff' : '#0F172A' }}>{sym}0</div>
-                      <div className="text-sm text-[#64748B]">para siempre</div>
-                    </div>
-                  ) : (
-                    <div>
-                      <div className="flex items-end gap-1 mb-1">
-                        <span className="text-[0.9rem] font-bold text-[#64748B] mb-2">{sym}</span>
-                        <span className="text-[2.5rem] font-black leading-none" style={{ color: isPro ? '#fff' : '#0F172A' }}>{price}</span>
-                        <span className="text-sm text-[#64748B] mb-1.5">/mes · por local</span>
-                      </div>
-                      {yearly && monthlyConverted !== null && yearlyConverted !== null && (
-                        <div className="text-[0.7rem] text-[#14B8A6]">
-                          Ahorras {formatCurrency((monthlyConverted - yearlyConverted) * 12, currency)}/año
-                        </div>
-                      )}
-                    </div>
-                  )}
+                  <div className="flex items-end gap-1.5 mb-1">
+                    {plan.pricePrefix && (
+                      <span className="text-[0.8rem] font-semibold text-[#64748B] mb-2">{plan.pricePrefix}</span>
+                    )}
+                    <span className="text-[0.9rem] font-bold text-[#64748B] mb-2">S/</span>
+                    <span
+                      className="text-[2.5rem] font-black leading-none"
+                      style={{ color: isPro ? "#fff" : "#0F172A" }}
+                    >
+                      {plan.price}
+                    </span>
+                    <span className="text-sm text-[#64748B] mb-1.5">/mes · por local</span>
+                  </div>
+                  <div className="text-[0.72rem]" style={{ color: isPro ? "#FCD34D" : "#0F766E" }}>
+                    {plan.priceNote}
+                  </div>
                 </div>
 
                 {/* CTA */}
-                <button
-                  type="button"
-                  onClick={() => handlePlanClick(plan.id)}
-                  className={`pricing-cta w-full py-3.5 rounded-xl text-sm font-bold mb-7 transition active:scale-[0.98] cursor-pointer ${
+                <a
+                  href={waLink(plan.waMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`pricing-cta w-full py-3.5 rounded-xl text-sm font-bold mb-7 transition active:scale-[0.98] cursor-pointer text-center ${
                     plan.ctaStyle === "filled"
                       ? "pricing-cta-filled"
                       : isPro
@@ -331,7 +222,7 @@ export default function Pricing() {
                   style={{ ["--accent" as string]: plan.accent }}
                 >
                   {plan.cta}
-                </button>
+                </a>
 
                 {/* Divider */}
                 <div className="h-px mb-6" style={{ background: isPro ? "rgba(255,255,255,0.06)" : "#E2E8F0" }} />
@@ -342,18 +233,12 @@ export default function Pricing() {
                     <li key={f} className="flex items-start gap-2.5">
                       <Check
                         className="w-4 h-4 shrink-0 mt-0.5"
-                        style={{ color: plan.accent }}
+                        style={{ color: isPro ? plan.accent : "#0F766E" }}
                         strokeWidth={2.5}
                       />
-                    <span className="text-[0.83rem]" style={{ color: isPro ? 'rgba(255,255,255,0.8)' : '#0F172A' }}>{f}</span>
-                    </li>
-                  ))}
-                  {plan.notIncluded.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 opacity-35">
-                      <div className="w-4 h-4 shrink-0 mt-0.5 flex items-center justify-center">
-                        <div className="w-2.5 h-px bg-[#64748B] rounded" />
-                      </div>
-                      <span className="text-[0.83rem] text-[#64748B]">{f}</span>
+                      <span className="text-[0.83rem]" style={{ color: isPro ? "rgba(255,255,255,0.8)" : "#0F172A" }}>
+                        {f}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -362,9 +247,40 @@ export default function Pricing() {
           })}
         </div>
 
+        {/* Founder price */}
+        <div
+          className="pricing-founder mt-8 rounded-2xl px-7 py-6 flex flex-col sm:flex-row items-center justify-between gap-5"
+          style={{
+            background: "rgba(245,158,11,0.07)",
+            border: "1px solid rgba(217,119,6,0.35)",
+            opacity: 0,
+          }}
+        >
+          <div className="text-center sm:text-left">
+            <div className="text-[0.65rem] font-bold tracking-[0.18em] uppercase text-[#B45309] mb-1.5">
+              Programa Socios Fundadores · quedan 7 cupos
+            </div>
+            <div className="text-[1.05rem] font-extrabold text-[#0F172A]">
+              Primeros clientes: <span className="text-[#B45309]">S/ 100/mes, congelado 12 meses</span>
+            </div>
+            <p className="text-[0.82rem] text-[#475569] mt-1 max-w-[520px]">
+              Cualquier plan, a precio fundador, a cambio de tu feedback y tu caso de éxito.
+              Cuando se llenen los cupos, el programa se cierra.
+            </p>
+          </div>
+          <a
+            href={waLink("Hola, quiero uno de los cupos del Programa Socios Fundadores de RestHUB (S/ 100/mes).")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-amber shrink-0 font-bold px-7 py-3.5 rounded-full text-sm cursor-pointer"
+          >
+            Quiero mi cupo →
+          </a>
+        </div>
+
         {/* Bottom note */}
         <p className="text-center text-[0.72rem] text-[#64748B] mt-10">
-          {currency === "PEN" ? "Precios en soles (S/)." : "Precios en USD."} Implementación guiada incluida · Sin tarjeta de crédito para empezar · Soporte en español
+          Precios en soles (S/) · Sin tarjeta para empezar · Soporte en español, desde Perú
         </p>
       </div>
     </section>
