@@ -75,10 +75,10 @@ export default function Nav() {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => openContact({ topic: "Agendar demo" })}
+          onClick={() => window.open("https://rest-hub.vercel.app", "_blank", "noopener")}
           className="text-white border border-white/25 hover:border-white/55 hover:bg-white/5 text-xs cursor-pointer"
         >
-          Agendar demo
+          Probar la demo
         </Button>
         <Button
           size="sm"
@@ -124,11 +124,11 @@ export default function Nav() {
               variant="ghost"
               onClick={() => {
                 setOpen(false);
-                openContact({ topic: "Agendar demo" });
+                window.open("https://rest-hub.vercel.app", "_blank", "noopener");
               }}
               className="w-full text-white border border-white/25 hover:bg-white/5 cursor-pointer"
             >
-              Agendar demo
+              Probar la demo
             </Button>
             <Button
               onClick={() => {

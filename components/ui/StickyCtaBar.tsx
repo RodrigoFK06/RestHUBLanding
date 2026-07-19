@@ -49,13 +49,15 @@ export default function StickyCtaBar() {
         </p>
 
         <div className="flex items-center gap-2 ml-auto sm:ml-0 w-full sm:w-auto">
-          <button
-            onClick={() => openContact({ topic: "Agendar demo" })}
-            className="flex-1 sm:flex-none text-[0.76rem] font-semibold text-white border rounded-full px-5 py-2.5 transition hover:bg-white/5 active:scale-[0.97] cursor-pointer"
+          <a
+            href="https://rest-hub.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 sm:flex-none text-center text-[0.76rem] font-semibold text-white border rounded-full px-5 py-2.5 transition hover:bg-white/5 active:scale-[0.97] cursor-pointer"
             style={{ borderColor: "rgba(255,255,255,0.15)" }}
           >
-            Agendar demo
-          </button>
+            Probar la demo
+          </a>
           <button
             onClick={() => openContact({ topic: "Solicitar acceso" })}
             className="flex-1 sm:flex-none text-[0.76rem] font-bold text-black rounded-full px-5 py-2.5 transition hover:opacity-90 active:scale-[0.97] cursor-pointer"

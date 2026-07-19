@@ -49,7 +49,7 @@ export default function Gallery() {
           </div>
         </BlurFade>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
           {shots.map((p, i) => (
             <BlurFade key={i} delay={0.07 * i}>
               <figure className="group">
@@ -76,6 +76,23 @@ export default function Gallery() {
             </BlurFade>
           ))}
         </div>
+
+        {/* Live demo CTA */}
+        <BlurFade delay={0.2}>
+          <div className="text-center">
+            <a
+              href="https://rest-hub.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-amber inline-flex items-center gap-2 font-bold text-sm px-8 py-4 rounded-full"
+            >
+              Entra a la demo en vivo →
+            </a>
+            <p className="text-[0.78rem] text-[#64748B] mt-3.5">
+              Tócala tú mismo, desde tu celular o tu laptop. Sin agendar nada.
+            </p>
+          </div>
+        </BlurFade>
       </div>
     </section>
   );
