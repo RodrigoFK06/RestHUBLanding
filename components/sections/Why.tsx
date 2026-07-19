@@ -89,7 +89,7 @@ export default function Why() {
         {/* ── LEFT: Full-bleed photo ── */}
         <div ref={imgRef} className="relative overflow-hidden min-h-[420px] md:min-h-0">
           <Image
-            src="https://images.unsplash.com/photo-1772957041453-e0eb938535a8?w=1200&q=85&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1772957041453-e0eb938535a8?w=2000&q=85&auto=format&fit=crop"
             alt="Pollería con el horno lleno operando con RestHUB"
             fill
             className="object-cover"

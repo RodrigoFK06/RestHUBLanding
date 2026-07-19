@@ -14,7 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 // Each photo has a parallax speed (negative = slower than scroll = background effect)
 const photos = [
   {
-    src: "https://images.unsplash.com/photo-1759299595850-24572dd0d447?w=900&q=80&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1759299595850-24572dd0d447?w=1600&q=85&auto=format&fit=crop",
     alt: "Restaurante de barrio lleno a la hora punta",
     label: "Salón · POS activo",
     caption: "Órdenes en tiempo real",
@@ -25,7 +25,7 @@ const photos = [
     aspect: "aspect-[3/4]",
   },
   {
-    src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=85&auto=format&fit=crop",
     alt: "Cocina de restaurante trabajando",
     label: "Cocina · KDS integrado",
     caption: "El pedido llega al toque",
@@ -36,7 +36,7 @@ const photos = [
     aspect: "aspect-[4/3]",
   },
   {
-    src: "https://images.unsplash.com/photo-1636552550775-9e6b065d0481?w=700&q=80&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1636552550775-9e6b065d0481?w=1400&q=85&auto=format&fit=crop",
     alt: "Plato criollo con pollo y arroz",
     label: "Experiencia · Cliente",
     caption: "Desde la mesa hasta el balance",
@@ -47,7 +47,7 @@ const photos = [
     aspect: "aspect-[3/4]",
   },
   {
-    src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=80&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&q=85&auto=format&fit=crop",
     alt: "Dashboard BI analytics",
     label: "BI · Dashboard en vivo",
     caption: "Tendencias sin esperar el lunes",
@@ -62,19 +62,19 @@ const photos = [
 // Second "feature strip" — full-bleed horizontal images like Square's testimonial row
 const featureStrip = [
   {
-    src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=75&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80&auto=format&fit=crop",
     label: "Gestión de Salón",
     stat: "12 mesas activas",
     bg: "from-[#0F172A]",
   },
   {
-    src: "https://images.unsplash.com/photo-1607631568010-a87245c0daf8?w=1200&q=75&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1607631568010-a87245c0daf8?w=1600&q=80&auto=format&fit=crop",
     label: "Cocina en Vivo",
     stat: "Órdenes sincronizadas",
     bg: "from-[#0F172A]",
   },
   {
-    src: "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1200&q=75&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1600&q=80&auto=format&fit=crop",
     label: "Control de Caja",
     stat: "Cierre exacto, siempre",
     bg: "from-[#0F172A]",
