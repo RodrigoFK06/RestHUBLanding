@@ -14,8 +14,8 @@ gsap.registerPlugin(ScrollTrigger);
 // Each photo has a parallax speed (negative = slower than scroll = background effect)
 const photos = [
   {
-    src: "https://images.unsplash.com/photo-1777679715668-8d20edec5446?w=900&q=80&auto=format&fit=crop",
-    alt: "Mozo tomando el pedido en la mesa",
+    src: "https://images.unsplash.com/photo-1759299595850-24572dd0d447?w=900&q=80&auto=format&fit=crop",
+    alt: "Restaurante de barrio lleno a la hora punta",
     label: "Salón · POS activo",
     caption: "Órdenes en tiempo real",
     accent: "#14B8A6",
