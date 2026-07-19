@@ -56,7 +56,7 @@ export default function MidStatement() {
       {/* Subtle photo background */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=60&auto=format&fit=crop"
+          src="https://images.unsplash.com/photo-1576704546872-8d647cd96f8d?w=1600&q=60&auto=format&fit=crop"
           alt=""
           fill
           className="object-cover opacity-[0.07]"

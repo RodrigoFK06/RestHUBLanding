@@ -27,7 +27,7 @@ export default function Cta() {
       {/* Background restaurant photo */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=70&auto=format&fit=crop"
+          src="https://images.unsplash.com/photo-1772957041453-e0eb938535a8?w=1600&q=70&auto=format&fit=crop"
           alt=""
           fill
           className="object-cover opacity-[0.09]"

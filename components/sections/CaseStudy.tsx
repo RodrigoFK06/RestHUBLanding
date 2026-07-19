@@ -86,7 +86,7 @@ export default function CaseStudy() {
         {/* Left — full-bleed photo */}
         <div ref={imgRef} className="relative h-[400px] md:h-auto overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=900&q=80&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1770712081858-3e9ce6aa5da9?w=900&q=80&auto=format&fit=crop"
             alt="La Taberna San Isidro"
             fill
             className="object-cover"

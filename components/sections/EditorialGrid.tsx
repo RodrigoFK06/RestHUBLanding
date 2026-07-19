@@ -14,8 +14,8 @@ gsap.registerPlugin(ScrollTrigger);
 // Each photo has a parallax speed (negative = slower than scroll = background effect)
 const photos = [
   {
-    src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80&auto=format&fit=crop",
-    alt: "Salón de restaurante iluminado",
+    src: "https://images.unsplash.com/photo-1777679715668-8d20edec5446?w=900&q=80&auto=format&fit=crop",
+    alt: "Mozo tomando el pedido en la mesa",
     label: "Salón · POS activo",
     caption: "Órdenes en tiempo real",
     accent: "#14B8A6",
@@ -26,9 +26,9 @@ const photos = [
   },
   {
     src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80&auto=format&fit=crop",
-    alt: "Chef en cocina profesional",
+    alt: "Cocina de restaurante trabajando",
     label: "Cocina · KDS integrado",
-    caption: "< 200ms comanda → cocina",
+    caption: "El pedido llega al toque",
     accent: "#F59E0B",
     parallaxY: -40,
     col: "col-start-2 col-end-3",
@@ -36,8 +36,8 @@ const photos = [
     aspect: "aspect-[4/3]",
   },
   {
-    src: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=700&q=80&auto=format&fit=crop",
-    alt: "Plato gourmet en mesa",
+    src: "https://images.unsplash.com/photo-1636552550775-9e6b065d0481?w=700&q=80&auto=format&fit=crop",
+    alt: "Plato criollo con pollo y arroz",
     label: "Experiencia · Cliente",
     caption: "Desde la mesa hasta el balance",
     accent: "#a78bfa",

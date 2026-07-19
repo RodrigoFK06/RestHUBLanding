@@ -21,8 +21,8 @@ const cells = [
     numLabel: "módulos nativos",
     title: "Un sistema completo.",
     body: "POS, cocina, caja y contabilidad operando como uno. Sin módulos de pago aparte.",
-    photo: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80&auto=format&fit=crop",
-    photoAlt: "Restaurante en operación",
+    photo: "https://images.unsplash.com/photo-1739970469578-3311c916a65d?w=700&q=80&auto=format&fit=crop",
+    photoAlt: "Equipo de cocina trabajando",
     tall: true,
   },
   {
