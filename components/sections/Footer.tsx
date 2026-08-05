@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArkosLogo } from "./ArkosLogo";
 import { MessageCircle, Mail, Copy, Check, Loader2, ArrowRight } from "lucide-react";
 import { useModals } from "@/components/modals/ModalProvider";
 import { useToast } from "@/components/ui/Toast";
@@ -256,7 +257,9 @@ export default function Footer() {
               rel="noopener"
               className="text-[#94A3B8] hover:text-white transition-colors"
             >
-              Desarrollado por Árkos
+              Desarrollado por{" "}
+              <ArkosLogo className="inline-block h-[1.05em] w-auto align-[-0.15em]" />{" "}
+              Árkos
             </a>
           </p>
           <div className="flex items-center gap-5">
