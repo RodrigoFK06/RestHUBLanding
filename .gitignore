@@ -42,3 +42,7 @@ next-env.d.ts
 
 # Claude Code local tooling (vendored design skills, local settings)
 /.claude/
+
+# --- Grafo de conocimiento (graphify) ---
+# Derivado del codigo: se regenera con `graphify . --code-only`.
+graphify-out/
