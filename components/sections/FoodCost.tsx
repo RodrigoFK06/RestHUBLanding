@@ -1,168 +1,135 @@
 "use client";
 
-import { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { Check, TriangleAlert } from "lucide-react";
-import { prefersReducedMotion } from "@/lib/utils";
+import { useState } from "react";
+import { Check, Minus, Plus, TriangleAlert } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
+// «¿Cuánto te deja cada plato?» (docs/diseno/decisiones.md · D10). La receta impresa del
+// sistema con el costo real del plato; el dueño mueve el precio de carta y ve cuánto le deja.
 
-const points = [
+const PUNTOS = [
   "Cada venta descuenta los ingredientes exactos de tu inventario, sin que nadie digite nada.",
   "Registras mermas y pérdidas para que el stock cuadre con la realidad, no con el papel.",
   "Alertas antes de quedarte sin un insumo en pleno servicio.",
   "Costo real por plato: ingredientes, precio y lo que te deja, a la vista.",
 ];
 
-function PlateCostMock() {
-  const green = "#22C55E";
-  const amber = "#F59E0B";
-  const recipe = [
-    ["Carne de res · 300 g", "S/ 8.40"],
-    ["Papa amarilla · 250 g", "S/ 0.90"],
-    ["Tomate + cebolla", "S/ 0.80"],
-    ["Arroz + otros", "S/ 1.10"],
-  ];
-  return (
-    <div className="foodcost-mock w-[300px] max-w-full">
-      <div
-        className="bg-[#05101e] rounded-2xl overflow-hidden"
-        style={{
-          border: "1px solid rgba(34,197,94,0.35)",
-          boxShadow: "0 0 70px rgba(34,197,94,0.14), 0 20px 60px rgba(0,0,0,0.5)",
-        }}
-      >
-        <div
-          className="px-4 py-3 border-b flex items-center justify-between"
-          style={{ borderColor: "rgba(34,197,94,0.2)", background: "rgba(34,197,94,0.07)" }}
-        >
-          <span className="text-[0.58rem] font-bold uppercase tracking-[0.15em]" style={{ color: green }}>
-            Costo por plato
-          </span>
-          <span className="text-[0.62rem] font-bold text-white/70">Lomo saltado · S/ 35</span>
-        </div>
+const RECETA = [
+  { insumo: "Carne de res", cantidad: "300 g", costo: 8.4 },
+  { insumo: "Papa amarilla", cantidad: "250 g", costo: 0.9 },
+  { insumo: "Tomate y cebolla", cantidad: "", costo: 0.8 },
+  { insumo: "Arroz y otros", cantidad: "", costo: 1.1 },
+];
 
-        <div className="p-4 space-y-1.5">
-          {recipe.map(([name, cost], i) => (
-            <div key={i} className="flex items-center justify-between bg-white/3 rounded-lg px-3 py-2">
-              <span className="text-[0.72rem] text-[#94A3B8]">{name}</span>
-              <span className="text-[0.72rem] font-bold text-white/60">{cost}</span>
-            </div>
-          ))}
-
-          <div className="flex items-center justify-between px-3 pt-2">
-            <span className="text-[0.68rem] text-[#64748B]">Costo del plato</span>
-            <span className="text-[0.8rem] font-extrabold text-white">S/ 11.20</span>
-          </div>
-          <div className="flex items-center justify-between rounded-xl px-3 py-2.5 bg-white/7">
-            <span className="text-[0.72rem] text-[#94A3B8]">Te deja</span>
-            <span className="text-[0.88rem] font-extrabold" style={{ color: green }}>
-              S/ 23.80 · 68%
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Low-stock alert chip */}
-      <div
-        className="foodcost-alert mt-3 flex items-start gap-2.5 rounded-xl px-3.5 py-3 bg-[#05101e]"
-        style={{ border: "1px solid rgba(245,158,11,0.35)" }}
-      >
-        <TriangleAlert className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: amber }} strokeWidth={2} />
-        <div>
-          <div className="text-[0.7rem] font-bold text-white">Carne de res: quedan 8.2 kg</div>
-          <div className="text-[0.62rem] text-[#64748B] mt-0.5">Alcanza para ~27 platos. Repón antes del sábado.</div>
-        </div>
-      </div>
-    </div>
-  );
-}
+const COSTO = RECETA.reduce((s, r) => s + r.costo, 0);
+const PRECIO_INICIAL = 35;
 
 export default function FoodCost() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useGSAP(
-    () => {
-      if (prefersReducedMotion()) {
-        gsap.set([".foodcost-copy", ".foodcost-point", ".foodcost-mock", ".foodcost-alert"], {
-          opacity: 1,
-          x: 0,
-          y: 0,
-        });
-        return;
-      }
-      gsap.fromTo(
-        ".foodcost-copy",
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.85,
-          ease: "power3.out",
-          scrollTrigger: { trigger: sectionRef.current, start: "top 65%", toggleActions: "play none none none" },
-        }
-      );
-      gsap.fromTo(
-        ".foodcost-point",
-        { opacity: 0, x: -18 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.5,
-          ease: "power3.out",
-          stagger: 0.09,
-          scrollTrigger: { trigger: ".foodcost-points", start: "top 78%", toggleActions: "play none none none" },
-        }
-      );
-      gsap.fromTo(
-        ".foodcost-mock",
-        { opacity: 0, y: 36, scale: 0.96 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          delay: 0.15,
-          scrollTrigger: { trigger: sectionRef.current, start: "top 62%", toggleActions: "play none none none" },
-        }
-      );
-    },
-    { scope: sectionRef }
-  );
+  const [precio, setPrecio] = useState(PRECIO_INICIAL);
+  const deja = precio - COSTO;
+  const margen = Math.round((deja / precio) * 100);
 
   return (
-    <section ref={sectionRef} id="costos" className="bg-black py-28 overflow-hidden">
-      <div className="max-w-[1160px] mx-auto px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-10 items-center">
+    <section id="costos" className="bg-mostrador font-brand text-white">
+      <div className="mx-auto max-w-[1376px] px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <div className="grid grid-cols-[minmax(0,1fr)] items-start gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,460px)_minmax(0,1fr)] xl:gap-x-24">
+          <h2 className="display-cond max-w-[20ch] text-[clamp(2.5rem,4.6vw,4rem)] leading-[0.92] tracking-[-0.01em] lg:col-start-2 lg:row-start-1">
+            Vendes todos los días.
+            <span className="block text-menta">¿Sabes cuánto te deja cada plato?</span>
+          </h2>
 
-          {/* ── LEFT: pain copy ── */}
-          <div className="foodcost-copy" style={{ opacity: 0 }}>
-            <h2 className="text-[clamp(2rem,4.5vw,3.3rem)] font-extrabold leading-[1.08] tracking-[-0.028em] mb-6 text-white">
-              Vendes todos los días.{" "}
-              <span className="text-[#22C55E]">¿Sabes cuánto te deja cada plato?</span>
-            </h2>
-            <p className="text-[1.02rem] text-[#94A3B8] leading-[1.8] mb-9 max-w-[480px]">
-              La mayoría de restaurantes no lo sabe. Se compra, se cocina, se vende, y a fin de mes
-              la plata no cuadra con lo vendido. RestHUB conecta tus recetas con tu inventario para
-              que dejes de adivinar dónde se va el margen.
+          {/* ── La receta impresa ── */}
+          <div className="mx-auto w-full max-w-[460px] lg:col-start-1 lg:row-span-2 lg:row-start-1">
+            <div className="comanda-papel relative bg-papel text-mostrador shadow-[0_34px_64px_-26px_rgba(0,0,0,0.9)] lg:-rotate-[0.6deg]">
+              <div aria-hidden="true" className="comanda-troquel h-3" />
+              <div className="px-5 pb-6 pt-2 sm:px-7">
+                <div className="flex items-end justify-between gap-4 border-b-2 border-mostrador pb-2.5">
+                  <span className="display-cond text-[26px] uppercase leading-none">Receta</span>
+                  <span className="text-[12px] font-extrabold uppercase tracking-[0.04em] text-impreso">Costo por plato</span>
+                </div>
+                <p className="display-cond mt-3 text-[34px] uppercase leading-none">Lomo saltado</p>
+
+                <div className="mt-4 grid grid-cols-[1fr_auto] text-[12px] font-extrabold uppercase tracking-[0.04em] text-impreso">
+                  <span>Insumo</span>
+                  <span>Costo</span>
+                </div>
+                <ul className="comanda-renglones mt-1">
+                  {RECETA.map((r) => (
+                    <li key={r.insumo} className="grid h-8 grid-cols-[1fr_auto] items-center text-[17px]">
+                      <span>
+                        {r.insumo}
+                        {r.cantidad && <span className="text-impreso"> · {r.cantidad}</span>}
+                      </span>
+                      <span className="tabular-nums">{r.costo.toFixed(2)}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-3 flex items-baseline justify-between border-t-2 border-mostrador pt-2">
+                  <span className="text-[15px] font-bold">Costo del plato</span>
+                  <span className="display-cond text-[26px] leading-none tabular-nums">S/ {COSTO.toFixed(2)}</span>
+                </div>
+
+                <div className="mt-4 flex items-center justify-between gap-4 border-y border-dashed border-impreso py-3">
+                  <span className="text-[15px] font-bold">Precio en carta</span>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setPrecio((p) => Math.max(15, p - 1))}
+                      aria-label="Bajar el precio un sol"
+                      className="comanda-plato grid size-11 cursor-pointer place-items-center rounded-md border-[1.5px] border-mostrador bg-papel"
+                    >
+                      <Minus className="size-4" strokeWidth={2.5} aria-hidden="true" />
+                    </button>
+                    <output aria-live="polite" className="display-cond w-[4.5ch] text-center text-[26px] leading-none tabular-nums">
+                      S/ {precio}
+                    </output>
+                    <button
+                      type="button"
+                      onClick={() => setPrecio((p) => Math.min(60, p + 1))}
+                      aria-label="Subir el precio un sol"
+                      className="comanda-plato grid size-11 cursor-pointer place-items-center rounded-md border-[1.5px] border-mostrador bg-papel"
+                    >
+                      <Plus className="size-4" strokeWidth={2.5} aria-hidden="true" />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="mt-4 flex items-end justify-between gap-4">
+                  <span className="text-[15px] font-bold">Te deja</span>
+                  <span className="text-right">
+                    <span className="display-cond block text-[clamp(2.5rem,5vw,3.25rem)] leading-none text-menta-oscura tabular-nums">
+                      S/ {deja.toFixed(2)}
+                    </span>
+                    <span className="mt-1 block text-[15px] font-bold text-impreso tabular-nums">{margen}% del precio</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="comanda-papel mt-6 flex items-start gap-3 rounded-[3px] bg-copia-caja px-4 py-3.5 text-mostrador shadow-[0_14px_26px_-14px_rgba(0,0,0,0.8)] lg:rotate-[0.8deg]">
+              <TriangleAlert className="mt-0.5 size-[18px] shrink-0 text-ambar-oscuro" strokeWidth={2.25} aria-hidden="true" />
+              <p className="text-[15px] leading-snug">
+                <strong className="font-extrabold">Carne de res: quedan 8.2 kg.</strong> Alcanza para unos 27 platos. Repón antes del sábado.
+              </p>
+            </div>
+            <p className="mt-4 text-center text-[15px] text-texto-3">Datos de ejemplo. Mueve el precio y mira cuánto te deja.</p>
+          </div>
+
+          {/* ── El dolor, en palabras del dueño ── */}
+          <div className="min-w-0 lg:col-start-2 lg:row-start-2">
+            <p className="max-w-[46ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.6] text-texto-2">
+              <strong className="font-semibold text-white">La mayoría de restaurantes no lo sabe.</strong> Se compra, se cocina, se vende, y a fin
+              de mes la plata no cuadra con lo vendido. RestHUB conecta tus recetas con tu inventario para que dejes de adivinar
+              dónde se va el margen.
             </p>
-
-            <ul className="foodcost-points space-y-3.5">
-              {points.map((p) => (
-                <li key={p} className="foodcost-point flex items-start gap-3 text-[0.92rem] text-white/90 leading-[1.6]">
-                  <Check className="w-4 h-4 shrink-0 mt-1 text-[#22C55E]" strokeWidth={2.5} />
+            <ul className="mt-10 border-t border-linea">
+              {PUNTOS.map((p) => (
+                <li key={p} className="flex items-start gap-4 border-b border-linea py-5 text-[17px] leading-[1.5] text-white">
+                  <Check className="mt-1 size-5 shrink-0 text-menta" strokeWidth={2.5} aria-hidden="true" />
                   {p}
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* ── RIGHT: plate cost mock ── */}
-          <div className="flex justify-center md:justify-end">
-            <PlateCostMock />
           </div>
         </div>
       </div>

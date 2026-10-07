@@ -24,13 +24,13 @@ export default function Home() {
       <Nav />
       <Hero />
       <Gallery />
+      <FoodCost />
+      <Offline />
       <StatementInterlude />
       <Stats />
       <Why />
       <StickyModules />
-      <FoodCost />
       <Integrations />
-      <Offline />
       <Flow />
       <BelowFoldSections />
       <Footer />
