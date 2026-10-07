@@ -57,7 +57,7 @@ ya cuenta el hero se quita. Se avanza una sección por vez, con preview de Verce
 1. Hero ✔ · 2. Así se ve por dentro (Gallery + EditorialGrid) ✔ · 3. ¿Cuánto te deja cada plato?
 (FoodCost) ✔ · 4. Se cayó el internet (Offline) ✔ · 5. Cada uno con su pantalla (interludio +
 ExpandingRoles) ✔ · 6. Todo lo que incluye ✔ (StickyModules + Integrations + Why + Messages; recoge los
-datos de Stats y el último paso de Flow) · 7. Cómo cambia el día a día (vs) · 8. Gente detrás +
+datos de Stats y el último paso de Flow) · 7. Cómo cambia el día a día (vs) ✔ · 8. Gente detrás +
 7 cupos (Founder + Socios Fundadores) · 9. Precios (+ PricingPivot) · 10. De cero a operativo +
 FAQ + CTA + Footer. Se van MarqueeStrip, Stats, Flow y MidStatement.
 
@@ -68,6 +68,7 @@ FAQ + CTA + Footer. Se van MarqueeStrip, Stats, Flow y MidStatement.
 | **D11** | **Se cayó el internet:** franja de calma en `mostrador-2` entre dos secciones densas; la copia ámbar guarda 3 pedidos en cola y la menta confirma que todo sincronizó. | Ritmo: una sección densa se gana una tranquila. El ámbar vuelve a significar «pendiente» y la menta «salió bien». |
 | **D12** | **Cada uno con su pantalla:** el interludio de 300 vh y ExpandingRoles se vuelven un «Cuadro de accesos» impreso (filas = roles, columnas = lo que ven, checks en tinta). Al elegir un rol su fila se vuelve copia menta y abajo se lee qué hace. En el celular, una tira de papel por rol. Fuera el «< 200 ms» y los chips de colores sueltos. | Muestra lo que el sistema hace de verdad (permisos por rol) en un objeto del oficio, sin scroll secuestrado de 3 pantallas. |
 | **D13** | **Todo lo que incluye = La carta:** los 6 módulos como platos de una carta impresa («Pedidos ……… Incluido»), en dos columnas (para el servicio / para el dueño y el contador), y al pie «Aceptamos: Yape · Plin · Culqi · Izipay · Visa · Mastercard» y «Facturamos: SUNAT y SIRE», como en cualquier carta peruana. Debajo, cuatro datos de confianza (15 locales, 1,699 pruebas antes de cada actualización, datos cifrados, soporte desde Perú). Fusiona StickyModules (6 100 px), Integrations, Why, Messages, Stats y Flow. | Una sola pieza clara en vez de seis secciones que repetían «6 módulos». Se quitó el «48 módulos» de Stats (contradecía los 6) y la venta semanal de maqueta. |
+| **D14** | **Cómo cambia el día a día:** tabla contra cuaderno y Excel, y contra un sistema solo de boletas; la columna de RestHUB es una sola copia menta que corre de arriba abajo, las otras quedan en gris con su marca (no / a medias / sí). En el celular, un bloque por tarea con la respuesta de RestHUB primero. | Comparar es trabajo de una tabla; el mundo entra por la copia menta, no por tarjetas. |
 
 ## Movimiento
 

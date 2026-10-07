@@ -34,9 +34,9 @@ const Cta = dynamic(() => import("@/components/sections/Cta"), {
 export default function BelowFoldSections() {
   return (
     <>
+      <Comparison />
       <Testimonials />
       <Founder />
-      <Comparison />
       <PricingPivot />
       <Pricing />
       <Faq />
