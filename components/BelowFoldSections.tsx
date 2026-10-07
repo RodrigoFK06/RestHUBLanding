@@ -12,9 +12,6 @@ const ExpandingRoles = dynamic(() => import("@/components/sections/ExpandingRole
 const Messages = dynamic(() => import("@/components/sections/Messages"), {
   loading: () => fallback,
 });
-const MidStatement = dynamic(() => import("@/components/sections/MidStatement"), {
-  loading: () => fallback,
-});
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"), {
   loading: () => fallback,
 });
@@ -45,7 +42,6 @@ export default function BelowFoldSections() {
     <>
       <ExpandingRoles />
       <Messages />
-      <MidStatement />
       <Testimonials />
       <Founder />
       <Comparison />

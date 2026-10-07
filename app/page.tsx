@@ -1,11 +1,9 @@
 import Nav from "@/components/sections/Nav";
 import Hero from "@/components/sections/Hero";
 import StatementInterlude from "@/components/sections/StatementInterlude";
-import MarqueeStrip from "@/components/sections/MarqueeStrip";
 import Stats from "@/components/sections/Stats";
 import Gallery from "@/components/sections/Gallery";
 import Why from "@/components/sections/Why";
-import EditorialGrid from "@/components/sections/EditorialGrid";
 import StickyModules from "@/components/sections/StickyModules";
 import FoodCost from "@/components/sections/FoodCost";
 import Integrations from "@/components/sections/Integrations";
@@ -25,12 +23,10 @@ export default function Home() {
       </Suspense>
       <Nav />
       <Hero />
-      <StatementInterlude />
-      <MarqueeStrip />
-      <Stats />
       <Gallery />
+      <StatementInterlude />
+      <Stats />
       <Why />
-      <EditorialGrid />
       <StickyModules />
       <FoodCost />
       <Integrations />

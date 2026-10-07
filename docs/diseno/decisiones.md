@@ -49,6 +49,22 @@ interactivas) y eligió **B · La comanda del mozo**. Contrato de dirección en
 | **D7** | **Hero «la comanda del mozo»:** titular en dos líneas («bajo control.» en menta) con texto y acciones al lado; debajo, el escenario a todo el ancho: riel de cocina con comandas colgadas, talonario interactivo (borde troquelado, numerador, renglones) y caja con el cobrado del día y la pila de copias por cobrar. Arranca en pleno servicio (Mesa 4 escrita, dos pedidos en cocina) y el visitante lo continúa: toca platos, «Mandar a cocina · S/ total» cuelga el ticket y deja la copia en caja. Datos de ejemplo, rotulados. | «Mostrar el sistema, no describirlo» y que el dueño lo toque (pedido de Rodrigo). Un pedido, tres copias es el recorrido real del producto (POS → KDS → caja). Nada arranca vacío. |
 | **D8** | **Nav:** transparente sobre el hero, mostrador sólido al bajar (sin desenfoque); acción ámbar; menú completo desde `lg`. | Coherente con D5; el vidrio era parte del problema anterior. |
 
+## Estructura de la página (aprobada por Rodrigo el 2026-10-07)
+
+De 23 secciones (≈ 30 pantallas) a 10, sin perder datos reales: lo repetido se fusiona y lo que
+ya cuenta el hero se quita. Se avanza una sección por vez, con preview de Vercel y visto bueno.
+
+1. Hero ✔ · 2. Así se ve por dentro (Gallery + EditorialGrid) ✔ · 3. ¿Cuánto te deja cada plato?
+(FoodCost) · 4. Se cayó el internet (Offline) · 5. Cada uno con su pantalla (interludio +
+ExpandingRoles) · 6. Todo lo que incluye (StickyModules + Integrations + Why + Messages; recoge los
+datos de Stats y el último paso de Flow) · 7. Cómo cambia el día a día (vs) · 8. Gente detrás +
+7 cupos (Founder + Socios Fundadores) · 9. Precios (+ PricingPivot) · 10. De cero a operativo +
+FAQ + CTA + Footer. Se van MarqueeStrip, Stats, Flow y MidStatement.
+
+| # | Decisión | Por qué |
+|---|---|---|
+| **D9** | **Así se ve por dentro:** las 4 pantallas reales como 4 puestos (Mozo, Cocina, Caja, Dueño) en pestañas; el puesto elegido se vuelve la copia de su color y su pantalla se ve grande dentro de un marco de papel. La demo en vivo cierra la sección. Fuera las 7 fotos de stock de EditorialGrid (etiquetas como «12 mesas activas» o «BI · Dashboard en vivo» sobre fotos ajenas). | «Solo lo que existe hoy» (PRODUCT.md): nada de imágenes ajenas presentadas como el sistema funcionando. Pantalla grande y legible en vez de cuatro miniaturas iguales. Las fotos reales del local entran aquí cuando lleguen. |
+
 ## Movimiento
 
 Una entrada orquestada: palabras del titular (GSAP existente), texto y escenario suben, y la
