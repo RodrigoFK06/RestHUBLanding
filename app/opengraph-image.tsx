@@ -1,3 +1,4 @@
+import { SITE_HOST } from "@/lib/site";
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
@@ -99,7 +100,7 @@ export default function Image() {
             <span style={{ color: "rgba(255,255,255,0.18)" }}>·</span>
             <span>BI</span>
           </div>
-          <div style={{ fontSize: 20, fontWeight: 700, color: "rgba(255,255,255,0.6)" }}>resthub.app</div>
+          <div style={{ fontSize: 20, fontWeight: 700, color: "rgba(255,255,255,0.6)" }}>{SITE_HOST}</div>
         </div>
       </div>
     ),
