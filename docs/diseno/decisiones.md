@@ -59,7 +59,7 @@ ya cuenta el hero se quita. Se avanza una sección por vez, con preview de Verce
 ExpandingRoles) ✔ · 6. Todo lo que incluye ✔ (StickyModules + Integrations + Why + Messages; recoge los
 datos de Stats y el último paso de Flow) · 7. Cómo cambia el día a día (vs) ✔ · 8. Gente detrás +
 7 cupos (Founder + Socios Fundadores) ✔ · 9. Precios (+ PricingPivot) ✔ · 10. De cero a operativo +
-FAQ + CTA ✔ + Footer. Se van MarqueeStrip, Stats, Flow y MidStatement.
+FAQ + CTA ✔ + Footer ✔. Se van MarqueeStrip, Stats, Flow y MidStatement.
 
 | # | Decisión | Por qué |
 |---|---|---|
@@ -72,6 +72,7 @@ FAQ + CTA ✔ + Footer. Se van MarqueeStrip, Stats, Flow y MidStatement.
 | **D15** | **Gente detrás + 7 cupos:** Rodrigo y Emilio en fotos grandes con marco de papel (no círculos chicos), WhatsApp y LinkedIn; al lado, el Programa Socios Fundadores como un ticket de reserva en copia ámbar: el 7 grande, los tres beneficios como líneas de ticket con su valor, las condiciones en tinta y «Postular a un cupo». Fusiona Founder y Testimonials. | «Personas reales detrás» (PRODUCT.md) con la cara a escala; el programa se lee como lo que es, una reserva con condiciones. |
 | **D16** | **Precios:** tres tickets de papel (Starter, Pro, Enterprise) con el precio en display, la nota «≈ S/ 13 al día» en tinta y los checks en tinta; Pro, el recomendado, en copia ámbar, un poco más alto y primero en el celular. El precio fundador queda en una línea que apunta al programa (sin repetir el bloque de la sección 8). Fuera PricingPivot: lo que decía ya está en el encabezado. | Tres opciones como máximo, el recomendado distinto por color y forma, y la acción (WhatsApp) en cada ticket. |
 | **D17** | **Cierre:** «De cero a operativo en 72 horas» cuelga los tres días del mismo riel de cocina del hero (secuencia real, numerada 1/3, 2/3, 3/3; el día del primer turno en copia menta); el FAQ va sobre el mostrador con filetes y el mismo contenido de `lib/faqs` (schema FAQPage); el CTA final es la comanda del visitante («1 × Demo en vivo · 15 min · 0.00», «Implementación guiada · incluida», «Total hoy S/ 0.00») con «Solicitar acceso», «Agendar demo» y WhatsApp. Fuera la foto de stock del fondo, el resplandor y la Playfair itálica. | La página abre con la comanda de la Mesa 4 y cierra con la del visitante: un final anclado en el mismo mundo. |
+| **D18** | **Todo lo demás en el mismo mundo:** pie de página plano (novedades, enlaces a las secciones nuevas, contacto); barra fija y aviso de cookies sin vidrio (la barra en mostrador sólido, las cookies como papelito); botón de WhatsApp sin resplandor ni pulso infinito y oscurecido a `#128C4A` (el `#25D366` daba 1.98:1 con el ícono); avisos como papelitos del color de su significado; modal de contacto como hoja de papel (y se asoció la etiqueta de «Mensaje»); checkout sin vidrio y con la acción ámbar; `/gracias` como recibo; páginas legales con grises AA; imagen para redes con la comanda. Archivo es la fuente por defecto del sitio y se retiraron Inter, Playfair, los tokens viejos y las clases que solo usaban las secciones quitadas. Se borraron CaseStudy, Modules y Roles (no se usaban). | Que no quede ninguna pieza del mundo anterior a la vista. |
 
 ## Movimiento
 

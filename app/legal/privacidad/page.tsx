@@ -14,7 +14,7 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
       <p>
         RestHUB es un sistema de gestión integral para restaurantes desarrollado por el equipo
         RestHUB con base en Lima, Perú. Si necesitas contactarnos sobre privacidad, escríbenos a{" "}
-        <a className="text-[#F59E0B] hover:underline" href="mailto:rodrigoan.torresp@gmail.com">
+        <a className="text-ambar hover:underline" href="mailto:rodrigoan.torresp@gmail.com">
           rodrigoan.torresp@gmail.com
         </a>
         .
@@ -75,13 +75,13 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
 export default function PrivacidadPage() {
   return (
     <article className="prose prose-invert max-w-none">
-      <p className="text-[0.7rem] tracking-[0.18em] uppercase font-bold text-[#F59E0B] mb-3">
+      <p className="text-[0.7rem] tracking-[0.18em] uppercase font-bold text-ambar mb-3">
         Privacidad
       </p>
       <h1 className="text-[clamp(2rem,4vw,2.8rem)] font-black tracking-[-0.02em] leading-[1.05] mb-3">
         Política de Privacidad
       </h1>
-      <p className="text-sm text-white/45 mb-10">
+      <p className="text-sm text-texto-3 mb-10">
         Última actualización: 1 de mayo de 2026
       </p>
 
@@ -89,12 +89,12 @@ export default function PrivacidadPage() {
         {SECTIONS.map((s) => (
           <section key={s.title}>
             <h2 className="text-[1.1rem] font-bold text-white mb-2">{s.title}</h2>
-            <div className="text-[0.92rem] text-white/65 leading-[1.8]">{s.body}</div>
+            <div className="text-[0.92rem] text-texto-2 leading-[1.8]">{s.body}</div>
           </section>
         ))}
       </div>
 
-      <p className="mt-12 text-[0.78rem] text-white/40 leading-relaxed">
+      <p className="mt-12 text-[0.78rem] text-texto-3 leading-relaxed">
         Esta versión es informativa y no sustituye asesoría legal especializada. Antes de
         operar comercialmente RestHUB, deberías revisarla con un abogado en tu jurisdicción.
       </p>

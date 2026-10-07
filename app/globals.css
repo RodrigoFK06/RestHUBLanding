@@ -5,16 +5,6 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Brand colors */
-  --color-ink: #0F172A;
-  --color-night: #1E293B;
-  --color-amber: #F59E0B;
-  --color-teal: #0D9488;
-  --color-teal-l: #14B8A6;
-  --color-mist: #94A3B8;
-  --color-mist-d: #64748B;
-  --color-green-ok: #22C55E;
-
   /* Mundo «la comanda del mozo» (docs/diseno/decisiones.md · D5–D8). Paleta de marca de
      Rodrigo (obsidiana, menta, ámbar) llevada a los materiales del servicio: mostrador,
      talonario, copias y tinta carbón. Contraste verificado contra su fondo real. */
@@ -51,7 +41,7 @@
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -197,72 +187,6 @@
   }
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-  display: flex;
-  width: max-content;
-}
-
-.animate-marquee:hover,
-.animate-marquee:focus-within {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-marquee { animation: none; }
-}
-
-@keyframes bar-grow {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-
-/* Animate transform, never width (transform runs on the GPU; width forces layout). */
-.comparison-bar {
-  transform-origin: left center;
-  animation: bar-grow 1.2s var(--ease-snappy) forwards;
-}
-
-/* Reusable hover-lift / glow for primary CTAs — works on hover AND focus. */
-.btn-amber {
-  background: #F59E0B;
-  color: #0F172A;
-  box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
-  transition: box-shadow var(--dur-base) var(--ease-snappy), transform var(--dur-fast) var(--ease-snappy), background-color var(--dur-base) var(--ease-snappy);
-}
-.btn-amber:hover,
-.btn-amber:focus-visible {
-  background: #FCD34D;
-  box-shadow: 0 12px 40px rgba(245, 158, 11, 0.5);
-  transform: translateY(-1px);
-}
-/* Press feedback: the button "sinks" when pressed (Emil). Release is snappy. */
-.btn-amber:active {
-  transform: scale(0.97);
-  transition-duration: var(--dur-press);
-}
-
-.btn-ghost-light {
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: background-color var(--dur-fast) var(--ease-snappy), border-color var(--dur-fast) var(--ease-snappy), color var(--dur-fast) var(--ease-snappy), transform var(--dur-fast) var(--ease-snappy);
-}
-.btn-ghost-light:hover,
-.btn-ghost-light:focus-visible {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.55);
-}
-.btn-ghost-light:active {
-  transform: scale(0.97);
-  transition-duration: var(--dur-press);
-}
-
 /* ── Mundo «la comanda» ─────────────────────────────────────────────
    Display: Archivo condensada al mínimo de ancho (62.5) en 900, como el titular de la carta
    del comensal. Solo titulares y cifras; el texto corrido va en Archivo normal. */
@@ -402,37 +326,6 @@
   .puesto-pestana { transition: none; }
 }
 
-/* Pricing card CTAs — uses --accent set per-plan inline. */
-.pricing-cta-filled {
-  background: #F59E0B;
-  color: #0F172A;
-  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.35);
-}
-.pricing-cta-filled:hover,
-.pricing-cta-filled:focus-visible {
-  box-shadow: 0 12px 40px rgba(245, 158, 11, 0.55);
-}
-.pricing-cta-ghost-pro {
-  background: transparent;
-  color: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-.pricing-cta-ghost-pro:hover,
-.pricing-cta-ghost-pro:focus-visible {
-  color: var(--accent, #F59E0B);
-  border-color: var(--accent, #F59E0B);
-}
-.pricing-cta-ghost-light {
-  background: transparent;
-  color: #0F172A;
-  border: 1px solid #CBD5E1;
-}
-.pricing-cta-ghost-light:hover,
-.pricing-cta-ghost-light:focus-visible {
-  color: var(--accent, #F59E0B);
-  border-color: var(--accent, #F59E0B);
-}
-
 /* Mobile menu entrance — modern CSS @starting-style (no JS mount flag needed). */
 .nav-mobile-menu {
   transition: opacity var(--dur-base) var(--ease-snappy), transform var(--dur-base) var(--ease-snappy);
@@ -444,12 +337,3 @@
   }
 }
 
-/* Gentle scroll cue — smooth ease-in-out bob, never a bounce/elastic (Emil/Impeccable).
-   The global prefers-reduced-motion rule disables it automatically. */
-@keyframes cue-bob {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(3px); }
-}
-.animate-cue-bob {
-  animation: cue-bob 2.4s var(--ease-smooth) infinite;
-}

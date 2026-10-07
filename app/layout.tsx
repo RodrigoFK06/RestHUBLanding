@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Inter, Playfair_Display } from "next/font/google";
+import { Archivo } from "next/font/google";
 import "./globals.css";
 import ModalProvider from "@/components/modals/ModalProvider";
 import ToastProvider from "@/components/ui/Toast";
@@ -7,23 +7,9 @@ import WhatsAppFab from "@/components/ui/WhatsAppFab";
 import CookieBanner from "@/components/ui/CookieBanner";
 import LenisProvider from "@/components/providers/LenisProvider";
 
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-display",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["700", "900"],
-  style: ["normal", "italic"],
-});
-
 // Mundo «la comanda» (D6): Archivo con eje de ancho — condensada para titulares y cifras,
 // normal para texto, cursiva para la tinta carbón del talonario. Es la misma familia de la
-// carta del comensal en el producto. Inter y Playfair se retiran sección por sección.
+// carta del comensal en el producto y la única del sitio (Inter y Playfair ya no se usan).
 const archivo = Archivo({
   variable: "--font-archivo",
   subsets: ["latin"],
@@ -180,7 +166,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${inter.variable} ${playfair.variable} ${archivo.variable} h-full antialiased`}
+      className={`${archivo.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-mostrador text-white">
         <LenisProvider />

@@ -142,94 +142,60 @@ export default function ContactModal({ open, onClose, topic, prefillMessage }: P
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-modal-title"
-      className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center"
-      style={{ animation: "fadeIn 200ms ease-out" }}
+      className="modal-fondo fixed inset-0 z-[100] flex items-end justify-center font-brand sm:items-center"
     >
-      <button
-        type="button"
-        aria-label="Cerrar"
-        tabIndex={-1}
-        className="absolute inset-0 cursor-default"
-        onClick={onClose}
-        style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)" }}
-      />
+      <button type="button" aria-label="Cerrar" tabIndex={-1} className="absolute inset-0 cursor-default bg-black/75" onClick={onClose} />
 
       <div
         ref={dialogRef}
-        className="relative w-full sm:max-w-[460px] mx-auto sm:rounded-3xl rounded-t-3xl overflow-hidden"
-        style={{
-          background: "linear-gradient(180deg, #0F172A 0%, #0B1220 100%)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          boxShadow: "0 40px 120px rgba(0,0,0,0.6)",
-          animation: "modalIn 320ms cubic-bezier(0.16, 1, 0.3, 1)",
-        }}
+        className="modal-hoja comanda-papel relative mx-auto max-h-[92dvh] w-full overflow-y-auto rounded-t-[8px] bg-papel text-mostrador shadow-[0_40px_90px_-30px_rgba(0,0,0,0.95)] sm:max-w-[480px] sm:rounded-[4px]"
       >
+        <div aria-hidden="true" className="comanda-troquel hidden h-3 sm:block" />
         <button
+          type="button"
           onClick={onClose}
           aria-label="Cerrar"
-          className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors z-10"
+          className="absolute right-2 top-2 z-10 grid size-11 cursor-pointer place-items-center rounded-md text-impreso transition-colors hover:text-mostrador sm:top-4"
         >
-          <X className="w-4 h-4" />
+          <X className="size-5" aria-hidden="true" />
         </button>
 
         {status === "success" ? (
-          <div className="px-8 pt-12 pb-10 text-center">
-            <div
-              className="mx-auto mb-6 w-16 h-16 rounded-full flex items-center justify-center"
-              style={{
-                background: "rgba(20,184,166,0.15)",
-                border: "1px solid rgba(20,184,166,0.4)",
-                animation: "pop 420ms cubic-bezier(0.16, 1, 0.3, 1)",
-              }}
-            >
-              <CheckCircle2 className="w-8 h-8 text-[#14B8A6]" strokeWidth={2} />
-            </div>
-            <h3 className="text-2xl font-extrabold tracking-[-0.02em] text-white mb-3">
-              Mensaje enviado.
-            </h3>
-            <p className="text-sm text-white/60 leading-[1.7] mb-7">
-              Te enviamos una copia a <strong className="text-white/85">{email}</strong>.
-              <br />Respondemos en menos de 24 horas hábiles.
+          <div className="px-6 pb-8 pt-10 text-center sm:px-8">
+            <CheckCircle2 className="mx-auto size-12 text-menta-oscura" strokeWidth={2} aria-hidden="true" />
+            <h3 className="display-cond mt-4 text-[34px] uppercase leading-none">Mensaje enviado.</h3>
+            <p className="mt-3 text-[15px] leading-snug">
+              Te enviamos una copia a <strong className="font-extrabold">{email}</strong>.
+              <br />
+              Respondemos en menos de 24 horas hábiles.
             </p>
             <button
+              type="button"
               onClick={onClose}
-              className="w-full font-bold text-[#0F172A] py-3.5 rounded-full text-sm transition hover:scale-[1.02] active:scale-[0.98]"
-              style={{ background: "#F59E0B", boxShadow: "0 8px 32px rgba(245,158,11,0.35)" }}
+              className="comanda-mandar mt-7 h-13 w-full cursor-pointer rounded-lg bg-mostrador text-[17px] font-extrabold text-white"
             >
               Listo
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="px-7 pt-9 pb-7">
-            <div className="mb-6">
-              <div
-                className="inline-flex items-center gap-2 text-[0.62rem] font-bold tracking-[0.18em] uppercase px-3 py-1 rounded-full mb-3"
-                style={{ background: "rgba(245,158,11,0.12)", border: "1px solid rgba(245,158,11,0.3)", color: "#F59E0B" }}
-              >
-                {topic ?? "Contacto"}
-              </div>
-              <h3 id="contact-modal-title" className="text-2xl font-extrabold tracking-[-0.02em] text-white">
+          <form onSubmit={handleSubmit} noValidate className="px-6 pb-6 pt-6 sm:px-8 sm:pt-4">
+            <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-1 border-b-2 border-mostrador pb-2.5 pr-10">
+              <h3 id="contact-modal-title" className="display-cond text-[34px] uppercase leading-none">
                 Hablemos.
               </h3>
-              <p className="text-sm text-white/55 mt-1.5">
-                Cuéntanos sobre tu restaurante. Respondemos en menos de 24 h.
-              </p>
+              <span className="text-[12px] font-extrabold uppercase tracking-[0.04em] text-numerador">{topic ?? "Contacto"}</span>
             </div>
+            <p className="mt-3 text-[15px] leading-snug text-impreso">Cuéntanos sobre tu restaurante. Respondemos en menos de 24 h.</p>
 
-            {/* Honeypot — oculto para humanos, los bots lo rellenan */}
-            <div aria-hidden="true" className="absolute pointer-events-none opacity-0 -z-10" style={{ left: "-9999px" }}>
+            {/* Honeypot: oculto para humanos, los bots lo rellenan */}
+            <div aria-hidden="true" className="pointer-events-none absolute -z-10 opacity-0" style={{ left: "-9999px" }}>
               <label>
                 Sitio web
-                <input
-                  tabIndex={-1}
-                  autoComplete="off"
-                  value={website}
-                  onChange={(e) => setWebsite(e.target.value)}
-                />
+                <input tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} />
               </label>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+            <div className="mt-5 grid grid-cols-[minmax(0,1fr)] gap-3 sm:grid-cols-2">
               <Field
                 label="Nombre"
                 required
@@ -242,85 +208,81 @@ export default function ContactModal({ open, onClose, topic, prefillMessage }: P
                 autoComplete="name"
               />
               <Field
-                label="Email"
+                label="Correo"
                 required
                 type="email"
                 value={email}
                 onChange={setEmail}
                 onBlur={() => setTouched((t) => ({ ...t, email: true }))}
-                placeholder="tu@email.com"
+                placeholder="tu@correo.com"
                 error={touched.email ? errors.email : null}
                 autoComplete="email"
               />
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
               <Field label="Teléfono" type="tel" value={phone} onChange={setPhone} placeholder="+51 9XX XXX XXX" autoComplete="tel" />
               <Field label="Restaurante" value={restaurant} onChange={setRestaurant} placeholder="Nombre del local" autoComplete="organization" />
             </div>
 
-            <div className="mb-5">
-              <label className="block text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-white/45 mb-1.5">
-                Mensaje<span className="text-[#F59E0B] ml-0.5">*</span>
+            <div className="mt-3">
+              <label htmlFor="field-mensaje" className="block text-[12px] font-extrabold uppercase tracking-[0.04em] text-impreso">
+                Mensaje
+                <span className="ml-0.5 text-numerador" aria-hidden="true">
+                  *
+                </span>
               </label>
               <textarea
+                id="field-mensaje"
                 required
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 onBlur={() => setTouched((t) => ({ ...t, message: true }))}
                 rows={3}
                 placeholder="Cuéntanos qué necesitas resolver…"
-                className={`w-full bg-white/[0.04] border ${
-                  touched.message && errors.message
-                    ? "border-red-500/50 focus:border-red-500/70"
-                    : "border-white/10 focus:border-[#F59E0B]/60"
-                } rounded-xl px-3.5 py-2.5 text-sm text-white placeholder:text-white/25 outline-none transition resize-none`}
+                aria-invalid={Boolean(touched.message && errors.message) || undefined}
+                aria-describedby={touched.message && errors.message ? "field-mensaje-error" : undefined}
+                className={`mt-1.5 w-full resize-none rounded-md border-[1.5px] bg-white/60 px-3.5 py-2.5 text-[17px] text-mostrador outline-none transition-colors placeholder:text-impreso ${
+                  touched.message && errors.message ? "border-[#8A1C12]" : "border-papel-linea focus:border-tinta"
+                }`}
               />
               {touched.message && errors.message && (
-                <p className="mt-1.5 text-[0.72rem] text-red-300/90">{errors.message}</p>
+                <p id="field-mensaje-error" className="mt-1.5 text-[15px] font-semibold text-[#8A1C12]">
+                  {errors.message}
+                </p>
               )}
             </div>
 
             {error && (
-              <div className="mb-4 px-3.5 py-2.5 rounded-lg text-xs text-red-300 bg-red-500/10 border border-red-500/30">
+              <p role="alert" className="mt-4 rounded-md border-[1.5px] border-[#8A1C12] bg-[#F6C9C2] px-3.5 py-2.5 text-[15px] font-semibold text-[#5E1109]">
                 {error}
-              </div>
+              </p>
             )}
 
             <button
               type="submit"
               disabled={status === "sending"}
-              className="w-full font-bold text-[#0F172A] py-3.5 rounded-full text-sm transition hover:scale-[1.01] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              style={{ background: "#F59E0B", boxShadow: "0 8px 32px rgba(245,158,11,0.35)" }}
+              className="comanda-mandar mt-5 flex h-13 w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-mostrador text-[17px] font-extrabold text-white disabled:cursor-not-allowed disabled:opacity-70"
             >
               {status === "sending" ? (
                 <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <Loader2 className="size-4 animate-spin" aria-hidden="true" />
                   Enviando…
                 </>
               ) : (
                 <>
-                  <Mail className="w-4 h-4" />
+                  <Mail className="size-4" aria-hidden="true" />
                   Enviar mensaje
                 </>
               )}
             </button>
 
-            <div className="flex items-center gap-3 my-4">
-              <div className="h-px flex-1 bg-white/8" />
-              <span className="text-[0.65rem] font-semibold tracking-[0.15em] uppercase text-white/30">
-                o más rápido
-              </span>
-              <div className="h-px flex-1 bg-white/8" />
-            </div>
+            <p className="my-3 text-center text-[15px] text-impreso">o más rápido</p>
 
             <a
               href={waHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 font-semibold text-white py-3.5 rounded-full text-sm border border-white/15 hover:border-[#25D366]/60 hover:bg-[#25D366]/10 transition active:scale-[0.98]"
+              className="comanda-plato flex h-12 w-full items-center justify-center gap-2 rounded-lg border-[1.5px] border-mostrador text-[17px] font-extrabold"
             >
-              <MessageCircle className="w-4 h-4 text-[#25D366]" />
+              <MessageCircle className="size-[18px] text-[#128C4A]" strokeWidth={2.4} aria-hidden="true" />
               Escribir por WhatsApp
             </a>
           </form>
@@ -328,9 +290,11 @@ export default function ContactModal({ open, onClose, topic, prefillMessage }: P
       </div>
 
       <style>{`
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes modalIn { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        @keyframes pop { 0% { transform: scale(0.5); opacity: 0; } 70% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); } }
+        @keyframes modal-fondo { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes modal-hoja { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+        .modal-fondo { animation: modal-fondo 200ms ease-out both; }
+        .modal-hoja { animation: modal-hoja 300ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+        @media (prefers-reduced-motion: reduce) { .modal-fondo, .modal-hoja { animation: none; } }
       `}</style>
     </div>
   );
@@ -363,10 +327,10 @@ function Field({
   const id = `field-${label.toLowerCase()}`;
   return (
     <div>
-      <label htmlFor={id} className="block text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-white/65 mb-1.5">
+      <label htmlFor={id} className="block text-[12px] font-extrabold uppercase tracking-[0.04em] text-impreso">
         {label}
         {required && (
-          <span className="text-[#F59E0B] ml-0.5" aria-hidden="true">
+          <span className="ml-0.5 text-numerador" aria-hidden="true">
             *
           </span>
         )}
@@ -383,12 +347,12 @@ function Field({
         placeholder={placeholder}
         aria-invalid={hasError || undefined}
         aria-describedby={hasError ? `${id}-error` : undefined}
-        className={`w-full bg-white/[0.06] border ${
-          hasError ? "border-red-500/60 focus:border-red-500/80" : "border-white/15 focus:border-[#F59E0B]/70"
-        } rounded-xl px-3.5 py-3 text-sm text-white placeholder:text-white/35 outline-none transition`}
+        className={`mt-1.5 h-12 w-full rounded-md border-[1.5px] bg-white/60 px-3.5 text-[17px] text-mostrador outline-none transition-colors placeholder:text-impreso ${
+          hasError ? "border-[#8A1C12]" : "border-papel-linea focus:border-tinta"
+        }`}
       />
       {hasError && (
-        <p id={`${id}-error`} className="mt-1.5 text-[0.72rem] text-red-300">
+        <p id={`${id}-error`} className="mt-1.5 text-[15px] font-semibold text-[#8A1C12]">
           {error}
         </p>
       )}

@@ -32,28 +32,11 @@ export function useToast() {
 
 let nextId = 1;
 
-const VARIANT_STYLES: Record<
-  ToastVariant,
-  { icon: React.ReactNode; ring: string; bg: string; titleColor: string }
-> = {
-  success: {
-    icon: <CheckCircle2 className="w-5 h-5 text-[#14B8A6]" strokeWidth={2.2} />,
-    ring: "rgba(20,184,166,0.4)",
-    bg: "rgba(20,184,166,0.06)",
-    titleColor: "#14B8A6",
-  },
-  error: {
-    icon: <AlertCircle className="w-5 h-5 text-red-400" strokeWidth={2.2} />,
-    ring: "rgba(239,68,68,0.4)",
-    bg: "rgba(239,68,68,0.06)",
-    titleColor: "#fca5a5",
-  },
-  info: {
-    icon: <Info className="w-5 h-5 text-[#F59E0B]" strokeWidth={2.2} />,
-    ring: "rgba(245,158,11,0.4)",
-    bg: "rgba(245,158,11,0.06)",
-    titleColor: "#F59E0B",
-  },
+// Avisos como papelitos del color de su significado (docs/diseno/decisiones.md · D18).
+const VARIANT_STYLES: Record<ToastVariant, { icon: React.ReactNode; papel: string }> = {
+  success: { icon: <CheckCircle2 className="size-5 text-menta-oscura" strokeWidth={2.4} aria-hidden="true" />, papel: "bg-copia-cocina" },
+  error: { icon: <AlertCircle className="size-5 text-[#8A1C12]" strokeWidth={2.4} aria-hidden="true" />, papel: "bg-[#F6C9C2]" },
+  info: { icon: <Info className="size-5 text-ambar-oscuro" strokeWidth={2.4} aria-hidden="true" />, papel: "bg-copia-caja" },
 };
 
 export default function ToastProvider({ children }: { children: React.ReactNode }) {
@@ -95,31 +78,20 @@ export default function ToastProvider({ children }: { children: React.ReactNode 
           return (
             <div
               key={t.id}
-              className="pointer-events-auto rounded-2xl pl-4 pr-3 py-3.5 flex items-start gap-3"
-              style={{
-                background: `linear-gradient(180deg, rgba(15,23,42,0.95) 0%, rgba(11,18,32,0.95) 100%), ${s.bg}`,
-                border: `1px solid ${s.ring}`,
-                boxShadow: "0 24px 60px rgba(0,0,0,0.45)",
-                backdropFilter: "blur(14px)",
-                WebkitBackdropFilter: "blur(14px)",
-                animation: "toastIn 320ms cubic-bezier(0.16, 1, 0.3, 1)",
-              }}
+              className={`toast-entra comanda-papel pointer-events-auto flex items-start gap-3 rounded-[4px] py-3 pl-4 pr-1 font-brand text-mostrador shadow-[0_18px_36px_-16px_rgba(0,0,0,0.9)] ${s.papel}`}
             >
-              <div className="shrink-0 mt-0.5">{s.icon}</div>
-              <div className="flex-1 min-w-0">
-                <div className="text-[0.85rem] font-bold leading-snug" style={{ color: s.titleColor }}>
-                  {t.title}
-                </div>
-                {t.description && (
-                  <div className="text-[0.78rem] text-white/65 mt-0.5 leading-snug">{t.description}</div>
-                )}
+              <div className="mt-0.5 shrink-0">{s.icon}</div>
+              <div className="min-w-0 flex-1">
+                <div className="text-[15px] font-extrabold leading-snug">{t.title}</div>
+                {t.description && <div className="mt-0.5 text-[15px] leading-snug">{t.description}</div>}
               </div>
               <button
+                type="button"
                 onClick={() => dismiss(t.id)}
-                aria-label="Cerrar"
-                className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-colors"
+                aria-label="Cerrar aviso"
+                className="-mt-1.5 grid size-10 shrink-0 cursor-pointer place-items-center rounded-md transition-opacity hover:opacity-70"
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="size-4" aria-hidden="true" />
               </button>
             </div>
           );
@@ -127,7 +99,9 @@ export default function ToastProvider({ children }: { children: React.ReactNode 
       </div>
 
       <style>{`
-        @keyframes toastIn { from { opacity: 0; transform: translateX(20px) scale(0.96); } to { opacity: 1; transform: translateX(0) scale(1); } }
+        @keyframes toast-entra { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
+        .toast-entra { animation: toast-entra 300ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+        @media (prefers-reduced-motion: reduce) { .toast-entra { animation: none; } }
       `}</style>
     </ToastContext.Provider>
   );

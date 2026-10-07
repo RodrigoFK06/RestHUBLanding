@@ -23,8 +23,15 @@ export default function Nav() {
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 60);
     handler();
+    // Al entrar directo a un ancla (#faq) el salto ocurre sin evento de scroll: se recalcula.
+    const tras = window.setTimeout(handler, 200);
     window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
+    window.addEventListener("hashchange", handler);
+    return () => {
+      window.clearTimeout(tras);
+      window.removeEventListener("scroll", handler);
+      window.removeEventListener("hashchange", handler);
+    };
   }, []);
 
   useEffect(() => {

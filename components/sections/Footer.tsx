@@ -8,17 +8,20 @@ import { MessageCircle, Mail, Copy, Check, Loader2, ArrowRight } from "lucide-re
 import { useModals } from "@/components/modals/ModalProvider";
 import { useToast } from "@/components/ui/Toast";
 
+// Pie de página (docs/diseno/decisiones.md · D18): misma lógica de novedades y contacto, en el
+// mundo de la comanda (franja plana, sin degradado ni vidrio) y con enlaces a las secciones nuevas.
+
 const productLinks = [
   { href: "#modulos", label: "Módulos" },
   { href: "#roles", label: "Roles" },
-  { href: "#flujo", label: "Flujo operativo" },
   { href: "#vs", label: "Comparativa" },
+  { href: "#precios", label: "Precios" },
 ];
 
-const whyLinks = [
-  { href: "#why", label: "Nuestra misión" },
-  { href: "#mensajes", label: "Argumentos clave" },
-  { href: "#faq", label: "FAQ" },
+const ayudaLinks = [
+  { href: "#fundadores", label: "Quiénes somos" },
+  { href: "#setup", label: "Implementación en 72 horas" },
+  { href: "#faq", label: "Preguntas frecuentes" },
 ];
 
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "51961869348";
@@ -27,15 +30,11 @@ const CONTACT_EMAIL = "gerencia@árkos.com";
 export default function Footer() {
   const { openContact } = useModals();
   const toast = useToast();
-  const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    "Hola RestHUB, me gustaría más información."
-  )}`;
+  const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola RestHUB, me gustaría más información.")}`;
 
   const [copied, setCopied] = useState<"email" | "wa" | null>(null);
   const [newsletterEmail, setNewsletterEmail] = useState("");
-  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "sending" | "success">(
-    "idle"
-  );
+  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "sending" | "success">("idle");
 
   const copy = async (text: string, kind: "email" | "wa") => {
     try {
@@ -76,170 +75,140 @@ export default function Footer() {
       }, 3000);
     } catch (err) {
       setNewsletterStatus("idle");
-      toast.error(
-        "No pudimos suscribirte",
-        err instanceof Error ? err.message : "Intenta más tarde."
-      );
+      toast.error("No pudimos suscribirte", err instanceof Error ? err.message : "Intenta más tarde.");
     }
   };
 
   return (
-    <footer className="bg-black border-t border-white/8 pt-16 pb-10">
-      <div className="max-w-[1160px] mx-auto px-8">
-        {/* Newsletter band */}
-        <div
-          className="rounded-3xl p-7 sm:p-8 mb-14 flex flex-col md:flex-row md:items-center gap-6 md:gap-10"
-          style={{
-            background: "linear-gradient(135deg, rgba(245,158,11,0.07) 0%, rgba(20,184,166,0.06) 100%)",
-            border: "1px solid rgba(255,255,255,0.06)",
-          }}
-        >
-          <div className="flex-1 min-w-0">
-            <div className="text-[0.62rem] font-bold tracking-[0.18em] uppercase text-[#F59E0B] mb-1.5">
-              Recibe novedades
-            </div>
-            <h3 className="text-[1.4rem] sm:text-[1.6rem] font-extrabold tracking-[-0.02em] text-white leading-tight">
-              Una vez al mes. Sin ruido.
-            </h3>
-            <p className="text-[0.86rem] text-white/55 mt-1.5 max-w-[420px]">
+    <footer className="border-t border-linea bg-mostrador font-brand text-white">
+      <div className="mx-auto max-w-[1376px] px-5 pb-10 pt-16 sm:px-8 lg:px-10">
+        {/* Novedades: una franja plana */}
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-6 border-b border-linea pb-12 md:grid-cols-[minmax(0,1fr)_minmax(0,460px)] md:items-end md:gap-10">
+          <div>
+            <h2 className="display-cond text-[34px] leading-none">
+              Novedades una vez al mes. <span className="text-menta">Sin ruido.</span>
+            </h2>
+            <p className="mt-3 max-w-[48ch] text-[15px] leading-snug text-texto-2">
               Te avisamos cuando lanzamos un módulo nuevo o publicamos algo útil.
             </p>
           </div>
-          <form onSubmit={handleNewsletter} className="flex flex-col sm:flex-row gap-2 w-full md:max-w-[460px]">
+          <form onSubmit={handleNewsletter} className="flex flex-col gap-2 sm:flex-row">
+            <label htmlFor="footer-email" className="sr-only">
+              Tu correo
+            </label>
             <div className="relative flex-1">
-              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none" />
+              <Mail className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-texto-3" aria-hidden="true" />
               <input
+                id="footer-email"
                 type="email"
                 required
-                placeholder="tu@email.com"
+                autoComplete="email"
+                placeholder="tu@correo.com"
                 value={newsletterEmail}
                 onChange={(e) => setNewsletterEmail(e.target.value)}
                 disabled={newsletterStatus !== "idle"}
-                className="w-full bg-white/[0.04] border border-white/10 focus:border-[#F59E0B]/60 rounded-full pl-10 pr-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition disabled:opacity-60"
+                className="h-12 w-full rounded-lg border-[1.5px] border-linea bg-mostrador-2 pl-10 pr-4 text-[15px] text-white outline-none transition-colors placeholder:text-texto-3 focus:border-menta disabled:opacity-60"
               />
             </div>
             <button
               type="submit"
               disabled={newsletterStatus !== "idle"}
-              className="font-bold text-[#0F172A] px-6 py-3 rounded-full text-sm transition hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2 shrink-0"
-              style={{ background: "#F59E0B", boxShadow: "0 8px 24px rgba(245,158,11,0.3)" }}
+              className="btn-accion inline-flex h-12 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-lg px-5 text-[15px] font-extrabold disabled:cursor-not-allowed disabled:opacity-70"
             >
               {newsletterStatus === "sending" ? (
                 <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <Loader2 className="size-4 animate-spin" aria-hidden="true" />
                   Suscribiendo…
                 </>
               ) : newsletterStatus === "success" ? (
                 <>
-                  <Check className="w-4 h-4" />
+                  <Check className="size-4" aria-hidden="true" />
                   ¡Listo!
                 </>
               ) : (
                 <>
                   Suscribirme
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="size-4" strokeWidth={2.5} aria-hidden="true" />
                 </>
               )}
             </button>
           </form>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.1fr] gap-12 mb-12">
-          {/* Brand */}
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr]">
           <div>
-            <Image
-              src="/logo.svg"
-              alt="RestHUB"
-              width={120}
-              height={24}
-              className="invert mb-4 h-6 w-auto"
-            />
-            <p className="text-[0.84rem] text-[#94A3B8] leading-[1.65] max-w-[260px]">
-              El hub operativo completo para restaurantes, desde la mesa hasta el balance.
+            <Image src="/logo.svg" alt="RestHUB" width={120} height={24} className="h-6 w-auto invert" />
+            <p className="mt-4 max-w-[30ch] text-[15px] leading-snug text-texto-2">
+              El sistema completo para restaurantes, desde la mesa hasta el balance. Hecho en Perú.
             </p>
           </div>
 
-          {/* Producto */}
-          <div>
-            <h5 className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#94A3B8] mb-3.5">
-              Producto
-            </h5>
-            <ul className="flex flex-col gap-2.5">
+          <nav aria-label="Producto">
+            <p className="text-[12px] font-extrabold uppercase tracking-[0.04em] text-texto-3">Producto</p>
+            <ul className="mt-3 space-y-1">
               {productLinks.map((l) => (
                 <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="text-[0.84rem] text-[#94A3B8] hover:text-white transition-colors"
-                  >
+                  <Link href={l.href} className="inline-flex min-h-10 items-center text-[15px] text-texto-2 transition-colors hover:text-white">
                     {l.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* Por qué */}
-          <div>
-            <h5 className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#94A3B8] mb-3.5">
-              Por qué RestHUB
-            </h5>
-            <ul className="flex flex-col gap-2.5">
-              {whyLinks.map((l) => (
+          <nav aria-label="Te acompañamos">
+            <p className="text-[12px] font-extrabold uppercase tracking-[0.04em] text-texto-3">Te acompañamos</p>
+            <ul className="mt-3 space-y-1">
+              {ayudaLinks.map((l) => (
                 <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="text-[0.84rem] text-[#94A3B8] hover:text-white transition-colors"
-                  >
+                  <Link href={l.href} className="inline-flex min-h-10 items-center text-[15px] text-texto-2 transition-colors hover:text-white">
                     {l.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* Contacto */}
           <div>
-            <h5 className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#94A3B8] mb-3.5">
-              Contacto
-            </h5>
-            <ul className="flex flex-col gap-3">
-              <li className="flex items-center gap-1.5">
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  className="text-[0.84rem] text-[#94A3B8] hover:text-white transition-colors truncate"
-                >
+            <p className="text-[12px] font-extrabold uppercase tracking-[0.04em] text-texto-3">Contacto</p>
+            <ul className="mt-3 space-y-1">
+              <li className="flex items-center gap-1">
+                <a href={`mailto:${CONTACT_EMAIL}`} className="inline-flex min-h-10 items-center truncate text-[15px] text-texto-2 transition-colors hover:text-white">
                   {CONTACT_EMAIL}
                 </a>
                 <button
+                  type="button"
                   onClick={() => copy(CONTACT_EMAIL, "email")}
-                  aria-label="Copiar email"
-                  className="text-white/30 hover:text-white transition-colors p-1 cursor-pointer"
+                  aria-label="Copiar correo"
+                  className="grid size-10 cursor-pointer place-items-center rounded-md text-texto-3 transition-colors hover:text-white"
                 >
-                  {copied === "email" ? <Check className="w-3.5 h-3.5 text-[#14B8A6]" /> : <Copy className="w-3.5 h-3.5" />}
+                  {copied === "email" ? <Check className="size-4 text-menta" aria-hidden="true" /> : <Copy className="size-4" aria-hidden="true" />}
                 </button>
               </li>
-              <li className="flex items-center gap-1.5">
+              <li className="flex items-center gap-1">
                 <a
                   href={waHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[0.84rem] text-[#94A3B8] hover:text-white transition-colors"
+                  className="inline-flex min-h-10 items-center gap-2 text-[15px] text-texto-2 transition-colors hover:text-white"
                 >
-                  <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
+                  <MessageCircle className="size-4 text-menta" aria-hidden="true" />
                   +51 961 869 348
                 </a>
                 <button
+                  type="button"
                   onClick={() => copy("+51 961 869 348", "wa")}
                   aria-label="Copiar WhatsApp"
-                  className="text-white/30 hover:text-white transition-colors p-1 cursor-pointer"
+                  className="grid size-10 cursor-pointer place-items-center rounded-md text-texto-3 transition-colors hover:text-white"
                 >
-                  {copied === "wa" ? <Check className="w-3.5 h-3.5 text-[#14B8A6]" /> : <Copy className="w-3.5 h-3.5" />}
+                  {copied === "wa" ? <Check className="size-4 text-menta" aria-hidden="true" /> : <Copy className="size-4" aria-hidden="true" />}
                 </button>
               </li>
               <li>
                 <button
+                  type="button"
                   onClick={() => openContact({ topic: "Agendar demo" })}
-                  className="text-[0.84rem] text-[#94A3B8] hover:text-white transition-colors cursor-pointer"
+                  className="link-menta inline-flex min-h-10 cursor-pointer items-center text-[15px] font-semibold"
                 >
                   Solicitar demo
                 </button>
@@ -248,36 +217,20 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-8 border-t border-white/6">
-          <p className="text-[0.75rem] text-[#94A3B8]">
-            © 2026 RestHUB. Todos los derechos reservados. ·{" "}
-            <a
-              href="https://xn--rkos-4na.com"
-              target="_blank"
-              rel="noopener"
-              className="text-[#94A3B8] hover:text-white transition-colors"
-            >
-              Desarrollado por{" "}
-              <ArkosLogo className="inline-block h-[1.05em] w-auto align-[-0.15em]" />{" "}
-              Árkos
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-linea pt-8 text-[15px] text-texto-3">
+          <p>
+            © 2026 RestHUB · v1.0 ·{" "}
+            <a href="https://xn--rkos-4na.com" target="_blank" rel="noopener" className="transition-colors hover:text-white">
+              Desarrollado por <ArkosLogo className="inline-block h-[1.05em] w-auto align-[-0.15em]" /> Árkos
             </a>
           </p>
           <div className="flex items-center gap-5">
-            <Link
-              href="/legal/privacidad"
-              className="text-[0.75rem] text-[#94A3B8] hover:text-white transition-colors"
-            >
+            <Link href="/legal/privacidad" className="inline-flex min-h-10 items-center transition-colors hover:text-white">
               Privacidad
             </Link>
-            <Link
-              href="/legal/terminos"
-              className="text-[0.75rem] text-[#94A3B8] hover:text-white transition-colors"
-            >
+            <Link href="/legal/terminos" className="inline-flex min-h-10 items-center transition-colors hover:text-white">
               Términos
             </Link>
-            <span className="text-[0.65rem] font-bold tracking-[0.1em] uppercase text-[rgba(148,163,184,0.35)] px-3 py-1 rounded-full bg-white/3 border border-white/5">
-              v1.0 · Abril 2026
-            </span>
           </div>
         </div>
       </div>

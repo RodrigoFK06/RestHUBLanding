@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react";
+import { Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { CheckCircle2, ArrowRight, MessageCircle } from "lucide-react";
-import Confetti from "@/components/ui/Confetti";
+import { ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
 
-const POST_CHECKOUT_URL =
-  process.env.NEXT_PUBLIC_POST_CHECKOUT_URL ?? "https://rest-hub.vercel.app/";
+// Después del pago (docs/diseno/decisiones.md · D18): el recibo de la suscripción, en papel
+// sobre el mostrador, con el acceso a la cuenta como acción principal.
+
+const POST_CHECKOUT_URL = process.env.NEXT_PUBLIC_POST_CHECKOUT_URL ?? "https://rest-hub.vercel.app/";
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "51961869348";
 
 function GraciasContent() {
@@ -17,89 +18,39 @@ function GraciasContent() {
   const planName = params.get("plan") ?? "tu plan";
   const email = params.get("email");
 
-  const [showConfetti, setShowConfetti] = useState(true);
-
-  useEffect(() => {
-    const t = setTimeout(() => setShowConfetti(false), 3500);
-    return () => clearTimeout(t);
-  }, []);
-
   return (
-    <main className="min-h-screen flex items-center justify-center px-6 py-20 relative overflow-hidden">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 50% at 50% 20%, rgba(245,158,11,0.18) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 80% 80%, rgba(20,184,166,0.12) 0%, transparent 60%)",
-        }}
-      />
-      {showConfetti && (
-        <div className="absolute top-0 left-0 right-0 h-[60vh]">
-          <Confetti count={60} />
-        </div>
-      )}
+    <main className="flex min-h-screen flex-col items-center justify-center bg-mostrador px-5 py-16 font-brand text-white">
+      <Link href="/" className="mb-10 inline-flex min-h-11 items-center" aria-label="RestHUB, ir al inicio">
+        <Image src="/logo.svg" alt="RestHUB" width={120} height={24} className="h-6 w-auto invert" />
+      </Link>
 
-      <div className="relative z-10 max-w-[520px] text-center">
-        <Link href="/" className="inline-flex items-center mb-10">
-          <Image
-            src="/logo.svg"
-            alt="RestHUB"
-            width={0}
-            height={0}
-            sizes="200px"
-            className="invert"
-            style={{ height: "1.5rem", width: "auto" }}
-          />
-        </Link>
-
-        <div
-          className="mx-auto mb-7 w-20 h-20 rounded-full flex items-center justify-center relative"
-          style={{
-            background: "rgba(20,184,166,0.15)",
-            border: "1px solid rgba(20,184,166,0.4)",
-            animation: "pop 480ms cubic-bezier(0.16, 1, 0.3, 1)",
-          }}
-        >
-          <CheckCircle2 className="w-10 h-10 text-[#14B8A6]" strokeWidth={2} />
-        </div>
-
-        <div
-          className="inline-flex items-center gap-2 text-[0.62rem] font-bold tracking-[0.18em] uppercase px-3 py-1 rounded-full mb-4"
-          style={{
-            background: "rgba(245,158,11,0.12)",
-            border: "1px solid rgba(245,158,11,0.3)",
-            color: "#F59E0B",
-          }}
-        >
-          Suscripción confirmada
-        </div>
-
-        <h1 className="text-[clamp(2.2rem,5vw,3rem)] font-black tracking-[-0.025em] leading-[1.05] mb-4">
-          ¡Bienvenido a RestHUB!
-        </h1>
-        <p className="text-base text-white/65 leading-[1.7] mb-2">
-          Activamos tu plan <strong className="text-white/90">{planName}</strong>.
-          {email && (
-            <>
-              <br />
-              Te enviamos el recibo a <strong className="text-white/90">{email}</strong>.
-            </>
-          )}
-        </p>
-        {orderId && (
-          <div className="text-[0.72rem] text-white/35 font-mono mb-8 mt-3">
-            Orden {orderId}
+      <div className="gracias-entra comanda-papel w-full max-w-[480px] bg-papel text-mostrador shadow-[0_34px_64px_-26px_rgba(0,0,0,0.9)]">
+        <div aria-hidden="true" className="comanda-troquel h-3" />
+        <div className="px-6 pb-7 pt-3 sm:px-8">
+          <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-1 border-b-2 border-mostrador pb-2.5">
+            <span className="display-cond text-[26px] uppercase leading-none">Recibo</span>
+            {orderId && <span className="display-cond text-[19px] leading-none text-numerador tabular-nums">Orden {orderId}</span>}
           </div>
-        )}
 
-        <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
+          <CheckCircle2 className="mt-6 size-10 text-menta-oscura" strokeWidth={2.2} aria-hidden="true" />
+          <h1 className="display-cond mt-3 text-[clamp(2.5rem,8vw,3.25rem)] uppercase leading-[0.92]">¡Bienvenido a RestHUB!</h1>
+          <p className="mt-4 text-[17px] leading-[1.5]">
+            Activamos tu plan <strong className="font-extrabold">{planName}</strong>.
+            {email && (
+              <>
+                <br />
+                Te enviamos el recibo a <strong className="font-extrabold">{email}</strong>.
+              </>
+            )}
+          </p>
+          <p className="mt-3 text-[15px] font-semibold italic text-tinta">Suscripción confirmada.</p>
+
           <a
             href={POST_CHECKOUT_URL}
-            className="inline-flex items-center justify-center gap-2 font-bold text-[#0F172A] px-7 py-3.5 rounded-full text-sm transition hover:scale-[1.02] active:scale-[0.98]"
-            style={{ background: "#F59E0B", boxShadow: "0 8px 32px rgba(245,158,11,0.35)" }}
+            className="comanda-mandar mt-7 flex h-13 w-full items-center justify-center gap-2 rounded-lg bg-mostrador text-[17px] font-extrabold text-white"
           >
             Acceder a tu cuenta
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="size-[18px]" strokeWidth={2.5} aria-hidden="true" />
           </a>
           <a
             href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
@@ -107,23 +58,22 @@ function GraciasContent() {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 font-semibold text-white px-7 py-3.5 rounded-full text-sm border border-white/15 hover:border-[#25D366]/60 hover:bg-[#25D366]/10 transition active:scale-[0.98]"
+            className="comanda-plato mt-3 flex h-12 w-full items-center justify-center gap-2 rounded-lg border-[1.5px] border-mostrador text-[17px] font-extrabold"
           >
-            <MessageCircle className="w-4 h-4 text-[#25D366]" />
+            <MessageCircle className="size-[18px] text-[#128C4A]" strokeWidth={2.4} aria-hidden="true" />
             WhatsApp soporte
           </a>
         </div>
-
-        <Link
-          href="/"
-          className="inline-block mt-10 text-[0.78rem] text-white/45 hover:text-white/85 transition-colors"
-        >
-          ← Volver a la web
-        </Link>
       </div>
 
+      <Link href="/" className="mt-8 inline-flex min-h-11 items-center text-[15px] text-texto-3 transition-colors hover:text-white">
+        ← Volver a la web
+      </Link>
+
       <style>{`
-        @keyframes pop { 0% { transform: scale(0.5); opacity: 0; } 70% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); } }
+        @keyframes gracias-entra { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+        .gracias-entra { animation: gracias-entra 400ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+        @media (prefers-reduced-motion: reduce) { .gracias-entra { animation: none; } }
       `}</style>
     </main>
   );

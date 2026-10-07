@@ -34,36 +34,25 @@ export default function WhatsAppFab() {
 
   return (
     <div
-      className="fixed right-4 sm:right-6 z-[60] flex flex-col items-end gap-2"
-      style={{
-        bottom: "calc(env(safe-area-inset-bottom, 0px) + 90px)",
-        animation: "fabIn 380ms cubic-bezier(0.16, 1, 0.3, 1)",
-      }}
+      className="fab-entra fixed right-4 z-[60] flex flex-col items-end gap-2 font-brand sm:right-6"
+      style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 88px)" }}
     >
       {showTooltip && !dismissed && (
         <div
           role="status"
-          className="flex items-center gap-2 pl-4 pr-2 py-2.5 rounded-2xl shadow-2xl max-w-[260px]"
-          style={{
-            background: "rgba(15,23,42,0.96)",
-            border: "1px solid rgba(255,255,255,0.1)",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
-            animation: "tooltipIn 320ms cubic-bezier(0.16, 1, 0.3, 1)",
-          }}
+          className="comanda-papel flex max-w-[260px] items-center gap-1 rounded-[4px] bg-papel py-1.5 pl-4 pr-1 text-mostrador shadow-[0_18px_36px_-16px_rgba(0,0,0,0.9)]"
         >
-          <span className="text-[0.78rem] text-white/85 leading-snug">
-            ¿Dudas? Escríbenos por WhatsApp.
-          </span>
+          <span className="text-[15px] font-semibold leading-snug">¿Dudas? Escríbenos por WhatsApp.</span>
           <button
+            type="button"
             onClick={() => {
               setShowTooltip(false);
               setDismissed(true);
             }}
-            aria-label="Cerrar"
-            className="shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-white/45 hover:text-white hover:bg-white/10 transition-colors"
+            aria-label="Cerrar aviso de WhatsApp"
+            className="grid size-10 shrink-0 cursor-pointer place-items-center rounded-md text-impreso transition-colors hover:text-mostrador"
           >
-            <X className="w-3 h-3" />
+            <X className="size-4" aria-hidden="true" />
           </button>
         </div>
       )}
@@ -73,26 +62,15 @@ export default function WhatsAppFab() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contactar por WhatsApp"
-        className="relative w-14 h-14 rounded-full flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
-        style={{
-          background: "#25D366",
-          boxShadow: "0 12px 40px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0.5)",
-        }}
+        className="grid size-14 place-items-center rounded-full bg-[#128C4A] shadow-[0_14px_28px_-12px_rgba(0,0,0,0.9)] transition-transform duration-150 hover:scale-105 active:scale-95 motion-reduce:transition-none"
       >
-        <span
-          className="absolute inset-0 rounded-full"
-          style={{
-            border: "2px solid rgba(37,211,102,0.6)",
-            animation: "fabPing 2.4s cubic-bezier(0,0,.2,1) infinite",
-          }}
-        />
-        <MessageCircle className="w-6 h-6 text-white relative z-10" strokeWidth={2.2} />
+        <MessageCircle className="size-6 text-white" strokeWidth={2.2} aria-hidden="true" />
       </a>
 
       <style>{`
-        @keyframes fabIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes tooltipIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes fabPing { 0% { transform: scale(1); opacity: 0.7; } 80%,100% { transform: scale(1.6); opacity: 0; } }
+        @keyframes fab-entra { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+        .fab-entra { animation: fab-entra 360ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+        @media (prefers-reduced-motion: reduce) { .fab-entra { animation: none; } }
       `}</style>
     </div>
   );

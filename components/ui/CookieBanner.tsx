@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Cookie, X } from "lucide-react";
+import { X } from "lucide-react";
+
+// Aviso de cookies (docs/diseno/decisiones.md · D18): un papelito que flota sobre el
+// mostrador, sin vidrio ni degradado. Más angosto para no tapar el talonario del hero.
 
 const STORAGE_KEY = "resthub.cookies.accepted.v1";
 
@@ -10,7 +13,11 @@ export default function CookieBanner() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (!window.localStorage.getItem(STORAGE_KEY)) {
+    let guardado: string | null = null;
+    try {
+      guardado = window.localStorage.getItem(STORAGE_KEY);
+    } catch {}
+    if (!guardado) {
       const t = setTimeout(() => setVisible(true), 1200);
       return () => clearTimeout(t);
     }
@@ -29,64 +36,41 @@ export default function CookieBanner() {
     <div
       role="dialog"
       aria-label="Aviso de cookies"
-      className="fixed left-3 right-3 sm:left-6 sm:right-auto sm:max-w-[400px] z-[90]"
-      style={{
-        bottom: "calc(env(safe-area-inset-bottom, 0px) + 96px)",
-        animation: "cookieIn 380ms cubic-bezier(0.16, 1, 0.3, 1)",
-      }}
+      className="cookie-entra fixed left-3 right-3 z-[90] font-brand sm:left-6 sm:right-auto sm:max-w-[340px]"
+      style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 88px)" }}
     >
-      <div
-        className="rounded-2xl p-5 relative"
-        style={{
-          background: "linear-gradient(180deg, rgba(15,23,42,0.96) 0%, rgba(11,18,32,0.96) 100%)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          boxShadow: "0 24px 60px rgba(0,0,0,0.5)",
-          backdropFilter: "blur(14px)",
-          WebkitBackdropFilter: "blur(14px)",
-        }}
-      >
+      <div className="comanda-papel relative rounded-[4px] bg-papel px-4 pb-4 pt-3.5 text-mostrador shadow-[0_24px_48px_-20px_rgba(0,0,0,0.9)]">
         <button
+          type="button"
           onClick={() => accept("essential")}
-          aria-label="Cerrar"
-          className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-colors"
+          aria-label="Cerrar y usar solo las esenciales"
+          className="absolute right-1.5 top-1.5 grid size-10 cursor-pointer place-items-center rounded-md text-impreso transition-colors hover:text-mostrador"
         >
-          <X className="w-3.5 h-3.5" />
+          <X className="size-4" aria-hidden="true" />
         </button>
-
-        <div className="flex items-start gap-3 mb-4">
-          <div
-            className="shrink-0 w-9 h-9 rounded-full flex items-center justify-center"
-            style={{ background: "rgba(245,158,11,0.12)", border: "1px solid rgba(245,158,11,0.3)" }}
-          >
-            <Cookie className="w-4 h-4 text-[#F59E0B]" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="text-[0.85rem] font-bold text-white mb-1">Usamos cookies</div>
-            <p className="text-[0.78rem] text-white/55 leading-snug">
-              Solo las necesarias para que el sitio funcione bien. Puedes ajustar tu preferencia.
-            </p>
-          </div>
-        </div>
-
-        <div className="flex gap-2">
+        <p className="display-cond pr-10 text-[26px] uppercase leading-none">Usamos cookies</p>
+        <p className="mt-2 pr-4 text-[15px] leading-snug">Solo las necesarias para que el sitio funcione bien. Puedes ajustar tu preferencia.</p>
+        <div className="mt-4 grid grid-cols-2 gap-2">
           <button
+            type="button"
             onClick={() => accept("essential")}
-            className="flex-1 text-[0.78rem] font-semibold text-white/75 hover:text-white border border-white/10 hover:border-white/25 rounded-full py-2.5 transition active:scale-[0.98] cursor-pointer"
+            className="comanda-plato h-11 cursor-pointer rounded-lg border-[1.5px] border-mostrador text-[15px] font-bold"
           >
             Solo esenciales
           </button>
           <button
+            type="button"
             onClick={() => accept("all")}
-            className="flex-1 text-[0.78rem] font-bold text-[#0F172A] rounded-full py-2.5 transition hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-            style={{ background: "#F59E0B", boxShadow: "0 6px 24px rgba(245,158,11,0.3)" }}
+            className="comanda-mandar h-11 cursor-pointer rounded-lg bg-mostrador text-[15px] font-extrabold text-white"
           >
             Aceptar todas
           </button>
         </div>
       </div>
-
       <style>{`
-        @keyframes cookieIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes cookie-entra { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+        .cookie-entra { animation: cookie-entra 360ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+        @media (prefers-reduced-motion: reduce) { .cookie-entra { animation: none; } }
       `}</style>
     </div>
   );
