@@ -21,28 +21,41 @@ const playfair = Playfair_Display({
   style: ["normal", "italic"],
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://resthub.app";
-const TITLE = "RestHUB — ERP para Restaurantes";
-const DESCRIPTION =
-  "POS, KDS, caja, contabilidad y BI en un solo sistema. Roles diferenciados, pagos integrados y soporte en español. Diseñado para restaurantes en Latinoamérica.";
+import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION, SAME_AS } from "@/lib/site";
+import { faqs } from "@/lib/faqs";
+
+const TITLE = SITE_TITLE;
+const DESCRIPTION = SITE_DESCRIPTION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: TITLE,
+  title: { default: TITLE, template: `%s | ${SITE_NAME}` },
   description: DESCRIPTION,
-  applicationName: "RestHUB",
+  applicationName: SITE_NAME,
   keywords: [
-    "ERP restaurante",
+    "sistema para restaurantes",
+    "software para restaurantes Perú",
     "POS restaurante",
-    "software gestión restaurante",
-    "KDS cocina",
-    "punto de venta",
-    "caja restaurante",
-    "Perú",
-    "Latinoamérica",
+    "ERP restaurante",
+    "punto de venta restaurante",
+    "facturación electrónica SUNAT restaurante",
+    "comandas cocina KDS",
+    "control de caja restaurante",
+    "costo por plato",
+    "carta QR restaurante",
   ],
-  authors: [{ name: "RestHUB" }],
+  authors: [{ name: "Árkos", url: "https://xn--rkos-4na.com" }],
+  creator: "Árkos",
+  publisher: "Árkos",
+  category: "software",
   alternates: { canonical: "/" },
+  // Pega el código de Search Console / Bing Webmaster como variable de entorno en Vercel.
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    ...(process.env.BING_SITE_VERIFICATION
+      ? { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } }
+      : {}),
+  },
   robots: {
     index: true,
     follow: true,
@@ -53,7 +66,7 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     type: "website",
     url: SITE_URL,
-    siteName: "RestHUB",
+    siteName: SITE_NAME,
     locale: "es_PE",
   },
   twitter: {
@@ -91,10 +104,17 @@ const jsonLd = {
     },
     {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "RestHUB",
       url: SITE_URL,
-      logo: `${SITE_URL}/logo.svg`,
-      sameAs: [],
+      logo: `${SITE_URL}/icon.svg`,
+      sameAs: SAME_AS,
+      parentOrganization: {
+        "@type": "Organization",
+        name: "Árkos",
+        url: "https://xn--rkos-4na.com",
+        sameAs: SAME_AS,
+      },
       contactPoint: [
         {
           "@type": "ContactPoint",
@@ -109,13 +129,34 @@ const jsonLd = {
       "@type": "SoftwareApplication",
       name: "RestHUB",
       applicationCategory: "BusinessApplication",
+      applicationSubCategory: "Restaurant POS / ERP",
       operatingSystem: "Web",
+      url: SITE_URL,
+      inLanguage: "es",
+      publisher: { "@id": `${SITE_URL}/#organization` },
       offers: [
-        { "@type": "Offer", name: "Starter", price: "159", priceCurrency: "PEN" },
-        { "@type": "Offer", name: "Pro", price: "399", priceCurrency: "PEN" },
-        { "@type": "Offer", name: "Enterprise", price: "719", priceCurrency: "PEN" },
+        { "@type": "Offer", name: "Starter", price: "159", priceCurrency: "PEN", url: `${SITE_URL}/#precios` },
+        { "@type": "Offer", name: "Pro", price: "399", priceCurrency: "PEN", url: `${SITE_URL}/#precios` },
+        { "@type": "Offer", name: "Enterprise", price: "719", priceCurrency: "PEN", url: `${SITE_URL}/#precios` },
+      ],
+      featureList: [
+        "Punto de venta (POS) para mozos y caja",
+        "Pantalla de cocina y barra (KDS)",
+        "Boletas y facturas electrónicas SUNAT",
+        "Inventario con recetas y costo por plato",
+        "Carta y pedidos por QR",
+        "Contabilidad y reportes",
+        "Operación offline",
       ],
       description: DESCRIPTION,
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
     },
   ],
 };

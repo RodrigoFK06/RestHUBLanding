@@ -1,3 +1,4 @@
+import { SITE_HOST } from "@/lib/site";
 import { NextResponse } from "next/server";
 import { contactInbox, getTransporter, mailFrom } from "@/lib/mailer";
 import { clientIp, rateLimit } from "@/lib/rateLimit";
@@ -83,7 +84,7 @@ export async function POST(req: Request) {
           ${restaurant ? `<tr><td style="color:#64748B;padding:6px 0;">Restaurante</td><td style="color:#fff;">${escape(restaurant)}</td></tr>` : ""}
         </table>
         <div style="margin-top:24px;padding:18px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.18);border-radius:12px;color:#e2e8f0;font-size:14px;line-height:1.65;white-space:pre-wrap;">${escape(message)}</div>
-        <div style="margin-top:24px;font-size:11px;color:#475569;">Enviado desde resthub.app · ${new Date().toLocaleString("es-PE")}</div>
+        <div style="margin-top:24px;font-size:11px;color:#475569;">Enviado desde ${SITE_HOST} · ${new Date().toLocaleString("es-PE")}</div>
       </div>
     `;
 
