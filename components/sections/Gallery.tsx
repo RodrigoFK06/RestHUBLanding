@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, type KeyboardEvent } from "react";
+import { useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
 
 // «Así se ve por dentro» (docs/diseno/decisiones.md · D9). Las cuatro pantallas reales del
@@ -20,8 +20,9 @@ type Puesto = {
   alto: number;
   // Color del papel cuando el puesto está elegido (un color, un oficio).
   papel: string;
-  // En el celular la pantalla se recorta a 4:3 y se acerca (x2.2) a lo que importa de cada puesto.
-  foco: string;
+  // En el celular se muestra solo este recorte 4:3 de la captura (x, y, ancho, alto en píxeles
+  // de la imagen), elegido para que los textos de la pantalla lleguen a 12 px o más.
+  recorte: [number, number, number, number];
 };
 
 const PUESTOS: Puesto[] = [
@@ -35,7 +36,7 @@ const PUESTOS: Puesto[] = [
     ancho: 1863,
     alto: 820,
     papel: "bg-papel",
-    foco: "70% 42%",
+    recorte: [478, 222, 432, 324],
   },
   {
     id: "cocina",
@@ -47,7 +48,7 @@ const PUESTOS: Puesto[] = [
     ancho: 1902,
     alto: 937,
     papel: "bg-copia-cocina",
-    foco: "0% 6%",
+    recorte: [262, 0, 600, 450],
   },
   {
     id: "caja",
@@ -59,7 +60,7 @@ const PUESTOS: Puesto[] = [
     ancho: 1860,
     alto: 939,
     papel: "bg-copia-caja",
-    foco: "64% 47%",
+    recorte: [1128, 615, 432, 324],
   },
   {
     id: "dueno",
@@ -71,9 +72,19 @@ const PUESTOS: Puesto[] = [
     ancho: 1865,
     alto: 935,
     papel: "bg-papel",
-    foco: "15% 36%",
+    recorte: [116, 250, 400, 300],
   },
 ];
+
+// Coloca la captura entera de modo que el recorte llene el marco 4:3 del celular.
+function recorteEstilo({ recorte: [x, y, w, h], ancho, alto }: Puesto) {
+  return {
+    "--rl": `${(-x / w) * 100}%`,
+    "--rt": `${(-y / h) * 100}%`,
+    "--rw": `${(ancho / w) * 100}%`,
+    "--rh": `${(alto / h) * 100}%`,
+  } as CSSProperties;
+}
 
 export default function Gallery() {
   const [activo, setActivo] = useState(0);
@@ -153,14 +164,18 @@ export default function Gallery() {
                   className="pantalla-cambia relative aspect-[4/3] overflow-hidden rounded-[2px] bg-mostrador sm:aspect-[var(--proporcion)]"
                   style={{ ["--proporcion" as string]: `${actual.ancho} / ${actual.alto}` }}
                 >
-                  <Image
-                    src={actual.src}
-                    alt={actual.alt}
-                    fill
-                    sizes="(min-width: 1024px) 66vw, 100vw"
-                    className="object-cover max-sm:scale-[2.2]"
-                    style={{ objectPosition: actual.foco, transformOrigin: actual.foco }}
-                  />
+                  <div
+                    className="absolute max-sm:left-[var(--rl)] max-sm:top-[var(--rt)] max-sm:h-[var(--rh)] max-sm:w-[var(--rw)] sm:inset-0"
+                    style={recorteEstilo(actual)}
+                  >
+                    <Image
+                      src={actual.src}
+                      alt={actual.alt}
+                      fill
+                      sizes="(min-width: 1024px) 66vw, (min-width: 640px) 100vw, 400vw"
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
               </div>
               <figcaption className="mt-5 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">

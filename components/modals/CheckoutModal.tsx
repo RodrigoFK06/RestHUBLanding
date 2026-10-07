@@ -220,7 +220,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
             type="button"
             onClick={onClose}
             aria-label="Cerrar"
-            className="absolute right-2 top-2 z-10 grid size-11 cursor-pointer place-items-center rounded-md bg-papel text-impreso transition-colors hover:text-mostrador"
+            className="absolute right-2 top-2 z-10 hidden size-11 cursor-pointer place-items-center rounded-md text-ambar-oscuro transition-colors hover:text-mostrador md:grid"
           >
             <X className="size-5" aria-hidden="true" />
           </button>
@@ -228,6 +228,19 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
 
         {/* Izquierda: formulario y estados */}
         <div className="max-h-[92dvh] overflow-y-auto overscroll-contain px-6 pb-[max(1.75rem,env(safe-area-inset-bottom))] pt-7 sm:px-9 sm:pt-8">
+          {/* En el celular la X va en su propia franja fija (top negativo: Chrome respeta el padding de la columna). */}
+          {stage !== "processing" && (
+            <div className="sticky -top-7 z-10 -mx-6 -mt-7 mb-1 flex justify-end bg-papel px-2 pt-2 sm:-top-8 sm:-mx-9 sm:-mt-8 md:hidden">
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label="Cerrar"
+                className="grid size-11 cursor-pointer place-items-center rounded-md text-impreso transition-colors hover:text-mostrador"
+              >
+                <X className="size-5" aria-hidden="true" />
+              </button>
+            </div>
+          )}
           {stage === "form" && (
             <form onSubmit={handleSubmit}>
               {/* Honeypot */}

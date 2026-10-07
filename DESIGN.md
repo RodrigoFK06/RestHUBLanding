@@ -78,7 +78,7 @@ rounded:
   etiqueta: "3px"
   hoja: "4px"
   control: "8px"
-  accion: "10px"
+  accion: "8px"
   riel: "9999px"
 spacing:
   xs: "8px"
@@ -179,7 +179,7 @@ Se rechazan de forma confirmada: fondos de página blancos o crema, vidrio y des
 - Fondo obsidiana plano; lo claro solo existe como papel con sombra.
 - Una sola familia (Archivo) con tres voces por eje de ancho y estilo.
 - Ámbar para actuar, menta para lo que salió bien; cada color tiene un oficio.
-- Radios chicos de papelería (3–4 px) y de control (8–10 px); nada en cápsula.
+- Radios chicos de papelería (3–4 px) y de control (6–8 px); nada en cápsula.
 - Cifras siempre tabulares, en soles, con el formato `S/ 2,267.00`.
 - Movimiento corto que imita el gesto físico, apagado con `prefers-reduced-motion`.
 
@@ -213,7 +213,7 @@ Obsidiana de marca como mostrador, menta y ámbar de marca como las dos copias d
 - **Impreso** (`impreso`): rótulos impresos del formulario (Mesa, Mozo, Hora, Cant., Descripción, Importe) y líneas punteadas del cierre (6.8:1).
 
 ### Sin legado
-Desde el 2026-10-07 toda la landing, las piezas globales (barra fija, aviso de cookies, WhatsApp, avisos, modales), `/gracias`, las páginas legales y la imagen para redes usan este sistema. Se retiraron los tokens de la paleta anterior (`--color-ink`, `--color-night`, `--color-amber`, `--color-teal`, `--color-mist`…), las clases `.btn-amber`, `.btn-ghost-light`, `.pricing-cta-*` y las fuentes Inter y Playfair: Archivo es la única familia y `--font-sans` apunta a ella. Las variables neutras de shadcn siguen en `globals.css` solo porque las usan sus primitivas (por ejemplo `--radius`, del que sale el `rounded-lg` de 10 px de los botones).
+Desde el 2026-10-07 toda la landing, las piezas globales (barra fija, aviso de cookies, WhatsApp, avisos, modales), `/gracias`, las páginas legales y la imagen para redes usan este sistema. Se retiraron los tokens de la paleta anterior (`--color-ink`, `--color-night`, `--color-amber`, `--color-teal`, `--color-mist`…), las clases `.btn-amber`, `.btn-ghost-light`, `.pricing-cta-*` y las fuentes Inter y Playfair: Archivo es la única familia y `--font-sans` apunta a ella. Las variables neutras de shadcn siguen en `globals.css` solo porque las usan sus primitivas (por ejemplo `--radius`, fijado en 8 px: de ahí salen el `rounded-lg` de 8 px de botones y aviso y el `rounded-md` de 6 px de campos y casillas, dentro del rango 4–8 del contrato).
 
 ### Named Rules
 **The Mostrador Rule.** El fondo de página es siempre `mostrador`. Lo claro (papel, copias) entra solo como objeto que flota sobre él, nunca como fondo de sección.
@@ -269,13 +269,13 @@ Híbrido estricto: el mostrador es plano y se ordena con bordes (`linea`) y un �
 
 ## Shapes
 
-Formas de papelería: esquinas casi rectas en lo que es papel (3 px en tickets, copias y chips de estado; 4 px en la hoja del talonario, que además lleva borde superior troquelado de semicírculos de 5 px cada 16 px), 8 px en los botones de plato y 10 px en las acciones (radio que hoy hereda de la variable `--radius` de shadcn). El riel de cocina es la única forma totalmente redondeada. El papel se gira levemente solo desde `lg` (talonario −0.8°, copias de fondo 1° y 2.2°, tickets −1.6° y 1.3°, copias de caja entre −1.4° y 1.1°); los controles nunca se giran.
+Formas de papelería: esquinas casi rectas en lo que es papel (3 px en tickets, copias y chips de estado; 4 px en la hoja del talonario, que además lleva borde superior troquelado de semicírculos de 5 px cada 16 px), 8 px en los botones de plato y en las acciones (radio que hereda de la variable `--radius` de shadcn, fijada en 8 px). El riel de cocina es la única forma totalmente redondeada. El papel se gira levemente solo desde `lg` (talonario −0.8°, copias de fondo 1° y 2.2°, tickets −1.6° y 1.3°, copias de caja entre −1.4° y 1.1°); los controles nunca se giran.
 
 ## Components
 
 ### Buttons
 Directos y sólidos, sin sombra, con hundimiento al presionar.
-- **Shape:** esquinas suaves (10 px); nunca cápsula.
+- **Shape:** esquinas suaves (8 px); nunca cápsula.
 - **Primary (acción):** fondo ámbar, texto obsidiana extrabold de 17 px, 52 px de alto y 24 px de relleno lateral, flecha a la derecha de 20 px con trazo 2.5. En nav baja a 40 px de alto y 14 px; en el aviso del escenario, 48 px.
 - **Hover / Focus:** pasa a ámbar claro en 180 ms con `--ease-snappy`; foco con contorno blanco de 2 px a 2 px de distancia; al presionar escala a 0.97 en 130 ms.
 - **Con borde (nav):** transparente, texto blanco bold, borde de 1 px gris #4A4A4A que sube a #7A7A7A y un velo blanco del 5 % al pasar.
@@ -290,7 +290,7 @@ Texto blanco semibold de 17 px subrayado en menta de 2 px a 6 px de la línea ba
 - **State:** Preparando = obsidiana con texto copia de cocina; Listo = menta profunda con texto blanco.
 
 ### Cards / Containers
-- **Corner Style:** 10 px para el aviso sobre el mostrador; 3–4 px para todo lo que es papel.
+- **Corner Style:** 8 px para el aviso sobre el mostrador; 3–4 px para todo lo que es papel.
 - **Background:** `mostrador-2` sobre el mostrador; `papel`, `copia-cocina` o `copia-caja` para documentos.
 - **Shadow Strategy:** ver Elevation & Depth; solo el papel tiene sombra.
 - **Border:** 1 px `linea` sobre el mostrador; sobre papel, divisores de 2 px obsidiana (cabecera y total), casillas de 1 px `papel-linea` y líneas punteadas `impreso`.
