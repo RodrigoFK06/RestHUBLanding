@@ -1,15 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import {
-  CheckCircle2,
-  CreditCard,
-  Loader2,
-  Lock,
-  ShieldCheck,
-  X,
-  ArrowRight,
-} from "lucide-react";
+import { CheckCircle2, CreditCard, Loader2, Lock, ShieldCheck, X, ArrowRight, Check } from "lucide-react";
 import { useToast } from "@/components/ui/Toast";
 import Confetti from "@/components/ui/Confetti";
 
@@ -208,8 +200,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="checkout-modal-title"
-      className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4"
-      style={{ animation: "fadeIn 200ms ease-out" }}
+      className="checkout-fondo fixed inset-0 z-[100] flex items-end justify-center p-0 sm:items-center sm:p-4"
     >
       <button
         type="button"
@@ -222,284 +213,165 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
 
       <div
         ref={dialogRef}
-        className="relative w-full sm:max-w-[920px] mx-auto sm:rounded-[8px] rounded-t-[8px] font-brand overflow-hidden grid grid-cols-1 md:grid-cols-[1.1fr_1fr] max-h-[92vh]"
-        style={{
-          background: "#121212",
-          border: "1px solid rgba(255,255,255,0.08)",
-          boxShadow: "0 40px 120px rgba(0,0,0,0.6)",
-          animation: "modalIn 320ms cubic-bezier(0.16, 1, 0.3, 1)",
-        }}
+        className="checkout-hoja comanda-papel relative mx-auto grid max-h-[92dvh] w-full grid-cols-1 overflow-hidden rounded-t-[8px] bg-papel font-brand text-mostrador shadow-[0_40px_90px_-30px_rgba(0,0,0,0.95)] sm:max-w-[920px] sm:rounded-[4px] md:grid-cols-[1.1fr_1fr]"
       >
         {stage !== "processing" && (
           <button
+            type="button"
             onClick={onClose}
             aria-label="Cerrar"
-            className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-texto-2 hover:text-white hover:bg-white/10 transition-colors z-10"
+            className="absolute right-2 top-2 z-10 grid size-11 cursor-pointer place-items-center rounded-md text-impreso transition-colors hover:text-mostrador"
           >
-            <X className="w-4 h-4" />
+            <X className="size-5" aria-hidden="true" />
           </button>
         )}
 
-        {/* LEFT — Form / States */}
-        <div className="p-7 sm:p-9 overflow-y-auto">
+        {/* Izquierda: formulario y estados */}
+        <div className="overflow-y-auto px-6 pb-7 pt-7 sm:px-9 sm:pt-8">
           {stage === "form" && (
             <form onSubmit={handleSubmit}>
               {/* Honeypot */}
-              <div aria-hidden="true" className="absolute pointer-events-none opacity-0 -z-10" style={{ left: "-9999px" }}>
+              <div aria-hidden="true" className="pointer-events-none absolute -z-10 opacity-0" style={{ left: "-9999px" }}>
                 <label>
                   Sitio web
-                  <input
-                    tabIndex={-1}
-                    autoComplete="off"
-                    value={website}
-                    onChange={(e) => setWebsite(e.target.value)}
-                  />
+                  <input tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} />
                 </label>
               </div>
-              <div
-                className="inline-flex items-center gap-2 text-[0.62rem] font-bold tracking-[0.18em] uppercase px-3 py-1 rounded-full mb-3"
-                style={{ background: "rgba(245,158,11,0.12)", border: "1px solid rgba(245,158,11,0.3)", color: "#F59E0B" }}
-              >
-                Suscripción
-              </div>
-              <h3 id="checkout-modal-title" className="text-2xl font-extrabold tracking-[-0.02em] text-white">Confirmar pago</h3>
-              <p className="text-sm text-texto-2 mt-1.5 mb-6">
-                Activamos tu cuenta de inmediato. Cancela cuando quieras.
-              </p>
+              <h3 id="checkout-modal-title" className="display-cond border-b-2 border-mostrador pb-2.5 pr-10 text-[34px] uppercase leading-none">
+                Confirmar pago
+              </h3>
+              <p className="mb-6 mt-3 text-[15px] leading-snug text-impreso">Activamos tu cuenta de inmediato. Cancela cuando quieras.</p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+              <div className="mb-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <Field label="Nombre completo" required value={name} onChange={setName} placeholder="Tu nombre" inputRef={firstFieldRef} autoComplete="name" />
-                <Field label="Email" required type="email" value={email} onChange={setEmail} placeholder="tu@email.com" autoComplete="email" />
+                <Field label="Correo" required type="email" value={email} onChange={setEmail} placeholder="tu@correo.com" autoComplete="email" />
               </div>
-              <Field
-                label="Nombre del restaurante"
-                value={restaurant}
-                onChange={setRestaurant}
-                placeholder="Opcional"
-                wrapperClassName="mb-4"
-              />
+              <Field label="Nombre del restaurante" value={restaurant} onChange={setRestaurant} placeholder="Opcional" wrapperClassName="mb-4" />
 
-              {/* Locales stepper */}
+              {/* Locales */}
               <div className="mb-5">
-                <label className="block text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-texto-3 mb-1.5">
-                  Cantidad de locales
-                </label>
-                <div className="flex items-center gap-2">
-                  <div
-                    className="inline-flex items-center bg-white/[0.04] border border-white/10 rounded-md overflow-hidden"
-                  >
+                <p className="text-[12px] font-extrabold uppercase tracking-[0.04em] text-impreso">Cantidad de locales</p>
+                <div className="mt-1.5 flex items-center gap-3">
+                  <div className="inline-flex items-center overflow-hidden rounded-md border-[1.5px] border-papel-linea bg-white/60">
                     <button
                       type="button"
                       onClick={() => setLocations((n) => Math.max(1, n - 1))}
                       disabled={locations <= 1}
                       aria-label="Quitar local"
-                      className="w-10 h-10 flex items-center justify-center text-texto-2 hover:text-white hover:bg-white/5 transition disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer"
+                      className="grid size-11 cursor-pointer place-items-center text-[17px] font-bold transition-colors hover:bg-[#DCEBE6] disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       −
                     </button>
-                    <div className="w-12 text-center text-sm font-bold text-white tabular-nums">
-                      {locations}
-                    </div>
+                    <div className="w-12 text-center text-[17px] font-extrabold tabular-nums">{locations}</div>
                     <button
                       type="button"
                       onClick={() => setLocations((n) => Math.min(10, n + 1))}
                       disabled={locations >= 10}
                       aria-label="Sumar local"
-                      className="w-10 h-10 flex items-center justify-center text-texto-2 hover:text-white hover:bg-white/5 transition disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer"
+                      className="grid size-11 cursor-pointer place-items-center text-[17px] font-bold transition-colors hover:bg-[#DCEBE6] disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       +
                     </button>
                   </div>
-                  <span className="text-[0.78rem] text-texto-3">
+                  <span className="text-[15px] text-impreso">
                     {locations === 1 ? "1 local" : `${locations} locales`} · {formattedUnit} c/u
                   </span>
                 </div>
               </div>
 
-              <div className="text-[0.65rem] font-semibold tracking-[0.15em] uppercase text-texto-3 mb-2 flex items-center gap-2">
-                <CreditCard className="w-3 h-3" /> Datos de pago
-              </div>
+              <p className="mb-2 flex items-center gap-2 border-t border-dashed border-impreso pt-4 text-[12px] font-extrabold uppercase tracking-[0.04em] text-impreso">
+                <CreditCard className="size-4" aria-hidden="true" /> Datos de pago
+              </p>
 
               <div className="mb-3">
-                <label className="block text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-texto-3 mb-1.5">
-                  Número de tarjeta<span className="text-ambar ml-0.5">*</span>
+                <label htmlFor="checkout-tarjeta" className="block text-[12px] font-extrabold uppercase tracking-[0.04em] text-impreso">
+                  Número de tarjeta
+                  <span className="ml-0.5 text-numerador" aria-hidden="true">
+                    *
+                  </span>
                 </label>
-                <div className="relative">
+                <div className="relative mt-1.5">
                   <input
+                    id="checkout-tarjeta"
                     inputMode="numeric"
                     autoComplete="cc-number"
                     required
                     value={card}
                     onChange={(e) => setCard(formatCard(e.target.value))}
                     placeholder="4242 4242 4242 4242"
-                    className="w-full bg-white/[0.04] border border-white/10 focus:border-menta rounded-md px-3.5 py-2.5 pr-16 text-sm text-white placeholder:text-white/25 outline-none transition font-mono tracking-wide"
+                    className="h-12 w-full rounded-md border-[1.5px] border-papel-linea bg-white/60 px-3.5 pr-20 text-[17px] tabular-nums tracking-wide text-mostrador outline-none transition-colors placeholder:text-impreso focus:border-tinta"
                   />
-                  <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[0.65rem] font-bold uppercase tracking-wider text-texto-3">
-                    {brand}
-                  </span>
+                  <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[12px] font-extrabold uppercase tracking-[0.04em] text-impreso">{brand}</span>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 mb-3">
-                <Field
-                  label="Vencimiento"
-                  required
-                  value={expiry}
-                  onChange={(v) => setExpiry(formatExpiry(v))}
-                  placeholder="MM/AA"
-                  inputMode="numeric"
-                  autoComplete="cc-exp"
-                />
-                <Field
-                  label="CVC"
-                  required
-                  value={cvc}
-                  onChange={(v) => setCvc(v.replace(/\D/g, "").slice(0, 4))}
-                  placeholder="123"
-                  inputMode="numeric"
-                  autoComplete="cc-csc"
-                />
+              <div className="mb-3 grid grid-cols-2 gap-3">
+                <Field label="Vencimiento" required value={expiry} onChange={(v) => setExpiry(formatExpiry(v))} placeholder="MM/AA" inputMode="numeric" autoComplete="cc-exp" />
+                <Field label="CVC" required value={cvc} onChange={(v) => setCvc(v.replace(/\D/g, "").slice(0, 4))} placeholder="123" inputMode="numeric" autoComplete="cc-csc" />
               </div>
 
-              <Field
-                label="Titular de la tarjeta"
-                required
-                value={holder}
-                onChange={setHolder}
-                placeholder="Como aparece en la tarjeta"
-                autoComplete="cc-name"
-                wrapperClassName="mb-5"
-              />
+              <Field label="Titular de la tarjeta" required value={holder} onChange={setHolder} placeholder="Como aparece en la tarjeta" autoComplete="cc-name" wrapperClassName="mb-5" />
 
               {error && (
-                <div className="mb-4 px-3.5 py-2.5 rounded-lg text-xs text-red-300 bg-red-500/10 border border-red-500/30">
+                <p role="alert" className="mb-4 rounded-md border-[1.5px] border-[#8A1C12] bg-[#F6C9C2] px-3.5 py-2.5 text-[15px] font-semibold text-[#5E1109]">
                   {error}
-                </div>
+                </p>
               )}
 
-              <button
-                type="submit"
-                className="w-full btn-accion h-13 rounded-lg text-[17px] font-extrabold flex items-center justify-center gap-2"
-              >
-                <Lock className="w-4 h-4" />
+              <button type="submit" className="btn-accion flex h-13 w-full cursor-pointer items-center justify-center gap-2 rounded-lg text-[17px] font-extrabold">
+                <Lock className="size-4" aria-hidden="true" />
                 Pagar {formattedAmount} {plan.billing === "yearly" ? "/ año" : "/ mes"}
               </button>
 
-              <div className="mt-4 flex items-center justify-center gap-2 text-[0.7rem] text-texto-3">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#5DC9A5]" />
+              <p className="mt-4 flex items-center justify-center gap-2 text-[15px] text-impreso">
+                <ShieldCheck className="size-4 text-menta-oscura" aria-hidden="true" />
                 Pago simulado · Modo demostración
-              </div>
+              </p>
             </form>
           )}
 
           {stage === "processing" && (
-            <div className="py-8 sm:py-12">
-              <div className="flex items-center justify-center mb-8">
-                <div
-                  className="relative w-20 h-20 rounded-full flex items-center justify-center"
-                  style={{
-                    background: "rgba(245,158,11,0.12)",
-                    border: "1px solid rgba(245,158,11,0.3)",
-                  }}
-                >
-                  <Loader2 className="w-7 h-7 text-ambar animate-spin" strokeWidth={2.2} />
-                  <div
-                    className="absolute inset-[-6px] rounded-full"
-                    style={{
-                      border: "1px solid rgba(245,158,11,0.18)",
-                      animation: "ping 1.6s cubic-bezier(0,0,.2,1) infinite",
-                    }}
-                  />
-                </div>
-              </div>
-              <h3 className="text-xl font-extrabold tracking-[-0.02em] text-white text-center mb-1">
-                Procesando tu pago
-              </h3>
-              <p className="text-sm text-texto-2 text-center mb-7">
-                Estamos asegurando la transacción. No cierres esta ventana.
-              </p>
-
-              <ul className="flex flex-col gap-2 max-w-[320px] mx-auto">
+            <div className="py-8 sm:py-12" aria-live="polite">
+              <Loader2 className="mx-auto size-9 animate-spin text-tinta" strokeWidth={2.2} aria-hidden="true" />
+              <h3 className="display-cond mt-5 text-center text-[34px] uppercase leading-none">Procesando tu pago</h3>
+              <p className="mb-7 mt-3 text-center text-[15px] text-impreso">Estamos asegurando la transacción. No cierres esta ventana.</p>
+              <ol className="comanda-renglones mx-auto max-w-[340px]">
                 {PROCESSING_STEPS.map((s, i) => {
                   const done = i < stepIdx;
                   const active = i === stepIdx;
                   return (
-                    <li
-                      key={s.label}
-                      className="flex items-center gap-3 px-3.5 py-2.5 rounded-md transition"
-                      style={{
-                        background: active ? "rgba(245,158,11,0.08)" : "transparent",
-                        border: `1px solid ${active ? "rgba(245,158,11,0.3)" : "rgba(255,255,255,0.06)"}`,
-                      }}
-                    >
-                      <div
-                        className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
-                        style={{
-                          background: done ? "#5DC9A5" : active ? "rgba(245,158,11,0.2)" : "rgba(255,255,255,0.05)",
-                        }}
-                      >
-                        {done ? (
-                          <CheckCircle2 className="w-3.5 h-3.5 text-white" />
-                        ) : active ? (
-                          <Loader2 className="w-3 h-3 text-ambar animate-spin" />
-                        ) : null}
-                      </div>
-                      <span
-                        className="text-[0.82rem] font-medium"
-                        style={{ color: done ? "rgba(255,255,255,0.85)" : active ? "#fff" : "rgba(255,255,255,0.4)" }}
-                      >
-                        {s.label}
-                      </span>
+                    <li key={s.label} className="flex h-8 items-center gap-3 text-[17px] italic text-tinta">
+                      {done ? (
+                        <CheckCircle2 className="size-4 shrink-0 text-menta-oscura" aria-hidden="true" />
+                      ) : active ? (
+                        <Loader2 className="size-4 shrink-0 animate-spin" aria-hidden="true" />
+                      ) : (
+                        <span className="size-4 shrink-0" aria-hidden="true" />
+                      )}
+                      <span className={active ? "font-bold" : done ? "font-semibold" : "font-semibold text-impreso"}>{s.label}</span>
                     </li>
                   );
                 })}
-              </ul>
+              </ol>
             </div>
           )}
 
           {stage === "success" && (
-            <div className="py-8 text-center relative">
+            <div className="relative py-8 text-center">
               <Confetti />
-              <div
-                className="mx-auto mb-6 w-20 h-20 rounded-full flex items-center justify-center relative"
-                style={{
-                  background: "rgba(20,184,166,0.15)",
-                  border: "1px solid rgba(20,184,166,0.4)",
-                  animation: "pop 480ms cubic-bezier(0.16, 1, 0.3, 1)",
-                }}
-              >
-                <CheckCircle2 className="w-10 h-10 text-[#5DC9A5]" strokeWidth={2} />
-                <div
-                  className="absolute inset-[-10px] rounded-full"
-                  style={{
-                    border: "1px solid rgba(20,184,166,0.25)",
-                    animation: "ping 1.8s cubic-bezier(0,0,.2,1) 1",
-                  }}
-                />
-              </div>
-              <h3 className="text-2xl font-extrabold tracking-[-0.02em] text-white mb-2">
-                ¡Pago confirmado!
-              </h3>
-              <p className="text-sm text-texto-2 leading-[1.7] mb-2">
-                Activamos tu plan <strong className="text-white">{plan.name}</strong>.
-                Te enviamos el recibo a <strong className="text-white">{email}</strong>.
+              <CheckCircle2 className="mx-auto size-12 text-menta-oscura" strokeWidth={2} aria-hidden="true" />
+              <h3 className="display-cond mt-4 text-[34px] uppercase leading-none">¡Pago confirmado!</h3>
+              <p className="mt-3 text-[15px] leading-snug">
+                Activamos tu plan <strong className="font-extrabold">{plan.name}</strong>. Te enviamos el recibo a{" "}
+                <strong className="font-extrabold">{email}</strong>.
               </p>
-              {orderId && (
-                <div className="text-[0.7rem] text-texto-3 font-mono mb-6">Orden {orderId}</div>
-              )}
+              {orderId && <p className="display-cond mb-6 mt-3 text-[19px] text-numerador tabular-nums">Orden {orderId}</p>}
 
-              <a
-                href={POST_CHECKOUT_URL}
-                className="w-full btn-accion h-13 rounded-lg text-[17px] font-extrabold flex items-center justify-center gap-2 mb-3"
-              >
+              <a href={POST_CHECKOUT_URL} className="btn-accion mb-3 mt-6 flex h-13 w-full items-center justify-center gap-2 rounded-lg text-[17px] font-extrabold">
                 Acceder a tu cuenta
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="size-[18px]" strokeWidth={2.5} aria-hidden="true" />
               </a>
-              <button
-                type="button"
-                onClick={onClose}
-                className="w-full font-semibold text-texto-2 hover:text-white py-2.5 text-sm transition-colors"
-              >
+              <button type="button" onClick={onClose} className="h-11 w-full cursor-pointer text-[15px] font-bold text-impreso transition-colors hover:text-mostrador">
                 Cerrar
               </button>
             </div>
@@ -507,22 +379,16 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
 
           {stage === "error" && (
             <div className="py-10 text-center">
-              <div
-                className="mx-auto mb-5 w-16 h-16 rounded-full flex items-center justify-center"
-                style={{ background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.4)" }}
-              >
-                <X className="w-8 h-8 text-red-400" strokeWidth={2} />
-              </div>
-              <h3 className="text-xl font-extrabold tracking-[-0.02em] text-white mb-2">
-                No pudimos procesar el pago
-              </h3>
-              <p className="text-sm text-texto-2 mb-6">{error ?? "Inténtalo nuevamente."}</p>
+              <X className="mx-auto size-12 text-[#8A1C12]" strokeWidth={2} aria-hidden="true" />
+              <h3 className="display-cond mt-4 text-[34px] uppercase leading-none">No pudimos procesar el pago</h3>
+              <p className="mb-6 mt-3 text-[15px]">{error ?? "Inténtalo nuevamente."}</p>
               <button
+                type="button"
                 onClick={() => {
                   setStage("form");
                   setError(null);
                 }}
-                className="font-semibold text-white px-6 py-3 rounded-full text-sm border border-white/20 hover:border-white/50 hover:bg-white/5 transition active:scale-[0.98]"
+                className="comanda-plato h-12 cursor-pointer rounded-lg border-[1.5px] border-mostrador px-6 text-[17px] font-extrabold"
               >
                 Volver e intentar de nuevo
               </button>
@@ -530,73 +396,49 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
           )}
         </div>
 
-        {/* RIGHT — Order summary / receipt panel */}
-        <aside
-          className="hidden md:flex flex-col justify-between p-9 border-l"
-          style={{
-            borderColor: "rgba(255,255,255,0.06)",
-            background: "#1C1C1C",
-          }}
-        >
+        {/* Derecha: la copia de caja con lo que se cobra hoy */}
+        <aside className="hidden flex-col justify-between bg-copia-caja px-9 pb-9 pt-12 md:flex" aria-label="Lo que pagas hoy">
           <div>
-            <div className="text-[0.62rem] font-bold tracking-[0.2em] uppercase text-texto-3 mb-3">
-              Resumen
-            </div>
-            <h4 className="text-[1.4rem] font-extrabold tracking-[-0.02em] text-white mb-1.5">
-              {plan.name}
-            </h4>
-            {plan.description && (
-              <p className="text-[0.85rem] text-texto-2 leading-[1.6] mb-6">{plan.description}</p>
-            )}
+            <h4 className="display-cond text-[34px] uppercase leading-none">{plan.name}</h4>
+            {plan.description && <p className="mt-2 text-[15px] font-bold leading-snug text-ambar-oscuro">{plan.description}</p>}
 
-            <div className="flex items-end gap-1.5 mb-3">
-              <span className="text-[0.85rem] font-bold text-texto-2 mb-2">{sym}</span>
-              <span className="text-[3rem] font-black leading-none text-white tracking-[-0.03em]">
-                {plan.amount.toFixed(0)}
-              </span>
-              <span className="text-[0.85rem] text-texto-3 mb-2">{billingLabel}</span>
-            </div>
+            <p className="mt-6 flex items-end gap-1.5">
+              <span className="pb-1.5 text-[17px] font-black">{sym}</span>
+              <span className="display-cond text-[4.25rem] leading-[0.8] tabular-nums">{plan.amount.toFixed(0)}</span>
+              <span className="pb-1.5 text-[15px] font-semibold">{billingLabel}</span>
+            </p>
             {locations > 1 && (
-              <div className="text-[0.78rem] text-texto-2 mb-6">
-                × {locations} locales = <strong className="text-white">{formattedAmount}</strong>
-              </div>
+              <p className="mt-2 text-[15px] font-semibold italic text-tinta">
+                × {locations} locales = <strong className="font-extrabold">{formattedAmount}</strong>
+              </p>
             )}
 
-            <div className="h-px bg-white/8 my-5" />
-
-            <ul className="flex flex-col gap-2.5 text-[0.82rem] text-texto-2">
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#5DC9A5]" /> Activación inmediata
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#5DC9A5]" /> Sin contrato de permanencia
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#5DC9A5]" /> Implementación guiada incluida
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#5DC9A5]" /> Soporte en español
-              </li>
+            <ul className="mt-6 space-y-2.5 border-t border-dashed border-ambar-oscuro pt-5 text-[17px] leading-snug">
+              {["Activación inmediata", "Sin contrato de permanencia", "Implementación guiada incluida", "Soporte en español"].map((b) => (
+                <li key={b} className="flex items-start gap-2.5">
+                  <Check className="mt-1 size-4 shrink-0 text-tinta" strokeWidth={3} aria-hidden="true" />
+                  {b}
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-white/8">
-            <div className="flex items-center justify-between text-sm mb-1">
-              <span className="text-texto-2">Total hoy</span>
-              <span className="text-white font-extrabold text-base">{formattedAmount}</span>
-            </div>
-            <div className="text-[0.7rem] text-texto-3">
-              Renueva automáticamente cada {plan.billing === "yearly" ? "año" : "mes"}.
-            </div>
+          <div className="mt-8 border-t-2 border-mostrador pt-3">
+            <p className="flex items-baseline justify-between">
+              <span className="text-[12px] font-black uppercase tracking-[0.04em]">Total hoy</span>
+              <span className="display-cond text-[34px] leading-none tabular-nums">{formattedAmount}</span>
+            </p>
+            <p className="mt-1 text-[15px] text-ambar-oscuro">Renueva automáticamente cada {plan.billing === "yearly" ? "año" : "mes"}.</p>
           </div>
         </aside>
       </div>
 
       <style>{`
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes modalIn { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        @keyframes pop { 0% { transform: scale(0.5); opacity: 0; } 70% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); } }
-        @keyframes ping { 75%,100% { transform: scale(1.4); opacity: 0; } }
+        @keyframes checkout-fondo { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes checkout-hoja { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+        .checkout-fondo { animation: checkout-fondo 200ms ease-out both; }
+        .checkout-hoja { animation: checkout-hoja 300ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+        @media (prefers-reduced-motion: reduce) { .checkout-fondo, .checkout-hoja { animation: none; } }
       `}</style>
     </div>
   );
@@ -628,10 +470,10 @@ function Field({
   const id = `checkout-${label.replace(/\s+/g, "-").toLowerCase()}`;
   return (
     <div className={wrapperClassName}>
-      <label htmlFor={id} className="block text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-texto-2 mb-1.5">
+      <label htmlFor={id} className="block text-[12px] font-extrabold uppercase tracking-[0.04em] text-impreso">
         {label}
         {required && (
-          <span className="text-ambar ml-0.5" aria-hidden="true">
+          <span className="ml-0.5 text-numerador" aria-hidden="true">
             *
           </span>
         )}
@@ -646,7 +488,7 @@ function Field({
         placeholder={placeholder}
         inputMode={inputMode}
         autoComplete={autoComplete}
-        className="w-full bg-white/[0.06] border border-white/15 focus:border-menta rounded-md px-3.5 py-3 text-sm text-white placeholder:text-texto-3 outline-none transition"
+        className="mt-1.5 h-12 w-full rounded-md border-[1.5px] border-papel-linea bg-white/60 px-3.5 text-[17px] text-mostrador outline-none transition-colors placeholder:text-impreso focus:border-tinta"
       />
     </div>
   );

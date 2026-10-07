@@ -212,8 +212,8 @@ Obsidiana de marca como mostrador, menta y ámbar de marca como las dos copias d
 - **Tinta carbón** (`tinta`): todo lo que el mozo «escribe» (mesa, mozo, hora, platos) y el anillo de foco sobre papel (12:1).
 - **Impreso** (`impreso`): rótulos impresos del formulario (Mesa, Mozo, Hora, Cant., Descripción, Importe) y líneas punteadas del cierre (6.8:1).
 
-### Legado (pendiente de migración, no forma parte del sistema)
-Las secciones aún no migradas usan `--color-ink` #0F172A, `--color-night` #1E293B, `--color-amber`, `--color-teal` #0D9488, `--color-teal-l`, `--color-mist`, `--color-mist-d`, `--color-green-ok`, las variables neutras de shadcn (`--background`, `--primary`, `--radius`…), las clases `.btn-amber`, `.btn-ghost-light`, `.pricing-cta-*`, y las fuentes Inter (`--font-sans`) y Playfair (`--font-display`). Se retiran sección por sección; ninguna superficie nueva las usa.
+### Sin legado
+Desde el 2026-10-07 toda la landing, las piezas globales (barra fija, aviso de cookies, WhatsApp, avisos, modales), `/gracias`, las páginas legales y la imagen para redes usan este sistema. Se retiraron los tokens de la paleta anterior (`--color-ink`, `--color-night`, `--color-amber`, `--color-teal`, `--color-mist`…), las clases `.btn-amber`, `.btn-ghost-light`, `.pricing-cta-*` y las fuentes Inter y Playfair: Archivo es la única familia y `--font-sans` apunta a ella. Las variables neutras de shadcn siguen en `globals.css` solo porque las usan sus primitivas (por ejemplo `--radius`, del que sale el `rounded-lg` de 10 px de los botones).
 
 ### Named Rules
 **The Mostrador Rule.** El fondo de página es siempre `mostrador`. Lo claro (papel, copias) entra solo como objeto que flota sobre él, nunca como fondo de sección.

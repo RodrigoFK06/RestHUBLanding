@@ -72,8 +72,8 @@ export async function POST(req: Request) {
     const transporter = getTransporter();
 
     const adminHtml = `
-      <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0F172A;color:#e2e8f0;padding:32px;border-radius:16px;max-width:560px;margin:0 auto;">
-        <div style="border-left:3px solid #F59E0B;padding-left:14px;margin-bottom:24px;">
+      <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#121212;color:#CFCFCF;padding:32px;border-radius:8px;max-width:560px;margin:0 auto;">
+        <div style="background:#1C1C1C;border:1px solid #2A2A2A;border-radius:6px;padding:12px 14px;margin-bottom:24px;">
           <div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#F59E0B;font-weight:700;">RestHUB · Nuevo contacto</div>
           <div style="font-size:13px;color:#94A3B8;margin-top:4px;">${escape(topic)}</div>
         </div>

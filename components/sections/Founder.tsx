@@ -69,7 +69,7 @@ export default function Founder() {
         <div id="fundador" className="min-w-0">
           <h2 className="display-cond text-[clamp(2.5rem,4.6vw,4rem)] leading-[0.92] tracking-[-0.01em]">
             Detrás de RestHUB hay gente,
-            <span className="block text-menta">no un call center.</span>
+            <span className="block">no un call center.</span>
           </h2>
           <p className="mt-6 max-w-[52ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.6] text-texto-2">
             Somos Rodrigo y Emilio. Construimos RestHUB acá en Perú, hablando con dueños de restaurantes reales (pollerías, cevicherías,
@@ -124,7 +124,7 @@ export default function Founder() {
             <div className="px-5 pb-6 pt-2 sm:px-7">
               <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-1 border-b-2 border-mostrador pb-2.5">
                 <h3 className="display-cond whitespace-nowrap text-[26px] uppercase leading-none">Socios fundadores</h3>
-                <span className="text-[12px] font-extrabold uppercase tracking-[0.04em] text-ambar-oscuro">Programa cerrado</span>
+                <span className="text-[12px] font-extrabold uppercase tracking-[0.04em] text-ambar-oscuro">Cupos limitados</span>
               </div>
 
               <div className="mt-5 flex items-end gap-4">

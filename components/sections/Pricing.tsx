@@ -121,12 +121,12 @@ export default function Pricing() {
   return (
     <section id="precios" className="bg-mostrador font-brand text-white">
       <div className="mx-auto max-w-[1376px] px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
-        <header className="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,500px)] lg:items-end lg:gap-14">
+        <header className="max-w-[920px]">
           <h2 className="display-cond text-[clamp(2.5rem,4.6vw,4rem)] leading-[0.92] tracking-[-0.01em]">
             Precios en soles.
-            <span className="block text-menta">Sin comisiones por venta. Sin permanencia.</span>
+            <span className="block text-ambar">Sin comisiones por venta. Sin permanencia.</span>
           </h2>
-          <p className="max-w-[46ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.6] text-texto-2">
+          <p className="mt-6 max-w-[56ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.6] text-texto-2">
             <strong className="font-semibold text-white">Pagas un monto fijo al mes y ya.</strong> Implementación guiada incluida en todos los
             planes. Cancelas cuando quieras.
           </p>

@@ -316,7 +316,7 @@
 }
 .pantalla-cambia { animation: pantalla-cambia var(--dur-base) var(--ease-snappy) both; }
 .puesto-pestana {
-  transition: background-color var(--dur-fast) var(--ease-snappy), color var(--dur-fast) var(--ease-snappy), padding var(--dur-fast) var(--ease-snappy);
+  transition: background-color var(--dur-fast) var(--ease-snappy), color var(--dur-fast) var(--ease-snappy);
 }
 .puesto-pestana:active {
   transform: scale(0.98);

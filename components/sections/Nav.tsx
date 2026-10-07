@@ -11,6 +11,7 @@ const links = [
   { href: "#modulos", label: "Módulos" },
   { href: "#roles", label: "Roles" },
   { href: "#vs", label: "Comparativa" },
+  { href: "#precios", label: "Precios" },
   { href: "#faq", label: "FAQ" },
 ];
 

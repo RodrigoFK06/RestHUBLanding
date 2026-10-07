@@ -20,7 +20,7 @@ type Puesto = {
   alto: number;
   // Color del papel cuando el puesto está elegido (un color, un oficio).
   papel: string;
-  // En el celular la pantalla se recorta a 4:3 alrededor de lo que importa de cada puesto.
+  // En el celular la pantalla se recorta a 4:3 y se acerca (x2.2) a lo que importa de cada puesto.
   foco: string;
 };
 
@@ -35,7 +35,7 @@ const PUESTOS: Puesto[] = [
     ancho: 1863,
     alto: 820,
     papel: "bg-papel",
-    foco: "72% 0%",
+    foco: "70% 42%",
   },
   {
     id: "cocina",
@@ -47,7 +47,7 @@ const PUESTOS: Puesto[] = [
     ancho: 1902,
     alto: 937,
     papel: "bg-copia-cocina",
-    foco: "0% 0%",
+    foco: "0% 6%",
   },
   {
     id: "caja",
@@ -59,7 +59,7 @@ const PUESTOS: Puesto[] = [
     ancho: 1860,
     alto: 939,
     papel: "bg-copia-caja",
-    foco: "62% 34%",
+    foco: "64% 47%",
   },
   {
     id: "dueno",
@@ -71,7 +71,7 @@ const PUESTOS: Puesto[] = [
     ancho: 1865,
     alto: 935,
     papel: "bg-papel",
-    foco: "18% 26%",
+    foco: "15% 36%",
   },
 ];
 
@@ -97,12 +97,12 @@ export default function Gallery() {
   return (
     <section id="producto" className="bg-mostrador font-brand text-white">
       <div className="mx-auto max-w-[1376px] px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
-        <header className="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,470px)] lg:items-end lg:gap-14">
+        <header className="max-w-[920px]">
           <h2 className="display-cond text-[clamp(2.5rem,4.6vw,4rem)] leading-[0.92] tracking-[-0.01em]">
             Así se ve por dentro.
-            <span className="block text-menta">Sin maquetas.</span>
+            <span className="block">Sin maquetas.</span>
           </h2>
-          <p className="max-w-[44ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.55] text-texto-2">
+          <p className="mt-6 max-w-[56ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.55] text-texto-2">
             Estas son pantallas reales del sistema funcionando, el mismo que verías operando en tu restaurante. Elige un puesto.
           </p>
         </header>
@@ -158,8 +158,8 @@ export default function Gallery() {
                     alt={actual.alt}
                     fill
                     sizes="(min-width: 1024px) 66vw, 100vw"
-                    className="object-cover"
-                    style={{ objectPosition: actual.foco }}
+                    className="object-cover max-sm:scale-[2.2]"
+                    style={{ objectPosition: actual.foco, transformOrigin: actual.foco }}
                   />
                 </div>
               </div>

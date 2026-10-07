@@ -75,10 +75,7 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
 export default function PrivacidadPage() {
   return (
     <article className="prose prose-invert max-w-none">
-      <p className="text-[0.7rem] tracking-[0.18em] uppercase font-bold text-ambar mb-3">
-        Privacidad
-      </p>
-      <h1 className="text-[clamp(2rem,4vw,2.8rem)] font-black tracking-[-0.02em] leading-[1.05] mb-3">
+      <h1 className="display-cond mb-3 text-[clamp(2.5rem,5vw,3.5rem)] leading-[0.92] tracking-[-0.01em]">
         Política de Privacidad
       </h1>
       <p className="text-sm text-texto-3 mb-10">

@@ -71,7 +71,7 @@ export default function Incluye() {
         <header className="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,500px)] lg:items-end lg:gap-14">
           <h2 className="display-cond text-[clamp(2.5rem,4.6vw,4rem)] leading-[0.92] tracking-[-0.01em]">
             La mayoría de los sistemas te obligan a elegir entre funciones.
-            <span className="block text-menta">Aquí todo viene en la carta.</span>
+            <span className="block">Aquí todo viene en la carta.</span>
           </h2>
           <p className="max-w-[46ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.6] text-texto-2">
             <strong className="font-semibold text-white">RestHUB existe para que esa elección no exista.</strong> Desde la mesa hasta el

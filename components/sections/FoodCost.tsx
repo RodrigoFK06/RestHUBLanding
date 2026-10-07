@@ -34,7 +34,7 @@ export default function FoodCost() {
         <div className="grid grid-cols-[minmax(0,1fr)] items-start gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,460px)_minmax(0,1fr)] xl:gap-x-24">
           <h2 className="display-cond max-w-[20ch] text-[clamp(2.5rem,4.6vw,4rem)] leading-[0.92] tracking-[-0.01em] lg:col-start-2 lg:row-start-1">
             Vendes todos los días.
-            <span className="block text-menta">¿Sabes cuánto te deja cada plato?</span>
+            <span className="block text-ambar">¿Sabes cuánto te deja cada plato?</span>
           </h2>
 
           {/* ── La receta impresa ── */}

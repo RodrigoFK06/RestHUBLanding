@@ -40,7 +40,7 @@ export default function Setup() {
         <header className="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,500px)] lg:items-end lg:gap-14">
           <h2 className="display-cond text-[clamp(2.5rem,4.6vw,4rem)] leading-[0.92] tracking-[-0.01em]">
             De cero a operativo
-            <span className="block text-menta">en 72 horas.</span>
+            <span className="block">en 72 horas.</span>
           </h2>
           <p className="max-w-[46ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.6] text-texto-2">
             Te acompañamos en toda la configuración. <strong className="font-semibold text-white">Está incluido en todos los planes,</strong> sin costo

@@ -86,7 +86,7 @@ export default function Footer() {
         <div className="grid grid-cols-[minmax(0,1fr)] gap-6 border-b border-linea pb-12 md:grid-cols-[minmax(0,1fr)_minmax(0,460px)] md:items-end md:gap-10">
           <div>
             <h2 className="display-cond text-[34px] leading-none">
-              Novedades una vez al mes. <span className="text-menta">Sin ruido.</span>
+              Novedades una vez al mes. Sin ruido.
             </h2>
             <p className="mt-3 max-w-[48ch] text-[15px] leading-snug text-texto-2">
               Te avisamos cuando lanzamos un módulo nuevo o publicamos algo útil.

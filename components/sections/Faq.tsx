@@ -16,7 +16,7 @@ export default function Faq() {
         <div>
           <h2 className="display-cond text-[clamp(2.5rem,4.6vw,4rem)] leading-[0.92] tracking-[-0.01em]">
             Sin rodeos.
-            <span className="block text-menta">Las preguntas reales.</span>
+            <span className="block">Las preguntas reales.</span>
           </h2>
           <p className="mt-6 max-w-[36ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.6] text-texto-2">
             Lo que nos preguntan los dueños antes de decidir.
