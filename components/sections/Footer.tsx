@@ -155,7 +155,7 @@ export default function Footer() {
               className="invert mb-4 h-6 w-auto"
             />
             <p className="text-[0.84rem] text-[#94A3B8] leading-[1.65] max-w-[260px]">
-              El hub operativo completo para restaurantes — desde la mesa hasta el balance.
+              El hub operativo completo para restaurantes, desde la mesa hasta el balance.
             </p>
           </div>
 

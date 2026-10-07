@@ -6,14 +6,14 @@ const shots = [
     src: "/screenshots/shot-dashboard.jpg",
     alt: "Dashboard de RestHUB con ventas del período en soles y mix de cobro Yape, Plin, efectivo y tarjeta",
     label: "Resumen del turno",
-    caption: "Cuánto vendiste, cuánto entró por Yape, Plin o efectivo — en vivo, sin pedir reportes.",
+    caption: "Cuánto vendiste y cuánto entró por Yape, Plin o efectivo, en vivo y sin pedir reportes.",
     dotColor: "bg-[#14B8A6]",
   },
   {
     src: "/screenshots/shot-pos.jpg",
     alt: "Toma de pedido por mesa en el POS de RestHUB",
     label: "Toma de pedido",
-    caption: "El mesero marca el pedido por mesa y va directo a cocina. Sin papelitos.",
+    caption: "El mozo marca el pedido por mesa y va directo a cocina. Sin papelitos.",
     dotColor: "bg-[#F59E0B]",
   },
   {
@@ -43,7 +43,7 @@ export default function Gallery() {
               <span className="text-[#14B8A6]">Sin maquetas.</span>
             </h2>
             <p className="text-[#94A3B8] mt-4 text-[0.98rem] max-w-[520px] mx-auto leading-[1.7]">
-              Estas son pantallas reales del sistema funcionando — el mismo que verías
+              Estas son pantallas reales del sistema funcionando, el mismo que verías
               operando en tu restaurante.
             </p>
           </div>

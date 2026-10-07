@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 const lines = [
   { text: "Un restaurante no es solo una cocina.", highlight: false },
   { text: "Es un sistema de roles que se comunican.", highlight: false },
-  { text: "Mesero, cocinero, cajero, contador.", highlight: true },
+  { text: "Mozo, cocinero, cajero, contador.", highlight: true },
   { text: "Cada uno con su realidad.", highlight: false },
   { text: "Hoy, RestHUB les da su propia pantalla.", highlight: true },
 ];

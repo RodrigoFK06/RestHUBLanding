@@ -16,8 +16,8 @@ const FOUNDING_PERKS = [
     accent: "#14B8A6",
   },
   {
-    title: "Precio fundador, asegurado de por vida",
-    body: "Mientras seas socio activo, mantienes la tarifa de lanzamiento aunque suba el plan público.",
+    title: "Precio fundador por 12 meses",
+    body: "S/ 100 al mes en cualquier plan durante 12 meses, aunque suba el precio público.",
     accent: "#F59E0B",
   },
   {
@@ -142,7 +142,7 @@ export default function Testimonials() {
         <div className="mt-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
           {[
             { val: "< 1 sem", label: "Implementación inicial" },
-            { val: "98%", label: "Uptime objetivo" },
+            { val: "S/ 100", label: "Al mes, precio fundador" },
             { val: "0", label: "Contratos de permanencia" },
             { val: "1-a-1", label: "Soporte con el equipo fundador" },
           ].map((s) => (

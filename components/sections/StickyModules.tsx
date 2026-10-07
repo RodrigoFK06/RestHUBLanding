@@ -19,7 +19,7 @@ const modules = [
     colorGlow: "rgba(13,148,136,0.2)",
     name: "POS · Punto de Venta",
     badge: "Operación de salón",
-    desc: "Toma de órdenes por mesa, combos, modificadores y splits de cuenta. Diseñado para el ritmo real del salón — sin fricción.",
+    desc: "Toma de órdenes por mesa, combos, modificadores y splits de cuenta. Diseñado para el ritmo real del salón.",
     items: ["Gestión de mesas y zonas", "Modificadores y combos", "Split de cuentas", "Historial por turno"],
   },
   {
@@ -237,10 +237,10 @@ function ContabMock() {
 function EmpleadosMock() {
   const c = "#FCD34D";
   const staff = [
-    { name: "Juan Ríos", role: "Mesero", hrs: "6h 20m", dot: "#22C55E" },
+    { name: "Juan Ríos", role: "Mozo", hrs: "6h 20m", dot: "#22C55E" },
     { name: "María C.", role: "Cajera", hrs: "6h 45m", dot: "#22C55E" },
     { name: "Pedro S.", role: "Cocinero", hrs: "7h 10m", dot: "#22C55E" },
-    { name: "Ana L.", role: "Mesera", hrs: "—", dot: "#64748B" },
+    { name: "Ana L.", role: "Moza", hrs: "-", dot: "#64748B" },
   ];
   return (
     <div className="bg-[#05101e] rounded-2xl overflow-hidden w-[290px]" style={{ border: `1px solid rgba(252,211,77,0.4)`, boxShadow: `0 0 70px rgba(252,211,77,0.12), 0 20px 60px rgba(0,0,0,0.5)` }}>

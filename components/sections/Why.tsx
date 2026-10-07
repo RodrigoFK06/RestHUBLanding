@@ -12,9 +12,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const pillars = [
   { Icon: WifiOff, color: "#F59E0B", title: "Funciona sin internet", desc: "Se cae la conexión y sigues vendiendo. Al volver, todo se sincroniza solo." },
-  { Icon: Eye, color: "#14B8A6", title: "Datos en tiempo real", desc: "BI, turnos, cuentas — a la vista cuando se necesita." },
+  { Icon: Eye, color: "#14B8A6", title: "Datos en tiempo real", desc: "Ventas, turnos y cuentas a la vista cuando los necesitas." },
   { Icon: ShieldCheck, color: "#F59E0B", title: "Roles que respetan la realidad", desc: "El cocinero no ve el balance. El contador no toca órdenes." },
-  { Icon: Globe2, color: "#14B8A6", title: "Construido para LATAM", desc: "Culqi, Izipay, fiscalización — nativo, no adaptado." },
+  { Icon: Globe2, color: "#14B8A6", title: "Construido para LATAM", desc: "Culqi, Izipay, Yape, Plin y SUNAT desde el primer día." },
 ];
 
 export default function Why() {
@@ -90,7 +90,7 @@ export default function Why() {
         <div ref={imgRef} className="relative overflow-hidden min-h-[420px] md:min-h-0">
           <Image
             src="https://images.unsplash.com/photo-1772957041453-e0eb938535a8?w=2000&q=85&auto=format&fit=crop"
-            alt="Pollería con el horno lleno operando con RestHUB"
+            alt="Pollos a la brasa en el horno de una pollería"
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -106,7 +106,7 @@ export default function Why() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#14B8A6] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#14B8A6]" />
             </span>
-            <span className="text-[0.62rem] font-bold tracking-[0.12em] uppercase text-white/70">Sistema activo · 12 mesas en línea</span>
+            <span className="text-[0.62rem] font-bold tracking-[0.12em] uppercase text-white/70">Pollerías · Cevicherías · Menús</span>
           </div>
         </div>
 
@@ -118,7 +118,7 @@ export default function Why() {
           </h2>
 
           <p className="text-[0.95rem] text-[#94A3B8] leading-[1.75] mb-10 max-w-[440px]">
-            RestHUB existe para que esa elección no exista. Desde la mesa hasta el balance, un solo punto de control — sin módulos extra, sin integraciones frágiles.
+            RestHUB existe para que esa elección no exista. Desde la mesa hasta el balance, un solo punto de control, sin módulos extra ni integraciones frágiles.
           </p>
 
           {/* Pillars */}

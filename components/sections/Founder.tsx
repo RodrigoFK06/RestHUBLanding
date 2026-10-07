@@ -81,7 +81,7 @@ export default function Founder() {
         </h2>
         <p className="founder-copy text-[0.98rem] text-[#94A3B8] leading-[1.8] max-w-[560px] mx-auto mb-12" style={{ opacity: 0 }}>
           Somos Rodrigo y Emilio. Construimos RestHUB acá en Perú, hablando con dueños de
-          restaurantes reales — pollerías, cevicherías, menús — para resolver los problemas
+          restaurantes reales (pollerías, cevicherías, menús) para resolver los problemas
           que viven todos los días, no los que salen en un manual.
         </p>
 

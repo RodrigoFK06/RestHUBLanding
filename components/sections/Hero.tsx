@@ -101,7 +101,7 @@ export default function Hero() {
         <BlurFade delay={0.7}>
           <p className="text-[clamp(1rem,2vw,1.25rem)] text-white/85 leading-[1.7] max-w-[600px] mb-10">
             <strong className="text-white">Sabe cuánto ganas, cierra la caja sin sorpresas</strong> y atiende
-            más rápido — aunque se caiga el internet.
+            más rápido, aunque se caiga el internet.
             <br className="hidden sm:block" /> Un solo sistema, hecho en Perú, en soles.
           </p>
         </BlurFade>

@@ -2,11 +2,11 @@
 export const faqs = [
   {
     q: "¿En cuánto tiempo puedo tener RestHUB operativo?",
-    a: "No prometemos \"listo en 5 minutos\". Un sistema que gestiona caja, cocina, contabilidad y empleados requiere configuración real. Estimamos 1 a 3 días de implementación guiada. Después, la operación diaria es fluida.",
+    a: "Entre 1 y 3 días. La configuración la hacemos contigo: carta, mesas, usuarios e impresoras. En el primer turno estamos en línea para ajustar lo que haga falta.",
   },
   {
     q: "¿Funciona para una cadena con múltiples locales?",
-    a: "Sí. RestHUB está diseñado para 1 a 15 locales: gestión centralizada, reportes consolidados, roles independientes por sede y configuración compartida o independiente según necesites.",
+    a: "Sí, de 1 a 15 locales. Ves los reportes de todos tus locales juntos o de cada uno por separado, y cada local tiene sus propios usuarios.",
   },
   {
     q: "¿Puedo saber cuánto me cuesta cada plato?",
@@ -14,18 +14,18 @@ export const faqs = [
   },
   {
     q: "¿Qué pasa si se cae internet?",
-    a: "El POS y el KDS tienen operación offline básica: puedes seguir tomando órdenes y gestionando caja. Al recuperar conexión, la sincronización es automática.",
+    a: "El POS y la pantalla de cocina siguen funcionando sin internet para lo básico: tomar pedidos y cobrar. Cuando vuelve la conexión, todo se sincroniza solo.",
   },
   {
     q: "¿El contador puede acceder sin ver toda la operación?",
-    a: "Exactamente para eso están los roles. El Contador tiene acceso exclusivo a contabilidad, reportes financieros y balance — sin ver la operación ni tocar órdenes. Credenciales totalmente independientes.",
+    a: "Sí. El contador entra con su propio usuario y solo ve contabilidad, reportes y balance. No ve la operación ni puede tocar pedidos.",
   },
   {
-    q: "¿RestHUB reemplaza mi sistema de delivery?",
-    a: "No somos Rappi, iFood ni UberEats. RestHUB opera el restaurante por dentro. La integración con plataformas de delivery puede ser parte del roadmap, pero nunca será la identidad del producto.",
+    q: "¿RestHUB reemplaza a Rappi o PedidosYa?",
+    a: "No. RestHUB maneja tu restaurante por dentro: pedidos, cocina, caja y contabilidad. Tus pedidos de delivery se pueden registrar en el sistema para que lleguen a cocina y cuadren en la caja.",
   },
   {
     q: "¿Los datos de mi restaurante son seguros?",
-    a: "La seguridad está en la arquitectura base. Cada transacción, acceso y reporte está protegido con encriptación en tránsito y en reposo. Los roles garantizan que nadie accede a lo que no le corresponde.",
+    a: "Sí. La información viaja y se guarda cifrada, y cada persona entra con su propio usuario, así que solo ve lo que le toca.",
   },
 ];

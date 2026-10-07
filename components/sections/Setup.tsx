@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Monitor, Wrench, Zap, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import BlurFade from "@/components/reactbits/BlurFade";
 import { Button } from "@/components/ui/button";
 import { useModals } from "@/components/modals/ModalProvider";
@@ -18,7 +19,7 @@ const steps = [
     day: "Día 1",
     Icon: Monitor,
     title: "Demo en vivo",
-    desc: "Una llamada de 15 minutos. Ves el sistema funcionando en un restaurante real y haces todas las preguntas.",
+    desc: "Una llamada de 15 minutos. Te mostramos el sistema con una carta parecida a la tuya y respondemos todas tus preguntas.",
     items: [
       "Sin presentación ni pitch de ventas",
       "Demostración del flujo completo",
@@ -95,7 +96,7 @@ export default function Setup() {
               De cero a operativo<br />en 72 horas.
             </h2>
             <p className="text-[1.05rem] text-[#475569] leading-[1.75]">
-              No un tutorial en PDF. Acompañamiento real incluido en todos los planes, sin costo adicional.
+              Te acompañamos en toda la configuración. Está incluido en todos los planes, sin costo adicional.
             </p>
           </div>
         </BlurFade>
@@ -149,24 +150,23 @@ export default function Setup() {
         <BlurFade delay={0.35}>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6 bg-white border border-[#E2E8F0] rounded-2xl px-8 py-6 shadow-sm">
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
-              {/* Avatars placeholder */}
+              {/* Quienes implementan: Rodrigo y Emilio */}
               <div className="flex -space-x-2.5 shrink-0">
-                {["#0F172A", "#14B8A6", "#F59E0B"].map((c, i) => (
-                  <div
-                    key={i}
-                    className="w-9 h-9 rounded-full border-2 border-white flex items-center justify-center text-white text-[0.65rem] font-bold"
-                    style={{ background: c }}
-                  >
-                    {["JR", "MC", "PS"][i]}
+                {[
+                  { src: "/rodrigo-torres.png", alt: "Rodrigo Torres", pos: "50% 25%" },
+                  { src: "/emilio-orbegozo.jpg", alt: "Emilio Orbegozo", pos: "50% 35%" },
+                ].map((p) => (
+                  <div key={p.src} className="relative w-9 h-9 rounded-full border-2 border-white overflow-hidden">
+                    <Image src={p.src} alt={p.alt} fill sizes="36px" className="object-cover" style={{ objectPosition: p.pos }} />
                   </div>
                 ))}
               </div>
               <div>
                 <div className="text-[0.9rem] font-semibold text-[#0F172A]">
-                  Equipo de implementación dedicado
+                  Te acompañamos nosotros
                 </div>
                 <div className="text-[0.8rem] text-[#64748B]">
-                  Los mismos que configuraron el sistema te acompañan el primer día.
+                  Rodrigo y Emilio configuran el sistema contigo y están en línea en tu primer turno.
                 </div>
               </div>
             </div>
