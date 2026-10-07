@@ -220,14 +220,14 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
             type="button"
             onClick={onClose}
             aria-label="Cerrar"
-            className="absolute right-2 top-2 z-10 grid size-11 cursor-pointer place-items-center rounded-md text-impreso transition-colors hover:text-mostrador"
+            className="absolute right-2 top-2 z-10 grid size-11 cursor-pointer place-items-center rounded-md bg-papel text-impreso transition-colors hover:text-mostrador"
           >
             <X className="size-5" aria-hidden="true" />
           </button>
         )}
 
         {/* Izquierda: formulario y estados */}
-        <div className="overflow-y-auto px-6 pb-7 pt-7 sm:px-9 sm:pt-8">
+        <div className="max-h-[92dvh] overflow-y-auto overscroll-contain px-6 pb-[max(1.75rem,env(safe-area-inset-bottom))] pt-7 sm:px-9 sm:pt-8">
           {stage === "form" && (
             <form onSubmit={handleSubmit}>
               {/* Honeypot */}
@@ -241,6 +241,21 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
                 Confirmar pago
               </h3>
               <p className="mb-6 mt-3 text-[15px] leading-snug text-impreso">Activamos tu cuenta de inmediato. Cancela cuando quieras.</p>
+
+              {/* En el celular la copia de caja se reduce a una tira sobre el formulario. */}
+              <div className="mb-6 flex items-end justify-between gap-4 rounded-[4px] bg-copia-caja px-4 py-3 md:hidden">
+                <div>
+                  <p className="display-cond text-[22px] uppercase leading-none">{plan.name}</p>
+                  <p className="mt-1 text-[15px] font-semibold text-ambar-oscuro">
+                    {sym} {plan.amount.toFixed(0)} {billingLabel}
+                    {locations > 1 && ` × ${locations}`}
+                  </p>
+                </div>
+                <p className="text-right">
+                  <span className="block text-[12px] font-black uppercase tracking-[0.04em]">Total hoy</span>
+                  <span className="display-cond text-[26px] leading-none tabular-nums">{formattedAmount}</span>
+                </p>
+              </div>
 
               <div className="mb-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <Field label="Nombre completo" required value={name} onChange={setName} placeholder="Tu nombre" inputRef={firstFieldRef} autoComplete="name" />
