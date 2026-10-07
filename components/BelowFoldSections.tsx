@@ -6,9 +6,6 @@ import dynamic from "next/dynamic";
 
 const fallback = <div style={{ minHeight: "200px" }} />;
 
-const Messages = dynamic(() => import("@/components/sections/Messages"), {
-  loading: () => fallback,
-});
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"), {
   loading: () => fallback,
 });
@@ -37,7 +34,6 @@ const Cta = dynamic(() => import("@/components/sections/Cta"), {
 export default function BelowFoldSections() {
   return (
     <>
-      <Messages />
       <Testimonials />
       <Founder />
       <Comparison />

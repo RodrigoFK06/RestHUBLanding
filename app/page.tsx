@@ -1,14 +1,10 @@
 import Nav from "@/components/sections/Nav";
 import Hero from "@/components/sections/Hero";
 import ExpandingRoles from "@/components/sections/ExpandingRoles";
-import Stats from "@/components/sections/Stats";
+import Incluye from "@/components/sections/Incluye";
 import Gallery from "@/components/sections/Gallery";
-import Why from "@/components/sections/Why";
-import StickyModules from "@/components/sections/StickyModules";
 import FoodCost from "@/components/sections/FoodCost";
-import Integrations from "@/components/sections/Integrations";
 import Offline from "@/components/sections/Offline";
-import Flow from "@/components/sections/Flow";
 import Footer from "@/components/sections/Footer";
 import StickyCtaBar from "@/components/ui/StickyCtaBar";
 import DeepLinkOpener from "@/components/modals/DeepLinkOpener";
@@ -27,11 +23,7 @@ export default function Home() {
       <FoodCost />
       <Offline />
       <ExpandingRoles />
-      <Stats />
-      <Why />
-      <StickyModules />
-      <Integrations />
-      <Flow />
+      <Incluye />
       <BelowFoldSections />
       <Footer />
       <StickyCtaBar />
