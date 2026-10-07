@@ -46,3 +46,7 @@ next-env.d.ts
 # --- Grafo de conocimiento (graphify) ---
 # Derivado del codigo: se regenera con `graphify . --code-only`.
 graphify-out/
+
+# impeccable: capturas de revisión y rondas de decisión locales
+/.impeccable/review/
+/.impeccable/questions/

@@ -15,6 +15,28 @@
   --color-mist-d: #64748B;
   --color-green-ok: #22C55E;
 
+  /* Mundo «la comanda del mozo» (docs/diseno/decisiones.md · D5–D8). Paleta de marca de
+     Rodrigo (obsidiana, menta, ámbar) llevada a los materiales del servicio: mostrador,
+     talonario, copias y tinta carbón. Contraste verificado contra su fondo real. */
+  --color-mostrador: #121212;      /* fondo: obsidiana de marca */
+  --color-mostrador-2: #1C1C1C;    /* superficie elevada sobre el mostrador */
+  --color-linea: #2A2A2A;          /* filetes sobre el mostrador */
+  --color-texto-2: #CFCFCF;        /* 12.0:1 sobre mostrador */
+  --color-texto-3: #A8A8A8;        /* 7.9:1 sobre mostrador */
+  --color-papel: #EEF5F2;          /* hoja original del talonario */
+  --color-papel-linea: #C3D6CF;    /* renglones */
+  --color-copia-cocina: #9EDCCB;   /* copia para cocina */
+  --color-copia-caja: #F4C27A;     /* copia para caja */
+  --color-tinta: #23286B;          /* tinta carbón — 12:1 sobre papel */
+  --color-numerador: #A4521C;      /* numerador impreso — 5:1 sobre papel */
+  --color-impreso: #3F5A52;        /* rótulos impresos del talonario — 6.8:1 */
+  --color-menta: #5DC9A5;          /* menta de marca sobre mostrador — 9.2:1 */
+  --color-menta-oscura: #0B5544;   /* texto sobre copia de cocina — 5.7:1 */
+  --color-ambar: #F59E0B;          /* acción — 8.7:1 con texto obsidiana */
+  --color-ambar-hover: #FBB53C;
+  --color-ambar-oscuro: #6B3A10;   /* texto sobre copia de caja — 5.7:1 */
+  --font-brand: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+
   /* Motion — strong custom easing curves (Emil Kowalski). The built-in CSS
      easings are too weak; these give UI the "punch" that feels intentional.
      Registered in @theme so they're also available as ease-* utilities. */
@@ -239,6 +261,129 @@
 .btn-ghost-light:active {
   transform: scale(0.97);
   transition-duration: var(--dur-press);
+}
+
+/* ── Mundo «la comanda» ─────────────────────────────────────────────
+   Display: Archivo condensada al mínimo de ancho (62.5) en 900, como el titular de la carta
+   del comensal. Solo titulares y cifras; el texto corrido va en Archivo normal. */
+.display-cond {
+  font-family: var(--font-brand);
+  font-weight: 900;
+  font-stretch: 62.5%;
+  font-variation-settings: "wdth" 62.5;
+}
+.display-75 {
+  font-family: var(--font-brand);
+  font-stretch: 75%;
+  font-variation-settings: "wdth" 75;
+}
+
+/* Acción principal: ámbar de marca con texto obsidiana (8.7:1). Radio del sistema (rounded-lg), no cápsula. */
+.btn-accion {
+  background: var(--color-ambar);
+  color: var(--color-mostrador);
+  transition: background-color var(--dur-fast) var(--ease-snappy), transform var(--dur-fast) var(--ease-snappy);
+}
+.btn-accion:hover,
+.btn-accion:focus-visible {
+  background: var(--color-ambar-hover);
+}
+.btn-accion:active {
+  transform: scale(0.97);
+  transition-duration: var(--dur-press);
+}
+.btn-accion:focus-visible {
+  outline-color: #FFFFFF;
+}
+
+/* Enlace secundario sobre el mostrador: subrayado menta que se engrosa al pasar. */
+.link-menta {
+  color: #FFFFFF;
+  text-decoration: underline;
+  text-decoration-color: var(--color-menta);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  transition: text-decoration-thickness var(--dur-fast) var(--ease-snappy), color var(--dur-fast) var(--ease-snappy);
+}
+.link-menta:hover,
+.link-menta:focus-visible {
+  color: var(--color-menta);
+  text-decoration-thickness: 3px;
+}
+
+/* Materiales del servicio: riel de cocina, borde troquelado y renglones del talonario. */
+/* Riel plano y dibujado, como el resto del mundo (sin degradados que finjan metal). */
+.comanda-riel {
+  background: #3A3A3A;
+  box-shadow: 0 3px 0 #1E1E1E;
+}
+.comanda-troquel {
+  background: radial-gradient(circle at 8px 0, transparent 5px, var(--color-papel) 5.5px) 0 0 / 16px 12px repeat-x;
+}
+.comanda-troquel-abajo {
+  background: radial-gradient(circle at 8px 100%, transparent 5px, var(--color-papel) 5.5px) 0 0 / 16px 12px repeat-x;
+}
+/* Sobre el papel, el foco y la selección van en tinta: el ámbar global no llega a 3:1 ahí. */
+.comanda-papel :focus-visible {
+  outline-color: var(--color-tinta);
+}
+.comanda-papel ::selection,
+.comanda-papel::selection {
+  background: var(--color-copia-cocina);
+  color: var(--color-tinta);
+}
+.comanda-renglones {
+  background: repeating-linear-gradient(to bottom, transparent 0, transparent 31px, var(--color-papel-linea) 31px, var(--color-papel-linea) 32px);
+}
+.comanda-plato {
+  transition: background-color var(--dur-fast) var(--ease-snappy), transform var(--dur-fast) var(--ease-snappy);
+}
+.comanda-plato:hover {
+  background-color: #DCEBE6;
+}
+.comanda-plato:active {
+  transform: scale(0.96);
+  transition-duration: var(--dur-press);
+}
+.comanda-mandar {
+  transition: background-color var(--dur-fast) var(--ease-snappy), transform var(--dur-fast) var(--ease-snappy);
+}
+.comanda-mandar:not(:disabled):hover {
+  background-color: #000000;
+}
+.comanda-mandar:not(:disabled):active {
+  transform: scale(0.98);
+  transition-duration: var(--dur-press);
+}
+
+/* Movimiento propio: la tinta se escribe, la hoja nueva sube, el ticket se cuelga y la copia cae. */
+@keyframes comanda-escribir {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+@keyframes comanda-hoja {
+  from { transform: translateY(14px); opacity: 0.35; }
+  to   { transform: none; opacity: 1; }
+}
+@keyframes comanda-colgar {
+  from { transform: translate3d(90px, -28px, 0) rotate(9deg); opacity: 0; }
+  to   { transform: rotate(var(--giro, 0deg)); opacity: 1; }
+}
+@keyframes comanda-caer {
+  from { transform: translate3d(-90px, -36px, 0) rotate(-9deg); opacity: 0; }
+  to   { transform: rotate(var(--giro, 0deg)); opacity: 1; }
+}
+@keyframes hero-subir {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.comanda-linea { animation: comanda-escribir 0.45s cubic-bezier(0.65, 0, 0.35, 1) both; }
+.hoja-nueva { animation: comanda-hoja 0.42s var(--ease-snappy) both; }
+.ticket-nuevo { animation: comanda-colgar 0.6s var(--ease-snappy) both; }
+.copia-nueva { animation: comanda-caer 0.6s var(--ease-snappy) 0.08s both; }
+.hero-subir { animation: hero-subir 0.7s cubic-bezier(0.25, 1, 0.5, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .comanda-linea, .hoja-nueva, .ticket-nuevo, .copia-nueva, .hero-subir { animation: none; }
 }
 
 /* Pricing card CTAs — uses --accent set per-plan inline. */

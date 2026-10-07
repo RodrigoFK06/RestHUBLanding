@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useModals } from "@/components/modals/ModalProvider";
 
@@ -39,9 +40,9 @@ export default function Nav() {
     <nav
       ref={navRef}
       aria-label="Principal"
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-4 transition-colors duration-300 border-b ${
-        scrolled
-          ? "bg-black/95 backdrop-blur-xl border-white/10"
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-4 font-brand transition-colors duration-300 border-b ${
+        scrolled || open
+          ? "bg-mostrador border-linea"
           : "bg-transparent border-transparent"
       }`}
     >
@@ -57,12 +58,12 @@ export default function Nav() {
       </Link>
 
       {/* Desktop links */}
-      <ul className="hidden md:flex items-center gap-8 list-none">
+      <ul className="hidden lg:flex items-center gap-8 list-none">
         {links.map((l) => (
           <li key={l.href}>
             <a
               href={l.href}
-              className="text-sm font-medium text-white/80 hover:text-white transition-colors"
+              className="text-[0.9375rem] font-medium text-texto-2 hover:text-white transition-colors"
             >
               {l.label}
             </a>
@@ -71,19 +72,19 @@ export default function Nav() {
       </ul>
 
       {/* Desktop CTAs */}
-      <div className="hidden md:flex items-center gap-2">
+      <div className="hidden lg:flex items-center gap-2">
         <Button
           variant="ghost"
           size="sm"
           onClick={() => window.open("https://rest-hub.vercel.app", "_blank", "noopener")}
-          className="text-white border border-white/25 hover:border-white/55 hover:bg-white/5 text-xs cursor-pointer"
+          className="h-10 rounded-lg px-4 text-sm font-bold text-white border border-[#4A4A4A] hover:border-[#7A7A7A] hover:bg-white/5 cursor-pointer"
         >
           Probar la demo
         </Button>
         <Button
           size="sm"
           onClick={() => openContact({ topic: "Solicitar acceso" })}
-          className="bg-[#F59E0B] hover:bg-[#FCD34D] text-[#0F172A] font-bold text-xs cursor-pointer"
+          className="btn-accion h-10 rounded-lg px-4 text-sm font-extrabold cursor-pointer"
         >
           Solicitar acceso
         </Button>
@@ -92,7 +93,7 @@ export default function Nav() {
       {/* Mobile burger */}
       <button
         type="button"
-        className="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer -mr-2"
+        className="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer -mr-2"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls="mobile-menu"
@@ -107,14 +108,14 @@ export default function Nav() {
       {open && (
         <div
           id="mobile-menu"
-          className="nav-mobile-menu md:hidden fixed top-[64px] left-0 right-0 z-40 bg-black/97 backdrop-blur-xl border-b border-white/10 p-6 flex flex-col gap-5"
+          className="nav-mobile-menu lg:hidden fixed top-[64px] left-0 right-0 z-40 bg-mostrador border-b border-linea p-6 flex flex-col gap-5"
         >
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="text-base font-medium text-white/85 hover:text-white transition-colors"
+              className="text-base font-medium text-texto-2 hover:text-white transition-colors"
             >
               {l.label}
             </a>
@@ -126,7 +127,7 @@ export default function Nav() {
                 setOpen(false);
                 window.open("https://rest-hub.vercel.app", "_blank", "noopener");
               }}
-              className="w-full text-white border border-white/25 hover:bg-white/5 cursor-pointer"
+              className="h-12 w-full rounded-lg font-bold text-white border border-[#4A4A4A] hover:bg-white/5 cursor-pointer"
             >
               Probar la demo
             </Button>
@@ -135,9 +136,10 @@ export default function Nav() {
                 setOpen(false);
                 openContact({ topic: "Solicitar acceso" });
               }}
-              className="w-full bg-[#F59E0B] hover:bg-[#FCD34D] text-[#0F172A] font-bold cursor-pointer"
+              className="btn-accion h-12 w-full rounded-lg font-extrabold cursor-pointer"
             >
-              Solicitar acceso →
+              Solicitar acceso
+              <ArrowRight className="size-[18px]" strokeWidth={2.5} aria-hidden="true" />
             </Button>
           </div>
         </div>

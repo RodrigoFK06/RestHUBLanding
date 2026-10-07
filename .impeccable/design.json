@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-06T00:00:00-05:00",
+  "title": "Design System: RestHUB",
+  "extensions": {
+    "colorMeta": {
+      "ambar": { "role": "primary", "displayName": "Ámbar de acción", "canonical": "#F59E0B", "tonalRamp": ["oklch(15.0% 0.080 70.1)", "oklch(26.4% 0.126 70.1)", "oklch(37.9% 0.165 70.1)", "oklch(49.3% 0.165 70.1)", "oklch(60.7% 0.165 70.1)", "oklch(72.1% 0.131 70.1)", "oklch(83.6% 0.086 70.1)", "oklch(95.0% 0.040 70.1)"] },
+      "ambar-hover": { "role": "primary", "displayName": "Ámbar claro", "canonical": "#FBB53C", "tonalRamp": ["oklch(15.0% 0.080 76.6)", "oklch(26.4% 0.126 76.6)", "oklch(37.9% 0.152 76.6)", "oklch(49.3% 0.152 76.6)", "oklch(60.7% 0.152 76.6)", "oklch(72.1% 0.131 76.6)", "oklch(83.6% 0.086 76.6)", "oklch(95.0% 0.040 76.6)"] },
+      "ambar-oscuro": { "role": "primary", "displayName": "Ámbar tostado", "canonical": "#6B3A10", "tonalRamp": ["oklch(15.0% 0.080 56.3)", "oklch(26.4% 0.087 56.3)", "oklch(37.9% 0.087 56.3)", "oklch(49.3% 0.087 56.3)", "oklch(60.7% 0.087 56.3)", "oklch(72.1% 0.087 56.3)", "oklch(83.6% 0.086 56.3)", "oklch(95.0% 0.040 56.3)"] },
+      "menta": { "role": "secondary", "displayName": "Menta de marca", "canonical": "#5DC9A5", "tonalRamp": ["oklch(15.0% 0.080 168.8)", "oklch(26.4% 0.114 168.8)", "oklch(37.9% 0.114 168.8)", "oklch(49.3% 0.114 168.8)", "oklch(60.7% 0.114 168.8)", "oklch(72.1% 0.114 168.8)", "oklch(83.6% 0.086 168.8)", "oklch(95.0% 0.040 168.8)"] },
+      "menta-oscura": { "role": "secondary", "displayName": "Menta profunda", "canonical": "#0B5544", "tonalRamp": ["oklch(15.0% 0.074 172.3)", "oklch(26.4% 0.074 172.3)", "oklch(37.9% 0.074 172.3)", "oklch(49.3% 0.074 172.3)", "oklch(60.7% 0.074 172.3)", "oklch(72.1% 0.074 172.3)", "oklch(83.6% 0.074 172.3)", "oklch(95.0% 0.040 172.3)"] },
+      "copia-cocina": { "role": "secondary", "displayName": "Copia de cocina", "canonical": "#9EDCCB", "tonalRamp": ["oklch(15.0% 0.067 175.7)", "oklch(26.4% 0.067 175.7)", "oklch(37.9% 0.067 175.7)", "oklch(49.3% 0.067 175.7)", "oklch(60.7% 0.067 175.7)", "oklch(72.1% 0.067 175.7)", "oklch(83.6% 0.067 175.7)", "oklch(95.0% 0.040 175.7)"] },
+      "copia-caja": { "role": "tertiary", "displayName": "Copia de caja", "canonical": "#F4C27A", "tonalRamp": ["oklch(15.0% 0.080 75.6)", "oklch(26.4% 0.106 75.6)", "oklch(37.9% 0.106 75.6)", "oklch(49.3% 0.106 75.6)", "oklch(60.7% 0.106 75.6)", "oklch(72.1% 0.106 75.6)", "oklch(83.6% 0.086 75.6)", "oklch(95.0% 0.040 75.6)"] },
+      "numerador": { "role": "tertiary", "displayName": "Numerador", "canonical": "#A4521C", "tonalRamp": ["oklch(15.0% 0.080 49.5)", "oklch(26.4% 0.126 49.5)", "oklch(37.9% 0.126 49.5)", "oklch(49.3% 0.126 49.5)", "oklch(60.7% 0.126 49.5)", "oklch(72.1% 0.126 49.5)", "oklch(83.6% 0.086 49.5)", "oklch(95.0% 0.040 49.5)"] },
+      "tinta": { "role": "neutral", "displayName": "Tinta carbón", "canonical": "#23286B", "tonalRamp": ["oklch(15.0% 0.080 274.5)", "oklch(26.4% 0.115 274.5)", "oklch(37.9% 0.115 274.5)", "oklch(49.3% 0.115 274.5)", "oklch(60.7% 0.115 274.5)", "oklch(72.1% 0.115 274.5)", "oklch(83.6% 0.086 274.5)", "oklch(95.0% 0.040 274.5)"] },
+      "impreso": { "role": "neutral", "displayName": "Impreso", "canonical": "#3F5A52", "tonalRamp": ["oklch(15.0% 0.035 174.3)", "oklch(26.4% 0.035 174.3)", "oklch(37.9% 0.035 174.3)", "oklch(49.3% 0.035 174.3)", "oklch(60.7% 0.035 174.3)", "oklch(72.1% 0.035 174.3)", "oklch(83.6% 0.035 174.3)", "oklch(95.0% 0.035 174.3)"] },
+      "papel": { "role": "neutral", "displayName": "Papel del talonario", "canonical": "#EEF5F2", "tonalRamp": ["oklch(15.0% 0.008 168.8)", "oklch(26.4% 0.008 168.8)", "oklch(37.9% 0.008 168.8)", "oklch(49.3% 0.008 168.8)", "oklch(60.7% 0.008 168.8)", "oklch(72.1% 0.008 168.8)", "oklch(83.6% 0.008 168.8)", "oklch(95.0% 0.008 168.8)"] },
+      "papel-linea": { "role": "neutral", "displayName": "Renglón", "canonical": "#C3D6CF", "tonalRamp": ["oklch(15.0% 0.023 171.7)", "oklch(26.4% 0.023 171.7)", "oklch(37.9% 0.023 171.7)", "oklch(49.3% 0.023 171.7)", "oklch(60.7% 0.023 171.7)", "oklch(72.1% 0.023 171.7)", "oklch(83.6% 0.023 171.7)", "oklch(95.0% 0.023 171.7)"] },
+      "mostrador": { "role": "neutral", "displayName": "Mostrador obsidiana", "canonical": "#121212", "tonalRamp": ["oklch(15.0% 0 0)", "oklch(26.4% 0 0)", "oklch(37.9% 0 0)", "oklch(49.3% 0 0)", "oklch(60.7% 0 0)", "oklch(72.1% 0 0)", "oklch(83.6% 0 0)", "oklch(95.0% 0 0)"] },
+      "mostrador-2": { "role": "neutral", "displayName": "Mostrador alto", "canonical": "#1C1C1C", "tonalRamp": ["oklch(15.0% 0 0)", "oklch(26.4% 0 0)", "oklch(37.9% 0 0)", "oklch(49.3% 0 0)", "oklch(60.7% 0 0)", "oklch(72.1% 0 0)", "oklch(83.6% 0 0)", "oklch(95.0% 0 0)"] },
+      "linea": { "role": "neutral", "displayName": "Filete", "canonical": "#2A2A2A", "tonalRamp": ["oklch(15.0% 0 0)", "oklch(26.4% 0 0)", "oklch(37.9% 0 0)", "oklch(49.3% 0 0)", "oklch(60.7% 0 0)", "oklch(72.1% 0 0)", "oklch(83.6% 0 0)", "oklch(95.0% 0 0)"] },
+      "blanco": { "role": "neutral", "displayName": "Blanco", "canonical": "#FFFFFF", "tonalRamp": ["oklch(15.0% 0 0)", "oklch(26.4% 0 0)", "oklch(37.9% 0 0)", "oklch(49.3% 0 0)", "oklch(60.7% 0 0)", "oklch(72.1% 0 0)", "oklch(83.6% 0 0)", "oklch(95.0% 0 0)"] },
+      "texto-2": { "role": "neutral", "displayName": "Texto segundo", "canonical": "#CFCFCF", "tonalRamp": ["oklch(15.0% 0 0)", "oklch(26.4% 0 0)", "oklch(37.9% 0 0)", "oklch(49.3% 0 0)", "oklch(60.7% 0 0)", "oklch(72.1% 0 0)", "oklch(83.6% 0 0)", "oklch(95.0% 0 0)"] },
+      "texto-3": { "role": "neutral", "displayName": "Texto tercero", "canonical": "#A8A8A8", "tonalRamp": ["oklch(15.0% 0 0)", "oklch(26.4% 0 0)", "oklch(37.9% 0 0)", "oklch(49.3% 0 0)", "oklch(60.7% 0 0)", "oklch(72.1% 0 0)", "oklch(83.6% 0 0)", "oklch(95.0% 0 0)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display condensada", "purpose": "Titular del hero en dos líneas; la segunda en menta." },
+      "cifra": { "displayName": "Cifra", "purpose": "Importes, totales y N° de comanda; siempre tabular, 22–36 px según jerarquía." },
+      "headline": { "displayName": "Nombre del documento", "purpose": "«Comanda», «Cierre de caja»: lo impreso en el papel, 20–26 px en mayúsculas." },
+      "title": { "displayName": "Rótulo de panel", "purpose": "Cocina, Caja y cabeceras de ticket o copia, en wdth 75 y mayúsculas." },
+      "body": { "displayName": "Texto", "purpose": "Párrafo principal sobre el mostrador, máximo 44ch." },
+      "body-sm": { "displayName": "Texto chico", "purpose": "Notas al pie de columna en texto-3, máximo 34ch." },
+      "tinta": { "displayName": "Tinta del mozo", "purpose": "Datos escritos a mano en cursiva semibold y color tinta; 14–17 px." },
+      "button": { "displayName": "Botón", "purpose": "Acciones, extrabold; 14–17 px según contexto." },
+      "label": { "displayName": "Etiqueta", "purpose": "Chips de estado y leyendas de copia; piso de 12 px." }
+    },
+    "shadows": [
+      { "name": "papel-talonario", "value": "0 34px 64px -26px rgba(0,0,0,0.9)", "purpose": "Hoja principal del talonario flotando sobre el mostrador." },
+      { "name": "papel-caja", "value": "0 18px 30px -16px rgba(0,0,0,0.85)", "purpose": "Papel del cierre de caja." },
+      { "name": "papel-ticket", "value": "0 16px 28px -14px rgba(0,0,0,0.8)", "purpose": "Tickets colgados en el riel de cocina." },
+      { "name": "papel-copia", "value": "0 14px 26px -14px rgba(0,0,0,0.8)", "purpose": "Copias por cobrar apiladas en la caja." }
+    ],
+    "motion": [
+      { "name": "ease-snappy", "value": "cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "Entradas y cambios de estado de la interfaz; ticket que se cuelga, copia que cae, hoja nueva." },
+      { "name": "ease-smooth", "value": "cubic-bezier(0.77, 0, 0.175, 1)", "purpose": "Movimiento en pantalla de ida y vuelta." },
+      { "name": "ease-escribir", "value": "cubic-bezier(0.65, 0, 0.35, 1)", "purpose": "La tinta que se escribe renglón por renglón (0.45 s, clip-path)." },
+      { "name": "ease-subir", "value": "cubic-bezier(0.25, 1, 0.5, 1)", "purpose": "Entrada del texto y el escenario del hero (0.7 s, sube 14 px)." },
+      { "name": "dur-press", "value": "130ms", "purpose": "Hundimiento al presionar (escala 0.96–0.98)." },
+      { "name": "dur-fast", "value": "180ms", "purpose": "Hover y foco de controles." },
+      { "name": "dur-base", "value": "240ms", "purpose": "Menú móvil y transiciones de control más largas." },
+      { "name": "escena", "value": "600ms", "purpose": "Ticket que se cuelga (desde 90px,-28px, 9°) y copia que cae (desde -90px,-36px, -9°, 80 ms de retraso)." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "1440", "value": "1440px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Acción principal",
+      "kind": "button",
+      "refersTo": "button-accion",
+      "description": "«Solicitar acceso»: ámbar con texto obsidiana, una por bloque.",
+      "html": "<button class=\"ds-btn-accion\">Solicitar acceso <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></button>",
+      "css": ".ds-btn-accion { display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 24px; border: none; border-radius: 10px; background: var(--color-ambar, #F59E0B); color: var(--color-mostrador, #121212); font-family: var(--font-archivo, Archivo), ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 800; cursor: pointer; transition: background-color 180ms cubic-bezier(0.23, 1, 0.32, 1), transform 180ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn-accion:hover, .ds-btn-accion:focus-visible { background: var(--color-ambar-hover, #FBB53C); } .ds-btn-accion:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; } .ds-btn-accion:active { transform: scale(0.97); transition-duration: 130ms; }"
+    },
+    {
+      "name": "Botón con borde",
+      "kind": "button",
+      "refersTo": "button-borde",
+      "description": "Acción secundaria de la nav («Probar la demo») sobre el mostrador.",
+      "html": "<div style=\"background:#121212;padding:16px\"><button class=\"ds-btn-borde\">Probar la demo</button></div>",
+      "css": ".ds-btn-borde { height: 40px; padding: 0 16px; border-radius: 10px; border: 1px solid #4A4A4A; background: transparent; color: #FFFFFF; font-family: var(--font-archivo, Archivo), ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: border-color 180ms cubic-bezier(0.23, 1, 0.32, 1), background-color 180ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn-borde:hover { border-color: #7A7A7A; background: rgba(255,255,255,0.05); } .ds-btn-borde:focus-visible { outline: 2px solid #F59E0B; outline-offset: 2px; }"
+    },
+    {
+      "name": "Enlace menta",
+      "kind": "custom",
+      "refersTo": "link-menta",
+      "description": "Enlace secundario sobre el mostrador con subrayado menta que se engrosa.",
+      "html": "<div style=\"background:#121212;padding:16px\"><a href=\"#\" class=\"ds-link-menta\">Ver el sistema por dentro</a></div>",
+      "css": ".ds-link-menta { display: inline-flex; align-items: center; height: 44px; color: #FFFFFF; font-family: var(--font-archivo, Archivo), ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 600; text-decoration: underline; text-decoration-color: var(--color-menta, #5DC9A5); text-decoration-thickness: 2px; text-underline-offset: 6px; transition: text-decoration-thickness 180ms cubic-bezier(0.23, 1, 0.32, 1), color 180ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-link-menta:hover, .ds-link-menta:focus-visible { color: var(--color-menta, #5DC9A5); text-decoration-thickness: 3px; } .ds-link-menta:focus-visible { outline: 2px solid #F59E0B; outline-offset: 2px; }"
+    },
+    {
+      "name": "Navegación",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Nav fija: transparente sobre el hero, obsidiana sólida con filete al bajar; sin desenfoque.",
+      "html": "<nav class=\"ds-nav\"><strong class=\"ds-nav-logo\">RestHUB</strong><ul class=\"ds-nav-links\"><li><a href=\"#\">Módulos</a></li><li><a href=\"#\">Roles</a></li><li><a href=\"#\">Comparativa</a></li><li><a href=\"#\">FAQ</a></li></ul><button class=\"ds-nav-cta\">Solicitar acceso</button></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 16px 40px; background: var(--color-mostrador, #121212); border-bottom: 1px solid var(--color-linea, #2A2A2A); font-family: var(--font-archivo, Archivo), ui-sans-serif, system-ui, sans-serif; } .ds-nav-logo { color: #FFFFFF; font-size: 20px; font-weight: 900; } .ds-nav-links { display: flex; gap: 32px; list-style: none; margin: 0; padding: 0; } .ds-nav-links a { color: var(--color-texto-2, #CFCFCF); font-size: 15px; font-weight: 500; text-decoration: none; transition: color 180ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-nav-links a:hover, .ds-nav-links a:focus-visible { color: #FFFFFF; } .ds-nav-cta { height: 40px; padding: 0 16px; border: none; border-radius: 10px; background: var(--color-ambar, #F59E0B); color: var(--color-mostrador, #121212); font: inherit; font-size: 14px; font-weight: 800; cursor: pointer; } .ds-nav-cta:hover, .ds-nav-cta:focus-visible { background: var(--color-ambar-hover, #FBB53C); } .ds-nav-cta:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }"
+    },
+    {
+      "name": "Chips de estado",
+      "kind": "chip",
+      "refersTo": "estado-preparando",
+      "description": "Estado del pedido en el ticket de cocina: Preparando (obsidiana) y Listo (menta profunda).",
+      "html": "<div style=\"background:#9EDCCB;padding:12px;display:flex;gap:8px\"><span class=\"ds-chip ds-chip-preparando\">Preparando</span><span class=\"ds-chip ds-chip-listo\">Listo</span></div>",
+      "css": ".ds-chip { display: inline-block; padding: 4px 8px; border-radius: 3px; font-family: var(--font-archivo, Archivo), ui-sans-serif, system-ui, sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; } .ds-chip-preparando { background: var(--color-mostrador, #121212); color: var(--color-copia-cocina, #9EDCCB); } .ds-chip-listo { background: var(--color-menta-oscura, #0B5544); color: #FFFFFF; }"
+    },
+    {
+      "name": "Botón de plato",
+      "kind": "button",
+      "refersTo": "boton-plato",
+      "description": "Plato de la carta dentro del talonario; marcado en copia de cocina cuando ya está pedido.",
+      "html": "<div style=\"background:#EEF5F2;padding:16px;display:grid;grid-template-columns:repeat(2,160px);gap:8px\"><button class=\"ds-plato\"><span>1/4 Pollo</span><b>24</b></button><button class=\"ds-plato ds-plato-activo\"><span>Chicha 1 L</span><b>× 1</b></button></div>",
+      "css": ".ds-plato { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 44px; padding: 0 12px; border: 1.5px solid var(--color-mostrador, #121212); border-radius: 8px; background: var(--color-papel, #EEF5F2); color: var(--color-mostrador, #121212); font-family: var(--font-archivo, Archivo), ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: background-color 180ms cubic-bezier(0.23, 1, 0.32, 1), transform 180ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-plato b { font-weight: 900; font-variant-numeric: tabular-nums; } .ds-plato:hover { background: #DCEBE6; } .ds-plato:focus-visible { outline: 2px solid var(--color-tinta, #23286B); outline-offset: 2px; } .ds-plato:active { transform: scale(0.96); transition-duration: 130ms; } .ds-plato-activo { background: var(--color-copia-cocina, #9EDCCB); }"
+    },
+    {
+      "name": "Talonario",
+      "kind": "card",
+      "refersTo": "talonario",
+      "description": "Componente firma: hoja de comanda con troquel, numerador, casillas impresas, renglones con tinta y total.",
+      "html": "<div style=\"background:#121212;padding:32px\"><div class=\"ds-talonario\"><div class=\"ds-troquel\"></div><div class=\"ds-tal-body\"><div class=\"ds-tal-head\"><span class=\"ds-cond\" style=\"font-size:26px\">COMANDA</span><span class=\"ds-cond ds-num\">N° 000482</span></div><dl class=\"ds-casillas\"><div><dt>Mesa</dt><dd>4 · salón</dd></div><div><dt>Mozo</dt><dd>Lucía</dd></div><div><dt>Hora</dt><dd>12:41</dd></div></dl><ol class=\"ds-renglones\"><li><span>2</span><span>1/4 Pollo a la brasa</span><span>48.00</span></li><li><span>1</span><span>Chicha morada 1 L</span><span>12.00</span></li></ol><div class=\"ds-total\"><span>TOTAL</span><span class=\"ds-cond\" style=\"font-size:34px\">S/ 60.00</span></div><button class=\"ds-mandar\">Mandar a cocina · S/ 60.00</button></div></div></div>",
+      "css": ".ds-talonario { max-width: 480px; background: var(--color-papel, #EEF5F2); color: var(--color-mostrador, #121212); border-radius: 0 0 4px 4px; box-shadow: 0 34px 64px -26px rgba(0,0,0,0.9); transform: rotate(-0.8deg); font-family: var(--font-archivo, Archivo), ui-sans-serif, system-ui, sans-serif; } .ds-troquel { height: 12px; background: radial-gradient(circle at 8px 0, transparent 5px, var(--color-papel, #EEF5F2) 5.5px) 0 0 / 16px 12px repeat-x; } .ds-tal-body { padding: 8px 28px 20px; } .ds-cond { font-weight: 900; font-stretch: 62.5%; font-variation-settings: 'wdth' 62.5; line-height: 1; font-variant-numeric: tabular-nums; } .ds-tal-head { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--color-mostrador, #121212); padding-bottom: 10px; } .ds-num { font-size: 22px; color: var(--color-numerador, #A4521C); } .ds-casillas { display: grid; grid-template-columns: repeat(3, 1fr); margin: 10px 0 0; border: 1px solid var(--color-papel-linea, #C3D6CF); } .ds-casillas div { padding: 4px 10px; border-right: 1px solid var(--color-papel-linea, #C3D6CF); } .ds-casillas div:last-child { border-right: none; } .ds-casillas dt { font-size: 12px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-impreso, #3F5A52); } .ds-casillas dd { margin: 0; font-size: 16px; font-weight: 600; font-style: italic; color: var(--color-tinta, #23286B); } .ds-renglones { list-style: none; margin: 12px 0 0; padding: 0; min-height: 96px; background: repeating-linear-gradient(to bottom, transparent 0, transparent 31px, var(--color-papel-linea, #C3D6CF) 31px, var(--color-papel-linea, #C3D6CF) 32px); } .ds-renglones li { display: grid; grid-template-columns: 3.25rem 1fr auto; align-items: center; height: 32px; font-size: 17px; font-weight: 600; font-style: italic; color: var(--color-tinta, #23286B); font-variant-numeric: tabular-nums; } .ds-total { display: flex; justify-content: space-between; align-items: baseline; border-top: 2px solid var(--color-mostrador, #121212); padding-top: 8px; font-size: 13px; font-weight: 900; letter-spacing: 0.05em; } .ds-mandar { margin-top: 16px; width: 100%; height: 52px; border: none; border-radius: 10px; background: var(--color-mostrador, #121212); color: #FFFFFF; font: inherit; font-size: 17px; font-weight: 800; cursor: pointer; transition: background-color 180ms cubic-bezier(0.23, 1, 0.32, 1), transform 180ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-mandar:hover { background: #000000; } .ds-mandar:focus-visible { outline: 2px solid var(--color-tinta, #23286B); outline-offset: 2px; } .ds-mandar:active { transform: scale(0.98); transition-duration: 130ms; }"
+    },
+    {
+      "name": "Ticket de cocina",
+      "kind": "card",
+      "refersTo": "ticket-cocina",
+      "description": "Copia menta colgada del riel de cocina con mesa, hora, platos en tinta y estado.",
+      "html": "<div style=\"background:#121212;padding:24px;width:240px\"><div class=\"ds-riel\"></div><div class=\"ds-ticket\"><div class=\"ds-ticket-head\"><span>MESA 2</span><span>12:38</span></div><ul><li>2 × Lomo saltado</li><li>1 × Inca Kola 1.5 L</li></ul><span class=\"ds-ticket-estado\">PREPARANDO</span></div></div>",
+      "css": ".ds-riel { height: 10px; border-radius: 9999px; background: #3A3A3A; } .ds-ticket { margin: -2px 4px 0; padding: 10px 12px 12px; border-radius: 3px; background: var(--color-copia-cocina, #9EDCCB); color: var(--color-mostrador, #121212); box-shadow: 0 16px 28px -14px rgba(0,0,0,0.8); transform: rotate(-1.6deg); transform-origin: 50% 0; font-family: var(--font-archivo, Archivo), ui-sans-serif, system-ui, sans-serif; } .ds-ticket-head { display: flex; justify-content: space-between; font-size: 15px; font-weight: 900; font-stretch: 75%; font-variation-settings: 'wdth' 75; font-variant-numeric: tabular-nums; } .ds-ticket ul { list-style: none; margin: 6px 0 0; padding: 0; font-size: 14px; font-weight: 600; font-style: italic; color: var(--color-tinta, #23286B); line-height: 1.375; } .ds-ticket-estado { display: inline-block; margin-top: 10px; padding: 4px 8px; border-radius: 3px; background: var(--color-mostrador, #121212); color: var(--color-copia-cocina, #9EDCCB); font-size: 12px; font-weight: 800; letter-spacing: 0.03em; }"
+    },
+    {
+      "name": "Copia de caja",
+      "kind": "card",
+      "refersTo": "copia-caja",
+      "description": "Copia ámbar por cobrar, apilada en la columna de caja.",
+      "html": "<div style=\"background:#121212;padding:24px;width:260px\"><div class=\"ds-copia\"><div class=\"ds-copia-head\"><span>MESA 4</span><span>12:41</span></div><p class=\"ds-copia-monto\">S/ 60.00</p><p class=\"ds-copia-nota\">SE COBRA AL CERRAR LA MESA</p></div></div>",
+      "css": ".ds-copia { padding: 12px 16px; border-radius: 3px; background: var(--color-copia-caja, #F4C27A); color: var(--color-mostrador, #121212); box-shadow: 0 14px 26px -14px rgba(0,0,0,0.8); transform: rotate(-1.4deg); font-family: var(--font-archivo, Archivo), ui-sans-serif, system-ui, sans-serif; } .ds-copia-head { display: flex; justify-content: space-between; font-size: 14px; font-weight: 900; font-stretch: 75%; font-variation-settings: 'wdth' 75; font-variant-numeric: tabular-nums; } .ds-copia-monto { margin: 4px 0 0; font-size: 30px; font-weight: 900; font-stretch: 62.5%; font-variation-settings: 'wdth' 62.5; line-height: 1; font-variant-numeric: tabular-nums; } .ds-copia-nota { margin: 4px 0 0; font-size: 12px; font-weight: 800; letter-spacing: 0.03em; color: var(--color-ambar-oscuro, #6B3A10); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "La comanda del mozo",
+    "overview": "Un pedido, tres copias: la mesa, la cocina y la caja. El sistema visual sale de los materiales reales del servicio de un restaurante peruano: un mostrador obsidiana que es el fondo de todo, un talonario de comandas en papel menta pálido con numerador impreso y tinta carbón escrita a mano, una copia menta que se cuelga en el riel de cocina y una copia ámbar que cae en la caja. Lo claro nunca es la página: es papel que flota sobre el mostrador.\n\nLa densidad es la de un mostrador en pleno servicio: mucha información pequeña y concreta (mesa, hora, importes en soles) ordenada por las reglas de un formulario impreso, con titulares condensados enormes arriba que dicen una sola cosa. Archivo es la única familia; su eje de ancho separa lo impreso (condensada 900), lo explicado (ancho normal) y lo escrito por el mozo (cursiva semibold en tinta). El movimiento también es del oficio: la tinta se escribe, la hoja nueva sube, el ticket se cuelga y la copia cae.\n\nSe rechazan de forma confirmada: fondos de página blancos o crema, vidrio y desenfoque, tarjetas translúcidas flotantes, degradados que finjan metal o brillo, el hero partido de categoría (titular a un lado, captura del producto al otro) y la paleta por defecto de Tailwind (slate, teal) con Inter y Playfair.",
+    "keyCharacteristics": [
+      "Fondo obsidiana plano; lo claro solo existe como papel con sombra.",
+      "Una sola familia (Archivo) con tres voces por eje de ancho y estilo.",
+      "Ámbar para actuar, menta para lo que salió bien; cada color tiene un oficio.",
+      "Radios chicos de papelería (3–4 px) y de control (8–10 px); nada en cápsula.",
+      "Cifras siempre tabulares, en soles, con el formato `S/ 2,267.00`.",
+      "Movimiento corto que imita el gesto físico, apagado con `prefers-reduced-motion`."
+    ],
+    "rules": [
+      { "name": "The Mostrador Rule", "body": "El fondo de página es siempre `mostrador`. Lo claro (papel, copias) entra solo como objeto que flota sobre él, nunca como fondo de sección.", "section": "colors" },
+      { "name": "The Un Color, Un Oficio Rule", "body": "Ámbar es actuar y caja; menta es cocina y lo que salió bien; numerador es lo impreso en rojo; tinta es lo escrito a mano. No se colorea una palabra solo para decorar un título.", "section": "colors" },
+      { "name": "The Foco en Tinta Rule", "body": "Sobre el mostrador el foco es ámbar (blanco sobre el botón ámbar); dentro de papel (`.comanda-papel`) el foco y la selección pasan a tinta y copia de cocina, porque el ámbar no llega a 3:1 sobre papel.", "section": "colors" },
+      { "name": "The Tres Voces Rule", "body": "Condensada = impreso, titulares y cifras. Normal = lo que explicamos. Cursiva semibold en tinta = lo que escribe el mozo. Una voz nunca hace el trabajo de otra.", "section": "typography" },
+      { "name": "The Cifra Tabular Rule", "body": "Todo importe, hora o número de comanda usa cifras tabulares y el formato peruano `S/ 1,234.50`.", "section": "typography" },
+      { "name": "The Papel Que Flota Rule", "body": "Solo el papel proyecta sombra. Botones, avisos y la nav sobre el mostrador no tienen sombra ni resplandor; se distinguen por color y borde.", "section": "elevation" }
+    ],
+    "dos": [
+      "**Do** usar `mostrador` como fondo de toda sección que migre al mundo y meter lo claro solo como papel con sombra.",
+      "**Do** poner una sola acción ámbar con texto obsidiana por bloque, de 52 px de alto en contenido y 40 px en la nav.",
+      "**Do** escribir con Archivo cursiva semibold en `tinta` solo los datos que un mozo escribiría a mano.",
+      "**Do** rotular formularios impresos con mayúsculas extrabold y tracking de 0.03–0.05em en `impreso`, como en un talonario real.",
+      "**Do** mostrar todos los montos con cifras tabulares y el formato `S/ 2,267.00`.",
+      "**Do** cambiar el foco a `tinta` dentro de cualquier papel (`.comanda-papel`).",
+      "**Do** mantener la interfaz bajo 240 ms (presión 130 ms, controles 180 ms) y las entradas de escena en 0.6–0.7 s, y apagar toda animación con `prefers-reduced-motion`.",
+      "**Do** dar a todo control táctil al menos 44 px de alto."
+    ],
+    "donts": [
+      "**Don't** usar fondos de página blancos ni crema.",
+      "**Don't** usar vidrio, desenfoque, tarjetas translúcidas flotantes ni manchas de degradado.",
+      "**Don't** imitar metal o brillo con degradados; los materiales son planos y dibujados.",
+      "**Don't** usar botones en cápsula ni resplandor ámbar alrededor de la acción.",
+      "**Don't** pintar cada título con una palabra de un color distinto; el color tiene oficio, no adorna.",
+      "**Don't** usar Inter, Playfair ni los colores slate/teal heredados en superficies nuevas.",
+      "**Don't** poner sombra en superficies del mostrador ni girar controles; solo el papel flota y se inclina.",
+      "**Don't** bajar de 12 px de texto en superficies nuevas."
+    ]
+  }
+}
