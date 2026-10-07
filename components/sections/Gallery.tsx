@@ -20,6 +20,8 @@ type Puesto = {
   alto: number;
   // Color del papel cuando el puesto está elegido (un color, un oficio).
   papel: string;
+  // En el celular la pantalla se recorta a 4:3 alrededor de lo que importa de cada puesto.
+  foco: string;
 };
 
 const PUESTOS: Puesto[] = [
@@ -33,6 +35,7 @@ const PUESTOS: Puesto[] = [
     ancho: 1863,
     alto: 820,
     papel: "bg-papel",
+    foco: "72% 0%",
   },
   {
     id: "cocina",
@@ -44,6 +47,7 @@ const PUESTOS: Puesto[] = [
     ancho: 1902,
     alto: 937,
     papel: "bg-copia-cocina",
+    foco: "0% 0%",
   },
   {
     id: "caja",
@@ -55,6 +59,7 @@ const PUESTOS: Puesto[] = [
     ancho: 1860,
     alto: 939,
     papel: "bg-copia-caja",
+    foco: "62% 34%",
   },
   {
     id: "dueno",
@@ -66,6 +71,7 @@ const PUESTOS: Puesto[] = [
     ancho: 1865,
     alto: 935,
     papel: "bg-papel",
+    foco: "18% 26%",
   },
 ];
 
@@ -142,13 +148,18 @@ export default function Gallery() {
           <div id="pantalla-puesto" role="tabpanel" aria-labelledby={`puesto-${actual.id}`} className="min-w-0">
             <figure>
               <div className="comanda-papel rounded-[4px] bg-papel p-2 shadow-[0_34px_64px_-26px_rgba(0,0,0,0.9)] sm:p-2.5">
-                <div key={actual.id} className="pantalla-cambia relative overflow-hidden rounded-[2px] bg-mostrador" style={{ aspectRatio: `${actual.ancho} / ${actual.alto}` }}>
+                <div
+                  key={actual.id}
+                  className="pantalla-cambia relative aspect-[4/3] overflow-hidden rounded-[2px] bg-mostrador sm:aspect-[var(--proporcion)]"
+                  style={{ ["--proporcion" as string]: `${actual.ancho} / ${actual.alto}` }}
+                >
                   <Image
                     src={actual.src}
                     alt={actual.alt}
                     fill
                     sizes="(min-width: 1024px) 66vw, 100vw"
-                    className="object-cover object-top"
+                    className="object-cover"
+                    style={{ objectPosition: actual.foco }}
                   />
                 </div>
               </div>
