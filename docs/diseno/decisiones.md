@@ -73,6 +73,7 @@ FAQ + CTA ✔ + Footer ✔. Se van MarqueeStrip, Stats, Flow y MidStatement.
 | **D16** | **Precios:** tres tickets de papel (Starter, Pro, Enterprise) con el precio en display, la nota «≈ S/ 13 al día» en tinta y los checks en tinta; Pro, el recomendado, en copia ámbar, un poco más alto y primero en el celular. El precio fundador queda en una línea que apunta al programa (sin repetir el bloque de la sección 8). Fuera PricingPivot: lo que decía ya está en el encabezado. | Tres opciones como máximo, el recomendado distinto por color y forma, y la acción (WhatsApp) en cada ticket. |
 | **D17** | **Cierre:** «De cero a operativo en 72 horas» cuelga los tres días del mismo riel de cocina del hero (secuencia real, numerada 1/3, 2/3, 3/3; el día del primer turno en copia menta); el FAQ va sobre el mostrador con filetes y el mismo contenido de `lib/faqs` (schema FAQPage); el CTA final es la comanda del visitante («1 × Demo en vivo · 15 min · 0.00», «Implementación guiada · incluida», «Total hoy S/ 0.00») con «Solicitar acceso», «Agendar demo» y WhatsApp. Fuera la foto de stock del fondo, el resplandor y la Playfair itálica. | La página abre con la comanda de la Mesa 4 y cierra con la del visitante: un final anclado en el mismo mundo. |
 | **D18** | **Todo lo demás en el mismo mundo:** pie de página plano (novedades, enlaces a las secciones nuevas, contacto); barra fija y aviso de cookies sin vidrio (la barra en mostrador sólido, las cookies como papelito); botón de WhatsApp sin resplandor ni pulso infinito y oscurecido a `#128C4A` (el `#25D366` daba 1.98:1 con el ícono); avisos como papelitos del color de su significado; modal de contacto como hoja de papel (y se asoció la etiqueta de «Mensaje»); checkout sin vidrio y con la acción ámbar; `/gracias` como recibo; páginas legales con grises AA; imagen para redes con la comanda. Archivo es la fuente por defecto del sitio y se retiraron Inter, Playfair, los tokens viejos y las clases que solo usaban las secciones quitadas. Se borraron CaseStudy, Modules y Roles (no se usaban). | Que no quede ninguna pieza del mundo anterior a la vista. |
+| **D19** | **Revisión final de la página completa** (revisor de impeccable, 8 correcciones, todas resueltas): imagen para redes con Archivo real; checkout como hoja de papel con la copia ámbar del total (y en el celular una tira con plan y total, la X en franja fija y el formulario con scroll: antes el botón de pagar quedaba fuera de alcance); legales sin etiqueta y con H1 condensado; «Cupos limitados» en vez de «Programa cerrado»; color con significado en los titulares (menta solo hero, comparativa y cierre; ámbar en plata: costo por plato, sin internet y precios); Así se ve por dentro, Roles y Precios con titular y texto apilados; galería con recorte exacto por puesto en el celular (textos de 12 px o más); «Precios» en la navegación; radios 4–8 en todo el sitio (`--radius` 8 px). | Lo que un revisor independiente marcó como material frente al contrato de dirección; veredicto final: ship. |
 
 ## Movimiento
 
@@ -82,11 +83,7 @@ cuelga en el riel y la copia cae en la caja (≤ 0,6 s, `ease-out`). Todo se apa
 `prefers-reduced-motion`. De paso se corrigió `BlurFade`: su estado inicial dependía del
 movimiento reducido y rompía la hidratación (el bloque podía quedar oculto).
 
-## Pendiente (una sección por vez, con visto bueno)
+## Pendiente
 
-1. Fotos reales del local (las pasa Rodrigo) para las secciones con imagen.
-2. `StatementInterlude` (bloque negro de 2 844 px justo después del hero).
-3. Stats → quitar el patrón «número grande + etiqueta».
-4. Galería «Así se ve por dentro», Why, EditorialGrid, StickyModules (6 100 px: recortar).
-5. Resto de secciones; al final retirar Inter, Playfair y los colores viejos de `globals.css`.
-6. Proponer recorte de largo total (hoy ≈ 30 pantallas).
+1. Fotos reales del local (las pasa Rodrigo) para sumar a «Así se ve por dentro».
+2. Pasada opcional de pulido de la escala tipográfica (tamaños sueltos de 13, 14, 19 y 22 px en el talonario y en la comanda del cierre).

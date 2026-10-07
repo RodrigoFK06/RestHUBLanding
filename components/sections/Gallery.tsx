@@ -60,7 +60,7 @@ const PUESTOS: Puesto[] = [
     ancho: 1860,
     alto: 939,
     papel: "bg-copia-caja",
-    recorte: [1128, 615, 432, 324],
+    recorte: [1168, 645, 392, 294],
   },
   {
     id: "dueno",
