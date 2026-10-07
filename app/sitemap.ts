@@ -3,7 +3,7 @@ import { SITE_URL } from "@/lib/site";
 
 // Fecha fija: si cambia en cada build, Google deja de confiar en lastmod.
 // Actualízala cuando cambie el contenido de la landing.
-const LAST_CONTENT_UPDATE = new Date("2026-10-06");
+const LAST_CONTENT_UPDATE = new Date("2026-10-07");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

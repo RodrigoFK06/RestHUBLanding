@@ -1,12 +1,10 @@
-// URL pública canónica de la landing.
-// Orden: SITE_URL (cuando tengamos dominio propio) > dominio de producción de Vercel > fallback fijo.
+// URL pública canónica de la landing: resthub.tech.
+// SITE_URL en Vercel permite cambiarla sin tocar código.
 // Ojo: resthub.app NO es nuestro; nunca debe volver a usarse como canonical.
 function resolveSiteUrl(): string {
   const explicit = process.env.SITE_URL?.trim();
   if (explicit) return explicit.replace(/\/+$/, "");
-  const vercelProd = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
-  if (vercelProd) return `https://${vercelProd.replace(/\/+$/, "")}`;
-  return "https://rest-hub-landing.vercel.app";
+  return "https://resthub.tech";
 }
 
 export const SITE_URL = resolveSiteUrl();
