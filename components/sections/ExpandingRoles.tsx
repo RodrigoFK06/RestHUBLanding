@@ -1,269 +1,171 @@
 "use client";
 
 import { useState } from "react";
-import { Crown, Utensils, CreditCard, ChefHat, Calculator, Smartphone, Check } from "lucide-react";
-import BlurFade from "@/components/reactbits/BlurFade";
+import { Check } from "lucide-react";
 
-const roles = [
+// «Cada uno con su pantalla» (docs/diseno/decisiones.md · D12). El cuadro de accesos impreso:
+// cada rol del restaurante ve solo lo suyo. Reúne el interludio de roles y ExpandingRoles.
+
+const AREAS = ["Pedidos", "Cocina", "Caja y turnos", "Reportes", "Contabilidad", "Empleados", "Autoservicio"] as const;
+type Area = (typeof AREAS)[number];
+
+type Rol = {
+  nombre: string;
+  acceso: string;
+  descripcion: string;
+  ve: Partial<Record<Area, "todo" | "propio">>;
+};
+
+const ROLES: Rol[] = [
   {
-    Icon: Crown,
-    color: "#F59E0B",
-    colorBg: "rgba(245,158,11,0.12)",
-    colorBorder: "rgba(245,158,11,0.3)",
-    name: "Admin",
-    access: "Control total",
-    desc: "Configuración, reportes y acceso completo a todos los módulos del sistema. El único que lo ve todo.",
-    chips: ["POS", "KDS", "Caja", "BI", "Contabilidad", "Empleados"],
-    gradientFrom: "rgba(245,158,11,0.14)",
+    nombre: "Admin",
+    acceso: "Control total",
+    descripcion: "Configuración, reportes y acceso completo a todos los módulos del sistema. El único que lo ve todo.",
+    ve: { Pedidos: "todo", Cocina: "todo", "Caja y turnos": "todo", Reportes: "todo", Contabilidad: "todo", Empleados: "todo", Autoservicio: "todo" },
   },
   {
-    Icon: Utensils,
-    color: "#14B8A6",
-    colorBg: "rgba(13,148,136,0.12)",
-    colorBorder: "rgba(13,148,136,0.3)",
-    name: "Mozo",
-    access: "Operación de salón",
-    desc: "Mesas, órdenes e historial propio. Sin acceso a información financiera ni configuración.",
-    chips: ["POS", "Historial propio"],
-    gradientFrom: "rgba(13,148,136,0.12)",
+    nombre: "Mozo",
+    acceso: "Operación de salón",
+    descripcion: "Mesas, órdenes e historial propio. Sin acceso a información financiera ni configuración.",
+    ve: { Pedidos: "propio" },
   },
   {
-    Icon: CreditCard,
-    color: "#a78bfa",
-    colorBg: "rgba(167,139,250,0.12)",
-    colorBorder: "rgba(167,139,250,0.3)",
-    name: "Cajero",
-    access: "Pagos y turnos",
-    desc: "Caja, pagos y turnos. Cobra sin gestionar empleados ni ver reportes financieros.",
-    chips: ["POS", "Caja", "Turnos"],
-    gradientFrom: "rgba(167,139,250,0.12)",
+    nombre: "Cajero",
+    acceso: "Pagos y turnos",
+    descripcion: "Caja, pagos y turnos. Cobra sin gestionar empleados ni ver reportes financieros.",
+    ve: { Pedidos: "todo", "Caja y turnos": "todo" },
   },
   {
-    Icon: ChefHat,
-    color: "#f97316",
-    colorBg: "rgba(249,115,22,0.12)",
-    colorBorder: "rgba(249,115,22,0.3)",
-    name: "Cocinero",
-    access: "Solo lo necesario",
-    desc: "KDS exclusivo. Solo ve lo que necesita preparar y en qué orden. Nada más.",
-    chips: ["KDS"],
-    gradientFrom: "rgba(249,115,22,0.12)",
+    nombre: "Cocinero",
+    acceso: "Solo lo necesario",
+    descripcion: "Pantalla de cocina exclusiva. Solo ve lo que necesita preparar y en qué orden. Nada más.",
+    ve: { Cocina: "todo" },
   },
   {
-    Icon: Calculator,
-    color: "#22C55E",
-    colorBg: "rgba(34,197,94,0.12)",
-    colorBorder: "rgba(34,197,94,0.3)",
-    name: "Contador",
-    access: "Panel financiero",
-    desc: "Balance, facturas y reportes. Datos limpios sin molestar al equipo ni pedir exports.",
-    chips: ["Contabilidad", "Reportes", "BI"],
-    gradientFrom: "rgba(34,197,94,0.12)",
+    nombre: "Contador",
+    acceso: "Panel financiero",
+    descripcion: "Balance, facturas y reportes. Datos limpios sin molestar al equipo ni pedir exports.",
+    ve: { Reportes: "todo", Contabilidad: "todo" },
   },
   {
-    Icon: Smartphone,
-    color: "#94A3B8",
-    colorBg: "rgba(148,163,184,0.08)",
-    colorBorder: "rgba(148,163,184,0.2)",
-    name: "Cliente",
-    access: "Autoservicio",
-    desc: "Panel de autoservicio y seguimiento de pedido. Módulo opcional según el modelo.",
-    chips: ["Autoservicio", "Seguimiento"],
-    gradientFrom: "rgba(148,163,184,0.08)",
+    nombre: "Cliente",
+    acceso: "Autoservicio",
+    descripcion: "Panel de autoservicio y seguimiento de pedido. Módulo opcional según el modelo.",
+    ve: { Autoservicio: "todo" },
   },
 ];
 
+function Marca({ valor }: { valor?: "todo" | "propio" }) {
+  if (valor === "todo")
+    return (
+      <>
+        <Check className="mx-auto size-5 text-tinta" strokeWidth={3} aria-hidden="true" />
+        <span className="sr-only">Sí</span>
+      </>
+    );
+  if (valor === "propio") return <span className="text-[15px] font-semibold italic text-tinta">solo lo suyo</span>;
+  return (
+    <>
+      <span className="text-impreso" aria-hidden="true">
+        —
+      </span>
+      <span className="sr-only">No</span>
+    </>
+  );
+}
+
 export default function ExpandingRoles() {
-  const [active, setActive] = useState(0);
+  const [elegido, setElegido] = useState(1);
+  const rol = ROLES[elegido];
 
   return (
-    <section id="roles" className="py-24 bg-[#1E293B]">
-      <div className="max-w-[1160px] mx-auto px-8">
-        {/* Header */}
-        <BlurFade>
-          <div className="max-w-[600px] mb-16">
-            <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-extrabold leading-[1.1] tracking-[-0.025em] mb-3">
-              RestHUB no es una sola pantalla para todos.
-            </h2>
-            <p className="text-[1.05rem] text-[#94A3B8] leading-[1.75]">
-              Cada persona tiene su propia pantalla. Cuando todos ven todo, se arma el desorden y se pierde plata.
+    <section id="roles" className="bg-mostrador font-brand text-white">
+      <div className="mx-auto max-w-[1376px] px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <header className="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,500px)] lg:items-end lg:gap-14">
+          <h2 className="display-cond text-[clamp(2.5rem,4.6vw,4rem)] leading-[0.92] tracking-[-0.01em]">
+            Un restaurante no es solo una cocina.
+            <span className="block text-menta">Cada uno con su pantalla.</span>
+          </h2>
+          <p className="max-w-[46ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.6] text-texto-2">
+            <strong className="font-semibold text-white">Mozo, cocinero, cajero, contador: cada uno con su realidad.</strong> RestHUB le
+            da a cada persona su propia pantalla. Cuando todos ven todo, se arma el desorden y se pierde plata.
+          </p>
+        </header>
+
+        {/* ── Escritorio: el cuadro de accesos impreso ── */}
+        <div className="comanda-papel mt-12 hidden bg-papel text-mostrador shadow-[0_34px_64px_-26px_rgba(0,0,0,0.9)] md:block lg:mt-16">
+          <div aria-hidden="true" className="comanda-troquel h-3" />
+          <div className="px-6 pb-6 pt-2 lg:px-8">
+            <div className="flex items-end justify-between gap-4 border-b-2 border-mostrador pb-2.5">
+              <span className="display-cond text-[26px] uppercase leading-none">Cuadro de accesos</span>
+              <span className="text-[12px] font-extrabold uppercase tracking-[0.04em] text-impreso">Elige un rol</span>
+            </div>
+            <table className="mt-2 w-full border-collapse text-left">
+              <caption className="sr-only">Qué ve cada rol en RestHUB</caption>
+              <thead>
+                <tr className="border-b border-papel-linea text-[12px] font-extrabold uppercase tracking-[0.04em] text-impreso">
+                  <th scope="col" className="py-3 pr-4 font-extrabold">
+                    Rol
+                  </th>
+                  {AREAS.map((a) => (
+                    <th key={a} scope="col" className="px-2 py-3 text-center font-extrabold">
+                      {a}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {ROLES.map((r, i) => {
+                  const activo = i === elegido;
+                  return (
+                    <tr key={r.nombre} className={`border-b border-papel-linea transition-colors ${activo ? "bg-copia-cocina" : ""}`}>
+                      <th scope="row" className="py-1 pr-4 font-normal">
+                        <button
+                          type="button"
+                          onClick={() => setElegido(i)}
+                          aria-pressed={activo}
+                          aria-controls="rol-detalle"
+                          className="flex min-h-12 w-full cursor-pointer flex-col items-start justify-center rounded-[3px] px-2 text-left"
+                        >
+                          <span className="display-cond text-[26px] uppercase leading-none">{r.nombre}</span>
+                          <span className="text-[15px] font-semibold text-impreso">{r.acceso}</span>
+                        </button>
+                      </th>
+                      {AREAS.map((a) => (
+                        <td key={a} className="px-2 py-3 text-center">
+                          <Marca valor={r.ve[a]} />
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <p id="rol-detalle" aria-live="polite" className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-[17px] leading-[1.5]">
+              <span className="display-cond text-[26px] uppercase leading-none">{rol.nombre}</span>
+              <span>{rol.descripcion}</span>
             </p>
           </div>
-        </BlurFade>
-
-        {/* ── Desktop: expanding horizontal panels ── */}
-        <BlurFade delay={0.1}>
-          <div
-            role="tablist"
-            aria-label="Roles del sistema"
-            className="hidden md:flex gap-2 rounded-2xl overflow-hidden"
-            style={{ height: 520 }}
-          >
-            {roles.map((role, i) => {
-              const isActive = active === i;
-              return (
-                <button
-                  key={i}
-                  type="button"
-                  role="tab"
-                  aria-selected={isActive}
-                  aria-label={`Rol ${role.name}: ${role.access}`}
-                  className="relative overflow-hidden cursor-pointer border transition-[flex-grow,border-color,background-color,border-radius] duration-[460ms] ease-[cubic-bezier(0.4,0,0.2,1)] text-left"
-                  style={{
-                    flex: isActive ? "4.5" : "0.5",
-                    borderColor: isActive ? role.colorBorder : "rgba(255,255,255,0.05)",
-                    borderRadius: "1rem",
-                    background: isActive ? "#0F172A" : "rgba(255,255,255,0.025)",
-                    minWidth: 0,
-                  }}
-                  onMouseEnter={() => setActive(i)}
-                  onFocus={() => setActive(i)}
-                  onClick={() => setActive(i)}
-                >
-                  {/* Active gradient background */}
-                  <div
-                    className="absolute inset-0 transition-opacity duration-500"
-                    style={{
-                      background: `linear-gradient(135deg, ${role.gradientFrom} 0%, transparent 60%)`,
-                      opacity: isActive ? 1 : 0,
-                    }}
-                  />
-
-                  {/* Bottom glow line */}
-                  <div
-                    className="absolute bottom-0 left-0 right-0 h-px transition-opacity duration-500"
-                    style={{
-                      background: `linear-gradient(90deg, transparent, ${role.color}, transparent)`,
-                      opacity: isActive ? 0.7 : 0,
-                    }}
-                  />
-
-                  {/* Inactive: vertical label */}
-                  <div
-                    className="absolute inset-0 flex items-center justify-center transition-opacity duration-300"
-                    style={{ opacity: isActive ? 0 : 1, pointerEvents: isActive ? "none" : "auto" }}
-                  >
-                    <div className="flex flex-col items-center gap-3">
-                      <div
-                        className="w-8 h-8 rounded-xl flex items-center justify-center"
-                        style={{ background: role.colorBg }}
-                      >
-                        <role.Icon className="w-4 h-4" style={{ color: role.color }} strokeWidth={1.75} />
-                      </div>
-                      <span
-                        className="text-[0.6rem] font-bold tracking-[0.2em] uppercase text-[#64748B] whitespace-nowrap"
-                        style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-                      >
-                        {role.name}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Active: full content */}
-                  <div
-                    className="relative z-10 h-full flex flex-col p-8 transition-opacity duration-300"
-                    style={{ opacity: isActive ? 1 : 0, pointerEvents: isActive ? "auto" : "none" }}
-                  >
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 shrink-0"
-                      style={{ background: role.colorBg }}
-                    >
-                      <role.Icon className="w-6 h-6" style={{ color: role.color }} strokeWidth={1.75} />
-                    </div>
-
-                    <div
-                      className="text-[0.65rem] font-bold tracking-[0.2em] uppercase mb-2"
-                      style={{ color: role.color }}
-                    >
-                      {role.access}
-                    </div>
-
-                    <h3 className="text-[1.65rem] font-extrabold leading-[1.15] tracking-[-0.025em] mb-3 text-white">
-                      {role.name}
-                    </h3>
-
-                    <p className="text-[0.88rem] text-[#94A3B8] leading-[1.7] mb-6 flex-1">
-                      {role.desc}
-                    </p>
-
-                    <div className="flex flex-wrap gap-1.5 mt-auto">
-                      {role.chips.map((chip) => (
-                        <span
-                          key={chip}
-                          className="inline-flex items-center gap-1 text-[0.65rem] font-semibold px-2.5 py-1 rounded-full border"
-                          style={{ color: role.color, borderColor: role.colorBorder, background: role.colorBg }}
-                        >
-                          <Check className="w-2.5 h-2.5" strokeWidth={3} />
-                          {chip}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </BlurFade>
-
-        {/* ── Mobile: vertical accordion ── */}
-        <div className="md:hidden flex flex-col gap-2">
-          {roles.map((role, i) => {
-            const isActive = active === i;
-            const panelId = `role-panel-${i}`;
-            return (
-              <div
-                key={i}
-                className="border rounded-2xl overflow-hidden transition-colors duration-300"
-                style={{ borderColor: isActive ? role.colorBorder : "rgba(255,255,255,0.1)" }}
-              >
-                <button
-                  type="button"
-                  aria-expanded={isActive}
-                  aria-controls={panelId}
-                  className="w-full flex items-center gap-3 px-5 py-4 text-left cursor-pointer min-h-[56px]"
-                  onClick={() => setActive(isActive ? -1 : i)}
-                >
-                  <div
-                    className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
-                    style={{ background: role.colorBg }}
-                  >
-                    <role.Icon className="w-4 h-4" style={{ color: role.color }} strokeWidth={1.75} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm font-bold text-white">{role.name}</div>
-                    <div className="text-[0.65rem] text-[#94A3B8] uppercase tracking-wide">{role.access}</div>
-                  </div>
-                  <span aria-hidden="true" className="text-white/70 text-lg font-light shrink-0">{isActive ? "−" : "+"}</span>
-                </button>
-                {isActive && (
-                  <div id={panelId} className="px-5 pb-5 border-t border-white/5 pt-4">
-                    <p className="text-[0.82rem] text-[#94A3B8] leading-[1.65] mb-4">{role.desc}</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {role.chips.map((chip) => (
-                        <span
-                          key={chip}
-                          className="text-[0.65rem] font-semibold px-2.5 py-1 rounded-full border"
-                          style={{ color: role.color, borderColor: role.colorBorder, background: role.colorBg }}
-                        >
-                          {chip}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
         </div>
 
-        {/* Tagline */}
-        <BlurFade delay={0.2}>
-          <p className="mt-10 text-center text-[0.82rem] text-[#94A3B8]">
-            <span className="hidden md:inline">Pasa el mouse o toca cada rol para ver su entorno → </span>
-            <span className="md:hidden">Toca cada rol para ver su entorno → </span>
-            <span className="ml-2 text-white/85">6 roles · 6 realidades distintas</span>
-          </p>
-        </BlurFade>
+        {/* ── Celular: una tira de papel por rol ── */}
+        <ul className="mt-10 space-y-3 md:hidden">
+          {ROLES.map((r) => {
+            const areas = AREAS.filter((a) => r.ve[a]);
+            return (
+              <li key={r.nombre} className="comanda-papel rounded-[3px] bg-papel px-4 pb-4 pt-3.5 text-mostrador">
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="display-cond text-[26px] uppercase leading-none">{r.nombre}</span>
+                  <span className="text-[12px] font-extrabold uppercase tracking-[0.04em] text-impreso">{r.acceso}</span>
+                </div>
+                <p className="mt-2 text-[15px] leading-snug">{r.descripcion}</p>
+                <p className="mt-3 border-t border-dashed border-impreso pt-2.5 text-[15px] font-semibold italic text-tinta">
+                  Ve: {areas.map((a) => (r.ve[a] === "propio" ? `${a.toLowerCase()} (solo lo suyo)` : a.toLowerCase())).join(", ")}
+                </p>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

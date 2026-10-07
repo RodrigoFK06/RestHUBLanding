@@ -1,6 +1,6 @@
 import Nav from "@/components/sections/Nav";
 import Hero from "@/components/sections/Hero";
-import StatementInterlude from "@/components/sections/StatementInterlude";
+import ExpandingRoles from "@/components/sections/ExpandingRoles";
 import Stats from "@/components/sections/Stats";
 import Gallery from "@/components/sections/Gallery";
 import Why from "@/components/sections/Why";
@@ -26,7 +26,7 @@ export default function Home() {
       <Gallery />
       <FoodCost />
       <Offline />
-      <StatementInterlude />
+      <ExpandingRoles />
       <Stats />
       <Why />
       <StickyModules />

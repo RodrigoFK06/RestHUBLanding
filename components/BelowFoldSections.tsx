@@ -6,9 +6,6 @@ import dynamic from "next/dynamic";
 
 const fallback = <div style={{ minHeight: "200px" }} />;
 
-const ExpandingRoles = dynamic(() => import("@/components/sections/ExpandingRoles"), {
-  loading: () => fallback,
-});
 const Messages = dynamic(() => import("@/components/sections/Messages"), {
   loading: () => fallback,
 });
@@ -40,7 +37,6 @@ const Cta = dynamic(() => import("@/components/sections/Cta"), {
 export default function BelowFoldSections() {
   return (
     <>
-      <ExpandingRoles />
       <Messages />
       <Testimonials />
       <Founder />

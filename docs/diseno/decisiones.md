@@ -56,7 +56,7 @@ ya cuenta el hero se quita. Se avanza una sección por vez, con preview de Verce
 
 1. Hero ✔ · 2. Así se ve por dentro (Gallery + EditorialGrid) ✔ · 3. ¿Cuánto te deja cada plato?
 (FoodCost) ✔ · 4. Se cayó el internet (Offline) ✔ · 5. Cada uno con su pantalla (interludio +
-ExpandingRoles) · 6. Todo lo que incluye (StickyModules + Integrations + Why + Messages; recoge los
+ExpandingRoles) ✔ · 6. Todo lo que incluye (StickyModules + Integrations + Why + Messages; recoge los
 datos de Stats y el último paso de Flow) · 7. Cómo cambia el día a día (vs) · 8. Gente detrás +
 7 cupos (Founder + Socios Fundadores) · 9. Precios (+ PricingPivot) · 10. De cero a operativo +
 FAQ + CTA + Footer. Se van MarqueeStrip, Stats, Flow y MidStatement.
@@ -66,6 +66,7 @@ FAQ + CTA + Footer. Se van MarqueeStrip, Stats, Flow y MidStatement.
 | **D9** | **Así se ve por dentro:** las 4 pantallas reales como 4 puestos (Mozo, Cocina, Caja, Dueño) en pestañas; el puesto elegido se vuelve la copia de su color y su pantalla se ve grande dentro de un marco de papel. La demo en vivo cierra la sección. Fuera las 7 fotos de stock de EditorialGrid (etiquetas como «12 mesas activas» o «BI · Dashboard en vivo» sobre fotos ajenas). | «Solo lo que existe hoy» (PRODUCT.md): nada de imágenes ajenas presentadas como el sistema funcionando. Pantalla grande y legible en vez de cuatro miniaturas iguales. Las fotos reales del local entran aquí cuando lleguen. |
 | **D10** | **¿Cuánto te deja cada plato?:** la receta del lomo saltado como hoja impresa (insumos, costo S/ 11.20) con un «Precio en carta» que se mueve (− / +) y recalcula «Te deja» y el % al instante; la alerta de stock va en una copia ámbar. Receta a la izquierda, titular y puntos a la derecha. | El dolor central de PRODUCT.md («vendo pero no sé si gano») se toca, no se describe. Mismos números que antes (S/ 35, S/ 23.80, 68 %). |
 | **D11** | **Se cayó el internet:** franja de calma en `mostrador-2` entre dos secciones densas; la copia ámbar guarda 3 pedidos en cola y la menta confirma que todo sincronizó. | Ritmo: una sección densa se gana una tranquila. El ámbar vuelve a significar «pendiente» y la menta «salió bien». |
+| **D12** | **Cada uno con su pantalla:** el interludio de 300 vh y ExpandingRoles se vuelven un «Cuadro de accesos» impreso (filas = roles, columnas = lo que ven, checks en tinta). Al elegir un rol su fila se vuelve copia menta y abajo se lee qué hace. En el celular, una tira de papel por rol. Fuera el «< 200 ms» y los chips de colores sueltos. | Muestra lo que el sistema hace de verdad (permisos por rol) en un objeto del oficio, sin scroll secuestrado de 3 pantallas. |
 
 ## Movimiento
 
