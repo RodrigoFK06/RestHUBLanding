@@ -9,7 +9,7 @@ const steps = [
     iconColor: "text-[#0F766E]",
     numColor: "text-[#0D9488]",
     name: "Mesa",
-    desc: "El mesero toma la orden. Mesas, modificadores, combos — en segundos.",
+    desc: "El mozo toma la orden con mesas, modificadores y combos en segundos.",
     role: "Worker / Cajero",
     roleClass: "bg-[rgba(13,148,136,0.12)] text-[#0F766E] border border-[rgba(13,148,136,0.3)]",
   },
@@ -42,7 +42,7 @@ const steps = [
     iconColor: "text-[#B45309]",
     numColor: "text-[#D97706]",
     name: "Balance",
-    desc: "El contador ve cuentas y balance — sin tocar la operación ni pedir datos.",
+    desc: "El contador ve cuentas y balance sin tocar la operación ni pedir datos.",
     role: "Contador",
     roleClass: "bg-[rgba(245,158,11,0.12)] text-[#B45309] border border-[rgba(245,158,11,0.3)]",
   },
@@ -94,7 +94,7 @@ export default function Flow() {
               <Zap className="w-5 h-5 text-[#0F766E]" strokeWidth={1.75} />
             </div>
             <div className="text-[2.2rem] font-black text-[#0D9488] tracking-[-0.04em]">Al instante</div>
-            <div className="text-[0.84rem] text-[#475569] leading-[1.5]">el pedido del mesero aparece en cocina<br />— sin papelitos, sin gritos</div>
+            <div className="text-[0.84rem] text-[#475569] leading-[1.5]">el pedido del mozo aparece en cocina<br />sin papelitos ni gritos</div>
           </div>
         </BlurFade>
       </div>

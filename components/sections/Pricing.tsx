@@ -40,9 +40,9 @@ const plans = [
   {
     id: "pro",
     name: "Pro",
-    badge: "MÁS POPULAR",
+    badge: "RECOMENDADO",
     price: 399,
-    priceNote: "≈ S/ 13 al día — menos que un mozo a medio tiempo",
+    priceNote: "≈ S/ 13 al día, menos que un mozo a medio tiempo",
     desc: "Para saber cuánto ganas de verdad.",
     cta: "Empezar por WhatsApp",
     waMessage: "Hola, me interesa el plan Pro de RestHUB para mi restaurante.",

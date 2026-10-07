@@ -10,10 +10,10 @@ import { prefersReducedMotion } from "@/lib/utils";
 gsap.registerPlugin(ScrollTrigger);
 
 const points = [
-  "Cada venta descuenta los ingredientes exactos de tu inventario — automático, sin digitar.",
+  "Cada venta descuenta los ingredientes exactos de tu inventario, sin que nadie digite nada.",
   "Registras mermas y pérdidas para que el stock cuadre con la realidad, no con el papel.",
   "Alertas antes de quedarte sin un insumo en pleno servicio.",
-  "Costo real por plato: ingredientes, precio y lo que te deja — a la vista.",
+  "Costo real por plato: ingredientes, precio y lo que te deja, a la vista.",
 ];
 
 function PlateCostMock() {
@@ -145,7 +145,7 @@ export default function FoodCost() {
               <span className="text-[#22C55E]">¿Sabes cuánto te deja cada plato?</span>
             </h2>
             <p className="text-[1.02rem] text-[#94A3B8] leading-[1.8] mb-9 max-w-[480px]">
-              La mayoría de restaurantes no lo sabe. Se compra, se cocina, se vende — y a fin de mes
+              La mayoría de restaurantes no lo sabe. Se compra, se cocina, se vende, y a fin de mes
               la plata no cuadra con lo vendido. RestHUB conecta tus recetas con tu inventario para
               que dejes de adivinar dónde se va el margen.
             </p>

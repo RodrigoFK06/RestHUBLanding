@@ -21,7 +21,7 @@ const roles = [
     color: "#14B8A6",
     colorBg: "rgba(13,148,136,0.12)",
     colorBorder: "rgba(13,148,136,0.3)",
-    name: "Mesero",
+    name: "Mozo",
     access: "Operación de salón",
     desc: "Mesas, órdenes e historial propio. Sin acceso a información financiera ni configuración.",
     chips: ["POS", "Historial propio"],
@@ -86,7 +86,7 @@ export default function ExpandingRoles() {
               RestHUB no es una sola pantalla para todos.
             </h2>
             <p className="text-[1.05rem] text-[#94A3B8] leading-[1.75]">
-              Cada actor tiene su entorno. Confundir roles genera caos — y caos genera pérdidas.
+              Cada persona tiene su propia pantalla. Cuando todos ven todo, se arma el desorden y se pierde plata.
             </p>
           </div>
         </BlurFade>
@@ -259,8 +259,8 @@ export default function ExpandingRoles() {
         {/* Tagline */}
         <BlurFade delay={0.2}>
           <p className="mt-10 text-center text-[0.82rem] text-[#94A3B8]">
-            <span className="hidden md:inline">Hovereá o tocá cada rol para ver su entorno → </span>
-            <span className="md:hidden">Tocá cada rol para ver su entorno → </span>
+            <span className="hidden md:inline">Pasa el mouse o toca cada rol para ver su entorno → </span>
+            <span className="md:hidden">Toca cada rol para ver su entorno → </span>
             <span className="ml-2 text-white/85">6 roles · 6 realidades distintas</span>
           </p>
         </BlurFade>

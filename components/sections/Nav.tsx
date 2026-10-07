@@ -45,7 +45,7 @@ export default function Nav() {
           : "bg-transparent border-transparent"
       }`}
     >
-      <Link href="#hero" className="flex items-center" aria-label="RestHUB — ir al inicio">
+      <Link href="#hero" className="flex items-center" aria-label="RestHUB, ir al inicio">
         <Image
           src="/logo.svg"
           alt="RestHUB"

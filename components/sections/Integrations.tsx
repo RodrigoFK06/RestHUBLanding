@@ -91,14 +91,6 @@ function VisaMastercardLogo() {
   );
 }
 
-function MercadoPagoLogo() {
-  return (
-    <span className="text-[0.98rem] font-extrabold lowercase tracking-[-0.02em] text-[#00B1EA] leading-none">
-      mercado pago
-    </span>
-  );
-}
-
 const integrations = [
   {
     logo: <CulqiLogo />,
@@ -134,28 +126,20 @@ const integrations = [
     logo: <SireLogo />,
     name: "SIRE",
     category: "Registro de ventas",
-    desc: "El Registro de Ventas se genera y acepta desde el sistema — no exportas archivos para que alguien los suba después.",
+    desc: "El Registro de Ventas sale del sistema, sin exportar archivos para que alguien los suba después.",
   },
   {
     logo: <VisaMastercardLogo />,
     name: "Visa · Mastercard",
     category: "Tarjeta",
-    desc: "Tokenización y cobro seguro con PCI DSS en todos los planes.",
-  },
-  {
-    logo: <MercadoPagoLogo />,
-    name: "MercadoPago",
-    category: "Pagos regionales",
-    desc: "Para operaciones multi-país. Chile, Argentina, Colombia.",
+    desc: "Cobro con tarjeta registrado en la caja con su método de pago.",
   },
 ];
 
 const certs = [
-  "PCI DSS Compliant",
-  "TLS 1.3 en tránsito",
-  "Encriptación en reposo",
-  "Facturación SUNAT certificada",
-  "Backup automático diario",
+  "Datos cifrados en tránsito y en reposo",
+  "Boletas y facturas electrónicas SUNAT",
+  "Soporte en español, desde Perú",
 ];
 
 export default function Integrations() {
@@ -200,7 +184,7 @@ export default function Integrations() {
                 Conectado con lo que tu restaurante ya usa.
               </h2>
               <p className="text-[1.05rem] text-[#94A3B8] leading-[1.75]">
-                Sin adaptadores ni integraciones de terceros. Pagos, fiscal y reportes — todo nativo.
+                Sin adaptadores ni integraciones de terceros. Pagos, facturación y reportes vienen incluidos.
               </p>
             </div>
 
@@ -211,7 +195,7 @@ export default function Integrations() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#14B8A6]" />
               </span>
               <span className="text-[0.82rem] text-[#94A3B8]">
-                <span className="text-white font-semibold">8 integraciones</span> activas en producción
+                <span className="text-white font-semibold">{integrations.length} integraciones</span> listas para usar
               </span>
             </div>
           </div>
