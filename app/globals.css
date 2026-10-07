@@ -320,6 +320,9 @@
 .comanda-troquel {
   background: radial-gradient(circle at 8px 0, transparent 5px, var(--color-papel) 5.5px) 0 0 / 16px 12px repeat-x;
 }
+.comanda-troquel-caja {
+  background: radial-gradient(circle at 8px 0, transparent 5px, var(--color-copia-caja) 5.5px) 0 0 / 16px 12px repeat-x;
+}
 .comanda-troquel-abajo {
   background: radial-gradient(circle at 8px 100%, transparent 5px, var(--color-papel) 5.5px) 0 0 / 16px 12px repeat-x;
 }
