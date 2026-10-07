@@ -31,8 +31,8 @@ export default function BelowFoldSections() {
       <Comparison />
       <Founder />
       <Pricing />
-      <Faq />
       <Setup />
+      <Faq />
       <Cta />
     </>
   );

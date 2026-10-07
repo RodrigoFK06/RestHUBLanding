@@ -1,50 +1,42 @@
 "use client";
 
 import { useState } from "react";
-import BlurFade from "@/components/reactbits/BlurFade";
 import { faqs } from "@/lib/faqs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
+// «Sin rodeos» (docs/diseno/decisiones.md · D17). Las preguntas reales, sobre el mostrador y
+// con filetes; el contenido sale de lib/faqs, que también alimenta el schema FAQPage.
 
 export default function Faq() {
-  const [openItem, setOpenItem] = useState<string | null>(null);
+  const [abierta, setAbierta] = useState<string | null>(null);
 
   return (
-    <section id="faq" className="py-24 bg-[#F8FAFC]">
-      <div className="max-w-[1160px] mx-auto px-8">
-        <BlurFade>
-          <div className="max-w-[540px] mb-12">
-            <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-extrabold leading-[1.1] tracking-[-0.025em] mb-3 text-[#0F172A]">
-              Sin rodeos.
-            </h2>
-            <p className="text-[1.05rem] text-[#475569] leading-[1.75]">
-              Las preguntas reales antes de decidir.
-            </p>
-          </div>
-        </BlurFade>
+    <section id="faq" className="border-t border-linea bg-mostrador font-brand text-white">
+      <div className="mx-auto grid max-w-[1376px] grid-cols-[minmax(0,1fr)] gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-16 lg:px-10 lg:py-28">
+        <div>
+          <h2 className="display-cond text-[clamp(2.5rem,4.6vw,4rem)] leading-[0.92] tracking-[-0.01em]">
+            Sin rodeos.
+            <span className="block text-menta">Las preguntas reales.</span>
+          </h2>
+          <p className="mt-6 max-w-[36ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.6] text-texto-2">
+            Lo que nos preguntan los dueños antes de decidir.
+          </p>
+        </div>
 
-        <BlurFade delay={0.1}>
-          <Accordion
-            value={openItem ? [openItem] : []}
-            onValueChange={(values: string[]) => setOpenItem(values[0] ?? null)}
-            className="flex flex-col gap-2.5 max-w-[780px]"
-          >
-            {faqs.map((f, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden px-0 shadow-sm data-[state=open]:border-[rgba(245,158,11,0.4)] transition-colors"
-              >
-                <AccordionTrigger className="px-6 py-5 text-[0.92rem] font-semibold text-[#0F172A] hover:bg-[#F8FAFC] hover:no-underline text-left [&[data-state=open]]:text-[#B45309]">
-                  {f.q}
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-5 text-[0.87rem] text-[#475569] leading-[1.75] border-t border-[#E2E8F0]">
-                  <div className="pt-4">{f.a}</div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </BlurFade>
+        <Accordion
+          value={abierta ? [abierta] : []}
+          onValueChange={(valores: string[]) => setAbierta(valores[0] ?? null)}
+          className="border-t border-linea"
+        >
+          {faqs.map((f, i) => (
+            <AccordionItem key={f.q} value={`pregunta-${i}`} className="border-b border-linea">
+              <AccordionTrigger className="cursor-pointer gap-6 rounded-none py-5 text-[17px] font-extrabold leading-snug text-white hover:no-underline hover:text-menta aria-expanded:text-menta **:data-[slot=accordion-trigger-icon]:mt-1 **:data-[slot=accordion-trigger-icon]:size-5 **:data-[slot=accordion-trigger-icon]:text-menta">
+                {f.q}
+              </AccordionTrigger>
+              <AccordionContent className="max-w-[68ch] pb-6 text-[17px] leading-[1.6] text-texto-2">{f.a}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
     </section>
   );

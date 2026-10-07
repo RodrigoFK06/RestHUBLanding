@@ -1,186 +1,106 @@
 "use client";
 
-import { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { Monitor, Wrench, Zap, ArrowRight } from "lucide-react";
 import Image from "next/image";
-import BlurFade from "@/components/reactbits/BlurFade";
-import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import { useModals } from "@/components/modals/ModalProvider";
-import { prefersReducedMotion } from "@/lib/utils";
 
-gsap.registerPlugin(ScrollTrigger);
+// «De cero a operativo en 72 horas» (docs/diseno/decisiones.md · D17). Los tres días de la
+// implementación cuelgan del mismo riel de cocina del hero: es una secuencia real, por eso va
+// numerada por día.
 
-const steps = [
+const DIAS = [
   {
-    num: "01",
-    day: "Día 1",
-    Icon: Monitor,
-    title: "Demo en vivo",
-    desc: "Una llamada de 15 minutos. Te mostramos el sistema con una carta parecida a la tuya y respondemos todas tus preguntas.",
-    items: [
-      "Sin presentación ni pitch de ventas",
-      "Demostración del flujo completo",
-      "Preguntas técnicas respondidas",
-      "Evaluación de tu caso específico",
-    ],
+    dia: "Día 1",
+    titulo: "Demo en vivo",
+    texto: "Una llamada de 15 minutos. Te mostramos el sistema con una carta parecida a la tuya y respondemos todas tus preguntas.",
+    lista: ["Sin presentación ni pitch de ventas", "Demostración del flujo completo", "Preguntas técnicas respondidas", "Evaluación de tu caso"],
   },
   {
-    num: "02",
-    day: "Días 1 – 2",
-    Icon: Wrench,
-    title: "Setup guiado",
-    desc: "Nuestro equipo configura RestHUB con tu menú, tus roles y tu estructura. Tú solo validas.",
-    items: [
-      "Carga de menú y modificadores",
-      "Roles y credenciales por persona",
-      "Integración de pagos activa",
-      "Configuración de impresoras y KDS",
-    ],
+    dia: "Días 1 y 2",
+    titulo: "Setup guiado",
+    texto: "Nuestro equipo configura RestHUB con tu menú, tus roles y tu estructura. Tú solo validas.",
+    lista: ["Carga de menú y modificadores", "Roles y credenciales por persona", "Integración de pagos activa", "Impresoras y pantalla de cocina"],
   },
   {
-    num: "03",
-    day: "Día 3",
-    Icon: Zap,
-    title: "Primer turno operativo",
-    desc: "Tu restaurante en producción. Acompañamiento en tiempo real durante el primer servicio.",
-    items: [
-      "POS y KDS sincronizados en vivo",
-      "Primer cierre de turno real",
-      "Soporte en línea durante el servicio",
-      "Ajustes inmediatos si es necesario",
-    ],
+    dia: "Día 3",
+    titulo: "Primer turno operativo",
+    texto: "Tu restaurante en producción, con acompañamiento en tiempo real durante el primer servicio.",
+    lista: ["Pedidos y cocina sincronizados en vivo", "Primer cierre de turno real", "Soporte en línea durante el servicio", "Ajustes inmediatos si hace falta"],
   },
 ];
 
+const GIROS = [-1.2, 0.9, -0.6];
+
 export default function Setup() {
-  const sectionRef = useRef<HTMLElement>(null);
   const { openContact } = useModals();
 
-  useGSAP(
-    () => {
-      if (prefersReducedMotion()) {
-        gsap.set(".setup-step", { opacity: 1, y: 0 });
-        return;
-      }
-      gsap.fromTo(
-        ".setup-step",
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.75,
-          ease: "power3.out",
-          stagger: 0.15,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
-    },
-    { scope: sectionRef }
-  );
-
   return (
-    <section ref={sectionRef} id="setup" className="py-24 bg-[#F8FAFC]">
-      <div className="max-w-[1160px] mx-auto px-8">
+    <section id="setup" className="bg-mostrador font-brand text-white">
+      <div className="mx-auto max-w-[1376px] px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <header className="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,500px)] lg:items-end lg:gap-14">
+          <h2 className="display-cond text-[clamp(2.5rem,4.6vw,4rem)] leading-[0.92] tracking-[-0.01em]">
+            De cero a operativo
+            <span className="block text-menta">en 72 horas.</span>
+          </h2>
+          <p className="max-w-[46ch] text-[clamp(1.0625rem,1.2vw,1.125rem)] leading-[1.6] text-texto-2">
+            Te acompañamos en toda la configuración. <strong className="font-semibold text-white">Está incluido en todos los planes,</strong> sin costo
+            adicional.
+          </p>
+        </header>
 
-        {/* Header */}
-        <BlurFade>
-          <div className="max-w-[600px] mx-auto text-center mb-16">
-            <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-extrabold leading-[1.1] tracking-[-0.025em] mb-4 text-[#0F172A]">
-              De cero a operativo<br />en 72 horas.
-            </h2>
-            <p className="text-[1.05rem] text-[#475569] leading-[1.75]">
-              Te acompañamos en toda la configuración. Está incluido en todos los planes, sin costo adicional.
-            </p>
-          </div>
-        </BlurFade>
-
-        {/* Steps */}
-        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
-          {/* Connector line desktop */}
-          <div
-            className="absolute hidden md:block top-[2.25rem] left-[calc(16.66%+1.5rem)] right-[calc(16.66%+1.5rem)] h-px pointer-events-none z-0"
-            style={{ background: "linear-gradient(to right, #E2E8F0, #F59E0B40, #E2E8F0)" }}
-          />
-
-          {steps.map((s, i) => (
-            <div
-              key={i}
-              className="setup-step relative z-10 bg-white rounded-2xl p-7 border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#CBD5E1] transition"
-            >
-              {/* Number badge */}
-              <div className="w-[2.6rem] h-[2.6rem] rounded-full bg-[#F59E0B] flex items-center justify-center text-[#0F172A] font-black text-[0.85rem] mb-5 shadow-[0_4px_12px_rgba(245,158,11,0.3)]">
-                {s.num}
-              </div>
-
-              {/* Day */}
-              <div className="text-[0.62rem] font-bold tracking-[0.18em] uppercase text-[#94A3B8] mb-2">
-                {s.day}
-              </div>
-
-              {/* Icon + Title row */}
-              <div className="flex items-center gap-2.5 mb-3">
-                <s.Icon className="w-4.5 h-4.5 text-[#D97706] shrink-0" strokeWidth={1.75} />
-                <h3 className="text-[1.05rem] font-bold text-[#0F172A]">{s.title}</h3>
-              </div>
-
-              {/* Description */}
-              <p className="text-[0.84rem] text-[#475569] leading-[1.65] mb-5">{s.desc}</p>
-
-              {/* Items */}
-              <ul className="flex flex-col gap-2.5">
-                {s.items.map((item, j) => (
-                  <li key={j} className="flex items-start gap-2 text-[0.79rem] text-[#64748B]">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] mt-[0.35rem] shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        <div className="relative mt-12 lg:mt-16">
+          <div aria-hidden="true" className="comanda-riel absolute inset-x-0 top-0 hidden h-2.5 rounded-full md:block" />
+          <ol className="grid grid-cols-[minmax(0,1fr)] gap-6 md:grid-cols-[repeat(3,minmax(0,1fr))] md:gap-6 lg:gap-10">
+            {DIAS.map((d, i) => (
+              <li key={d.dia} className="relative md:pt-1" style={{ transformOrigin: "50% 0" }}>
+                <span aria-hidden="true" className="mx-auto hidden h-3.5 w-9 rounded-[3px] bg-[#4A4A4A] shadow-[0_2px_0_#262626] md:block" />
+                <div
+                  className={`comanda-papel -mt-1 rounded-[3px] px-5 pb-5 pt-4 text-mostrador shadow-[0_22px_40px_-20px_rgba(0,0,0,0.9)] ${i === 2 ? "bg-copia-cocina" : "bg-papel"}`}
+                  style={{ rotate: `${GIROS[i]}deg` }}
+                >
+                  <div className="flex items-baseline justify-between gap-3 border-b-2 border-mostrador pb-2">
+                    <span className="display-cond text-[26px] uppercase leading-none">{d.dia}</span>
+                    <span className="display-cond text-[26px] leading-none text-numerador tabular-nums">{i + 1}/3</span>
+                  </div>
+                  <h3 className="mt-3 text-[17px] font-extrabold">{d.titulo}</h3>
+                  <p className="mt-1.5 text-[15px] leading-snug">{d.texto}</p>
+                  <ul className="mt-3 space-y-1 border-t border-dashed border-impreso pt-3 text-[15px] font-semibold italic leading-snug text-tinta">
+                    {d.lista.map((l) => (
+                      <li key={l}>{l}</li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
 
-        {/* Social proof note + CTA */}
-        <BlurFade delay={0.35}>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 bg-white border border-[#E2E8F0] rounded-2xl px-8 py-6 shadow-sm">
-            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
-              {/* Quienes implementan: Rodrigo y Emilio */}
-              <div className="flex -space-x-2.5 shrink-0">
-                {[
-                  { src: "/rodrigo-torres.png", alt: "Rodrigo Torres", pos: "50% 25%" },
-                  { src: "/emilio-orbegozo.jpg", alt: "Emilio Orbegozo", pos: "50% 35%" },
-                ].map((p) => (
-                  <div key={p.src} className="relative w-9 h-9 rounded-full border-2 border-white overflow-hidden">
-                    <Image src={p.src} alt={p.alt} fill sizes="36px" className="object-cover" style={{ objectPosition: p.pos }} />
-                  </div>
-                ))}
-              </div>
-              <div>
-                <div className="text-[0.9rem] font-semibold text-[#0F172A]">
-                  Te acompañamos nosotros
+        <div className="mt-14 flex flex-col gap-6 border-t border-linea pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-4">
+            <div className="flex shrink-0 -space-x-3">
+              {[
+                { src: "/rodrigo-torres.png", alt: "Rodrigo Torres", pos: "50% 25%" },
+                { src: "/emilio-orbegozo.jpg", alt: "Emilio Orbegozo", pos: "50% 35%" },
+              ].map((p) => (
+                <div key={p.src} className="relative size-12 overflow-hidden rounded-full border-2 border-mostrador">
+                  <Image src={p.src} alt={p.alt} fill sizes="48px" className="object-cover" style={{ objectPosition: p.pos }} />
                 </div>
-                <div className="text-[0.8rem] text-[#64748B]">
-                  Rodrigo y Emilio configuran el sistema contigo y están en línea en tu primer turno.
-                </div>
-              </div>
+              ))}
             </div>
-
-            <Button
-              onClick={() => openContact({ topic: "Agendar demo" })}
-              className="shrink-0 bg-[#0F172A] hover:bg-[#1E293B] text-white font-bold px-6 py-4 hover:-translate-y-0.5 inline-flex items-center gap-2 cursor-pointer"
-            >
-              Solicitar demo
-              <ArrowRight className="w-4 h-4" />
-            </Button>
+            <p className="max-w-[52ch] text-[17px] leading-snug text-texto-2">
+              <strong className="block font-semibold text-white">Te acompañamos nosotros.</strong>
+              Rodrigo y Emilio configuran el sistema contigo y están en línea en tu primer turno.
+            </p>
           </div>
-        </BlurFade>
-
+          <button
+            type="button"
+            onClick={() => openContact({ topic: "Agendar demo" })}
+            className="btn-accion inline-flex h-12 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-lg px-5 text-[17px] font-extrabold"
+          >
+            Solicitar demo
+            <ArrowRight className="size-[18px]" strokeWidth={2.5} aria-hidden="true" />
+          </button>
+        </div>
       </div>
     </section>
   );
