@@ -12,9 +12,6 @@ const Founder = dynamic(() => import("@/components/sections/Founder"), {
 const Comparison = dynamic(() => import("@/components/sections/Comparison"), {
   loading: () => fallback,
 });
-const PricingPivot = dynamic(() => import("@/components/sections/PricingPivot"), {
-  loading: () => fallback,
-});
 const Pricing = dynamic(() => import("@/components/sections/Pricing"), {
   loading: () => fallback,
 });
@@ -33,7 +30,6 @@ export default function BelowFoldSections() {
     <>
       <Comparison />
       <Founder />
-      <PricingPivot />
       <Pricing />
       <Faq />
       <Setup />
