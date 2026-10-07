@@ -21,7 +21,7 @@ const plans = [
     name: "Starter",
     badge: null,
     price: 159,
-    priceNote: "≈ S/ 5.30 al día",
+    priceNote: "Unos S/ 5.30 al día",
     desc: "Para dejar la libreta y los papelitos.",
     cta: "Empezar por WhatsApp",
     waMessage: "Hola, quiero empezar con el plan Starter de RestHUB para mi restaurante.",
@@ -34,15 +34,15 @@ const plans = [
       "Cobros con Yape y Plin",
       "1 local",
     ],
-    accent: "#0D9488",
+    accent: "#0F172A",
     glow: "rgba(13,148,136,0.1)",
   },
   {
     id: "pro",
     name: "Pro",
-    badge: "MÁS POPULAR",
+    badge: "Recomendado",
     price: 399,
-    priceNote: "≈ S/ 13 al día — menos que un mozo a medio tiempo",
+    priceNote: "Unos S/ 13 al día",
     desc: "Para saber cuánto ganas de verdad.",
     cta: "Empezar por WhatsApp",
     waMessage: "Hola, me interesa el plan Pro de RestHUB para mi restaurante.",
@@ -50,7 +50,7 @@ const plans = [
     features: [
       "Todo lo del plan Starter",
       "Inventario y costo por plato",
-      "Reportes y BI en tiempo real",
+      "Reportes en tiempo real",
       "Contabilidad y PLE para tu contador",
       "Clientes y delivery",
       "Soporte prioritario",
@@ -77,7 +77,7 @@ const plans = [
       "Usuarios ilimitados",
       "Acompañamiento dedicado",
     ],
-    accent: "#a78bfa",
+    accent: "#0F172A",
     glow: "rgba(167,139,250,0.1)",
   },
 ];
@@ -128,17 +128,16 @@ export default function Pricing() {
 
   return (
     <section ref={sectionRef} id="precios" className="bg-[#F8FAFC] py-28">
-      <div className="max-w-[1080px] mx-auto px-8">
+      <div className="max-w-[1160px] mx-auto px-6 md:px-8">
 
         {/* Header */}
-        <div className="text-center mb-14">
+        <div className="mb-14 max-w-[640px]">
           <h2 className="text-[clamp(2rem,4vw,3rem)] font-extrabold leading-[1.1] tracking-[-0.025em] mb-4 text-[#0F172A]">
-            Precios en soles.<br />
-            <span style={{ color: "#D97706" }}>Sin comisiones por venta. Sin permanencia.</span>
+            Precios en soles, sin comisiones por venta.
           </h2>
-          <p className="text-[#475569] text-base max-w-[460px] mx-auto">
-            Pagas un monto fijo al mes y ya. Implementación guiada incluida en todos
-            los planes. Cancelas cuando quieras.
+          <p className="text-[#475569] text-[1.05rem] leading-[1.7] max-w-[520px]">
+            Pagas un monto fijo al mes por local. La implementación guiada está incluida en
+            todos los planes y puedes cancelar cuando quieras.
           </p>
         </div>
 
@@ -149,22 +148,17 @@ export default function Pricing() {
             return (
               <div
                 key={plan.id}
-                className="pricing-card relative flex flex-col rounded-2xl p-7 transition duration-300 hover:-translate-y-1"
+                className="pricing-card relative flex flex-col rounded-2xl p-7"
                 style={{
-                  background: isPro
-                    ? "linear-gradient(135deg, rgba(30,41,59,0.95) 0%, rgba(15,23,42,1) 100%)"
-                    : "#ffffff",
-                  border: isPro ? `1px solid rgba(245,158,11,0.35)` : "1px solid #E2E8F0",
-                  boxShadow: isPro
-                    ? `0 0 80px ${plan.glow}, 0 32px 60px rgba(0,0,0,0.3)`
-                    : "0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)",
+                  background: isPro ? "#0F172A" : "#ffffff",
+                  border: isPro ? "1px solid #0F172A" : "1px solid #E2E8F0",
                   opacity: 0,
                 }}
               >
                 {/* Badge */}
                 {plan.badge && (
                   <div
-                    className="absolute -top-3 left-1/2 -translate-x-1/2 text-[0.58rem] font-black tracking-[0.18em] px-3 py-1 rounded-full"
+                    className="absolute -top-3 left-7 text-[0.78rem] font-bold px-3 py-0.5 rounded-full"
                     style={{ background: "#F59E0B", color: "#0F172A" }}
                   >
                     {plan.badge}
@@ -173,16 +167,10 @@ export default function Pricing() {
 
                 {/* Plan name */}
                 <div className="mb-5">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <div className="w-2 h-2 rounded-full" style={{ background: plan.accent }} />
-                    <span
-                      className="text-[0.65rem] font-bold tracking-[0.15em] uppercase"
-                      style={{ color: isPro ? plan.accent : "#475569" }}
-                    >
-                      {plan.name}
-                    </span>
-                  </div>
-                  <p className="text-sm leading-snug" style={{ color: isPro ? "#94A3B8" : "#64748B" }}>
+                  <h3 className="text-[1.2rem] font-bold mb-1" style={{ color: isPro ? "#fff" : "#0F172A" }}>
+                    {plan.name}
+                  </h3>
+                  <p className="text-[0.95rem] leading-snug" style={{ color: isPro ? "#CBD5E1" : "#475569" }}>
                     {plan.desc}
                   </p>
                 </div>
@@ -200,9 +188,9 @@ export default function Pricing() {
                     >
                       {plan.price}
                     </span>
-                    <span className="text-sm text-[#64748B] mb-1.5">/mes · por local</span>
+                    <span className="text-sm text-[#64748B] mb-1.5">al mes por local</span>
                   </div>
-                  <div className="text-[0.72rem]" style={{ color: isPro ? "#FCD34D" : "#0F766E" }}>
+                  <div className="text-[0.88rem]" style={{ color: isPro ? "#94A3B8" : "#64748B" }}>
                     {plan.priceNote}
                   </div>
                 </div>
@@ -233,10 +221,10 @@ export default function Pricing() {
                     <li key={f} className="flex items-start gap-2.5">
                       <Check
                         className="w-4 h-4 shrink-0 mt-0.5"
-                        style={{ color: isPro ? plan.accent : "#0F766E" }}
+                        style={{ color: isPro ? "#F59E0B" : "#B45309" }}
                         strokeWidth={2.5}
                       />
-                      <span className="text-[0.83rem]" style={{ color: isPro ? "rgba(255,255,255,0.8)" : "#0F172A" }}>
+                      <span className="text-[0.95rem]" style={{ color: isPro ? "rgba(255,255,255,0.85)" : "#0F172A" }}>
                         {f}
                       </span>
                     </li>
@@ -257,15 +245,12 @@ export default function Pricing() {
           }}
         >
           <div className="text-center sm:text-left">
-            <div className="text-[0.65rem] font-bold tracking-[0.18em] uppercase text-[#B45309] mb-1.5">
-              Programa Socios Fundadores · quedan 7 cupos
-            </div>
-            <div className="text-[1.05rem] font-extrabold text-[#0F172A]">
-              Primeros clientes: <span className="text-[#B45309]">S/ 100/mes, congelado 12 meses</span>
-            </div>
-            <p className="text-[0.82rem] text-[#475569] mt-1 max-w-[520px]">
-              Cualquier plan, a precio fundador, a cambio de tu feedback y tu caso de éxito.
-              Cuando se llenen los cupos, el programa se cierra.
+            <h3 className="text-[1.1rem] font-bold text-[#0F172A]">
+              Precio de primeros clientes: S/ 100 al mes por 12 meses
+            </h3>
+            <p className="text-[0.95rem] text-[#475569] mt-1.5 max-w-[560px] leading-[1.55]">
+              Cualquier plan, a cambio de que nos cuentes qué funciona y qué no, y de poder
+              contar tu caso. Te acompañamos nosotros mismos en la configuración. Quedan 7 cupos.
             </p>
           </div>
           <a
@@ -274,13 +259,13 @@ export default function Pricing() {
             rel="noopener noreferrer"
             className="btn-amber shrink-0 font-bold px-7 py-3.5 rounded-full text-sm cursor-pointer"
           >
-            Quiero mi cupo →
+            Quiero un cupo
           </a>
         </div>
 
         {/* Bottom note */}
-        <p className="text-center text-[0.72rem] text-[#64748B] mt-10">
-          Precios en soles (S/) · Sin tarjeta para empezar · Soporte en español, desde Perú
+        <p className="text-[0.9rem] text-[#64748B] mt-10">
+          No necesitas tarjeta para empezar. El soporte es en español, desde Perú.
         </p>
       </div>
     </section>

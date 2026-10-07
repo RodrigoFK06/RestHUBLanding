@@ -9,25 +9,10 @@ const fallback = <div style={{ minHeight: "200px" }} />;
 const ExpandingRoles = dynamic(() => import("@/components/sections/ExpandingRoles"), {
   loading: () => fallback,
 });
-const Messages = dynamic(() => import("@/components/sections/Messages"), {
-  loading: () => fallback,
-});
-const CaseStudy = dynamic(() => import("@/components/sections/CaseStudy"), {
-  loading: () => fallback,
-});
-const MidStatement = dynamic(() => import("@/components/sections/MidStatement"), {
-  loading: () => fallback,
-});
-const Testimonials = dynamic(() => import("@/components/sections/Testimonials"), {
-  loading: () => fallback,
-});
 const Founder = dynamic(() => import("@/components/sections/Founder"), {
   loading: () => fallback,
 });
 const Comparison = dynamic(() => import("@/components/sections/Comparison"), {
-  loading: () => fallback,
-});
-const PricingPivot = dynamic(() => import("@/components/sections/PricingPivot"), {
   loading: () => fallback,
 });
 const Pricing = dynamic(() => import("@/components/sections/Pricing"), {
@@ -47,13 +32,8 @@ export default function BelowFoldSections() {
   return (
     <>
       <ExpandingRoles />
-      <Messages />
-      <CaseStudy />
-      <MidStatement />
-      <Testimonials />
       <Founder />
       <Comparison />
-      <PricingPivot />
       <Pricing />
       <Faq />
       <Setup />

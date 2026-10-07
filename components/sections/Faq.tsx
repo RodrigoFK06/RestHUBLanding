@@ -11,14 +11,14 @@ export default function Faq() {
 
   return (
     <section id="faq" className="py-24 bg-[#F8FAFC]">
-      <div className="max-w-[1160px] mx-auto px-8">
+      <div className="max-w-[1160px] mx-auto px-6 md:px-8">
         <BlurFade>
-          <div className="max-w-[540px] mb-12">
+          <div className="max-w-[640px] mb-12">
             <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-extrabold leading-[1.1] tracking-[-0.025em] mb-3 text-[#0F172A]">
-              Sin rodeos.
+              Preguntas frecuentes.
             </h2>
             <p className="text-[1.05rem] text-[#475569] leading-[1.75]">
-              Las preguntas reales antes de decidir.
+              Lo que más nos preguntan antes de empezar.
             </p>
           </div>
         </BlurFade>

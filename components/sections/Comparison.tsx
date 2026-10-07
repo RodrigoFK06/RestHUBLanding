@@ -1,132 +1,108 @@
-"use client";
-
-import { useInView } from "motion/react";
-import { useRef } from "react";
-import { CheckCircle2, XCircle, MinusCircle } from "lucide-react";
 import BlurFade from "@/components/reactbits/BlurFade";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
-const rows = [
-  { feature: "POS + KDS integrado", rh: "POS y KDS nativos", toast: "POS completo", oracle: "Enterprise", spec: "Según especialidad", rhOk: true, toastOk: true, oracleOk: true, specPart: true },
-  { feature: "Contabilidad integrada", rh: "Panel Contador nativo", toast: "Requiere integración", oracle: "Módulo enterprise", spec: "Fuera de scope", rhOk: true, toastOk: false, oracleOk: true, specOk: false },
-  { feature: "Roles diferenciados", rh: "6 roles completos", toast: "Básico", oracle: "Complejo y costoso", spec: "Parcial", rhOk: true, toastPart: true, oracleOk: true, specPart: true },
-  { feature: "Pagos latinoamericanos", rh: "Culqi + Izipay nativos", toast: "No disponible", oracle: "Adaptación costosa", spec: "No disponible", rhOk: true, toastOk: false, oraclePart: true, specOk: false },
-  { feature: "BI en tiempo real", rh: "Dashboard nativo", toast: "Básico", oracle: "Enterprise, costoso", spec: "Según producto", rhOk: true, toastPart: true, oracleOk: true, specPart: true },
-  { feature: "Precio accesible (1–15 locales)", rh: "Diseñado para SMB", toast: "Accesible", oracle: "Solo enterprise", spec: "Parcial", rhOk: true, toastOk: true, oracleOk: false, specOk: true },
+// La comparación que le importa al dueño: contra cómo trabaja hoy, no contra Oracle.
+const columns = ["Cuaderno y Excel", "Sistema solo de boletas", "RestHUB"] as const;
+
+const rows: { label: string; values: [string, string, string] }[] = [
+  {
+    label: "El pedido llega a cocina",
+    values: ["En un papelito o a gritos", "En un papelito", "En la pantalla de cocina, al instante"],
+  },
+  {
+    label: "Cierre de caja",
+    values: [
+      "Se cuenta a mano y se cruza con el cuaderno",
+      "Total de boletas del día",
+      "Reporte con Yape, Plin, tarjeta y efectivo por separado",
+    ],
+  },
+  {
+    label: "Cuánto te deja cada plato",
+    values: ["No se sabe", "No se sabe", "Calculado con tus recetas"],
+  },
+  {
+    label: "Inventario",
+    values: ["Se cuenta cuando hay tiempo", "No lo lleva", "Se descuenta con cada venta"],
+  },
+  {
+    label: "Tu contador",
+    values: ["Recibe fotos y archivos sueltos", "Recibe el reporte de boletas", "Entra con su propio usuario"],
+  },
 ];
-
-const posMap = [
-  { label: "Generalistas de escala", name: "Toast · Square", desc: "Penetración masiva, facilidad. Faltan profundidad contable y roles reales.", bars: [{ l: "Cobertura funcional", pct: 45, color: "bg-[#64748B]" }, { l: "Precio accesible", pct: 85, color: "bg-[#14B8A6]" }], highlight: false },
-  { label: "RestHUB — el espacio vacío", name: "RestHUB", desc: "Profundidad del enterprise + accesibilidad del SMB + pensado para LATAM.", bars: [{ l: "Cobertura funcional", pct: 92, color: "bg-[#F59E0B]" }, { l: "Precio accesible", pct: 78, color: "bg-[#F59E0B]" }], highlight: true },
-  { label: "Enterprise clásico", name: "Oracle Simphony", desc: "Escala y seguridad máxima. Inaccesible en precio para 1–15 locales.", bars: [{ l: "Cobertura funcional", pct: 95, color: "bg-[#14B8A6]" }, { l: "Precio accesible", pct: 10, color: "bg-[#64748B]" }], highlight: false },
-];
-
-function Bar({ pct, color }: { pct: number; color: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "0px 0px -50px 0px" });
-  return (
-    <div ref={ref} className="h-1 rounded-full bg-[#E2E8F0] overflow-hidden">
-      <div
-        className={`h-full w-full origin-left rounded-full ${color} transition-transform duration-[1200ms] ease-snappy`}
-        style={{ transform: inView ? `scaleX(${pct / 100})` : "scaleX(0)" }}
-      />
-    </div>
-  );
-}
 
 export default function Comparison() {
   return (
     <section id="vs" className="py-24 bg-[#F8FAFC]">
-      <div className="max-w-[1160px] mx-auto px-8">
+      <div className="max-w-[1160px] mx-auto px-6 md:px-8">
         <BlurFade>
-          <div className="text-center max-w-[620px] mx-auto mb-14">
-            <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-extrabold leading-[1.1] tracking-[-0.025em] mb-3 text-[#0F172A]">
-              Profundidad funcional.<br />Precio accesible.
+          <div className="max-w-[620px] mb-12">
+            <h2 className="text-[clamp(2rem,4.2vw,3rem)] font-extrabold leading-[1.1] tracking-[-0.025em] mb-4 text-[#0F172A]">
+              Cómo cambia el día a día.
             </h2>
-            <p className="text-[1.05rem] text-[#475569] leading-[1.75]">
-              Generalistas de escala o especialistas de nicho. RestHUB ocupa el espacio vacío.
+            <p className="text-[1.05rem] text-[#475569] leading-[1.7]">
+              Comparado con las dos formas más comunes de llevar un restaurante chico: cuaderno y
+              Excel, o un sistema que solo emite boletas.
             </p>
           </div>
         </BlurFade>
 
         <BlurFade delay={0.1}>
-          <div className="overflow-x-auto border border-[#E2E8F0] rounded-2xl mb-6 bg-white shadow-sm">
-            <Table className="min-w-[600px]">
-              <TableHeader>
-                <TableRow className="bg-[#F8FAFC] hover:bg-[#F8FAFC]">
-                  <TableHead className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-[#94A3B8]">Característica</TableHead>
-                  <TableHead className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-[#B45309] bg-[#F59E0B]/[0.06]">
-                    <span className="inline-flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]" />
-                      RestHUB
-                    </span>
-                  </TableHead>
-                  <TableHead className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-[#94A3B8]">Toast / Square</TableHead>
-                  <TableHead className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-[#94A3B8]">Oracle Simphony</TableHead>
-                  <TableHead className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-[#94A3B8]">Especialistas</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {rows.map((r, i) => (
-                  <TableRow
-                    key={i}
-                    className="border-[#E2E8F0] transition-colors group hover:bg-[#F59E0B]/[0.04]"
-                  >
-                    <TableCell className="text-[0.82rem] text-[#64748B] font-medium group-hover:text-[#0F172A] transition-colors">
-                      {r.feature}
-                    </TableCell>
-                    <TableCell className="text-[0.82rem] text-[#0F172A] font-semibold bg-[#F59E0B]/[0.03] group-hover:bg-[#F59E0B]/[0.08] transition-colors">
-                      <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-[#0D9488] shrink-0" strokeWidth={2} />{r.rh}</span>
-                    </TableCell>
-                    <TableCell className="text-[0.82rem] text-[#64748B]">
-                      <span className="inline-flex items-center gap-1.5">
-                        {r.toastOk === false ? <XCircle className="w-3.5 h-3.5 text-red-400/50 shrink-0" strokeWidth={2} /> : r.toastOk ? <CheckCircle2 className="w-3.5 h-3.5 text-[#0D9488] shrink-0" strokeWidth={2} /> : <MinusCircle className="w-3.5 h-3.5 text-[#D97706] shrink-0" strokeWidth={2} />}
-                        {r.toast}
-                      </span>
-                    </TableCell>
-                    <TableCell className="text-[0.82rem] text-[#64748B]">
-                      <span className="inline-flex items-center gap-1.5">
-                        {r.oracleOk === false ? <XCircle className="w-3.5 h-3.5 text-red-400/50 shrink-0" strokeWidth={2} /> : r.oracleOk ? <CheckCircle2 className="w-3.5 h-3.5 text-[#0D9488] shrink-0" strokeWidth={2} /> : <MinusCircle className="w-3.5 h-3.5 text-[#D97706] shrink-0" strokeWidth={2} />}
-                        {r.oracle}
-                      </span>
-                    </TableCell>
-                    <TableCell className="text-[0.82rem] text-[#64748B]">
-                      <span className="inline-flex items-center gap-1.5">
-                        {r.specOk === false ? <XCircle className="w-3.5 h-3.5 text-red-400/50 shrink-0" strokeWidth={2} /> : r.specOk ? <CheckCircle2 className="w-3.5 h-3.5 text-[#0D9488] shrink-0" strokeWidth={2} /> : <MinusCircle className="w-3.5 h-3.5 text-[#D97706] shrink-0" strokeWidth={2} />}
-                        {r.spec}
-                      </span>
-                    </TableCell>
-                  </TableRow>
+          <div className="hidden md:block overflow-x-auto">
+            <table className="w-full min-w-[720px] text-left border-collapse">
+              <caption className="sr-only">Comparación entre cuaderno y Excel, un sistema solo de boletas y RestHUB</caption>
+              <thead>
+                <tr className="border-b-2 border-[#0F172A]">
+                  <th scope="col" className="py-3 pr-6 w-[22%]"><span className="sr-only">Tarea</span></th>
+                  {columns.map((c) => (
+                    <th
+                      key={c}
+                      scope="col"
+                      className={`py-3 px-4 text-[0.95rem] font-bold ${c === "RestHUB" ? "text-[#0F172A] bg-[#F59E0B]/15" : "text-[#475569]"}`}
+                    >
+                      {c}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((r) => (
+                  <tr key={r.label} className="border-b border-[#E2E8F0]">
+                    <th scope="row" className="py-4 pr-6 text-[0.95rem] font-semibold text-[#0F172A] align-top">
+                      {r.label}
+                    </th>
+                    {r.values.map((v, i) => (
+                      <td
+                        key={i}
+                        className={`py-4 px-4 text-[0.95rem] leading-[1.5] align-top ${
+                          i === 2 ? "text-[#0F172A] font-medium bg-[#F59E0B]/[0.08]" : "text-[#64748B]"
+                        }`}
+                      >
+                        {v}
+                      </td>
+                    ))}
+                  </tr>
                 ))}
-              </TableBody>
-            </Table>
+              </tbody>
+            </table>
           </div>
         </BlurFade>
 
-        <BlurFade delay={0.2}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {posMap.map((p, i) => (
-              <div
-                key={i}
-                className={`rounded-2xl p-6 border ${
-                  p.highlight
-                    ? "border-[#0F172A] bg-[#0F172A] text-white"
-                    : "border-[#E2E8F0] bg-white shadow-sm"
-                }`}
-              >
-                <div className={`text-[0.62rem] font-bold tracking-[0.12em] uppercase mb-1 ${p.highlight ? "text-[#B45309]" : "text-[#64748B]"}`}>{p.label}</div>
-                <div className={`text-[0.95rem] font-bold mb-2 ${p.highlight ? "text-white" : "text-[#0F172A]"}`}>{p.name}</div>
-                <p className={`text-[0.8rem] leading-[1.55] mb-4 ${p.highlight ? "text-[#94A3B8]" : "text-[#475569]"}`}>{p.desc}</p>
-                {p.bars.map((b, j) => (
-                  <div key={j} className="mb-2.5">
-                    <div className={`text-[0.65rem] mb-1 ${p.highlight ? "text-[#64748B]" : "text-[#94A3B8]"}`}>{b.l}</div>
-                    <Bar pct={b.pct} color={b.color} />
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </BlurFade>
+        {/* Móvil: una tarjeta por tarea, RestHUB siempre visible */}
+        <dl className="md:hidden divide-y divide-[#E2E8F0] border-y border-[#E2E8F0]">
+          {rows.map((r) => (
+            <div key={r.label} className="py-5">
+              <dt className="text-[1rem] font-bold text-[#0F172A] mb-2">{r.label}</dt>
+              {r.values.map((v, i) => (
+                <dd
+                  key={i}
+                  className={`text-[0.95rem] leading-[1.5] ${i === 2 ? "mt-2 text-[#0F172A] font-medium" : "text-[#64748B]"}`}
+                >
+                  <span className="font-semibold">{columns[i]}:</span> {v}
+                </dd>
+              ))}
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

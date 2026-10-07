@@ -257,7 +257,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
                 </label>
               </div>
               <div
-                className="inline-flex items-center gap-2 text-[0.62rem] font-bold tracking-[0.18em] uppercase px-3 py-1 rounded-full mb-3"
+                className="inline-flex items-center gap-2 text-[0.85rem] font-semibold px-3 py-1 rounded-full mb-3"
                 style={{ background: "rgba(245,158,11,0.12)", border: "1px solid rgba(245,158,11,0.3)", color: "#F59E0B" }}
               >
                 Suscripción
@@ -281,7 +281,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
 
               {/* Locales stepper */}
               <div className="mb-5">
-                <label className="block text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-white/45 mb-1.5">
+                <label className="block text-[0.88rem] font-medium text-white/80 mb-1.5">
                   Cantidad de locales
                 </label>
                 <div className="flex items-center gap-2">
@@ -321,7 +321,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
               </div>
 
               <div className="mb-3">
-                <label className="block text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-white/45 mb-1.5">
+                <label className="block text-[0.88rem] font-medium text-white/80 mb-1.5">
                   Número de tarjeta<span className="text-[#F59E0B] ml-0.5">*</span>
                 </label>
                 <div className="relative">
@@ -630,7 +630,7 @@ function Field({
   const id = `checkout-${label.replace(/\s+/g, "-").toLowerCase()}`;
   return (
     <div className={wrapperClassName}>
-      <label htmlFor={id} className="block text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-white/65 mb-1.5">
+      <label htmlFor={id} className="block text-[0.88rem] font-medium text-white/80 mb-1.5">
         {label}
         {required && (
           <span className="text-[#F59E0B] ml-0.5" aria-hidden="true">

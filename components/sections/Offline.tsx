@@ -30,22 +30,16 @@ export default function Offline() {
 
   return (
     <section ref={sectionRef} id="offline" className="relative bg-black py-28 overflow-hidden">
-      {/* Amber tint — the "apagón" moment */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 60% 55% at 50% 0%, rgba(245,158,11,0.09) 0%, transparent 60%)" }}
-      />
 
       <div className="relative max-w-[860px] mx-auto px-8 text-center">
         <h2 className="offline-head text-[clamp(2.1rem,5vw,3.6rem)] font-extrabold leading-[1.06] tracking-[-0.03em] text-white mb-6" style={{ opacity: 0 }}>
-          Se cayó el internet.{" "}
-          <span className="text-[#F59E0B]">Tú sigues vendiendo.</span>
+          Se cayó el internet. Tú sigues vendiendo.
         </h2>
 
         <p className="offline-body text-[1.05rem] text-[#94A3B8] leading-[1.8] max-w-[560px] mx-auto mb-12" style={{ opacity: 0 }}>
-          El POS y la cocina siguen operando en modo local: tomas órdenes y gestionas caja como
-          siempre. Cuando vuelve la conexión, todo se sincroniza solo — sin perder una venta,
-          sin volver a digitar nada.
+          El POS y la cocina siguen funcionando sin conexión: tomas pedidos y cobras como
+          siempre. Cuando vuelve el internet, todo se sincroniza solo, sin perder una venta
+          ni volver a digitar nada.
         </p>
 
         {/* Two-state visual: offline queue → synced */}
@@ -55,19 +49,19 @@ export default function Offline() {
             style={{ border: "1px solid rgba(245,158,11,0.4)" }}
           >
             <WifiOff className="w-4 h-4 shrink-0 text-[#F59E0B]" strokeWidth={2} />
-            <span className="text-[0.78rem] font-bold text-white">Sin conexión · modo local</span>
-            <span className="text-[0.7rem] text-[#64748B]">3 órdenes en cola</span>
+            <span className="text-[0.9rem] font-bold text-white">Sin conexión</span>
+            <span className="text-[0.85rem] text-[#94A3B8]">3 pedidos guardados</span>
           </div>
 
           <ArrowRight className="w-4 h-4 text-[#475569] rotate-90 sm:rotate-0" strokeWidth={2} aria-hidden="true" />
 
           <div
             className="flex items-center gap-2.5 rounded-full px-5 py-3 bg-[#05101e]"
-            style={{ border: "1px solid rgba(13,148,136,0.45)" }}
+            style={{ border: "1px solid rgba(255,255,255,0.15)" }}
           >
-            <RefreshCw className="w-4 h-4 shrink-0 text-[#14B8A6]" strokeWidth={2} />
-            <span className="text-[0.78rem] font-bold text-white">Conexión restablecida</span>
-            <span className="text-[0.7rem] font-bold text-[#14B8A6]">Todo sincronizado ✓</span>
+            <RefreshCw className="w-4 h-4 shrink-0 text-white/70" strokeWidth={2} />
+            <span className="text-[0.9rem] font-bold text-white">Volvió el internet</span>
+            <span className="text-[0.85rem] text-[#94A3B8]">3 pedidos enviados</span>
           </div>
         </div>
       </div>

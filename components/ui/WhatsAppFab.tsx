@@ -18,15 +18,6 @@ export default function WhatsAppFab() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    if (!visible || dismissed) return;
-    const t = setTimeout(() => setShowTooltip(true), 1400);
-    const t2 = setTimeout(() => setShowTooltip(false), 8400);
-    return () => {
-      clearTimeout(t);
-      clearTimeout(t2);
-    };
-  }, [visible, dismissed]);
 
   if (!visible) return null;
 
@@ -36,7 +27,7 @@ export default function WhatsAppFab() {
     <div
       className="fixed right-4 sm:right-6 z-[60] flex flex-col items-end gap-2"
       style={{
-        bottom: "calc(env(safe-area-inset-bottom, 0px) + 90px)",
+        bottom: "calc(env(safe-area-inset-bottom, 0px) + 24px)",
         animation: "fabIn 380ms cubic-bezier(0.16, 1, 0.3, 1)",
       }}
     >

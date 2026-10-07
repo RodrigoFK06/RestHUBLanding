@@ -45,7 +45,7 @@ export default function Nav() {
           : "bg-transparent border-transparent"
       }`}
     >
-      <Link href="#hero" className="flex items-center" aria-label="RestHUB — ir al inicio">
+      <Link href="#hero" className="flex items-center" aria-label="RestHUB, ir al inicio">
         <Image
           src="/logo.svg"
           alt="RestHUB"
@@ -137,7 +137,7 @@ export default function Nav() {
               }}
               className="w-full bg-[#F59E0B] hover:bg-[#FCD34D] text-[#0F172A] font-bold cursor-pointer"
             >
-              Solicitar acceso →
+              Solicitar acceso
             </Button>
           </div>
         </div>

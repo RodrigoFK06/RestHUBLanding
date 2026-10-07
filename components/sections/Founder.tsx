@@ -33,7 +33,7 @@ const founders = [
     photo: "/rodrigo-torres.png",
     alt: "Rodrigo Torres, co-fundador de RestHUB",
     name: "Rodrigo Torres",
-    role: "Co-fundador · Producto",
+    role: "Cofundador, producto",
     line: "Lidera producto, estrategia y desarrollo. Construyendo software desde los 16.",
     objectPosition: "50% 25%",
   },
@@ -41,7 +41,7 @@ const founders = [
     photo: "/emilio-orbegozo.jpg",
     alt: "Emilio Orbegozo, co-fundador de RestHUB",
     name: "Emilio Orbegozo",
-    role: "Co-fundador · Ingeniería y QA",
+    role: "Cofundador, ingeniería y calidad",
     line: "Ingeniero de Sistemas. Creó la base original del sistema y lidera la calidad de cada versión.",
     objectPosition: "50% 35%",
   },
@@ -76,13 +76,12 @@ export default function Founder() {
       <div className="max-w-[900px] mx-auto px-8 text-center">
 
         <h2 className="founder-head text-[clamp(1.8rem,3.8vw,2.6rem)] font-extrabold leading-[1.15] tracking-[-0.025em] text-white mb-4" style={{ opacity: 0 }}>
-          Detrás de RestHUB hay gente,{" "}
-          <span className="text-[#14B8A6]">no un call center.</span>
+          Detrás de RestHUB estamos nosotros dos.
         </h2>
-        <p className="founder-copy text-[0.98rem] text-[#94A3B8] leading-[1.8] max-w-[560px] mx-auto mb-12" style={{ opacity: 0 }}>
-          Somos Rodrigo y Emilio. Construimos RestHUB acá en Perú, hablando con dueños de
-          restaurantes reales — pollerías, cevicherías, menús — para resolver los problemas
-          que viven todos los días, no los que salen en un manual.
+        <p className="founder-copy text-[1.05rem] text-[#94A3B8] leading-[1.7] max-w-[560px] mx-auto mb-12" style={{ opacity: 0 }}>
+          Somos Rodrigo y Emilio. Hacemos RestHUB en Perú, junto a dueños de pollerías,
+          cevicherías y restaurantes de menú, y lo ajustamos con lo que vemos en sus locales
+          todos los días.
         </p>
 
         {/* Founders */}
@@ -90,16 +89,12 @@ export default function Founder() {
           {founders.map((f) => (
             <div
               key={f.name}
-              className="founder-card flex flex-col items-center rounded-2xl px-6 py-8"
-              style={{
-                background: "rgba(255,255,255,0.025)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                opacity: 0,
-              }}
+              className="founder-card flex flex-col items-center px-4"
+              style={{ opacity: 0 }}
             >
               <div
                 className="relative w-[124px] h-[124px] rounded-full overflow-hidden mb-5"
-                style={{ border: "2px solid rgba(20,184,166,0.4)", boxShadow: "0 16px 40px rgba(0,0,0,0.4)" }}
+                style={{ border: "1px solid rgba(255,255,255,0.15)" }}
               >
                 <Image
                   src={f.photo}
@@ -111,17 +106,17 @@ export default function Founder() {
                 />
               </div>
               <p className="text-[1.05rem] font-extrabold text-white">{f.name}</p>
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#14B8A6] mt-1 mb-3">
+              <p className="text-[0.92rem] text-white/70 mt-1 mb-3">
                 {f.role}
               </p>
-              <p className="text-[0.83rem] text-[#94A3B8] leading-[1.65]">{f.line}</p>
+              <p className="text-[0.92rem] text-[#94A3B8] leading-[1.6]">{f.line}</p>
             </div>
           ))}
         </div>
 
         <div className="founder-copy" style={{ opacity: 0 }}>
           <p className="text-[0.95rem] text-[#94A3B8] leading-[1.8] max-w-[520px] mx-auto mb-8">
-            Cuando tengas un problema, hablas con nosotros. Con nombre y apellido, no con un bot.
+            Si algo falla, nos escribes por WhatsApp y te responde uno de nosotros.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3">
@@ -131,7 +126,7 @@ export default function Founder() {
               rel="noopener noreferrer"
               className="btn-amber font-bold px-7 py-3 rounded-full text-sm cursor-pointer"
             >
-              Escríbenos por WhatsApp →
+              Escríbenos por WhatsApp
             </a>
             <a
               href={RODRIGO_LINKEDIN}
