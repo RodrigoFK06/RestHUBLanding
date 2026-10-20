@@ -8,7 +8,7 @@ import { CheckCircle2, ArrowRight, MessageCircle } from "lucide-react";
 import Confetti from "@/components/ui/Confetti";
 
 const POST_CHECKOUT_URL =
-  process.env.NEXT_PUBLIC_POST_CHECKOUT_URL ?? "https://rest-hub.vercel.app/";
+  process.env.NEXT_PUBLIC_POST_CHECKOUT_URL ?? "https://app.resthub.tech/";
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "51961869348";
 
 function GraciasContent() {

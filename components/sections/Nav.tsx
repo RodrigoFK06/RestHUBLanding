@@ -7,6 +7,11 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useModals } from "@/components/modals/ModalProvider";
 
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "51961869348";
+const DEMO_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  "Hola RestHUB, me gustaría agendar una demo."
+)}`;
+
 const links = [
   { href: "#modulos", label: "Módulos" },
   { href: "#roles", label: "Roles" },
@@ -76,10 +81,10 @@ export default function Nav() {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => window.open("https://rest-hub.vercel.app", "_blank", "noopener")}
+          onClick={() => window.open(DEMO_HREF, "_blank", "noopener")}
           className="h-10 rounded-lg px-4 text-sm font-bold text-white border border-[#4A4A4A] hover:border-[#7A7A7A] hover:bg-white/5 cursor-pointer"
         >
-          Probar la demo
+          Agendar demo
         </Button>
         <Button
           size="sm"
@@ -125,11 +130,11 @@ export default function Nav() {
               variant="ghost"
               onClick={() => {
                 setOpen(false);
-                window.open("https://rest-hub.vercel.app", "_blank", "noopener");
+                window.open(DEMO_HREF, "_blank", "noopener");
               }}
               className="h-12 w-full rounded-lg font-bold text-white border border-[#4A4A4A] hover:bg-white/5 cursor-pointer"
             >
-              Probar la demo
+              Agendar demo
             </Button>
             <Button
               onClick={() => {

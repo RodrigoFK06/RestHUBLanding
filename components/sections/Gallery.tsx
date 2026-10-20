@@ -1,6 +1,11 @@
 import Image from "next/image";
 import BlurFade from "@/components/reactbits/BlurFade";
 
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "51961869348";
+const DEMO_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  "Hola RestHUB, me gustaría agendar una demo."
+)}`;
+
 const shots = [
   {
     src: "/screenshots/shot-dashboard.jpg",
@@ -81,15 +86,15 @@ export default function Gallery() {
         <BlurFade delay={0.2}>
           <div className="text-center">
             <a
-              href="https://rest-hub.vercel.app"
+              href={DEMO_HREF}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-amber inline-flex items-center gap-2 font-bold text-sm px-8 py-4 rounded-full"
             >
-              Entra a la demo en vivo →
+              Agenda una demo en vivo →
             </a>
             <p className="text-[0.78rem] text-[#64748B] mt-3.5">
-              Tócala tú mismo, desde tu celular o tu laptop. Sin agendar nada.
+              Una llamada de 15 minutos: te mostramos el sistema con una carta parecida a la tuya.
             </p>
           </div>
         </BlurFade>

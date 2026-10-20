@@ -3,6 +3,11 @@
 import { useEffect, useState } from "react";
 import { useModals } from "@/components/modals/ModalProvider";
 
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "51961869348";
+const DEMO_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  "Hola RestHUB, me gustaría agendar una demo."
+)}`;
+
 export default function StickyCtaBar() {
   const [scrolledPast, setScrolledPast] = useState(false);
   const [footerVisible, setFooterVisible] = useState(false);
@@ -50,13 +55,13 @@ export default function StickyCtaBar() {
 
         <div className="flex items-center gap-2 ml-auto sm:ml-0 w-full sm:w-auto">
           <a
-            href="https://rest-hub.vercel.app"
+            href={DEMO_HREF}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 sm:flex-none text-center text-[0.76rem] font-semibold text-white border rounded-full px-5 py-2.5 transition hover:bg-white/5 active:scale-[0.97] cursor-pointer"
             style={{ borderColor: "rgba(255,255,255,0.15)" }}
           >
-            Probar la demo
+            Agendar demo
           </a>
           <button
             onClick={() => openContact({ topic: "Solicitar acceso" })}

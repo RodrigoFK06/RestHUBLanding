@@ -83,7 +83,7 @@ export async function POST(req: Request) {
   const formattedAmount = `${currency === "USD" ? "$" : currency + " "}${amount.toFixed(2)}`;
   const billingLabel = billing === "yearly" ? "Anual" : "Mensual";
   const redirectUrl =
-    process.env.NEXT_PUBLIC_POST_CHECKOUT_URL ?? "https://rest-hub.vercel.app/";
+    process.env.NEXT_PUBLIC_POST_CHECKOUT_URL ?? "https://app.resthub.tech/";
 
   try {
     const transporter = getTransporter();
