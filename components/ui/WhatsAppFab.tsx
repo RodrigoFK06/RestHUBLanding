@@ -5,10 +5,14 @@ import { MessageCircle, X } from "lucide-react";
 
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "51961869348";
 const WA_TEXT = encodeURIComponent("Hola RestHUB, me gustaría más información sobre el producto.");
+const TIP_KEY = "resthub-wa-tip";
 
 export default function WhatsAppFab() {
   const [visible, setVisible] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
+  // La burbuja sale sola una vez por sesión y por unos segundos; después, solo al
+  // pasar el mouse o enfocar el botón, para que no tape títulos ni cifras al leer.
+  const [autoTip, setAutoTip] = useState(false);
+  const [hover, setHover] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
@@ -20,30 +24,48 @@ export default function WhatsAppFab() {
 
   useEffect(() => {
     if (!visible || dismissed) return;
-    const t = setTimeout(() => setShowTooltip(true), 1400);
-    const t2 = setTimeout(() => setShowTooltip(false), 8400);
+    try {
+      if (sessionStorage.getItem(TIP_KEY)) return;
+    } catch {}
+    const t = setTimeout(() => {
+      setAutoTip(true);
+      try {
+        sessionStorage.setItem(TIP_KEY, "1");
+      } catch {}
+    }, 1400);
+    const t2 = setTimeout(() => setAutoTip(false), 5400);
     return () => {
       clearTimeout(t);
       clearTimeout(t2);
+      setAutoTip(false);
     };
   }, [visible, dismissed]);
 
   if (!visible) return null;
 
+  const showTooltip = (autoTip || hover) && !dismissed;
+  // Solo con mouse real: en táctil el puntero queda donde fue el último toque y
+  // dejaba la burbuja abierta si el botón aparecía debajo.
+  const onPointer = (on: boolean) => (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") setHover(on);
+  };
+
   const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${WA_TEXT}`;
 
   return (
     <div
-      className="fixed right-4 sm:right-6 z-[60] flex flex-col items-end gap-2"
+      className="fixed right-4 sm:right-6 z-[60] flex items-center gap-2"
+      onPointerEnter={onPointer(true)}
+      onPointerLeave={onPointer(false)}
       style={{
         bottom: "calc(env(safe-area-inset-bottom, 0px) + 90px)",
         animation: "fabIn 380ms cubic-bezier(0.16, 1, 0.3, 1)",
       }}
     >
-      {showTooltip && !dismissed && (
+      {showTooltip && (
         <div
           role="status"
-          className="flex items-center gap-2 pl-4 pr-2 py-2.5 rounded-2xl shadow-2xl max-w-[260px]"
+          className="flex items-center gap-2 pl-4 pr-2 py-2.5 rounded-2xl shadow-2xl max-w-[220px] sm:max-w-[260px]"
           style={{
             background: "rgba(15,23,42,0.96)",
             border: "1px solid rgba(255,255,255,0.1)",
@@ -56,10 +78,7 @@ export default function WhatsAppFab() {
             ¿Dudas? Escríbenos por WhatsApp.
           </span>
           <button
-            onClick={() => {
-              setShowTooltip(false);
-              setDismissed(true);
-            }}
+            onClick={() => setDismissed(true)}
             aria-label="Cerrar"
             className="shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-white/45 hover:text-white hover:bg-white/10 transition-colors"
           >
@@ -73,6 +92,8 @@ export default function WhatsAppFab() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contactar por WhatsApp"
+        onFocus={(e) => setHover(e.currentTarget.matches(":focus-visible"))}
+        onBlur={() => setHover(false)}
         className="relative w-14 h-14 rounded-full flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
         style={{
           background: "#25D366",
@@ -91,7 +112,7 @@ export default function WhatsAppFab() {
 
       <style>{`
         @keyframes fabIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes tooltipIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes tooltipIn { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: translateX(0); } }
         @keyframes fabPing { 0% { transform: scale(1); opacity: 0.7; } 80%,100% { transform: scale(1.6); opacity: 0; } }
       `}</style>
     </div>

@@ -93,7 +93,8 @@ export default function Why() {
             alt="Pollos a la brasa en el horno de una pollería"
             fill
             className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
+            // object-cover en un marco más alto que la foto: se dibuja más ancha que la columna
+            sizes="(max-width: 767px) 160vw, 80vw"
             style={{ transformOrigin: "center center" }}
           />
           {/* Overlay gradient */}
@@ -141,7 +142,7 @@ export default function Why() {
                 </div>
                 <div>
                   <h4 className="text-[0.82rem] font-bold text-white mb-0.5">{p.title}</h4>
-                  <p className="text-[0.75rem] text-[#64748B] leading-[1.55]">{p.desc}</p>
+                  <p className="text-[0.75rem] text-[#94A3B8] leading-[1.55]">{p.desc}</p>
                 </div>
               </div>
             ))}

@@ -89,7 +89,7 @@ export default function Flow() {
 
         {/* Latency banner */}
         <BlurFade delay={0.2}>
-          <div className="flex items-center justify-center gap-6 bg-white border border-[#E2E8F0] rounded-2xl px-8 py-6 shadow-sm">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-center sm:text-left bg-white border border-[#E2E8F0] rounded-2xl px-6 sm:px-8 py-6 shadow-sm">
             <div className="w-10 h-10 rounded-xl bg-[rgba(13,148,136,0.15)] flex items-center justify-center shrink-0">
               <Zap className="w-5 h-5 text-[#0F766E]" strokeWidth={1.75} />
             </div>

@@ -12,6 +12,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Editorial photo grid — restaurant lifestyle imagery with parallax depth
 // Each photo has a parallax speed (negative = slower than scroll = background effect)
+// En móvil las fotos se apilan (una columna, 4:3); el collage de 3 columnas es desde md.
+// `sizes` cuenta el recorte de object-cover: la capa de parallax mide 130 % de alto,
+// así que la foto se dibuja más ancha que la tarjeta.
+const SIZES_ALTA = "(max-width: 639px) 125vw, (max-width: 767px) 70vw, (max-width: 1199px) 80vw, 960px";
+const SIZES_ANCHA = "(max-width: 639px) 125vw, (max-width: 767px) 70vw, (max-width: 1199px) 45vw, 540px";
+
 const photos = [
   {
     src: "https://images.unsplash.com/photo-1759299595850-24572dd0d447?w=1600&q=85&auto=format&fit=crop",
@@ -20,9 +26,10 @@ const photos = [
     caption: "Órdenes en tiempo real",
     accent: "#14B8A6",
     parallaxY: -60, // moves up slower → appears to float
-    col: "col-start-1 col-end-2",
-    row: "row-start-1 row-end-3",
-    aspect: "aspect-[3/4]",
+    col: "md:col-start-1 md:col-end-2",
+    row: "md:row-start-1 md:row-end-3",
+    aspect: "aspect-[4/3] md:aspect-[3/4]",
+    sizes: SIZES_ALTA,
   },
   {
     src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=85&auto=format&fit=crop",
@@ -31,9 +38,10 @@ const photos = [
     caption: "El pedido llega al toque",
     accent: "#F59E0B",
     parallaxY: -40,
-    col: "col-start-2 col-end-3",
-    row: "row-start-1 row-end-2",
+    col: "md:col-start-2 md:col-end-3",
+    row: "md:row-start-1 md:row-end-2",
     aspect: "aspect-[4/3]",
+    sizes: SIZES_ANCHA,
   },
   {
     src: "https://images.unsplash.com/photo-1636552550775-9e6b065d0481?w=1400&q=85&auto=format&fit=crop",
@@ -42,20 +50,24 @@ const photos = [
     caption: "Desde la mesa hasta el balance",
     accent: "#a78bfa",
     parallaxY: -80,
-    col: "col-start-3 col-end-4",
-    row: "row-start-1 row-end-3",
-    aspect: "aspect-[3/4]",
+    col: "md:col-start-3 md:col-end-4",
+    row: "md:row-start-1 md:row-end-3",
+    aspect: "aspect-[4/3] md:aspect-[3/4]",
+    sizes: SIZES_ALTA,
   },
   {
-    src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&q=85&auto=format&fit=crop",
-    alt: "Dashboard BI analytics",
+    // Captura real del dashboard (la foto de stock tenía la interfaz en inglés)
+    src: "/screenshots/shot-dashboard.jpg",
+    alt: "Dashboard de RestHUB con el resumen del turno y el mix de cobro",
+    objectPosition: "0% 30%",
     label: "BI · Dashboard en vivo",
     caption: "Tendencias sin esperar el lunes",
     accent: "#22d3ee",
     parallaxY: -30,
-    col: "col-start-2 col-end-3",
-    row: "row-start-2 row-end-3",
+    col: "md:col-start-2 md:col-end-3",
+    row: "md:row-start-2 md:row-end-3",
     aspect: "aspect-[4/3]",
+    sizes: SIZES_ANCHA,
   },
 ];
 
@@ -65,19 +77,19 @@ const featureStrip = [
     src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80&auto=format&fit=crop",
     label: "Gestión de Salón",
     stat: "12 mesas activas",
-    bg: "from-[#0F172A]",
+    bg: "from-[#0F172A]/85",
   },
   {
     src: "https://images.unsplash.com/photo-1607631568010-a87245c0daf8?w=1600&q=80&auto=format&fit=crop",
     label: "Cocina en Vivo",
     stat: "Órdenes sincronizadas",
-    bg: "from-[#0F172A]",
+    bg: "from-[#0F172A]/85",
   },
   {
     src: "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1600&q=80&auto=format&fit=crop",
     label: "Control de Caja",
     stat: "Cierre exacto, siempre",
-    bg: "from-[#0F172A]",
+    bg: "from-[#0F172A]/85",
   },
 ];
 
@@ -151,8 +163,7 @@ export default function EditorialGrid() {
       {/* ── Masonry-style editorial grid ── */}
       <div
         ref={gridRef}
-        className="max-w-[1160px] mx-auto px-8 grid gap-4 mb-6"
-        style={{ gridTemplateColumns: "1fr 1fr 1fr", gridTemplateRows: "auto auto" }}
+        className="max-w-[1160px] mx-auto px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-[auto_auto] gap-4 mb-6"
       >
         {photos.map((photo, i) => (
           <div
@@ -171,7 +182,8 @@ export default function EditorialGrid() {
                 alt={photo.alt}
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 33vw"
+                style={photo.objectPosition ? { objectPosition: photo.objectPosition } : undefined}
+                sizes={photo.sizes}
               />
             </div>
 
@@ -209,14 +221,14 @@ export default function EditorialGrid() {
               className="object-cover transition-transform duration-700 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, 33vw"
             />
-            {/* Dark overlay */}
-            <div className={`absolute inset-0 bg-gradient-to-t ${item.bg}/80 via-black/30 to-transparent`} />
+            {/* Dark overlay — la clase va literal en featureStrip: armada con `${item.bg}/80` Tailwind no la generaba */}
+            <div className={`absolute inset-0 bg-gradient-to-t ${item.bg} via-black/30 to-transparent`} />
             {/* Hover border */}
             <div className="absolute inset-0 border border-transparent group-hover:border-white/10 transition-colors duration-400 rounded-none" />
 
             {/* Label */}
             <div className="absolute bottom-6 left-6 right-6">
-              <p className="text-[0.62rem] font-bold tracking-[0.18em] uppercase text-white/50 mb-1">{item.label}</p>
+              <p className="inline-block text-[0.62rem] font-bold tracking-[0.18em] uppercase text-white/90 bg-black/60 backdrop-blur-sm rounded px-2 py-1 mb-1.5">{item.label}</p>
               <p className="text-[1.1rem] font-extrabold text-white leading-tight">{item.stat}</p>
             </div>
 

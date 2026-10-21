@@ -7,7 +7,7 @@ import BlurFade from "@/components/reactbits/BlurFade";
 import { TrendingUp, CreditCard, ShoppingBag } from "lucide-react";
 
 const stats = [
-  { value: 48, places: [10, 1], label: "Módulos trabajando\nen un solo sistema", color: "text-[#D97706]", suffix: "" },
+  { value: 6, places: [1], label: "Módulos trabajando\nen un solo sistema", color: "text-[#D97706]", suffix: "" },
   { value: 6, places: [1], label: "Roles, cada uno\ncon su propia pantalla", color: "text-[#0D9488]", suffix: "" },
   { value: 1700, places: [1000, 100, 10, 1], label: "Pruebas automáticas\nantes de cada versión", color: "text-[#0D9488]", suffix: "+" },
   { value: 15, places: [10, 1], label: "Locales gestionables\ndesde un solo panel", color: "text-[#D97706]", suffix: "" },
@@ -23,6 +23,10 @@ const chartBars = [
   { day: "Dom", val: 73 },
 ];
 
+// Alto de cada barra en px: un % no se resolvía dentro de la columna flex (sin alto
+// definido) y las barras quedaban en 0, con solo los días a la vista.
+const BAR_MAX_PX = 56;
+
 function MiniBarChart() {
   const ref = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -35,7 +39,7 @@ function MiniBarChart() {
           <div
             className="w-full origin-bottom rounded-sm transition-transform ease-snappy"
             style={{
-              height: `${b.val}%`,
+              height: `${Math.round((b.val / 100) * BAR_MAX_PX)}px`,
               transform: inView ? "scaleY(1)" : "scaleY(0)",
               background: i === 5 ? "linear-gradient(to top, #F59E0B, #FCD34D)" : "rgba(20,184,166,0.4)",
               transitionDuration: "900ms",
@@ -94,7 +98,7 @@ export default function Stats() {
         <BlurFade delay={0.18}>
           <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between gap-6 bg-white border border-[#E2E8F0] rounded-2xl px-8 py-6 shadow-sm">
             <div>
-              <div className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#94A3B8] mb-1">Ventas semanales &middot; Sábado pico</div>
+              <div className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#64748B] mb-1">Ventas semanales &middot; Sábado pico</div>
               <div className="text-[1.5rem] font-black text-[#0F172A] tracking-tight">S/ 47,320 <span className="text-sm font-semibold text-[#0F766E]">+12% vs semana anterior</span></div>
             </div>
             <div className="w-full sm:w-[260px] shrink-0">

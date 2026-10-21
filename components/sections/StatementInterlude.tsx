@@ -99,7 +99,7 @@ export default function StatementInterlude() {
             ].map((s) => (
               <div key={s.label} className="text-center">
                 <div className="text-[clamp(1.4rem,2.5vw,2rem)] font-black text-white leading-none mb-1">{s.val}</div>
-                <div className="text-[0.65rem] text-[rgba(148,163,184,0.5)] uppercase tracking-[0.15em]">{s.label}</div>
+                <div className="text-[0.65rem] text-[rgba(148,163,184,0.8)] uppercase tracking-[0.15em]">{s.label}</div>
               </div>
             ))}
           </div>

@@ -187,7 +187,7 @@ function BiMock() {
         <div className="flex items-end gap-1.5 h-[68px]">
           {bars.map((h, i) => (
             <div key={i} className="flex flex-col items-center gap-1 flex-1">
-              <div className="w-full rounded-t-sm" style={{ height: `${h}%`, background: i === 5 ? `linear-gradient(to top, ${c}, rgba(34,211,238,0.3))` : "rgba(255,255,255,0.07)" }} />
+              <div className="w-full rounded-t-sm" style={{ height: `${Math.round(h * 0.52)}px`, background: i === 5 ? `linear-gradient(to top, ${c}, rgba(34,211,238,0.3))` : "rgba(255,255,255,0.07)" }} />
               <span className="text-[0.5rem] text-[#4B5563]">{days[i]}</span>
             </div>
           ))}
