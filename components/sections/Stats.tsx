@@ -7,7 +7,7 @@ import BlurFade from "@/components/reactbits/BlurFade";
 import { TrendingUp, CreditCard, ShoppingBag } from "lucide-react";
 
 const stats = [
-  { value: 6, places: [1], label: "Módulos trabajando\nen un solo sistema", color: "text-[#D97706]", suffix: "" },
+  { value: 48, places: [10, 1], label: "Módulos trabajando\nen un solo sistema", color: "text-[#D97706]", suffix: "" },
   { value: 6, places: [1], label: "Roles, cada uno\ncon su propia pantalla", color: "text-[#0D9488]", suffix: "" },
   { value: 1700, places: [1000, 100, 10, 1], label: "Pruebas automáticas\nantes de cada versión", color: "text-[#0D9488]", suffix: "+" },
   { value: 15, places: [10, 1], label: "Locales gestionables\ndesde un solo panel", color: "text-[#D97706]", suffix: "" },
