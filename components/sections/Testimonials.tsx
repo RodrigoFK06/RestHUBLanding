@@ -16,8 +16,8 @@ const FOUNDING_PERKS = [
     accent: "#14B8A6",
   },
   {
-    title: "Precio fundador por 12 meses",
-    body: "S/ 100 al mes en cualquier plan durante 12 meses, aunque suba el precio público.",
+    title: "Todo incluido, sin permanencia",
+    body: "Todos los módulos y todos los usuarios por el mismo monto. Si no te suma, lo apagas.",
     accent: "#F59E0B",
   },
   {
@@ -79,19 +79,20 @@ export default function Testimonials() {
 
         {/* ── Founding partners headline ── */}
         <div className="testi-headline text-center mb-20">
-          <div className="flex items-end justify-center gap-5 mb-6">
-            <div className="text-[clamp(5rem,12vw,9rem)] font-black leading-none text-white">
-              7
+          {/* flex-wrap: en móvil el rótulo baja bajo la cifra, que ya no es de un solo dígito */}
+          <div className="flex flex-wrap items-end justify-center gap-5 mb-6">
+            <div className="text-[clamp(5rem,12vw,9rem)] font-black leading-none text-white whitespace-nowrap">
+              S/&nbsp;100
             </div>
             <div className="pb-4 text-left">
               <p className="text-[clamp(1.1rem,2vw,1.5rem)] font-bold text-white/80 leading-tight">
-                cupos restantes<br />en Latinoamérica
+                al mes por local,<br />precio fundador
               </p>
             </div>
           </div>
 
           <p className="text-base text-white/55 max-w-[560px] mx-auto leading-relaxed">
-            Estamos cerrando el primer grupo de restaurantes que adoptan RestHUB con acompañamiento directo. Cuando se asignen los 7 cupos, el programa se cierra.
+            Es el precio para los primeros restaurantes que adoptan RestHUB con acompañamiento directo. Incluye todos los módulos, todos los usuarios, actualizaciones y soporte por WhatsApp.
           </p>
         </div>
 
@@ -131,18 +132,18 @@ export default function Testimonials() {
             className="font-bold text-[#0F172A] px-8 py-3.5 rounded-full text-sm transition hover:scale-105 active:scale-[0.98] cursor-pointer"
             style={{ background: "#F59E0B", boxShadow: "0 12px 40px rgba(245,158,11,0.35)" }}
           >
-            Postular a un cupo →
+            Quiero el precio fundador →
           </button>
           <p className="text-[0.72rem] text-white/40">
-            Revisamos cada postulación. Te respondemos en menos de 48 h.
+            Revisamos cada caso. Te respondemos en menos de 48 h.
           </p>
         </div>
 
         {/* ── Trust strip — promesas verificables ── */}
         <div className="mt-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
           {[
-            { val: "< 1 sem", label: "Implementación inicial" },
-            { val: "S/ 100", label: "Al mes, precio fundador" },
+            { val: "En paralelo", label: "Arrancas sin parar tu local" },
+            { val: "Todo", label: "Incluido: módulos y usuarios" },
             { val: "0", label: "Contratos de permanencia" },
             { val: "1-a-1", label: "Soporte con el equipo fundador" },
           ].map((s) => (

@@ -43,9 +43,9 @@ export default function Offline() {
         </h2>
 
         <p className="offline-body text-[1.05rem] text-[#94A3B8] leading-[1.8] max-w-[560px] mx-auto mb-12" style={{ opacity: 0 }}>
-          El POS y la cocina siguen operando en modo local: tomas órdenes y gestionas caja como
-          siempre. Cuando vuelve la conexión, todo se sincroniza solo, sin perder una venta
-          ni volver a digitar nada.
+          Tomas pedidos y cobras como siempre: todo se guarda en el equipo y se sincroniza solo
+          cuando vuelve la señal, sin volver a digitar nada. Y la caja no te deja cerrar el turno
+          si quedó algo sin sincronizar.
         </p>
 
         {/* Two-state visual: offline queue → synced */}

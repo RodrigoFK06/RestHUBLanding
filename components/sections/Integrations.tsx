@@ -95,20 +95,20 @@ const integrations = [
   {
     logo: <CulqiLogo />,
     name: "Culqi",
-    category: "Pagos online",
-    desc: "Gateway principal para e-commerce y cobros digitales en Perú.",
+    category: "Pasarela",
+    desc: "Cobro con tarjeta en la caja, con tu propia cuenta de Culqi.",
   },
   {
     logo: <IzipayLogo />,
     name: "Izipay",
-    category: "POS físico",
-    desc: "Terminal POS física con integración directa al módulo Caja.",
+    category: "Pasarela web",
+    desc: "Pago con tarjeta desde el QR de la mesa o en la caja, con tu cuenta de Izipay.",
   },
   {
     logo: <YapeLogo />,
     name: "Yape",
     category: "QR / Billetera",
-    desc: "Cobro por QR directo en mesa o en caja. Confirmación instantánea.",
+    desc: "Cobro con Yape en la mesa o en la caja, registrado con su método de pago.",
   },
   {
     logo: <PlinLogo />,
@@ -137,7 +137,7 @@ const integrations = [
 ];
 
 const certs = [
-  "Datos cifrados en tránsito y en reposo",
+  "Credenciales de SUNAT guardadas cifradas",
   "Boletas y facturas electrónicas SUNAT",
   "Soporte en español, desde Perú",
 ];
@@ -184,7 +184,7 @@ export default function Integrations() {
                 Conectado con lo que tu restaurante ya usa.
               </h2>
               <p className="text-[1.05rem] text-[#94A3B8] leading-[1.75]">
-                Sin adaptadores ni integraciones de terceros. Pagos, facturación y reportes vienen incluidos.
+                La conexión con pagos, SUNAT y reportes ya viene en el sistema. Tú solo pones tus cuentas: la de tu pasarela y la de tu proveedor de facturación.
               </p>
             </div>
 

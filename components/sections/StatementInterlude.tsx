@@ -92,9 +92,9 @@ export default function StatementInterlude() {
           {/* Bottom micro-stat strip — stays visible */}
           <div className="flex items-center justify-center gap-8 mt-14 flex-wrap">
             {[
-              { val: "6", label: "Módulos nativos" },
-              { val: "6", label: "Roles diferenciados" },
-              { val: "< 200ms", label: "POS → KDS" },
+              { val: "6", label: "Áreas integradas" },
+              { val: "8", label: "Roles diferenciados" },
+              { val: "Al instante", label: "Mesa → cocina" },
               { val: "1", label: "Solo sistema" },
             ].map((s) => (
               <div key={s.label} className="text-center">

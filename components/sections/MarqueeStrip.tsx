@@ -4,13 +4,13 @@ const items = [
   "KDS en tiempo real",
   "Facturación electrónica",
   "Cierre de caja automático",
-  "6 roles diferenciados",
+  "8 roles diferenciados",
   "BI sin exports",
   "Control de inventario",
   "Integración SUNAT / SIRE",
   "Pedidos al instante en cocina",
   "Culqi · Yape · Plin",
-  "Multi-local",
+  "Pedidos por QR en la mesa",
   "Reportes en vivo",
 ];
 

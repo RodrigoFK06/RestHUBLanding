@@ -10,7 +10,7 @@ const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "51961869348"
 
 const checks = [
   "POS + KDS integrado",
-  "6 roles diferenciados",
+  "8 roles diferenciados",
   "Contabilidad nativa",
   "BI en tiempo real",
   "Culqi + Izipay",

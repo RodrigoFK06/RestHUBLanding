@@ -6,11 +6,13 @@ import Counter from "@/components/reactbits/Counter";
 import BlurFade from "@/components/reactbits/BlurFade";
 import { TrendingUp, CreditCard, ShoppingBag } from "lucide-react";
 
+// Cifras de pos/INVENTARIO_PROYECTO_2026-10-09.md (64 módulos, 8 puestos, 155 pantallas) y de
+// pos/ESTADO_ACTUAL.md, corrida del 14-oct (4.162 pruebas backend + 1.739 frontend). Redondeadas hacia abajo.
 const stats = [
-  { value: 48, places: [10, 1], label: "Módulos trabajando\nen un solo sistema", color: "text-[#D97706]", suffix: "" },
-  { value: 6, places: [1], label: "Roles, cada uno\ncon su propia pantalla", color: "text-[#0D9488]", suffix: "" },
-  { value: 1700, places: [1000, 100, 10, 1], label: "Pruebas automáticas\nantes de cada versión", color: "text-[#0D9488]", suffix: "+" },
-  { value: 15, places: [10, 1], label: "Locales gestionables\ndesde un solo panel", color: "text-[#D97706]", suffix: "" },
+  { value: 60, places: [10, 1], label: "Módulos trabajando\nen un solo sistema", color: "text-[#D97706]", suffix: "+" },
+  { value: 8, places: [1], label: "Roles, cada uno\ncon su propia pantalla", color: "text-[#0D9488]", suffix: "" },
+  { value: 5000, places: [1000, 100, 10, 1], label: "Pruebas automáticas\nantes de cada versión", color: "text-[#0D9488]", suffix: "+" },
+  { value: 150, places: [100, 10, 1], label: "Pantallas, del salón\nhasta el contador", color: "text-[#D97706]", suffix: "+" },
 ];
 
 const chartBars = [
@@ -76,7 +78,8 @@ export default function Stats() {
                 key={i}
                 className={`px-8 py-10 text-center ${i < 3 ? "border-b md:border-b-0 md:border-r border-[#E2E8F0]" : ""} hover:bg-[#F8FAFC] transition-colors`}
               >
-                <div className={`text-[clamp(2.4rem,4.5vw,3.4rem)] font-black leading-none tracking-[-0.05em] mb-2 flex justify-center items-center ${s.color}`}>
+                {/* En móvil la celda mide ~160 px y «5000+» ocupa ~165: se achica un poco para no cortarse */}
+                <div className={`text-[clamp(2.4rem,4.5vw,3.4rem)] font-black leading-none tracking-[-0.05em] mb-2 flex justify-center items-center max-sm:scale-[0.85] ${s.color}`}>
                   <Counter
                     value={s.value}
                     places={s.places}

@@ -9,29 +9,31 @@ const PLAN_CATALOG: Record<
   string,
   { name: string; monthly: number; yearly: number; description?: string }
 > = {
+  // Los enlaces viejos (?plan=starter|esencial|pro|empresa) siguen abriendo algo, pero con la única
+  // oferta vigente: precio fundador de S/ 100 al mes por local.
   starter: {
-    name: "RestHUB Starter",
-    monthly: 159,
-    yearly: 159,
-    description: "Para dejar la libreta y los papelitos.",
+    name: "RestHUB · Precio fundador",
+    monthly: 100,
+    yearly: 100,
+    description: "Todo incluido: todos los módulos y todos los usuarios.",
   },
   esencial: {
-    name: "RestHUB Starter",
-    monthly: 159,
-    yearly: 159,
-    description: "Para dejar la libreta y los papelitos.",
+    name: "RestHUB · Precio fundador",
+    monthly: 100,
+    yearly: 100,
+    description: "Todo incluido: todos los módulos y todos los usuarios.",
   },
   pro: {
-    name: "RestHUB Pro",
-    monthly: 399,
-    yearly: 399,
-    description: "Para saber cuánto ganas de verdad.",
+    name: "RestHUB · Precio fundador",
+    monthly: 100,
+    yearly: 100,
+    description: "Todo incluido: todos los módulos y todos los usuarios.",
   },
   empresa: {
-    name: "RestHUB Enterprise",
-    monthly: 719,
-    yearly: 719,
-    description: "Para grupos con varios locales.",
+    name: "RestHUB · Precio fundador",
+    monthly: 100,
+    yearly: 100,
+    description: "Todo incluido: todos los módulos y todos los usuarios.",
   },
 };
 
@@ -57,12 +59,12 @@ export default function DeepLinkOpener() {
       if (plan === "esencial" || plan === "starter") {
         openContact({
           topic: "Solicitar acceso",
-          prefillMessage: "Quiero empezar con el plan Starter de RestHUB.",
+          prefillMessage: "Quiero empezar con RestHUB a precio fundador (S/ 100 al mes).",
         });
       } else if (plan === "empresa") {
         openContact({
           topic: "Contactar ventas",
-          prefillMessage: "Tengo varios locales y me interesa RestHUB Enterprise.",
+          prefillMessage: "Tengo varios locales y me interesa RestHUB.",
         });
       } else {
         const monthlyAmount = catalog.monthly;

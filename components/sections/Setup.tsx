@@ -16,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 const steps = [
   {
     num: "01",
-    day: "Día 1",
+    day: "Primera llamada",
     Icon: Monitor,
     title: "Demo en vivo",
     desc: "Una llamada de 15 minutos. Te mostramos el sistema con una carta parecida a la tuya y respondemos todas tus preguntas.",
@@ -29,23 +29,23 @@ const steps = [
   },
   {
     num: "02",
-    day: "Días 1 – 2",
+    day: "Antes de abrir",
     Icon: Wrench,
     title: "Setup guiado",
     desc: "Nuestro equipo configura RestHUB con tu menú, tus roles y tu estructura. Tú solo validas.",
     items: [
       "Carga de menú y modificadores",
       "Roles y credenciales por persona",
-      "Integración de pagos activa",
+      "Conexión con tu pasarela de pago",
       "Configuración de impresoras y KDS",
     ],
   },
   {
     num: "03",
-    day: "Día 3",
+    day: "El día del arranque",
     Icon: Zap,
     title: "Primer turno operativo",
-    desc: "Tu restaurante en producción. Acompañamiento en tiempo real durante el primer servicio.",
+    desc: "Arrancas en paralelo con lo que ya usas, sin parar tu local. Te acompañamos en tiempo real durante el primer servicio.",
     items: [
       "POS y KDS sincronizados en vivo",
       "Primer cierre de turno real",
@@ -93,10 +93,10 @@ export default function Setup() {
         <BlurFade>
           <div className="max-w-[600px] mx-auto text-center mb-16">
             <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-extrabold leading-[1.1] tracking-[-0.025em] mb-4 text-[#0F172A]">
-              De cero a operativo<br />en 72 horas.
+              De cero a operativo,<br />sin parar tu local.
             </h2>
             <p className="text-[1.05rem] text-[#475569] leading-[1.75]">
-              Te acompañamos en toda la configuración. Está incluido en todos los planes, sin costo adicional.
+              Te acompañamos en toda la configuración. Está incluido en el precio, sin costo adicional.
             </p>
           </div>
         </BlurFade>

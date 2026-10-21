@@ -76,7 +76,7 @@ const featureStrip = [
   {
     src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80&auto=format&fit=crop",
     label: "Gestión de Salón",
-    stat: "12 mesas activas",
+    stat: "Mesas y cuentas a la vista",
     bg: "from-[#0F172A]/85",
   },
   {
@@ -88,7 +88,7 @@ const featureStrip = [
   {
     src: "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1600&q=80&auto=format&fit=crop",
     label: "Control de Caja",
-    stat: "Cierre exacto, siempre",
+    stat: "Cierre con arqueo a ciegas",
     bg: "from-[#0F172A]/85",
   },
 ];

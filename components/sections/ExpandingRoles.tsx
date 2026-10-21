@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Crown, Utensils, CreditCard, ChefHat, Calculator, Smartphone, Check } from "lucide-react";
+import { Crown, Utensils, CreditCard, ChefHat, Wine, HandPlatter, DoorOpen, Calculator, Smartphone, Check } from "lucide-react";
 import BlurFade from "@/components/reactbits/BlurFade";
 
 const roles = [
@@ -50,6 +50,39 @@ const roles = [
     gradientFrom: "rgba(249,115,22,0.12)",
   },
   {
+    Icon: Wine,
+    color: "#22d3ee",
+    colorBg: "rgba(34,211,238,0.12)",
+    colorBorder: "rgba(34,211,238,0.3)",
+    name: "Barman",
+    access: "Barra propia",
+    desc: "Su pantalla de barra, separada de la cocina: el bar no ve los platos y la cocina no ve los tragos.",
+    chips: ["KDS de barra"],
+    gradientFrom: "rgba(34,211,238,0.12)",
+  },
+  {
+    Icon: HandPlatter,
+    color: "#FCD34D",
+    colorBg: "rgba(252,211,77,0.12)",
+    colorBorder: "rgba(252,211,77,0.3)",
+    name: "Runner",
+    access: "Entregas",
+    desc: "Ve en su tablet lo que ya está listo en cada estación y lo lleva a la mesa. Marca «Entregado» en un toque.",
+    chips: ["Entregas por mesa"],
+    gradientFrom: "rgba(252,211,77,0.12)",
+  },
+  {
+    Icon: DoorOpen,
+    color: "#5DC9A5",
+    colorBg: "rgba(93,201,165,0.12)",
+    colorBorder: "rgba(93,201,165,0.3)",
+    name: "Portero",
+    access: "La puerta",
+    desc: "Ve qué mesas están libres y lleva la lista de espera. Toca una mesa libre y sienta al que sigue.",
+    chips: ["Plano de mesas", "Lista de espera"],
+    gradientFrom: "rgba(93,201,165,0.12)",
+  },
+  {
     Icon: Calculator,
     color: "#22C55E",
     colorBg: "rgba(34,197,94,0.12)",
@@ -65,7 +98,7 @@ const roles = [
     color: "#94A3B8",
     colorBg: "rgba(148,163,184,0.08)",
     colorBorder: "rgba(148,163,184,0.2)",
-    name: "Cliente",
+    name: "Comensal",
     access: "Autoservicio",
     desc: "Panel de autoservicio y seguimiento de pedido. Módulo opcional según el modelo.",
     chips: ["Autoservicio", "Seguimiento"],
@@ -261,7 +294,7 @@ export default function ExpandingRoles() {
           <p className="mt-10 text-center text-[0.82rem] text-[#94A3B8]">
             <span className="hidden md:inline">Pasa el mouse o toca cada rol para ver su entorno → </span>
             <span className="md:hidden">Toca cada rol para ver su entorno → </span>
-            <span className="ml-2 text-white/85">6 roles · 6 realidades distintas</span>
+            <span className="ml-2 text-white/85">8 roles y el comensal · cada uno con su pantalla</span>
           </p>
         </BlurFade>
       </div>

@@ -2,11 +2,11 @@
 export const faqs = [
   {
     q: "¿En cuánto tiempo puedo tener RestHUB operativo?",
-    a: "Entre 1 y 3 días. La configuración la hacemos contigo: carta, mesas, usuarios e impresoras. En el primer turno estamos en línea para ajustar lo que haga falta.",
+    a: "Depende de tu carta y de tus equipos; lo vemos en la primera llamada. La configuración la hacemos contigo (carta, mesas, usuarios e impresoras) y arrancas en paralelo con lo que ya usas, sin parar el local. En el primer turno estamos en línea para ajustar lo que haga falta.",
   },
   {
     q: "¿Funciona para una cadena con múltiples locales?",
-    a: "Sí, de 1 a 15 locales. Ves los reportes de todos tus locales juntos o de cada uno por separado, y cada local tiene sus propios usuarios.",
+    a: "Sí. Cada local es una sucursal, con sus propios usuarios y sus propias series de boletas y facturas. Lo que todavía no tiene es un reporte que junte todos los locales en una sola vista; si tienes una cadena, conversemos tu caso.",
   },
   {
     q: "¿Puedo saber cuánto me cuesta cada plato?",
@@ -14,11 +14,11 @@ export const faqs = [
   },
   {
     q: "¿Qué pasa si se cae internet?",
-    a: "El POS y la pantalla de cocina siguen funcionando sin internet para lo básico: tomar pedidos y cobrar. Cuando vuelve la conexión, todo se sincroniza solo.",
+    a: "Sigues tomando pedidos y cobrando: todo se guarda en el equipo y se sincroniza solo cuando vuelve la señal. Y la caja no te deja cerrar el turno si quedó algo sin sincronizar, para que nada se pierda en el camino.",
   },
   {
     q: "¿El contador puede acceder sin ver toda la operación?",
-    a: "Sí. El contador entra con su propio usuario y solo ve contabilidad, reportes y balance. No ve la operación ni puede tocar pedidos.",
+    a: "Sí. El contador entra con su propio usuario y ve contabilidad, comprobantes, reportes y la caja, pero no puede crear ni editar nada de la operación: no toca pedidos.",
   },
   {
     q: "¿RestHUB reemplaza a Rappi o PedidosYa?",
@@ -26,6 +26,6 @@ export const faqs = [
   },
   {
     q: "¿Los datos de mi restaurante son seguros?",
-    a: "Sí. La información viaja y se guarda cifrada, y cada persona entra con su propio usuario, así que solo ve lo que le toca.",
+    a: "Sí. Los datos de cada restaurante están separados de los demás, cada persona entra con su propio usuario y solo ve lo que le toca, y tus credenciales de SUNAT se guardan cifradas. Además, queda registro de quién hizo cada acción.",
   },
 ];

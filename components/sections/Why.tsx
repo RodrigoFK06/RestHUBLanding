@@ -14,7 +14,7 @@ const pillars = [
   { Icon: WifiOff, color: "#F59E0B", title: "Funciona sin internet", desc: "Se cae la conexión y sigues vendiendo. Al volver, todo se sincroniza solo." },
   { Icon: Eye, color: "#14B8A6", title: "Datos en tiempo real", desc: "Ventas, turnos y cuentas a la vista cuando los necesitas." },
   { Icon: ShieldCheck, color: "#F59E0B", title: "Roles que respetan la realidad", desc: "El cocinero no ve el balance. El contador no toca órdenes." },
-  { Icon: Globe2, color: "#14B8A6", title: "Construido para LATAM", desc: "Culqi, Izipay, Yape, Plin y SUNAT desde el primer día." },
+  { Icon: Globe2, color: "#14B8A6", title: "Construido para el Perú", desc: "Culqi, Izipay, Yape, Plin y SUNAT desde el primer día." },
 ];
 
 export default function Why() {

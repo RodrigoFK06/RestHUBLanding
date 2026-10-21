@@ -159,7 +159,7 @@ export default function ComandaDemo() {
           </div>
 
           <p className="mt-6 max-w-[34ch] text-[15px] leading-relaxed text-texto-3">
-            La cocina lo recibe al instante, con mesa y hora. Aunque se caiga el internet.
+            La cocina lo recibe al instante, con mesa y hora. Sin internet, se guarda y sale al volver la señal.
           </p>
         </section>
 

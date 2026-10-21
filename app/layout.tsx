@@ -131,7 +131,7 @@ const jsonLd = {
           "@type": "ContactPoint",
           telephone: "+51-961-869-348",
           contactType: "sales",
-          areaServed: ["PE", "LATAM"],
+          areaServed: ["PE"],
           availableLanguage: ["Spanish"],
         },
       ],
@@ -146,9 +146,7 @@ const jsonLd = {
       inLanguage: "es",
       publisher: { "@id": `${SITE_URL}/#organization` },
       offers: [
-        { "@type": "Offer", name: "Starter", price: "159", priceCurrency: "PEN", url: `${SITE_URL}/#precios` },
-        { "@type": "Offer", name: "Pro", price: "399", priceCurrency: "PEN", url: `${SITE_URL}/#precios` },
-        { "@type": "Offer", name: "Enterprise", price: "719", priceCurrency: "PEN", url: `${SITE_URL}/#precios` },
+        { "@type": "Offer", name: "Precio fundador (por local, al mes)", price: "100", priceCurrency: "PEN", url: `${SITE_URL}/#precios` },
       ],
       featureList: [
         "Punto de venta (POS) para mozos y caja",

@@ -42,8 +42,8 @@ export default function Hero() {
               </a>
             </div>
             <p className="max-w-[56ch] text-[15px] leading-normal text-texto-3">
-              <strong className="font-semibold text-ambar">Quedan 7 cupos en el Programa Socios Fundadores.</strong> Acompañamos a un
-              grupo reducido de restaurantes en la implementación inicial, con beneficios y precios fundadores.
+              <strong className="font-semibold text-ambar">Precio fundador: S/ 100 al mes por local, todo incluido.</strong> Es para los
+              primeros restaurantes del Programa Socios Fundadores, con acompañamiento directo en la implementación.
             </p>
           </div>
         </header>

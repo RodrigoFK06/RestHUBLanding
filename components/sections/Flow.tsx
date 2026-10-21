@@ -10,7 +10,7 @@ const steps = [
     numColor: "text-[#0D9488]",
     name: "Mesa",
     desc: "El mozo toma la orden con mesas, modificadores y combos en segundos.",
-    role: "Worker / Cajero",
+    role: "Mozo / Cajero",
     roleClass: "bg-[rgba(13,148,136,0.12)] text-[#0F766E] border border-[rgba(13,148,136,0.3)]",
   },
   {

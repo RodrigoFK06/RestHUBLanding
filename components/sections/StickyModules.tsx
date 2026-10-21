@@ -68,7 +68,7 @@ const modules = [
     name: "Contabilidad",
     badge: "Panel exclusivo contador",
     desc: "Cuentas por cobrar, gastos y facturas en un panel que el contador maneja solo. Cierra el mes sin digitar una sola venta.",
-    items: ["Cuentas por cobrar y pagar", "Registro de gastos", "SUNAT y SIRE sin digitación", "Balance mensual automático"],
+    items: ["Cuentas por cobrar", "Registro de gastos", "SUNAT y SIRE sin digitación", "Balance mensual automático"],
   },
   {
     num: "06",
@@ -334,7 +334,7 @@ export default function StickyModules() {
           <span className="text-[#14B8A6]">RestHUB las cubre todas.</span>
         </h2>
         <p className="text-[1.05rem] text-[#94A3B8] leading-[1.75] max-w-[520px]">
-          Cada módulo opera solo y en conjunto. No hay costuras porque son el mismo sistema.
+          Seis áreas para tu día a día y más de 60 módulos por dentro, todos en el mismo sistema. Por eso no hay costuras.
         </p>
       </div>
 
